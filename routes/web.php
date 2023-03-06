@@ -19,4 +19,3 @@ use App\Http\Controllers\BouteilleController;
 // });
 
 
-Route::resource('/', [BouteilleController::class, 'index']);

@@ -12,12 +12,19 @@ class BouteilleController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // public function index()
+    // {
+    //     $bouteilles = Bouteille::all();
+        
+        
+    //     return ["status"=> 1,'data'=>$bouteilles];
+    // }
+
     public function index()
     {
-        $bouteilles = Bouteille::all();
-        
-        
-        return ["status"=> 1,'data'=>$bouteilles];
+        $bouteilles = Bouteille::latest()->paginate(25);
+        $res = $bouteilles;
+        return $res;
     }
 
     /**
