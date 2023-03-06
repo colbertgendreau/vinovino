@@ -1,3 +1,5 @@
-@forelse($blogs as $blog)
-<span>{{ $blog->nom }}</span>
+@forelse($bouteilles as $bouteille)
+<span>{{ $bouteille->nom }}</span>
+@empty
+    <li class="text-danger">Aucun article trouver</li>
 @endforelse

@@ -9,17 +9,20 @@ class Bouteille extends Model
 {
     use HasFactory;
 
+    protected $table = 'vino__bouteille';
+    
     
     protected $fillable = [ //les champ dans la base de donner quon veux modifier, ne pas mettre les auto ecrement
         'nom',
         'image',
-        'url_saq',
         'code_saq',
+        'url_saq',
         'pays',
         'description',
         'prix_saq',
         'url_img',
         'format',
-        'bouteille_types_id'
+        'type',
+
     ];
 }
