@@ -25,4 +25,10 @@ class Bouteille extends Model
         'type',
 
     ];
+
+    // public function bouteilleHasType(){ 
+    //     return $this->hasOne('App\Models\Bouteille', '', '');       /// a voir ici regler la question du type
+    // }
+
+    
 }

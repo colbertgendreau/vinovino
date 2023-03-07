@@ -5,7 +5,7 @@ import { FetchService } from '../fetch.service';
 @Component({
   selector: 'app-bouteille',
   templateUrl: './bouteille.component.html',
-  styleUrls: ['./bouteille.component.sass']
+  styleUrls: ['./bouteille.component.scss']
 })
 export class BouteilleComponent implements OnInit{
   // bouteille:IBouteille;

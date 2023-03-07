@@ -8,24 +8,24 @@ use Illuminate\Http\Request;
 class BouteilleController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * cree un REST API de tout le bouteille de notre basse de donner
      *
      * @return \Illuminate\Http\Response
      */
-    // public function index()
-    // {
-    //     $bouteilles = Bouteille::all();
-        
-        
-    //     return ["status"=> 1,'data'=>$bouteilles];
-    // }
-
     public function index()
     {
-        $bouteilles = Bouteille::latest()->paginate(25);
-        $res = $bouteilles;
-        return $res;
+        $bouteilles = Bouteille::all();
+        
+        
+        return ['data'=>$bouteilles];
     }
+
+    // public function index() // la function ci dessous retourne une pagination a decider ce quon veut
+    // {
+    //     $bouteilles = Bouteille::latest()->paginate(25);
+    //     $res = $bouteilles;
+    //     return $res;
+    // }
 
     /**
      * Show the form for creating a new resource.
