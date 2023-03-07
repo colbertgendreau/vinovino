@@ -67,7 +67,7 @@ class BouteilleController extends Controller
      */
     public function edit(Bouteille $bouteille)
     {
-        //
+        return ['data'=>$bouteille];
     }
 
     /**
