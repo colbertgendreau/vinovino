@@ -56,7 +56,7 @@ class BouteilleController extends Controller
      */
     public function show(Bouteille $bouteille)
     {
-        //
+        return ['data'=>$bouteille];
     }
 
     /**
@@ -67,7 +67,7 @@ class BouteilleController extends Controller
      */
     public function edit(Bouteille $bouteille)
     {
-        //
+        return ['data'=>$bouteille];
     }
 
     /**
