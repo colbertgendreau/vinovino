@@ -12,7 +12,7 @@ export class FetchService {
   constructor(private http:HttpClient) { }
 
   getBd():Observable<IlisteBouteille>{
-    return this.http.get<IlisteBouteille>("http://localhost:8001/api/bouteilles");
+    return this.http.get<IlisteBouteille>("http://localhost:8000/api/bouteilles");
     
 
     
