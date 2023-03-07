@@ -19,7 +19,7 @@ export class BouteilleComponent implements OnInit{
  
 
   ngOnInit(): void {
-    this.fetchSaq.getBd().subscribe((response) => {
+    this.fetchSaq.getBouteilleSAQ().subscribe((response) => {
       this.arrayBouteille = response.data;
       
       

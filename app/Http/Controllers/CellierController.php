@@ -24,7 +24,7 @@ class CellierController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -35,7 +35,14 @@ class CellierController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         // $res = BlogPost::create([                        //ceci est un EXEMPLE
+        //     'title'=> $request->title,
+        //     'body'=> $request->body,
+        //     'user_id'=> Auth::user()->id,
+        //     'categories_id'=>$request->categories_id
+        // ]);
+
+        // return $res;
     }
 
     /**

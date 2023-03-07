@@ -11,11 +11,11 @@ export class FetchService {
 
   constructor(private http:HttpClient) { }
 
-  getBd():Observable<IlisteBouteille>{
-    return this.http.get<IlisteBouteille>("http://localhost:8000/api/bouteilles");
-    
-
-    
-    
+  getBouteilleSAQ():Observable<IlisteBouteille>{
+    return this.http.get<IlisteBouteille>("http://localhost:8000/api/bouteilles"); 
   }
+
+  // getCellier():Observable<IlisteBouteille>{
+  //   return this.http.get<IlisteBouteille>("http://localhost:8000/api/bouteilles"); 
+  // }
 }
