@@ -15,6 +15,7 @@ import { AccueilComponent } from './accueil/accueil.component';
 import { CellierComponent } from './cellier/cellier.component';
 import { ListeCellierComponent } from './liste-cellier/liste-cellier.component';
 import { AjoutBouteilleComponent } from './ajout-bouteille/ajout-bouteille.component';
+import { ModifBouteilleComponent } from './modif-bouteille/modif-bouteille.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
     CellierComponent,
     ListeCellierComponent,
     AjoutBouteilleComponent,
+    ModifBouteilleComponent,
   ],
   imports: [
     BrowserModule,
