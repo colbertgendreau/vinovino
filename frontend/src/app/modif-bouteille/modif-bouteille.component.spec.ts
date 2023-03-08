@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BouteilleComponent } from './bouteille.component';
+import { ModifBouteilleComponent } from './modif-bouteille.component';
 
-describe('BouteilleComponent', () => {
-  let component: BouteilleComponent;
-  let fixture: ComponentFixture<BouteilleComponent>;
+describe('ModifBouteilleComponent', () => {
+  let component: ModifBouteilleComponent;
+  let fixture: ComponentFixture<ModifBouteilleComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ BouteilleComponent ]
+      declarations: [ ModifBouteilleComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(BouteilleComponent);
+    fixture = TestBed.createComponent(ModifBouteilleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
