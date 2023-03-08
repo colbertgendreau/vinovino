@@ -9,6 +9,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/auth.interceptor';
+import { BouteilleComponent } from './bouteille/bouteille.component';
+import { EnteteComponent } from './entete/entete.component';
+import { AccueilComponent } from './accueil/accueil.component';
 
 
 const routes: Routes = [
@@ -16,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: SigninComponent },
   { path: 'register', component: SignupComponent },
   { path: 'profile', component: UserProfileComponent },
+  { path: 'dashboard', component: BouteilleComponent },
 ];
 
 
@@ -25,6 +29,9 @@ const routes: Routes = [
     SigninComponent,
     SignupComponent,
     UserProfileComponent,
+    BouteilleComponent,
+    EnteteComponent,
+    AccueilComponent,
   ],
   imports: [
     BrowserModule,
