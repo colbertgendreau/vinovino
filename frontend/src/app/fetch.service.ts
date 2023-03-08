@@ -35,6 +35,9 @@ export class FetchService {
   getCelliers():Observable<IlisteCellier>{
     return this.http.get<IlisteCellier>(this.urlCellier);
   }
+  ajoutCellier(cellier: ICellier):Observable<ICellier>{
+    return this.http.post<ICellier>(this.urlCellier, cellier);
+  }
 }
 
 

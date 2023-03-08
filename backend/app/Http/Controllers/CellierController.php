@@ -39,10 +39,7 @@ class CellierController extends Controller
     {
         $res = Cellier::create([
             'nom' => $request->nom,
-            // test:
-            'users_id' => $request->users_id
-            // à utiliser:
-            // 'users_id'=> Auth::user()->id
+            'users_id'=> Auth::user()->id
         ]);
 
         return ['data' => $res];
