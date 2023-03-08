@@ -18,14 +18,15 @@ import { ModifBouteilleComponent } from './modif-bouteille/modif-bouteille.compo
 import { ModifCellierComponent } from './modif-cellier/modif-cellier.component';
 import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
 
-
-const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'login', component: SigninComponent },
-  { path: 'register', component: SignupComponent },
-  { path: 'profile', component: UserProfileComponent },
-  // { path: 'dashboard', component: BouteilleComponent },
-];
+// NE PAS DÉCOMMENTER !!!!!!
+// const routes: Routes = [
+//   // { path: '', redirectTo: '/login', pathMatch: 'full' },
+//   { path: '', redirectTo: 'accueil', pathMatch: 'full' },
+//   { path: 'login', component: SigninComponent },
+//   { path: 'register', component: SignupComponent },
+//   { path: 'profile', component: UserProfileComponent },
+//   // { path: 'dashboard', component: BouteilleComponent },
+// ];
 
 
 @NgModule({
