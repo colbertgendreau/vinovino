@@ -13,6 +13,7 @@ import { BouteilleComponent } from './bouteille/bouteille.component';
 import { EnteteComponent } from './entete/entete.component';
 import { AccueilComponent } from './accueil/accueil.component';
 import { CellierComponent } from './cellier/cellier.component';
+import { ListeCellierComponent } from './liste-cellier/liste-cellier.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,7 @@ const routes: Routes = [
     EnteteComponent,
     AccueilComponent,
     CellierComponent,
+    ListeCellierComponent,
   ],
   imports: [
     BrowserModule,
