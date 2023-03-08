@@ -20,7 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 use App\Http\Controllers\BouteilleController;
-Route::resource('bouteilles', BouteilleController::class);
+Route::apiResource('bouteilles', BouteilleController::class);
 
 Route::group([
     'middleware' => 'api',
