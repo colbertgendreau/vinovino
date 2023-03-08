@@ -15,6 +15,10 @@ class CellierController extends Controller
     public function index()
     {
         //
+        $celliers = Cellier::all();
+        
+        
+        return ['data'=>$celliers];
     }
 
     /**
