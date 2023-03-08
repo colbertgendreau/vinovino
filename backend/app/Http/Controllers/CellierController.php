@@ -15,11 +15,9 @@ class CellierController extends Controller
      */
     public function index()
     {
-        //
-        $celliers = Cellier::all();
-        
-        
-        return ['data'=>$celliers];
+        $users_id = Auth::id();
+        $celliers = Cellier::where('users_id', $users_id)->get();
+        return ['data' => $celliers];
     }
 
     /**
@@ -29,7 +27,6 @@ class CellierController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -40,15 +37,15 @@ class CellierController extends Controller
      */
     public function store(Request $request)
     {
-         $res = Cellier::create([                       
-            'nom'=> $request->nom,
+        $res = Cellier::create([
+            'nom' => $request->nom,
             // test:
-            'users_id'=> $request->users_id
+            'users_id' => $request->users_id
             // à utiliser:
             // 'users_id'=> Auth::user()->id
         ]);
 
-        return ['data'=>$res];
+        return ['data' => $res];
     }
 
     /**
