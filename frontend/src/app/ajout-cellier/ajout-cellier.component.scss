@@ -1,0 +1,25 @@
+:host{
+    margin-left: 8px;
+    margin-right: 8px;
+    form{
+        display: flex;
+        flex-direction: column;
+        div{
+            border: 1px solid black;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 8px;
+
+            label{
+                margin-bottom: 8px;
+            }
+            .message-erreur {
+                color: red;
+                font-size: 12px;
+                margin-top: 5px;
+              }
+        }
+    }
+}

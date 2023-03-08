@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IBouteille } from './ibouteille';
 import { IlisteBouteille } from './iliste-bouteille';
+import { ICellier } from './icellier';
+import { IlisteCellier } from './iliste-cellier';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +12,7 @@ import { IlisteBouteille } from './iliste-bouteille';
 export class FetchService {
 
   private url:string = "http://127.0.0.1:8000/api/bouteilles";
+  private urlCellier:string ="http://127.0.0.1:8000/api/celliers";
   constructor(private http:HttpClient) { }
 
   getBouteilleSAQ():Observable<IlisteBouteille>{
@@ -27,6 +30,13 @@ export class FetchService {
     return this.http.get<IBouteille>(this.url+"/"+id);
 
 
+  }
+
+  getCelliers():Observable<IlisteCellier>{
+    return this.http.get<IlisteCellier>(this.urlCellier);
+  }
+  ajoutCellier(cellier: ICellier):Observable<ICellier>{
+    return this.http.post<ICellier>(this.urlCellier, cellier);
   }
 }
 

@@ -1,4 +1,16 @@
-<p>Bienvenue {{ UserProfile.name }}!</p>
 
-<p>liste-cellier works!</p>
+
+<div>
+    
+    <article *ngFor="let unCellier of listeCelliers;">
+        <a href="#">
+            <p>{{unCellier.nom}}</p>
+        </a>
+    </article>
+    <article>
+        <a  routerLink="/ajouter-cellier">
+            <p class="grosPlus">+</p>
+        </a>
+    </article>
+</div>
 
