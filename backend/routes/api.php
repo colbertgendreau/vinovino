@@ -19,11 +19,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
 use App\Http\Controllers\BouteilleSAQController;
 Route::resource('bouteillesSAQ', BouteilleSAQController::class);
 
 use App\Http\Controllers\CellierController;
 Route::resource('celliers', CellierController::class);
+
+
 
 Route::group([
     'middleware' => 'api',
