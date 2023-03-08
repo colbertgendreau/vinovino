@@ -12,6 +12,7 @@ import { AuthInterceptor } from './shared/auth.interceptor';
 import { BouteilleComponent } from './bouteille/bouteille.component';
 import { EnteteComponent } from './entete/entete.component';
 import { AccueilComponent } from './accueil/accueil.component';
+import { CellierComponent } from './cellier/cellier.component';
 
 
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
     BouteilleComponent,
     EnteteComponent,
     AccueilComponent,
+    CellierComponent,
   ],
   imports: [
     BrowserModule,
