@@ -1,7 +1,12 @@
-:host{
-    margin-left: 8px;
-    margin-right: 8px;
+.ajouter-cellier-component{
+    padding: var(--big) var(--smaller);
+    text-align: center;
+
+    h1 {
+        font-family: 'ruda';
+    }
     form{
+        margin-top: var(--big);
         display: flex;
         flex-direction: column;
         div{
@@ -13,12 +18,39 @@
             padding: 8px;
 
             label{
-                margin-bottom: 8px;
+                margin-top: var(--smaller);
+                margin-bottom: var(--smaller);
+                font-family: 'ruda';
+                font-size: var(--bigger);
+                font-weight: 800;
             }
+            input{
+                padding: var(--small);
+                font-size: var(--bigger);
+            }
+
+            button{
+                margin-top: var(--smaller);
+                background-color: var(--white);
+                border: 1px solid var(--black);
+                color: var(--black);
+                bottom: var(--big);
+                padding: 8px;
+            }
+            .grosPlus {
+                font-size: 40px;
+            }
+
+            button:hover{
+                background-color: var(--secondaire);
+                cursor: pointer;
+            }
+
             .message-erreur {
                 color: red;
                 font-size: 12px;
                 margin-top: 5px;
+                border: none;
               }
         }
     }
