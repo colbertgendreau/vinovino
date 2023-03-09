@@ -4,6 +4,7 @@ import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
 import { AuthService } from '../shared/auth.service';
 import { FetchService } from '../fetch.service';
+import { ActivatedRoute } from '@angular/router';
 import { IlisteCellier } from '../iliste-cellier';
 import { ICellier } from '../icellier';
 
@@ -25,6 +26,7 @@ export class ListeCellierComponent implements OnInit {
   // title:string='Liste des celliers';
   // UserProfile!: User;
   listeCelliers: Array<ICellier>; 
+  unCellier: ICellier; 
 
   constructor(
     private auth: AuthStateService,
@@ -32,6 +34,7 @@ export class ListeCellierComponent implements OnInit {
     public token: TokenService,
     public authService: AuthService,
     public fetchService: FetchService,
+    private route:ActivatedRoute, 
   ) {
 
     this.listeCelliers = [];
@@ -48,6 +51,9 @@ export class ListeCellierComponent implements OnInit {
       this.listeCelliers = data.data;
       console.log(this.listeCelliers);
     });
+
+   
+   
 
     
   }

@@ -13,7 +13,7 @@ import { IlisteCellier } from './iliste-cellier';
 export class FetchService {
 
   private url:string = "http://127.0.0.1:8000/api/bouteillesSAQ";
-  private urlCellier:string ="http://127.0.0.1:8000/api/celliers";
+  private urlCellier:string ="http://127.0.0.1:8000/api/celliers/";
 
   constructor(private http:HttpClient) { }
 
@@ -39,6 +39,10 @@ export class FetchService {
   }
   ajoutCellier(cellier: ICellier):Observable<ICellier>{
     return this.http.post<ICellier>(this.urlCellier, cellier);
+  }
+  getUnCellier(id:number):Observable<ICellier>{
+    console.log(id);
+    return this.http.get<ICellier>(this.urlCellier+id);
   }
 }
 
