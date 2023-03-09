@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
 import { AuthService } from '../shared/auth.service';
+import { ICellier } from '../icellier';
 
 // User interface
 export class User {
@@ -17,6 +18,9 @@ export class User {
 })
 
 export class CellierComponent implements OnInit {
+
+    @Input() cellier: ICellier;
+
 
   isSignedIn!: boolean;
   // title:string='Cellier';
