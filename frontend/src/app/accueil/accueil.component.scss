@@ -1,0 +1,26 @@
+.accueil {
+    // height: calc(100vh - 60px);
+    // height: auto;
+    background-image: url(../../assets/img/8A_01650.jpg);
+    // background-image: url(../../assets/img/1A_01643.jpg);
+    background-size: cover;
+    object-position: right;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.boutons {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+a {
+    text-align: center;
+    background-color: var(--white);
+    padding-block: var(--big);
+    margin-block: var(--biggest);
+    text-decoration: none;
+}
