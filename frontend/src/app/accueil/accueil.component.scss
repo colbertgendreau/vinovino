@@ -1,10 +1,8 @@
 .accueil {
     height: calc(100vh - 63px);
     background-image: url(../../assets/img/8A_01650.jpg);
-    // background-image: url(../../assets/img/1A_01643.jpg);
     background-size: cover;
     object-position: right;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,27 +12,36 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: var(--black-transparent40);
+    background-color: var(--black-transparent50);
     align-items: center;
 }
 
 .logo {
     height: 40%;
     width: 40%;
-    margin-block: var(--biggest);
-    // filter: invert(11%) sepia(86%) saturate(7274%) hue-rotate(7deg) brightness(102%) contrast(113%);
+    margin-block: var(--big);
+}
+
+.logo_fill {
+    fill: var(--primaire);
 }
 
 a {
     text-align: center;
-    background-color: var(--white);
     padding-block: var(--big);
-    margin-block: var(--biggest);
+    margin-bottom: var(--big);
     margin-inline: var(--biggest);
     text-decoration: none;
     border-radius: var(--border-radius);
     font-weight: var(--bold);
     font-size: var(--big);
-    color: var(--gris-fonce);
     min-width: calc(100vw - var(--biggest));
+    border: solid var(--smallest) var(--white);
+    background-color: var(--white-transparent80);
+    color: var(--black);
+}
+
+a:hover {
+    background-color: var(--white);
+    color: var(--black);
 }
