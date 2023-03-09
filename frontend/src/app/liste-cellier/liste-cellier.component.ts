@@ -3,12 +3,15 @@ import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
 import { AuthService } from '../shared/auth.service';
+import { FetchService } from '../fetch.service';
+import { IlisteCellier } from '../iliste-cellier';
+import { ICellier } from '../icellier';
 
 // User interface
-export class User {
-  name: any;
-  email: any;
-}
+// export class User {
+//   name: any;
+//   email: any;
+// }
 
 @Component({
   selector: 'app-liste-cellier',
@@ -20,18 +23,19 @@ export class ListeCellierComponent implements OnInit {
 
   isSignedIn!: boolean;
   // title:string='Liste des celliers';
-  UserProfile!: User;
+  // UserProfile!: User;
+  listeCelliers: Array<ICellier>; 
 
   constructor(
     private auth: AuthStateService,
     public router: Router,
     public token: TokenService,
     public authService: AuthService,
+    public fetchService: FetchService,
   ) {
-    this.authService.profileUser().subscribe((data: any) => {
-      this.UserProfile = data;
-      console.log(this.UserProfile);
-    });
+
+    this.listeCelliers = [];
+
   }
 
   ngOnInit() {
@@ -39,6 +43,13 @@ export class ListeCellierComponent implements OnInit {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
     });
+
+    this.fetchService.getCelliers().subscribe((data: any) => {
+      this.listeCelliers = data.data;
+      console.log(this.listeCelliers);
+    });
+
+    
   }
 
 }

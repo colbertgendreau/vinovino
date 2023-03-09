@@ -1,4 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
-body{
-  background-color: lawngreen;
+
+@font-face{
+    font-family: 'vinovino';
+    src: url('../src/assets/fonts/BudokanRounded-Bold.ttf');
+
+
 }
+
+*{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+//declaration variable global
+:root{
+            //color
+    --primaire: #F80301;
+    --secondaire:#FFB700;
+    --white:#FFFFFF;
+    --black:#000000;
+
+    //padding
+
+    --smaller:8px;
+    --small:12px;
+    --med:16px;
+    --big:20px;
+    --bigger:24px;
+    --biggest:32px;
+}
+

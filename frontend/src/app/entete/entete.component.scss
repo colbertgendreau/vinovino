@@ -1,0 +1,104 @@
+@media screen and (min-width: 560px) {
+    .nom_logo{
+        display: flex;
+        flex-direction: row;
+        font-family: 'vinovino';
+        font-size: 40px;
+        color: var(--white);
+    }
+
+    nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        // background-color: var(--secondaire);
+        background-color: var(--primaire);
+        padding: var(--smaller);
+        align-items: center;
+    }
+
+    .logo{
+        fill: var(--white);
+    }
+
+    .nav_link a{
+        color: var(--white);
+        font-size: 18px;
+        padding-left: var(--small);
+        text-decoration: none;
+        text-transform: uppercase;
+        
+    }
+
+    .nav_link a:hover{
+        color: var(--black);
+    }
+
+    .btn{
+        color: var(--white);
+        margin-left: var(--small);
+        background: none;
+        border: 2px solid rgb(255, 255, 255);
+        border-radius: 15px;
+        padding: var(--smaller);
+    }
+    .btn:hover{
+        color: var(--black);
+        border: 2px solid rgb(0, 0, 0);
+    }
+}
+
+
+
+
+@media screen and (max-width: 560px) {
+
+    .nom_logo{
+        display: flex;
+        flex-direction: row;
+        font-family: 'vinovino';
+        font-size: 40px;
+        color: var(--white);
+    }
+
+    nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        // background-color: var(--secondaire);
+        background-color: var(--primaire);
+        padding: var(--smaller);
+        align-items: center;
+    }
+
+    .nav_link a{
+        display: flex;
+        flex-direction: column;
+        color: var(--white);
+        font-size: 18px;
+
+        text-decoration: none;
+        text-transform: uppercase;
+        
+    }
+
+    .nav_link a:hover{
+        color: var(--black);
+    }
+
+    .btn {
+        background: none;
+	    color: var(--white);
+	    border: none;
+	    padding: 0;
+	    font: inherit;
+	    cursor: pointer;
+	    outline: inherit;
+        text-transform: uppercase;
+    }
+
+    .btn:hover{
+        color: var(--black);
+    }
+
+}

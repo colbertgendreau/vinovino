@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Cellier;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CellierController extends Controller
 {
@@ -14,7 +15,9 @@ class CellierController extends Controller
      */
     public function index()
     {
-        //
+        $users_id = Auth::id();
+        $celliers = Cellier::where('users_id', $users_id)->get();
+        return ['data' => $celliers];
     }
 
     /**
@@ -24,7 +27,6 @@ class CellierController extends Controller
      */
     public function create()
     {
-        
     }
 
     /**
@@ -35,14 +37,12 @@ class CellierController extends Controller
      */
     public function store(Request $request)
     {
-         // $res = BlogPost::create([                        //ceci est un EXEMPLE
-        //     'title'=> $request->title,
-        //     'body'=> $request->body,
-        //     'user_id'=> Auth::user()->id,
-        //     'categories_id'=>$request->categories_id
-        // ]);
+        $res = Cellier::create([
+            'nom' => $request->nom,
+            'users_id'=> Auth::user()->id
+        ]);
 
-        // return $res;
+        return ['data' => $res];
     }
 
     /**
