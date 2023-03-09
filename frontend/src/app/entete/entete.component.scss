@@ -1,5 +1,9 @@
 @media screen and (min-width: 560px) { //ordinateur
 
+    .logo_fill {
+        fill: var(--white);
+    }
+
 
     .burger {
         display: none;
@@ -63,6 +67,10 @@
 
 
 @media screen and (max-width: 560px) { //mobile
+
+    .logo_fill {
+        fill: var(--white);
+    }
 
     .nom_logo{
         display: flex;
