@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      -main
+      - master
 name: 🚀 Deployer Vinovino on push
 jobs:
   web-deploy:
