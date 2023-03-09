@@ -1,6 +1,6 @@
 <div class="auth-wrapper">
   <form class="form-signin" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <h3 class="h3 mb-3 font-weight-normal text-center">Créer un compte</h3>
+    <h3 class="h3 mb-3 font-weight-normal text-center">Inscription</h3>
     <!-- Errors -->
     <div *ngIf="errors?.name" class="alert alert-danger mt-3">
       {{ errors?.name }}
@@ -36,7 +36,7 @@
         placeholder="Confirmation du mot de passe"/>
     </div>
     <button type="submit" class="btn btn-block">
-      Créer
+      Créer un compte
     </button>
   </form>
 </div>
