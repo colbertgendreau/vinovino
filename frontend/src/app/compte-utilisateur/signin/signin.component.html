@@ -1,6 +1,6 @@
 <div class="auth-wrapper">
   <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <h3 class="h3 mb-3 font-weight-normal text-center">Sign in</h3>
+    <h3 class="h3 mb-3 font-weight-normal text-center">Connexion</h3>
     <!-- Errors -->
     <div *ngIf="errors?.email" class="alert alert-danger mt-3">
       {{ errors?.email }}
@@ -13,13 +13,13 @@
     </div>
     <!-- Login -->
     <div class="form-group">
-      <label>Email address</label>
-      <input type="email" class="form-control" formControlName="email">
+      <label>Courriel</label>
+      <input type="email" class="form-control" formControlName="email" placeholder="Courriel">
     </div>
     <div class="form-group">
       <label>Mot de passe</label>
-      <input type="password" class="form-control" formControlName="password">
+      <input type="password" class="form-control" formControlName="password" placeholder="Mot de passe">
     </div>
-    <button type="submit" class="btn btn-block btn-primary">Log in</button>
+    <button type="submit" class="btn btn-block btn-primary">Se connecter</button>
   </form>
 </div>

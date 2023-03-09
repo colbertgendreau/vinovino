@@ -1,16 +1,14 @@
-
-
 <div>
-    
-    <article *ngFor="let unCellier of listeCelliers;">
-        <a href="#">
-            <p>{{unCellier.nom}}</p>
-        </a>
-    </article>
-    <article>
-        <a  routerLink="/ajouter-cellier">
-            <p class="grosPlus">+</p>
-        </a>
-    </article>
-</div>
+    <h1>Mes celliers</h1>
 
+    <a routerLink="/cellier" *ngFor="let unCellier of listeCelliers;">
+        <article class="image-cellier cellier">
+            <h2>{{unCellier.nom}}</h2>
+        </article>
+    </a>
+    <a routerLink="/ajouter-cellier">
+        <article class="ajouter-cellier">
+            <p class="grosPlus">+</p>
+        </article>
+    </a>
+</div>
