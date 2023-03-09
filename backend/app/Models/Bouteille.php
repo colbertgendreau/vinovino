@@ -13,7 +13,6 @@ class Bouteille extends Model
     
     
     protected $fillable = [ //les champ dans la base de donner quon veux modifier, ne pas mettre les auto ecrement
-        'nom',
         'date_achat',
         'millesime',
         'notes',
