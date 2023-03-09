@@ -35,7 +35,7 @@ export class SignupComponent implements OnInit {
       },
       () => {
         this.registerForm.reset();
-        this.router.navigate(['login']);
+        this.router.navigate(['connexion']);
       }
     );
   }
