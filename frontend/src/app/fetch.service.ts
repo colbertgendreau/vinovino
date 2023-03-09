@@ -12,8 +12,8 @@ import { IlisteCellier } from './iliste-cellier';
 })
 export class FetchService {
 
-  private url:string = "http://127.0.0.1:8000/api/bouteillesSAQ";
-  private urlCellier:string ="http://127.0.0.1:8000/api/celliers";
+  private url:string = environment.apiUrl+"/api/bouteilles";
+  private urlCellier:string =environment.apiUrl+"/api/celliers";
 
   constructor(private http:HttpClient) { }
 
