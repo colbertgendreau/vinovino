@@ -17,18 +17,26 @@ div {
         justify-content: center;
         align-items: center;
         filter: brightness(100%);
+        position:relative;
     }
 
-    a {
-        text-decoration: none;
-        color: var(--black);
+    .modif-cellier{
+        position: absolute;
+        bottom: var(--smaller);
+        right: var(--smaller);
+    }
 
-        .cellier {
-            border: 1px solid var(--black);
-            border-radius: 5px;
-            display: flex;
-            justify-content: center;
-            padding: 8px;
+
+    .cellier {
+        border: 1px solid var(--black);
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        padding: 8px;
+
+        a {
+            text-decoration: none;
+            color: var(--black);
 
             h2 {
                 font-family: 'ruda';
@@ -40,28 +48,34 @@ div {
             }
 
         }
-        .ajouter-cellier {
-            background-color: var(--white);
-            border-top: 1px solid var(--black);
-            border-bottom: 1px solid var(--black);
-            color: var(--black);
-            position: fixed;
-            bottom: var(--big);
-            padding: 8px;
 
-            z-index: 2;
-            // width: 100%;
-            right: 0;
-            left: 0;
-            .grosPlus {
-                font-size: 40px;
-            }
+    }
+
+    .ajouter-cellier {
+        background-color: var(--white);
+        border-top: 1px solid var(--black);
+        border-bottom: 1px solid var(--black);
+        color: var(--black);
+        position: fixed;
+        bottom: var(--big);
+        padding: 8px;
+        z-index: 2;
+        // width: 100%;
+        right: 0;
+        left: 0;
+
+        a {
+            text-decoration: none;
+            color: var(--black);
         }
-    
-        .ajouter-cellier:hover {
-   
-            background-color: var(--secondaire);
+        
+
+        .grosPlus {
+            font-size: 40px;
         }
     }
-    
+    .ajouter-cellier:hover {
+        background-color: var(--secondaire);
+    }
+
 }
