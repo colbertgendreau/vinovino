@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Bouteille;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class BouteilleController extends Controller
 {
@@ -14,9 +16,9 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-        $bouteilles = Bouteille::all();
-        
-        
+        $celliers_id = Auth::id();
+        $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+
         return ['data'=>$bouteilles];
     }
 
