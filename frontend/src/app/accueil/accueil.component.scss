@@ -21,7 +21,7 @@
 .logo {
     height: 40%;
     width: 40%;
-    margin-block: var(--biggest);
+    margin-block: var(--big);
     // filter: invert(11%) sepia(86%) saturate(7274%) hue-rotate(7deg) brightness(102%) contrast(113%);
 }
 
@@ -29,7 +29,7 @@ a {
     text-align: center;
     background-color: var(--white);
     padding-block: var(--big);
-    margin-block: var(--biggest);
+    margin-bottom: var(--big);
     margin-inline: var(--biggest);
     text-decoration: none;
     border-radius: var(--border-radius);
