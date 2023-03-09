@@ -1,6 +1,5 @@
 .accueil {
-    // height: calc(100vh - 60px);
-    // height: auto;
+    height: calc(100vh - 63px);
     background-image: url(../../assets/img/8A_01650.jpg);
     // background-image: url(../../assets/img/1A_01643.jpg);
     background-size: cover;
@@ -14,7 +13,16 @@
 .boutons {
     display: flex;
     flex-direction: column;
-    width: 80%;
+    width: 100%;
+    background-color: var(--black-transparent40);
+    align-items: center;
+}
+
+.logo {
+    height: 40%;
+    width: 40%;
+    margin-block: var(--biggest);
+    // filter: invert(11%) sepia(86%) saturate(7274%) hue-rotate(7deg) brightness(102%) contrast(113%);
 }
 
 a {
@@ -22,5 +30,11 @@ a {
     background-color: var(--white);
     padding-block: var(--big);
     margin-block: var(--biggest);
+    margin-inline: var(--biggest);
     text-decoration: none;
+    border-radius: var(--border-radius);
+    font-weight: var(--bold);
+    font-size: var(--big);
+    color: var(--gris-fonce);
+    min-width: calc(100vw - var(--biggest));
 }
