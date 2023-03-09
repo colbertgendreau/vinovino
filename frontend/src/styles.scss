@@ -20,7 +20,10 @@
     --primaire: #F80301;
     --secondaire:#FFB700;
     --white:#FFFFFF;
+    --gris-fonce:#444444;
     --black:#000000;
+    --black-transparent50:rgba(0, 0, 0, 0.5);
+    --black-transparent40:rgba(0, 0, 0, 0.4);
 
     //padding
 
@@ -30,5 +33,12 @@
     --big:20px;
     --bigger:24px;
     --biggest:32px;
+
+    // boutons
+    // border-radius
+    --border-radius:50px;
+
+    // fonts
+    --bold:bold;
 }
 
