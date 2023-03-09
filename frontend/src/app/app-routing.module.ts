@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'connexion', component: SigninComponent },
   { path: 'inscription', component: SignupComponent },
   { path: 'profile', component: UserProfileComponent, canActivate:[GardienLoginGuard] },
-  
+
   { path: 'accueil', component: AccueilComponent },
   { path: 'liste-cellier', component: ListeCellierComponent, canActivate:[GardienLoginGuard] },
   { path: 'cellier', component: CellierComponent, canActivate:[GardienLoginGuard] },
