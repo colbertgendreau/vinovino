@@ -8,12 +8,31 @@
   </div>
     
   <div class="nav_link">
-    <a class="nav_link_a" routerLink="/profile" *ngIf="isSignedIn">User Profile</a>
-    <a class="nav_link_a" *ngIf="!isSignedIn" routerLink="/login">Log in</a>
-    <a class="nav_link_a" routerLink="/register">Register</a>
-    <button class="btn" (click)="signOut()" *ngIf="isSignedIn">Log out</button>
+    <a class="nav_link_a" routerLink="/profile" *ngIf="isSignedIn">Profile</a>
+    <a class="nav_link_a" *ngIf="!isSignedIn" routerLink="/connexion">Connexion</a>
+    <a class="nav_link_a" routerLink="/inscription">Creer un compte</a>
+    <button class="btn" (click)="signOut()" *ngIf="isSignedIn">Deconnexion</button>
   </div>
       
     
 
+</nav>
+
+<nav class="burger">
+
+  <div class="menu-toggle">
+      <input type="checkbox">
+      <span></span>
+      <span></span>
+      <span></span>
+
+      <ul class="menu">
+          <li *ngIf="isSignedIn"><a class="nav_link_a" routerLink="/accueil">Accueil</a></li>
+          <li *ngIf="!isSignedIn"><a class="nav_link_a" routerLink="/connexion">Connexion</a></li>
+          <li *ngIf="isSignedIn"><a class="nav_link_a" routerLink="/profile">Profil</a></li>
+          <li><a class="nav_link_a" routerLink="/inscription">Creer un compte</a></li>
+          <li><a href="#">FR | EN</a></li>
+          <button class="btn_mobile" (click)="signOut()" *ngIf="isSignedIn">Deconnexion</button>
+      </ul>
+  </div>
 </nav>

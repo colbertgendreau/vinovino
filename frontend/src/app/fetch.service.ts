@@ -28,11 +28,11 @@ export class FetchService {
   //   return this.http.get<IlisteBouteille>(environment.production+'"/api/bouteilles");
   // }
 
-  getUneBiere(id:number):Observable<IBouteille>{
-    return this.http.get<IBouteille>(this.url+"/"+id);
+  // getUneBouteille(id:number):Observable<IBouteille>{
+  //   return this.http.get<IBouteille>(this.url+"/"+id);         /// non fonctionnelle
 
 
-  }
+  // }
 
   getCelliers():Observable<IlisteCellier>{
     return this.http.get<IlisteCellier>(this.urlCellier);
