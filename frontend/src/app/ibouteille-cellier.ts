@@ -1,4 +1,4 @@
-export interface IBouteille {
+export interface Ibouteillecellier {
 
     nom:string;
     image:string;
@@ -11,6 +11,7 @@ export interface IBouteille {
     format:any;
     type:any;
 
+    garde_jusqua:string;
     date_achat:Date;
     millesime:number;
     notes:number;

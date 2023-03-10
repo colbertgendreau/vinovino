@@ -27,5 +27,9 @@ class Bouteille extends Model
     //     return $this->hasOne('App\Models\Bouteille', '', '');       /// a voir ici regler la question du type
     // }
 
+    public function bouteilleHasId(){
+        return $this->hasOne('App\Models\BouteilleSAQ', 'id', 'bouteilles_id');
+    }
+
     
 }

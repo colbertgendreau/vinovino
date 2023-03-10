@@ -4,10 +4,10 @@ import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
 import { AuthService } from '../shared/auth.service';
 import { ICellier } from '../icellier';
-import { Ilistemesbouteilles } from '../Ilistemesbouteilles';
 import { FetchService } from '../fetch.service';
-import { Imesbouteilles } from '../imesbouteilles';
 import { ActivatedRoute } from '@angular/router';
+import { Ibouteillecellier } from '../ibouteille-cellier';
+import { Imesbouteilles } from '../imesbouteilles';
 
 // User interface
 export class User {
@@ -23,7 +23,8 @@ export class User {
 export class CellierComponent implements OnInit {
   @Input() cellier: ICellier;
 
-  bouteilles: Array<Imesbouteilles>;
+  bouteilles: Array<Ibouteillecellier>;
+  bouteille: Imesbouteilles;
 
   isSignedIn!: boolean;
   // title:string='Cellier';
@@ -41,6 +42,7 @@ export class CellierComponent implements OnInit {
       this.UserProfile = data;
       console.log(this.UserProfile);
     });
+    this.bouteilles = [];
   }
 
   ngOnInit() {
@@ -48,10 +50,9 @@ export class CellierComponent implements OnInit {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
     });
-    console.log("les bouteilles du cellier");
 
     this.route.params.subscribe((params) => {
-      console.log(params);
+      console.log(params['id']);
 
       this.fetchService
         .getBouteillesCellier(params['id'])
@@ -61,5 +62,6 @@ export class CellierComponent implements OnInit {
           console.log("les bouteilles du cellier");
         });
     });
+      
   }
 }

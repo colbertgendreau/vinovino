@@ -1,16 +1,22 @@
 <div>
     <h1>Mes celliers</h1>
 
-    <article class="image-cellier cellier" *ngFor="let unCellier of listeCelliers;">
-        <a routerLink="/cellier/{{unCellier.id}}" >
+    <article class="boite-cellier celliers" *ngFor="let unCellier of listeCelliers;">
+        <a class="unCellier" routerLink="/cellier/{{unCellier.id}}">
             <h2>{{unCellier.nom}}</h2>
         </a>
+
         <a class="ajout-bouteille"  routerLink="/ajouter-bouteille/{{unCellier.id}}">Ajouter bouteille</a>
         <a class="modif-cellier"  routerLink="/modifier-cellier/{{unCellier.id}}">Modifier</a>
+=======
+
+
     </article>
-    <article class="ajouter-cellier">
-        <a routerLink="/ajouter-cellier">
-            <p class="grosPlus">+</p>
+    
+
+        <a class="ajouter-cellier" routerLink="/ajouter-cellier">
+            Ajouter
         </a>
-    </article>
+    
+
 </div>
