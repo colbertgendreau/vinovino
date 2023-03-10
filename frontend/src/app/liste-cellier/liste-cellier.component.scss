@@ -1,5 +1,6 @@
 div {
-    padding: var(--big) var(--smaller);
+    background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
+    padding: var(--big) var(--big) 100px;
     display: flex;
     flex-direction: column;
     gap: var(--big);
@@ -9,9 +10,10 @@ div {
         font-family: 'ruda';
     }
 
-    .image-cellier {
-        background-image: url(cellier-background-1.jpg);
+    .boite-cellier {
+        // background-image: url(cellier-background-1.jpg);
         //Image by upklyak on Freepik
+        background-color: var(--black-transparent50);
         background-size: cover;
         height: 150px;
         justify-content: center;
@@ -21,24 +23,27 @@ div {
     }
 
     .modif-cellier{
+        color: var(--white);
         position: absolute;
         bottom: var(--smaller);
         right: var(--smaller);
+        text-decoration: none;
     }
 
 
-    .cellier {
+    .celliers {
         border: 1px solid var(--black);
         border-radius: 5px;
         display: flex;
         justify-content: center;
         padding: 8px;
 
-        a {
+        .unCellier {
             text-decoration: none;
             color: var(--black);
 
             h2 {
+                color: var(--white);
                 font-family: 'ruda';
                 font-size: var(--bigger);
                 font-weight: 800;
@@ -50,32 +55,34 @@ div {
         }
 
     }
-
-    .ajouter-cellier {
-        background-color: var(--white);
-        border-top: 1px solid var(--black);
-        border-bottom: 1px solid var(--black);
-        color: var(--black);
-        position: fixed;
-        bottom: var(--big);
-        padding: 8px;
-        z-index: 2;
-        // width: 100%;
-        right: 0;
-        left: 0;
-
-        a {
+ 
+        .ajouter-cellier {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: var(--small);
+            margin-bottom: var(--small);
+            margin-inline: var(--small);
+            height: var(--biggest);
+            border-radius: var(--border-radius);
+            border-style: none;
+            border: solid var(--smallest) var(--secondaire);
+            font-size: var(--med);
+            font-weight: var(--bold);
+            background-color: var(--secondaire-transparent80);
+            color: var(--black);
+            position: fixed;
+            bottom: var(--big);
+            padding: 8px;
+            right: 0;
+            left: 0;
+            z-index: 2;
             text-decoration: none;
             color: var(--black);
         }
-        
-
-        .grosPlus {
-            font-size: 40px;
+        .ajouter-cellier:hover {
+            background-color: var(--secondaire);
         }
-    }
-    .ajouter-cellier:hover {
-        background-color: var(--secondaire);
-    }
+    
 
 }

@@ -8,7 +8,7 @@
             <div *ngIf="cellierForm.controls['nom'].invalid && (cellierForm.controls['nom'].dirty || cellierForm.controls['nom'].touched)" class="message-erreur">
                 <span *ngIf="cellierForm.controls['nom']?.errors?.['required']">Le nom est requis.</span>
               </div>
-            <button class="grosPlus" type="submit">+</button>
+            <button type="submit">Ajouter</button>
         </div>
     </form>
 </div>
