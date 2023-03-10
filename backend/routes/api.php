@@ -26,6 +26,9 @@ Route::resource('bouteillesSAQ', BouteilleSAQController::class);
 use App\Http\Controllers\CellierController;
 Route::resource('celliers', CellierController::class);
 
+use App\Http\Controllers\BouteilleController;
+Route::resource('bouteilles', BouteilleController::class);
+
 
 
 Route::group([

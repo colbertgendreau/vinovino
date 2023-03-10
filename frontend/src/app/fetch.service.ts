@@ -40,6 +40,10 @@ export class FetchService {
   ajoutCellier(cellier: ICellier):Observable<ICellier>{
     return this.http.post<ICellier>(this.urlCellier, cellier);
   }
+  getUnCellier(id:number):Observable<ICellier>{
+    console.log(id);
+    return this.http.get<ICellier>(this.urlCellier+id);
+  }
 }
 
 

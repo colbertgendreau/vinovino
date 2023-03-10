@@ -17,6 +17,8 @@ import { AjoutBouteilleComponent } from './ajout-bouteille/ajout-bouteille.compo
 import { ModifBouteilleComponent } from './modif-bouteille/modif-bouteille.component';
 import { ModifCellierComponent } from './modif-cellier/modif-cellier.component';
 import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
+import { MesBouteillesComponent } from './mes-bouteilles/mes-bouteilles.component';
+import { ListeMesbouteillesComponent } from './liste-mesbouteilles/liste-mesbouteilles.component';
 
 
 @NgModule({
@@ -33,6 +35,8 @@ import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
     ModifBouteilleComponent,
     ModifCellierComponent,
     AjoutCellierComponent,
+    MesBouteillesComponent,
+    ListeMesbouteillesComponent,
   ],
   imports: [
     BrowserModule,
