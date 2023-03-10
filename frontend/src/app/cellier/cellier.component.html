@@ -1,4 +1,59 @@
+<section class="monCellier">
 <h1>Mon cellier</h1>
-<p>Bienvenue {{ UserProfile.name }}!</p>
+    <p>Bienvenue {{ UserProfile.name }}!</p>
+    <p>{{ UserProfile.name }}</p>
 
-<p>cellier works!</p>
+
+    
+    <article class="bouteille">
+        <!--
+            *ngFor="let uneBouteille of bouteilles;"
+        -->
+        <div>
+            <picture>
+                <div class="image-bouteille"></div>
+            </picture>
+            <div class="info-bouteille">
+                <h2>Cabernet sauvignon internationnal</h2>
+                <p><span>icone</span> Vin rosé | 750 ml</p>
+                <p><span>icone</span> Québec</p>
+                <p><span>icone</span> 30.75</p>
+            </div>
+            <div>
+                <p>Note</p>
+                <div>* * * * *</div>
+                <p>Quantité</p>
+                <div><span>-</span> 1 <span>+</span><span></span>icone<span>icone</span></div>
+            </div>
+        </div>
+    </article>
+
+    <article class="bouteille" *ngFor="let uneBouteille of bouteilles;">
+        <div>
+            <picture>
+                <div class="image-bouteille"></div>
+            </picture>
+            <div class="info-bouteille">
+                <h2>{{ uneBouteille.garde_jusqua }}</h2>
+                <p><span>icone</span> Vin rosé | 750 ml</p>
+                <p><span>icone</span> Québec</p>
+                <p><span>icone</span> 30.75</p>
+            </div>
+            <div>
+                <p>Note</p>
+                <div>* * * * *</div>
+                <p>Quantité</p>
+                <div><span>-</span> 1 <span>+</span><span></span>icone<span>icone</span></div>
+            </div>
+        </div>
+    </article>
+
+    <article class="ajouter-bouteille">
+        <a routerLink="/ajouter-bouteille">
+            <p class="grosPlus">+ (ajouter une bouteille)</p>
+        </a>
+    </article>
+
+
+    
+</section>

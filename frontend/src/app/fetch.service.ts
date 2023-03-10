@@ -6,6 +6,7 @@ import { IlisteBouteille } from './iliste-bouteille';
 import {environment} from "../environments/environment";
 import { ICellier } from './icellier';
 import { IlisteCellier } from './iliste-cellier';
+import { Ilistemesbouteilles } from './Ilistemesbouteilles';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class FetchService {
 
 
   // }
+
+  getBouteillesCellier(id:number):Observable<Ilistemesbouteilles>{
+    return this.http.get<Ilistemesbouteilles>(this.urlCellier+id);
+  }
 
   getCelliers():Observable<IlisteCellier>{
     return this.http.get<IlisteCellier>(this.urlCellier);

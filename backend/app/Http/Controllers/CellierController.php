@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bouteille;
 use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +45,7 @@ class CellierController extends Controller
 
         return ['data' => $res];
     }
-
+    
     /**
      * Display the specified resource.
      *
@@ -53,8 +54,26 @@ class CellierController extends Controller
      */
     public function show(Cellier $cellier)
     {
-        //
-        return ['data' => $cellier];
+
+        // $celliers_id = $cellier;
+        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+
+        // var_dump($bouteilles);
+        // var_dump($cellier);
+        
+
+
+        // return ['data'=>$bouteilles];
+
+        $celliers_id = $cellier->id;
+
+        $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+
+        // $cellier = Bouteille::All();
+
+        return ['data' => $bouteilles];
+
+
     }
 
     /**
