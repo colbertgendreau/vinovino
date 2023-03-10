@@ -29,6 +29,7 @@ Route::resource('celliers', CellierController::class);
 use App\Http\Controllers\BouteilleController;
 Route::resource('bouteilles', BouteilleController::class);
 
+Route::get('/show/{celliers}', [CellierController::class, 'showCellier']);
 
 
 Route::group([

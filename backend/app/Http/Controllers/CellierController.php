@@ -110,4 +110,12 @@ class CellierController extends Controller
     {
         //
     }
+
+
+   
+    public function showCellier(Cellier $celliers)
+    {
+        //
+        return ['data' => $celliers];
+    }
 }

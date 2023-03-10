@@ -55,7 +55,7 @@ export class ModifCellierComponent implements OnInit {
     this.route.params.subscribe((params)=>{ 
       console.log(params);
          
-      this.fetchService.getUnCellier(params['id']).subscribe((data: any) => {
+      this.fetchService.showCellier(params['id']).subscribe((data: any) => {
         this.unCellier = data.data;
         console.log(this.unCellier);
       });
