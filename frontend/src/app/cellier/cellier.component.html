@@ -1,15 +1,29 @@
 <section class="monCellier">
 <h1>Mon cellier</h1>
     <p>Bienvenue {{ UserProfile.name }}!</p>
+    <p>{{ UserProfile.name }}</p>
     
     <article class=" bouteille">
         <!--*ngFor="let uneBouteille of bouteilles;"-->
-        <div class="image-bouteille"></div>
-        <a routerLink="#" >
-            <h2>Nom de bouteille</h2>
-        </a>
-        <a class=""  routerLink="#">Modifier</a>
+        <div>
+            <picture>
+                <div class="image-bouteille"></div>
+            </picture>
+            <div class="info-bouteille">
+                <h2>19 Crimes Cabernet-Sauvignon Limestone Coast</h2>
+                <p><span>icone</span> Vin rosé | 750 ml</p>
+                <p><span>icone</span> Québec</p>
+                <p><span>icone</span> 30.75</p>
+            </div>
+            <div>
+                <p>Note</p>
+                <div>* * * * *</div>
+                <p>Quantité</p>
+                <div><span>-</span> 1 <span>+</span><span></span>icone<span>icone</span></div>
+            </div>
+        </div>
     </article>
+
     <article class="ajouter-bouteille">
         <a routerLink="#">
             <p class="grosPlus">+</p>

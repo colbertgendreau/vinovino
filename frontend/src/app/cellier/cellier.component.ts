@@ -48,6 +48,7 @@ export class CellierComponent implements OnInit {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
     });
+    console.log("les bouteilles du cellier");
 
     this.route.params.subscribe((params) => {
       console.log(params);
@@ -57,6 +58,7 @@ export class CellierComponent implements OnInit {
         .subscribe((data: any) => {
           this.bouteilles = data.data;
           console.log(this.bouteilles);
+          console.log("les bouteilles du cellier");
         });
     });
   }

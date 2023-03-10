@@ -2,7 +2,7 @@
     background-image: url(../../assets/img/background-statique-mobile.png);
 
     // height: calc(100vh - 63px);
-    min-height: 100%;
+    height: 100%;
     background-size: cover;
     object-position: center;
 
@@ -15,19 +15,27 @@
 
 }
 
+picture {
+    width: 30%;
+}
+
 .bouteille {
+    margin-inline: var(--big) ;
     display: flex;
     flex-direction: column;
     width: 100%;
     background-color: var(--black-transparent50);
     align-items: center;
-    margin-inline: var(--big);
+    padding: var(--big);
     border-radius: var(--border-radius15);
 }
 
 .image-bouteille {
     background-image: url(../../assets/img/bottle.jpg);
-    background-size: cover;
+    object-position: center;
+
+    height: 100px;
+    // background-size: cover;
     object-position: center;
 
 
