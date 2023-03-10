@@ -45,7 +45,7 @@ class CellierController extends Controller
 
         return ['data' => $res];
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -55,21 +55,16 @@ class CellierController extends Controller
     public function show(Cellier $cellier)
     {
 
-        // $celliers_id = $cellier;
-        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
-
-        // var_dump($bouteilles);
-        // var_dump($cellier);
-        
-
-
-        // return ['data'=>$bouteilles];
 
         $celliers_id = $cellier->id;
 
-        $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
 
-        // $cellier = Bouteille::All();
+
+        $bouteilles = Bouteille::where('celliers_id', $celliers_id)
+        ->rightjoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
+        ->get();
+
 
         return ['data' => $bouteilles];
 
