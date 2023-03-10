@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class SignupComponent implements OnInit {
   registerForm: FormGroup;
   errors: any = null;
+
   constructor(
     public router: Router,
     public fb: FormBuilder,
@@ -32,6 +33,27 @@ export class SignupComponent implements OnInit {
       },
       (error) => {
         this.errors = error.error;
+        this.errors = JSON.parse(this.errors);
+
+        if (this.errors.name[0] === "The name field is required.") {
+          this.errors.name[0] = "Le champ nom est obligatoire.";
+        } else if (this.errors.name[0] === "The name must be between 2 and 100 characters.") {
+          this.errors.name[0] = "Le nom doit comporter entre 2 et 100 caractères.";
+        }
+
+        if (this.errors.email[0] === "The email field is required.") {
+          this.errors.email[0] = "Le champ courriel est obligatoire.";
+        } else if (this.errors.email[0] === "The email must be a valid email address.") {
+          this.errors.email[0] = "Le courriel doit être valide.";
+        }
+
+        if (this.errors.password[0] === "The password field is required.") {
+          this.errors.password[0] = "Le champ du mot de passe est obligatoire.";
+        } else if (this.errors.password[0] === "The password must be at least 6 characters.") {
+          this.errors.password[0] = "Le mot de passe doit comporter au moins 6 caractères.";
+        } else if (this.errors.password[0] === "The password confirmation does not match.") {
+          this.errors.password[0] = "La confirmation du mot de passe ne correspond pas.";          
+        }
       },
       () => {
         this.registerForm.reset();
