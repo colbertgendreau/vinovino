@@ -1,0 +1,21 @@
+Dans le fichier de configuration angular.json allez sur
+projects -> architect -> build -> configurations -> production
+
+Les champs
+],
+"outputPath": "../backend/public/assets/angular",
+"deployUrl": "/assets/angular/",
+"outputHashing": "all"
+},
+
+"outputPath": "../backend/public/assets/angular" -> cette ligne crée un dossier appelé
+angular dans le backend qui contient la build de l'application, ça veut dire les fichiers
+javascript minifié et le css minifié ainsi que toutes les ressources comme les images et les fonts
+<-----On ne modifie jamais ces fichiers directement. --->
+
+Donc pour deployer le site il faut prendre le dossier backend -> public et le déposer sur siteground
+ainsi que le dossier backend -> app, config, database, lang, ressources, routes, storage et tests
+
+
+Il faut faire très attention de ne pas écrasser le fichier .env sur siteground
+sinon le site ne fonctionnera plus
