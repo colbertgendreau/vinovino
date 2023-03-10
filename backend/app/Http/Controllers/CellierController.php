@@ -55,6 +55,7 @@ class CellierController extends Controller
     public function show(Cellier $cellier)
     {
 
+
         $celliers_id = $cellier->id;
 
         // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
@@ -68,12 +69,6 @@ class CellierController extends Controller
         return ['data' => $bouteilles];
 
 
-
-        //OUTER
-        //SELECT * FROM blog_posts RIGHT OUTER JOIN users ON user_id = users.id;
-        // $query = BlogPost::select()
-        //     ->rightjoin('users', 'users.id', '=', 'user_id')
-        //     ->get();
     }
 
     /**
@@ -97,6 +92,12 @@ class CellierController extends Controller
     public function update(Request $request, Cellier $cellier)
     {
         //
+        $cellier->update(
+            [
+                'nom' => $request->nom
+            ]
+        );
+   
     }
 
     /**
