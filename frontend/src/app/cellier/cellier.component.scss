@@ -23,34 +23,42 @@
     align-items: center;
     padding: var(--big);
     border-radius: var(--border-radius15);
+    
+    picture {
+      width: 100%;
+    }
 
+    .image-bouteille {
+    //   background-image: url(../../assets/img/bottle.jpg);
+      background-image: url(https://www.saq.com/media/catalog/product/1/3/13584455-1_1674499266.png?quality=80&fit=bounds&height=166&width=111&canvas=111:166);
+      object-position: center;
+
+      height: 200px;
+      // background-size: cover;
+      object-position: center;
+
+      background-repeat:no-repeat;
+      background-position: center center;
+    //   background-size: 200px 400px;
+    //   background-size: cover;
+    }
 
     .card-bouteille-haut {
 
         display: flex;
+        flex-direction: column;
         justify-content: space-between;
         width: 100%;
-        // border-bottom: 5px solid ;
+        border-bottom: 5px solid var(--secondaire-turquoise);
+        padding-bottom: var(--med);
+        margin-bottom: var(--med);
 
 
 
-        picture {
-          width: 30%;
+
+        div {
+            text-align: end;
         }
-    
-        .image-bouteille {
-          background-image: url(../../assets/img/bottle.jpg);
-          object-position: center;
-    
-          height: 100px;
-          // background-size: cover;
-          object-position: center;
-
-          background-repeat:no-repeat;
-          background-position: center center;
-          background-size: 200px 400px;
-        }
-
 
     }
 

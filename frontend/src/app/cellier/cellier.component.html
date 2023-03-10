@@ -3,17 +3,18 @@
   <p>Bienvenue {{ UserProfile.name }}!</p>
   <p>{{ UserProfile.name }}</p>
 
-  <article class="bouteille">
-    <div class="card-bouteille-haut">
-      <picture>
-        <div class="image-bouteille"></div>
+  
+
+  <article class="bouteille" *ngFor="let uneBouteille of bouteilles">
+    <picture>
+        <img src="{{ uneBouteille.image }}" alt="Italian Trulli">
       </picture>
-      <div class="info-bouteille">
-        <h4>Cabernet sauvignon internationnal</h4>
-        <p><span>icone</span> Vin rosé | 750 ml</p>
-        <p><span>icone</span> Québec</p>
-        <p><span>icone</span> 30.75</p>
-      </div>
+    <div class="info-bouteille card-bouteille-haut">
+        <h3>{{ uneBouteille.nom }}</h3>
+
+        <p><span>icone</span> Vin rosé | {{ uneBouteille.format }}</p>
+        <p><span>icone</span> {{ uneBouteille.pays }}</p>
+        <p><span>icone</span> {{ uneBouteille.prix }}</p>
     </div>
     <div class="card-bouteille-bas">
       <p>Note</p>
@@ -25,13 +26,14 @@
     </div>
   </article>
 
-  <article class="bouteille" *ngFor="let uneBouteille of bouteilles">
+  <article class="bouteille">
     <div>
       <picture>
         <div class="image-bouteille"></div>
       </picture>
       <div class="info-bouteille">
-        <h2>{{ uneBouteille.garde_jusqua }}</h2>
+        <h2>nom</h2>
+        <hr>
         <p><span>icone</span> Vin rosé | 750 ml</p>
         <p><span>icone</span> Québec</p>
         <p><span>icone</span> 30.75</p>
@@ -53,3 +55,8 @@
     </a>
   </article>
 </section>
+
+<pre>
+
+    {{ bouteilles | json }}
+</pre>

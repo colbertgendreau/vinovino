@@ -40,12 +40,12 @@ class CellierController extends Controller
     {
         $res = Cellier::create([
             'nom' => $request->nom,
-            'users_id'=> Auth::user()->id
+            'users_id' => Auth::user()->id
         ]);
 
         return ['data' => $res];
     }
-    
+
     /**
      * Display the specified resource.
      *
@@ -57,12 +57,23 @@ class CellierController extends Controller
 
         $celliers_id = $cellier->id;
 
-        $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+
+
+        $bouteilles = Bouteille::where('celliers_id', $celliers_id)
+        ->rightjoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
+        ->get();
 
 
         return ['data' => $bouteilles];
 
-        
+
+
+        //OUTER
+        //SELECT * FROM blog_posts RIGHT OUTER JOIN users ON user_id = users.id;
+        // $query = BlogPost::select()
+        //     ->rightjoin('users', 'users.id', '=', 'user_id')
+        //     ->get();
     }
 
     /**
