@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from './shared/token.service';
 import { AuthStateService } from './shared/auth-state.service';
@@ -19,6 +19,11 @@ export class AppComponent implements OnInit {
     public token: TokenService
   ) {}
   ngOnInit() {
+    if (isDevMode()) {
+      console.log('Development!');
+    } else {
+      console.log('Production!');
+    }
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     });
