@@ -26,7 +26,9 @@ export class SigninComponent implements OnInit {
   }
   ngOnInit() {}
   onSubmit() {
-    console.log('Je suis à l\'intérieur de signin.component.ts')
+    console.log('Je suis à l\'intérieur de signin.component.ts');
+    console.log(this.loginForm.value.name);
+    console.log(this.loginForm.value.email);
     console.log(this.authService.signin(this.loginForm.value) +' aqui');
     this.authService.signin(this.loginForm.value).subscribe(
       (result) => {
