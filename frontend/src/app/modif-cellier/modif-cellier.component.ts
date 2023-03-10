@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
@@ -6,6 +6,7 @@ import { AuthService } from '../shared/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { FetchService } from '../fetch.service';
 import { ICellier } from '../icellier';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 
 
@@ -27,6 +28,8 @@ export class ModifCellierComponent implements OnInit {
   // title:string='Liste des celliers';
   UserProfile!: User;
   unCellier: ICellier; 
+  @Input() cellier: ICellier;
+  cellierForm: FormGroup;
 
   constructor(
     private auth: AuthStateService,
@@ -35,6 +38,7 @@ export class ModifCellierComponent implements OnInit {
     public authService: AuthService,
     private route:ActivatedRoute, 
     public fetchService: FetchService,
+    private formBuilder: FormBuilder,
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
@@ -57,7 +61,23 @@ export class ModifCellierComponent implements OnInit {
       });
     })
 
+    this.cellierForm = this.formBuilder.group({
+      nom: ['', [Validators.required]],
+    });
+
     
+  }
+
+  modifier() {
+    let id = (this.unCellier.id);
+    if (this.cellierForm.valid) {
+      let unCellier: ICellier = this.cellierForm.value;
+      console.log(unCellier);
+      
+      this.fetchService.modifCellier(id, unCellier).subscribe((retour) => {
+        this.router.navigate(['liste-cellier']);
+      });
+    }
   }
   
 }
