@@ -1,49 +1,69 @@
 .monCellier {
-    background-image: url(../../assets/img/background-statique-mobile.png);
+  background-image: url(../../assets/img/background-statique-mobile.png);
 
-    // height: calc(100vh - 63px);
-    height: 100%;
-    background-size: cover;
-    object-position: center;
+  // height: calc(100vh - 63px);
+  height: 100%;
+  background-size: cover;
+  object-position: center;
 
-    background-attachment: fixed;
+  background-attachment: fixed;
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: var(--med);
 
-}
-
-picture {
-    width: 30%;
-}
-
-.bouteille {
-    margin-inline: var(--big) ;
-    margin-block: var(--big);
+  .bouteille {
+    margin: var(--big);
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 90%;
     background-color: var(--black-transparent50);
     align-items: center;
     padding: var(--big);
     border-radius: var(--border-radius15);
-}
-
-.image-bouteille {
-    background-image: url(../../assets/img/bottle.jpg);
-    object-position: center;
-
-    height: 100px;
-    // background-size: cover;
-    object-position: center;
 
 
-}
+    .card-bouteille-haut {
 
-h1 {font-size: 100px;}
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        // border-bottom: 5px solid ;
 
-.grosPlus {
-    font-size: 40px;
+
+
+        picture {
+          width: 30%;
+        }
+    
+        .image-bouteille {
+          background-image: url(../../assets/img/bottle.jpg);
+          object-position: center;
+    
+          height: 100px;
+          // background-size: cover;
+          object-position: center;
+
+          background-repeat:no-repeat;
+          background-position: center center;
+          background-size: 200px 400px;
+        }
+
+
+    }
+
+    .card-bouteille-bas {
+        align-self: flex-start;
+    }
+
+    h1 {
+      font-size: 100px;
+    }
+
+    .grosPlus {
+      font-size: 40px;
+    }
+  }
 }
