@@ -18,7 +18,10 @@
       <label>Mot de passe</label>
       <input type="password" class="form-control" formControlName="password" placeholder="Mot de passe"/>
       <!-- Erreur -->
-      <div *ngIf="errors?.password" class="alert alert-danger mt-3">{{ errors?.password }}</div>
+      <div *ngIf="errors?.password" class="alert alert-danger mt-3">
+        <span>{{ errors?.password[1] }}</span>
+        <span>{{ errors?.password[0] }}</span>
+      </div>
     </div>
     <div class="form-group">
       <label>Confirmation du mot de passe</label>
