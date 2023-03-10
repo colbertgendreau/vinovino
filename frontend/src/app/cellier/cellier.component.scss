@@ -1,0 +1,36 @@
+.monCellier {
+    background-image: url(../../assets/img/background-statique-mobile.png);
+
+    // height: calc(100vh - 63px);
+    min-height: 100%;
+    background-size: cover;
+    object-position: center;
+
+    background-attachment: fixed;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+
+.bouteille {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: var(--black-transparent50);
+    align-items: center;
+    margin-inline: var(--big);
+    border-radius: var(--border-radius15);
+}
+
+.image-bouteille {
+    background-image: url(../../assets/img/bottle.jpg);
+    background-size: cover;
+    object-position: center;
+
+
+}
+
+h1 {font-size: 100px;}
