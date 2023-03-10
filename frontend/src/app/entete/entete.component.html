@@ -10,7 +10,7 @@
     <a class="nav_link_a" routerLink="/profile" *ngIf="isSignedIn">Profile</a>
     <a class="nav_link_a" *ngIf="!isSignedIn" routerLink="/connexion">Connexion</a>
     <a class="nav_link_a" routerLink="/inscription">Creer un compte</a>
-    <button class="btn" (click)="signOut()" *ngIf="isSignedIn">Deconnexion</button>
+    <a class="nav_link_a" (click)="signOut()" *ngIf="isSignedIn">Deconnexion</a>
   </div>
 </nav>
 
@@ -27,7 +27,7 @@
       <li *ngIf="!isSignedIn"><a class="nav_link_a" (click)="pageConnexion()">Connexion</a></li>
       <li *ngIf="isSignedIn"><a class="nav_link_a" (click)="pageProfil()">Profil</a></li>
       <li *ngIf="!isSignedIn"><a class="nav_link_a" (click)="pageInscription()">Créer un compte</a></li>
-      <li *ngIf="isSignedIn"><a class="btn_mobile" (click)="signOut()">Déconnexion</a></li>
+      <li *ngIf="isSignedIn"><a class="nav_link_a" (click)="signOut()">Déconnexion</a></li>
       <li><a href="#">FR | EN</a></li>
     </ul>
   </div>
