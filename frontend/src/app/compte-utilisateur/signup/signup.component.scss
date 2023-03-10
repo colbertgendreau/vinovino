@@ -39,21 +39,19 @@
             border-radius: var(--border-radius5);
             border-style: none;
             border: solid var(--smallest) var(--white);
-            width: calc(100% - var(--biggest));
-        }
-
-        ::placeholder {
+            width: calc(100% - (var(--biggest) + var(--bigger)));
             padding-inline: var(--small);
         }
             
         .alert {
             display: flex;
+            flex-direction: column;
             color: var(--primaire);
             margin-inline: var(--small);
             margin-bottom: var(--small);
             background-color: var(--black-transparent40);
             border-radius: var(--border-radius5);
-            padding-inline: var(--med);
+            padding-inline: 13px;
         }
     }
     
