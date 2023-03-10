@@ -44,6 +44,9 @@ export class FetchService {
     console.log(id);
     return this.http.get<ICellier>(this.urlCellier+id);
   }
+  modifCellier(id:number, cellier: ICellier):Observable<ICellier>{
+    return this.http.put<ICellier>(this.urlCellier+id, cellier);
+  }
 }
 
 

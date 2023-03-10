@@ -1,0 +1,70 @@
+.modifier-cellier-component {
+    padding: var(--big) var(--big) 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
+    height: calc(100vh - 183px);
+
+    h1 {
+        font-family: 'ruda';
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        background-color: var(--black-transparent50);
+        align-items: center;
+        margin-inline: var(--big);
+        margin-top: var(--big);
+        border-radius: var(--border-radius15);
+
+        div {
+
+            display: flex;
+            flex-direction: column;
+
+            label {
+                margin-top: var(--biggest);
+                margin-bottom: var(--big);
+                color: var(--white);
+            }
+
+            input {
+                height: var(--biggest);
+                border-radius: var(--border-radius5);
+                border: solid var(--smallest) var(--white);
+                width: 200px;
+            }
+
+            button {
+                margin-top: var(--big);
+                margin-bottom: var(--biggest);
+                margin-inline: var(--small);
+                height: var(--biggest);
+                border-radius: var(--border-radius);
+                border-style: none;
+                border: solid var(--smallest) var(--secondaire);
+                font-size: var(--med);
+                font-weight: var(--bold);
+                background-color: var(--secondaire);
+                color: var(--black);
+            }
+
+            button:hover {
+                background-color: var(--secondaire);
+                cursor: pointer;
+            }
+
+            .message-erreur {
+                background-color: var(--white-transparent80);
+                margin-top: var(--small);
+                color: red;
+                border: none;
+            }
+        }
+    }
+}

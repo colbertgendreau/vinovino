@@ -5,7 +5,7 @@
     align-items: center;
     text-align: center;
     background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
-    height: calc(100vh - 200px);
+    height: calc(100vh - 183px);
 
     h1 {
         font-family: 'ruda';
@@ -50,7 +50,7 @@
                 border: solid var(--smallest) var(--secondaire);
                 font-size: var(--med);
                 font-weight: var(--bold);
-                background-color: var(--secondaire-transparent80);
+                background-color: var(--secondaire);
                 color: var(--black);
             }
 

@@ -1,5 +1,7 @@
 div {
     background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
+    background-attachment: fixed;
+    height: 100%;
     padding: var(--big) var(--big) 100px;
     display: flex;
     flex-direction: column;
@@ -11,11 +13,8 @@ div {
     }
 
     .boite-cellier {
-        // background-image: url(cellier-background-1.jpg);
-        //Image by upklyak on Freepik
         background-color: var(--black-transparent50);
         background-size: cover;
-        height: 150px;
         justify-content: center;
         align-items: center;
         filter: brightness(100%);
@@ -36,7 +35,7 @@ div {
         border-radius: 5px;
         display: flex;
         justify-content: center;
-        padding: 8px;
+        padding: 40px;
 
         .unCellier {
             text-decoration: none;
@@ -62,14 +61,14 @@ div {
             align-items: center;
             margin-top: var(--small);
             margin-bottom: var(--small);
-            margin-inline: var(--small);
+            margin-inline: var(--big);
             height: var(--biggest);
             border-radius: var(--border-radius);
             border-style: none;
             border: solid var(--smallest) var(--secondaire);
             font-size: var(--med);
             font-weight: var(--bold);
-            background-color: var(--secondaire-transparent80);
+            background-color: var(--secondaire);
             color: var(--black);
             position: fixed;
             bottom: var(--big);

@@ -39,7 +39,7 @@ class CellierController extends Controller
     {
         $res = Cellier::create([
             'nom' => $request->nom,
-            'users_id'=> Auth::user()->id
+            'users_id' => Auth::user()->id
         ]);
 
         return ['data' => $res];
@@ -54,6 +54,7 @@ class CellierController extends Controller
     public function show(Cellier $cellier)
     {
         //
+        return ['data' => $cellier];
     }
 
     /**
@@ -77,6 +78,12 @@ class CellierController extends Controller
     public function update(Request $request, Cellier $cellier)
     {
         //
+        $cellier->update(
+            [
+                'nom' => $request->nom
+            ]
+        );
+   
     }
 
     /**
