@@ -24,7 +24,7 @@ const routes: Routes = [
   { path: 'accueil', component: AccueilComponent },
   { path: 'liste-cellier', component: ListeCellierComponent, canActivate:[GardienLoginGuard] },
   { path: 'cellier/:id', component: CellierComponent, canActivate:[GardienLoginGuard] },
-  { path: 'ajouter-bouteille', component: AjoutBouteilleComponent, canActivate:[GardienLoginGuard] },
+  { path: 'ajouter-bouteille/:id', component: AjoutBouteilleComponent, canActivate:[GardienLoginGuard] },
   { path: 'modifier-bouteille', component: ModifBouteilleComponent, canActivate:[GardienLoginGuard] },
   { path: 'ajouter-cellier', component: AjoutCellierComponent, canActivate:[GardienLoginGuard] },
   { path: 'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] },
