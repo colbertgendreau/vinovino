@@ -54,14 +54,23 @@ class CellierController extends Controller
      */
     public function show(Cellier $cellier)
     {
-        $celliers_id = $cellier;
+        // $celliers_id = $cellier;
+        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+
+        // var_dump($bouteilles);
+        // var_dump($cellier);
+        
+
+
+        // return ['data'=>$bouteilles];
+
+        $celliers_id = $cellier->id;
+
         $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
 
-        var_dump($bouteilles);
-        var_dump($cellier);
+        // $cellier = Bouteille::All();
 
-
-        return ['data'=>$bouteilles];
+        return ['data' => $bouteilles];
 
 
         

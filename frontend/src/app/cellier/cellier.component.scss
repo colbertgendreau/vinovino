@@ -21,6 +21,7 @@ picture {
 
 .bouteille {
     margin-inline: var(--big) ;
+    margin-block: var(--big);
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -42,3 +43,7 @@ picture {
 }
 
 h1 {font-size: 100px;}
+
+.grosPlus {
+    font-size: 40px;
+}
