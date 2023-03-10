@@ -16,10 +16,10 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-        $celliers_id = Auth::id();
-        $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+        // $celliers_id = Auth::id();
+        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
 
-        return ['data'=>$bouteilles];
+        // return ['data'=>$bouteilles];
     }
 
     // public function index() // la function ci dessous retourne une pagination a decider ce quon veut
@@ -47,7 +47,13 @@ class BouteilleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = Bouteille::create([
+            'celliers_id' => $request->celliers_id,
+            'id_bouteille' =>$request->id
+            
+        ]);
+
+        return ['data' => $res];
     }
 
     /**
@@ -81,7 +87,7 @@ class BouteilleController extends Controller
      */
     public function update(Request $request, Bouteille $bouteille)
     {
-        //
+       
     }
 
     /**

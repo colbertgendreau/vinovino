@@ -6,13 +6,17 @@ import { IlisteBouteille } from './iliste-bouteille';
 import {environment} from "../environments/environment";
 import { ICellier } from './icellier';
 import { IlisteCellier } from './iliste-cellier';
-import { Ilistemesbouteilles } from './ilistemesbouteilles';
+
+import { Ilistemesbouteilles } from './Ilistemesbouteilles';
+import { Imesbouteilles } from './imesbouteilles';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class FetchService {
 
+  private urlBouteille:string = "http://127.0.0.1:8000/api/bouteilles";
   private url:string = "http://127.0.0.1:8000/api/bouteillesSAQ";
   private urlCellier:string ="http://127.0.0.1:8000/api/celliers/";
 
@@ -20,6 +24,12 @@ export class FetchService {
 
   getBouteilleSAQ():Observable<IlisteBouteille>{
     return this.http.get<IlisteBouteille>(this.url);
+  }
+
+  ajoutBouteille(bouteille: Imesbouteilles):Observable<Imesbouteilles>{
+    console.log(bouteille);
+    
+    return this.http.post<Imesbouteilles>(this.urlBouteille, bouteille);
   }
   // getBouteilleSAQ():Observable<IlisteBouteille>{
   //   return this.http.get<IlisteBouteille>(environment.production+"/api/bouteilles");
@@ -45,6 +55,7 @@ export class FetchService {
   ajoutCellier(cellier: ICellier):Observable<ICellier>{
     return this.http.post<ICellier>(this.urlCellier, cellier);
   }
+  
   getUnCellier(id:number):Observable<ICellier>{
     console.log(id);
     return this.http.get<ICellier>(this.urlCellier+id);

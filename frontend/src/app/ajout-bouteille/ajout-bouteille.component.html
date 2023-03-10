@@ -1,10 +1,22 @@
-<p>Bienvenue {{ UserProfile.name }}!</p>
 
-<p>ajout-bouteille works!</p>
+  <input type="text" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)" placeholder="Recherche">
+<table>
+    <tbody>
+  <tr *ngFor="let bouteille of filteredData">
+    <td (click)="selectData(bouteille)">{{ bouteille.nom }}</td>
+  </tr>
+</tbody>
+</table>
 
-<article class="article" *ngFor = "let uneBouteille of arrayBouteille">
+<form *ngIf="selectedData" [formGroup]="ajouterBouteilleForm" (ngSubmit)="ajouter()">
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" formControlName="id" [readonly]="isDataSelected">
+  
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" formControlName="nom" [readonly]="isDataSelected">
+  
+    <button *ngIf="isDataSelected" type="button" (click)="clearForm()">Effacer</button>
+    <button class="grosPlus" type="submit">+</button>
+  </form>
 
-    <span>{{uneBouteille.nom}}</span>
-
-</article>
-
+  

@@ -23,7 +23,8 @@
     <span></span>
 
     <ul class="menu" [ngClass]="{ 'open': isOpen }">
-      <li *ngIf="!isSignedIn"><a class="nav_link_a" (click)="pageAccueil()">Accueil</a></li>
+      <li *ngIf="isSignedIn"><a class="nav_link_a" (click)="pageAccueil()">Accueil</a></li>
+      <li *ngIf="isSignedIn"><a class="nav_link_a" (click)="pageCelliers()">Voir mes celliers</a></li>
       <li *ngIf="!isSignedIn"><a class="nav_link_a" (click)="pageConnexion()">Connexion</a></li>
       <li *ngIf="isSignedIn"><a class="nav_link_a" (click)="pageProfil()">Profil</a></li>
       <li *ngIf="!isSignedIn"><a class="nav_link_a" (click)="pageInscription()">Créer un compte</a></li>
