@@ -16,7 +16,7 @@
     align-items: center;
     margin-inline: var(--big);
     border-radius: var(--border-radius15);
-    
+
     .h3 {
         margin-top: var(--biggest);
         margin-bottom: var(--big);
@@ -44,6 +44,16 @@
 
         ::placeholder {
             padding-inline: var(--small);
+        }
+            
+        .alert {
+            display: flex;
+            color: var(--primaire);
+            margin-inline: var(--small);
+            margin-bottom: var(--small);
+            background-color: var(--black-transparent40);
+            border-radius: var(--border-radius5);
+            padding-inline: var(--med);
         }
     }
     
