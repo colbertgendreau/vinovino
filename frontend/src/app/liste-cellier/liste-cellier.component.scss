@@ -26,6 +26,12 @@ div {
         right: var(--smaller);
     }
 
+    .ajout-bouteille{
+        position: absolute;
+        bottom: var(--smaller);
+        left: var(--smaller);
+    }
+
 
     .cellier {
         border: 1px solid var(--black);
