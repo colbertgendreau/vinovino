@@ -1,24 +1,22 @@
 <div class="auth-wrapper">
   <form class="form-signin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <h3 class="h3 mb-3 font-weight-normal text-center">Connexion</h3>
-    <!-- Errors -->
-    <div *ngIf="errors?.email" class="alert alert-danger mt-3">
-      {{ errors?.email }}
-    </div>
-    <div *ngIf="errors?.password" class="alert alert-danger mt-3">
-      {{ errors?.password }}
-    </div>
-    <div *ngIf="errors?.error" class="alert alert-danger mt-3">
-      {{ errors?.error }}
-    </div>
     <!-- Login -->
     <div class="form-group">
       <label>Courriel</label>
       <input type="email" class="form-control" formControlName="email" placeholder="Courriel">
+      <!-- Errors -->
+      <div *ngIf="errors?.email" class="alert alert-danger mt-3">{{ errors?.email }}</div>
     </div>
     <div class="form-group">
       <label>Mot de passe</label>
       <input type="password" class="form-control" formControlName="password" placeholder="Mot de passe">
+      <!-- Errors -->
+      <div *ngIf="errors?.password" class="alert alert-danger mt-3">{{ errors?.password }}</div>
+    </div>
+    <!-- Errors -->
+    <div *ngIf="errors?.error" class="alert alert-danger mt-3">
+      {{ errors?.error }}
     </div>
     <button type="submit" class="btn btn-block btn-primary">Se connecter</button>
   </form>
