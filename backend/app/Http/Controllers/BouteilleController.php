@@ -47,7 +47,13 @@ class BouteilleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $res = Bouteille::create([
+            'celliers_id' => $request->celliers_id,
+            'id_bouteille' =>$request->id
+            
+        ]);
+
+        return ['data' => $res];
     }
 
     /**
@@ -81,7 +87,7 @@ class BouteilleController extends Controller
      */
     public function update(Request $request, Bouteille $bouteille)
     {
-        //
+       
     }
 
     /**
