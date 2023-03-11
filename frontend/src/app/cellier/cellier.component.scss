@@ -1,5 +1,6 @@
 .monCellier {
   // height: calc(100vh - 63px);
+
   height: 100%;
   background-size: cover;
   object-position: center;
@@ -12,6 +13,7 @@
   flex-direction: column;
   padding: var(--med);
   padding-bottom: 100px;
+  padding-top: 83px;
 
   .bouteille {
     margin: var(--big);
