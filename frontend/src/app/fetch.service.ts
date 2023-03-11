@@ -6,7 +6,7 @@ import { IlisteBouteille } from './iliste-bouteille';
 import {environment} from "../environments/environment";
 import { ICellier } from './icellier';
 import { IlisteCellier } from './iliste-cellier';
-import { Ilistemesbouteilles } from './Ilistemesbouteilles';
+import { Ilistemesbouteilles } from './ilistemesbouteilles';
 
 @Injectable({
   providedIn: 'root'
