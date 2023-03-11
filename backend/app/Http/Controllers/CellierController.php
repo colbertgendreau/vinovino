@@ -63,6 +63,7 @@ class CellierController extends Controller
 
         $bouteilles = Bouteille::where('celliers_id', $celliers_id)
         ->rightjoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
+        ->rightjoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
         ->get();
 
 
