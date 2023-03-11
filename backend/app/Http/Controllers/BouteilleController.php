@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Bouteille;
+use App\Models\mesBouteilles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -47,11 +48,41 @@ class BouteilleController extends Controller
      */
     public function store(Request $request)
     {
-        $res = Bouteille::create([
-            'celliers_id' => $request->celliers_id,
-            'id_bouteille' =>$request->id
+        
+            // $res = Bouteille::create([
+            //     'celliers_id' => $request->celliers_id,
+            //     'id' =>$request->id_mes_bouteilles,
+            //     'quantite' =>$request->quantite,
+                
+            // ]);
+
+       
+
+            if ($request->id == '') {
+                $mon_id = mesBouteilles::create([
+                    'nom' => $request->nom,
+                    'type' => $request->type,
+                    'pays' => $request->pays,
+                    'format' => $request->format,
+                    'quantite' => $request->quantite,
+                ]);
             
-        ]);
+                $res = Bouteille::create([
+                    'celliers_id' => $request->celliers_id,
+                    'id_bouteille' => $request->id,
+                    'id_mes_bouteilles' => $mon_id->id,
+                    'quantite' => $request->quantite,
+                ]);
+            } else {
+                // Handle the case where the ID is not empty
+                $res = Bouteille::create([
+                    'celliers_id' => $request->celliers_id,
+                    'id_bouteille' => $request->id,
+                    'quantite' => $request->quantite,
+                ]);
+            }
+
+        
 
         return ['data' => $res];
     }

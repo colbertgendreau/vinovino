@@ -36,6 +36,8 @@ export class AjoutBouteilleComponent implements OnInit{
   bouteille:IBouteille;
   nouvelleBouteille:Imesbouteilles;
   isDataSelected:boolean;
+
+  formSubmitted = false;
   
   
   constructor(
@@ -69,38 +71,56 @@ export class AjoutBouteilleComponent implements OnInit{
 
   selectData(bouteille: any) {
     this.selectedData = bouteille;
+    console.log(this.selectedData);
+    
     this.ajouterBouteilleForm.patchValue({
-      id: bouteille.id,
-      nom: bouteille.nom
+      id:bouteille.id,
+      nom: bouteille.nom,
+      type: bouteille.type,
+      format: bouteille.format,
+      prix_saq: bouteille.prix_saq,
+      pays: bouteille.pays,
+      description: bouteille.description,
+      
+
     });
     this.filteredData = [];
     this.isDataSelected = true; // set the flag to true when data is selected
-    const idControl = this.ajouterBouteilleForm.get('id');
-    if (idControl) {
-      idControl.disable();
-    }
+    // const idControl = this.ajouterBouteilleForm.get('id');
+    // if (idControl) {
+    //   idControl.disable();
+    // }
     
-    const nomControl = this.ajouterBouteilleForm.get('nom');
-    if (nomControl) {
-      nomControl.disable();
-    }
+    // const nomControl = this.ajouterBouteilleForm.get('nom');
+    // if (nomControl) {
+    //   nomControl.disable();
+    // }
+
+    // const controls = this.ajouterBouteilleForm.controls;
+    // Object.keys(controls).forEach(controlName => controls[controlName].disable());
   }
 
   onInputChange() {
     this.isDataSelected = false;
     
-    const idControl = this.ajouterBouteilleForm.get('id');
-    if (idControl) {
-      idControl.enable();
-    }
+    // const idControl = this.ajouterBouteilleForm.get('id');
+    // if (idControl) {
+    //   idControl.enable();
+    // }
     
-    const nomControl = this.ajouterBouteilleForm.get('nom');
-    if (nomControl) {
-      nomControl.enable();
-    }
+    // const nomControl = this.ajouterBouteilleForm.get('nom');
+    // if (nomControl) {
+    //   nomControl.enable();
+    // }
+
+    // const controls = this.ajouterBouteilleForm.controls;
+    // Object.keys(controls).forEach(controlName =>
+    //   controls[controlName].enable()
+    // );
   }
 
   ajouter() {
+    this.formSubmitted = true;
     if (this.ajouterBouteilleForm.valid) {
       this.route.params.subscribe((params) => {
         let nouvelleBouteille: Imesbouteilles = this.ajouterBouteilleForm.value;
@@ -113,16 +133,13 @@ export class AjoutBouteilleComponent implements OnInit{
   }
 
   clearForm() {
-    
-    const idControl = this.ajouterBouteilleForm.get('id');
-    if (idControl) {
-      idControl.setValue('');
-    }
-
-    const nomControl = this.ajouterBouteilleForm.get('nom');
-    if (nomControl) {
-      nomControl.setValue('');
-    }
+    this.isDataSelected = false;
+    const controls = this.ajouterBouteilleForm.controls;
+    Object.keys(controls).forEach(controlName => {
+      controls[controlName].setValue('');
+    });
+  
+    this.searchTerm = '';
   }
 
   
@@ -140,8 +157,17 @@ export class AjoutBouteilleComponent implements OnInit{
     });
 
     this.ajouterBouteilleForm = this.formBuilder.group({
-      nom: ['', [Validators.required]],
       id: [''],
+      nom: ['', [Validators.required]],
+      type: [''],
+      pays: [''],
+      format: [''],
+      prix_saq: [''],
+      quantite: ['', [Validators.required, Validators.pattern(/^-?[0-9]+(\.[0-9]*)?$/)]],
+      description: [''],
+      
+
+      
     });
   }
 
