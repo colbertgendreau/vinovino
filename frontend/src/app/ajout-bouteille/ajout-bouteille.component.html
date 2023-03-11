@@ -1,10 +1,48 @@
-<p>Bienvenue {{ UserProfile.name }}!</p>
 
-<p>ajout-bouteille works!</p>
+  <input type="text" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)" placeholder="Recherche">
+<table>
+    <tbody>
+  <tr *ngFor="let bouteille of filteredData">
+    <td (click)="selectData(bouteille)">{{ bouteille.nom }}</td>
+  </tr>
+</tbody>
+</table>
 
-<article class="article" *ngFor = "let uneBouteille of arrayBouteille">
+<form *ngIf="selectedData" [formGroup]="ajouterBouteilleForm" (ngSubmit)="ajouter()">
+    
+    <input type="hidden" id="id" name="id" formControlName="id" [readonly]="isDataSelected">
+  
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" formControlName="nom" [readonly]="isDataSelected">
+    <div *ngIf="formSubmitted && ajouterBouteilleForm.controls['nom'].invalid" class="error-message">
+        <span *ngIf="ajouterBouteilleForm.controls['nom'].errors?.['required']">Le nom est requis.</span>
+      </div>
 
-    <span>{{uneBouteille.nom}}</span>
+    <label for="name">type:</label>
+    <input type="text" id="type" name="type" formControlName="type" [readonly]="isDataSelected">
 
-</article>
+    <label for="pays">Pays:</label>
+    <input type="text" id="pays" name="pays" formControlName="pays" [readonly]="isDataSelected">
 
+    <label for="format">format:</label>
+    <input type="text" id="format" name="format" formControlName="format" [readonly]="isDataSelected">
+
+    <label for="prix_saq">prix:</label>
+    <input type="text" id="prix_saq" name="prix_saq" formControlName="prix_saq" [readonly]="isDataSelected">
+
+    <label for="quantite">quantité:</label>
+    <input type="text" id="quantite" name="quantite" formControlName="quantite">
+    <div *ngIf="formSubmitted && ajouterBouteilleForm.controls['quantite'].invalid" class="error-message">
+        <span *ngIf="ajouterBouteilleForm.controls['quantite'].errors?.['required']">La quantité est requise.</span>
+        <span *ngIf="ajouterBouteilleForm.controls['quantite']?.errors?.['pattern']">Doit être un chiffre.</span>
+      </div>
+
+    <label for="description">description:</label>
+    <textarea type="text" id="description" name="description" formControlName="description" [readonly]="isDataSelected"></textarea>
+
+  
+    <button *ngIf="isDataSelected" type="button" (click)="clearForm()">Effacer</button>
+    <button class="grosPlus" type="submit">+</button>
+  </form>
+
+  
