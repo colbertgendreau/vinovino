@@ -20,6 +20,7 @@ class Bouteille extends Model
         'quantite',
         'celliers_id',
         'id_bouteille',
+        'id_mes_bouteilles',
 
     ];
 

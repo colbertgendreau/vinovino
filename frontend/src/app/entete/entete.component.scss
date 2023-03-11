@@ -135,7 +135,7 @@
     }
 
     .burger {
-        position: absolute;
+        position: fixed;
         z-index: 3;
         top: 0;
         // left: 0;
@@ -173,6 +173,20 @@
         color: rgb(0, 0, 0);
     }
     
+    // .burger .menu-toggle input {
+    //     display: block;
+    //     width: 90px;
+    //     height: 90px;
+    //     position: absolute;
+    //     top: -46px;
+    //     right: 0px;
+    //     cursor: pointer;
+    //     opacity: 0;
+    //     z-index: 2;
+    //     -webkit-touch-callout: none;
+    //     text-align: center;
+    //     // transform: translate(100%, 0);
+    // }
     .burger .menu-toggle input {
         display: block;
         width: 90px;
