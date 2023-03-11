@@ -25,7 +25,7 @@ export class CellierComponent implements OnInit {
 
   bouteilles: Array<Ibouteillecellier>;
   bouteille: Imesbouteilles;
-
+  cellierId: string;
   isSignedIn!: boolean;
   // title:string='Cellier';
   UserProfile!: User;
@@ -43,6 +43,8 @@ export class CellierComponent implements OnInit {
       console.log(this.UserProfile);
     });
     this.bouteilles = [];
+
+    
   }
 
   ngOnInit() {
@@ -52,6 +54,7 @@ export class CellierComponent implements OnInit {
     });
 
     this.route.params.subscribe((params) => {
+      this.cellierId = params['id'];
       console.log(params['id']);
 
       this.fetchService
