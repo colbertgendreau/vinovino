@@ -1,4 +1,4 @@
-
+<div class="ajouter-bouteille">
   <input type="text" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)" placeholder="Recherche">
 <table>
     <tbody>
@@ -44,5 +44,6 @@
     <button *ngIf="isDataSelected" type="button" (click)="clearForm()">Effacer</button>
     <button class="grosPlus" type="submit">+</button>
   </form>
+</div>
 
   
