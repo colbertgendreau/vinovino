@@ -7,6 +7,7 @@ import {environment} from "../environments/environment";
 import { ICellier } from './icellier';
 import { IlisteCellier } from './iliste-cellier';
 import { Ilistemesbouteilles } from './ilistemesbouteilles';
+import { Imesbouteilles } from './imesbouteilles';
 
 @Injectable({
   providedIn: 'root'
