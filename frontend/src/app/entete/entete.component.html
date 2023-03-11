@@ -1,4 +1,4 @@
-<nav>
+<nav class="top-nav">
   <div class="nom_logo">
     VINOVINO
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -25 550 700" version="1.1" width="auto" height="40pt" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -7,10 +7,9 @@
   </div>
     
   <div class="nav_link">
-    <a class="nav_link_a" routerLink="/profile" *ngIf="isSignedIn">Profile</a>
     <a class="nav_link_a" *ngIf="!isSignedIn" routerLink="/connexion">Connexion</a>
-    <a class="nav_link_a" routerLink="/inscription">Creer un compte</a>
-    <a class="nav_link_a" (click)="signOut()" *ngIf="isSignedIn">Deconnexion</a>
+    <a class="nav_link_a" routerLink="/inscription">Créer un compte</a>
+    <a class="nav_link_a" (click)="signOut()" *ngIf="isSignedIn">Déconnexion</a>
   </div>
 </nav>
 
@@ -24,12 +23,13 @@
 
     <ul class="menu" [ngClass]="{ 'open': isOpen }">
       <li *ngIf="!isSignedIn"><a class="nav_link_a" (click)="pageAccueil()">Accueil</a></li>
+
       <li *ngIf="isSignedIn"><a class="nav_link_a" (click)="pageCelliers()">Voir mes celliers</a></li>
       <li *ngIf="!isSignedIn"><a class="nav_link_a" (click)="pageConnexion()">Connexion</a></li>
       <!-- <li *ngIf="!isSignedIn"><a class="nav_link_a" (click)="pageProfil()">Profil</a></li> -->
+
       <li *ngIf="!isSignedIn"><a class="nav_link_a" (click)="pageInscription()">Créer un compte</a></li>
       <li *ngIf="isSignedIn"><a class="nav_link_a" (click)="signOut()">Déconnexion</a></li>
-      <li><a href="#">FR | EN</a></li>
     </ul>
   </div>
 </nav>
