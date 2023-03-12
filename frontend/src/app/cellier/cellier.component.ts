@@ -61,6 +61,7 @@ export class CellierComponent implements OnInit {
         .getBouteillesCellier(params['id'])
         .subscribe((data: any) => {
           this.bouteilles = data.data;
+          
           console.log(this.bouteilles);
           console.log("les bouteilles du cellier");
         });

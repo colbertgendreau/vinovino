@@ -10,6 +10,7 @@ class Bouteille extends Model
     use HasFactory;
 
     protected $table = 'bouteilles';
+    protected $primaryKey = 'id_mes_bouteilles';
     
     
     protected $fillable = [ //les champ dans la base de donner quon veux modifier, ne pas mettre les auto ecrement
