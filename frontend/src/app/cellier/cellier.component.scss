@@ -1,29 +1,27 @@
 .monCellier {
-  // height: calc(100vh - 63px);
+    h1 {
+        margin-block: var(--big);
+    }
 
-  height: 100%;
-  background-size: cover;
-  object-position: center;
-  
-  background-attachment: fixed;
-  
+  text-align: center;
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
-  padding: var(--med);
+  align-items: stretch;
+  padding: var(--small);
   padding-bottom: 100px;
-  padding-top: 83px;
+  padding-top: 63px;
 
   .bouteille {
-    margin: var(--big);
+    margin-bottom: var(--small);
     display: flex;
     flex-direction: column;
-    width: 90%;
+    max-width: 100vw;
+    // min-width: 90vw;
     background-color: transparent;
     // background-color: var(--black-transparent50);
     align-items: center;
-    padding: var(--big);
+    padding: var(--small);
     border-radius: var(--border-radius15);
 
     // border: 5px solid rgb(228, 228, 228);
@@ -47,7 +45,7 @@
       }
 
       .image-bouteille {
-        max-width: 100px;
+        min-width: 100px;
       }
 
       .info-bouteille {
@@ -120,9 +118,6 @@
       }
     }
 
-    h1 {
-      font-size: 100px;
-    }
   }
   .ajouter-bouteille {
     display: flex;

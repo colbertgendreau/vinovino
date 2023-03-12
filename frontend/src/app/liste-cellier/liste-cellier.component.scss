@@ -13,16 +13,19 @@ div {
     }
 
     .boite-cellier {
+        // background-color: white;
         background-color: var(--black-transparent50);
         background-size: cover;
         justify-content: center;
         align-items: center;
         filter: brightness(100%);
         position:relative;
+
     }
 
     .modif-cellier{
-        color: var(--white);
+        // color: var(--white);
+        color: var(--secondaire-turquoise);
         position: absolute;
         bottom: var(--smaller);
         right: var(--smaller);
@@ -33,15 +36,19 @@ div {
         position: absolute;
         bottom: var(--smaller);
         left: var(--smaller);
+        color: var(--secondaire);
+        text-decoration: none;
     }
 
 
     .celliers {
-        border: 1px solid var(--black);
+        // border: 1px solid var(--black);
         border-radius: 5px;
         display: flex;
         justify-content: center;
         padding: 40px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 
         .unCellier {
             text-decoration: none;
@@ -49,6 +56,7 @@ div {
 
             h2 {
                 color: var(--white);
+                // color: var(--black);
                 font-family: 'ruda';
                 font-size: var(--bigger);
                 font-weight: 800;
