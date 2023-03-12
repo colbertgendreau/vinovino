@@ -16,18 +16,18 @@ import { ModifCellierComponent } from './modif-cellier/modif-cellier.component';
 import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'accueil', pathMatch: 'full' },
-  { path: 'connexion', component: SigninComponent },
-  { path: 'inscription', component: SignupComponent },
-  { path: 'profile', component: UserProfileComponent, canActivate:[GardienLoginGuard] },
+  { path: '', redirectTo: 'accueil', pathMatch: 'full' , title: 'Accueil' },
+  { path: 'connexion', component: SigninComponent , title: 'Connection' },
+  { path: 'inscription', component: SignupComponent , title: 'Inscription' },
+  { path: 'profile', component: UserProfileComponent, canActivate:[GardienLoginGuard] , title: 'Profile' },
 
-  { path: 'accueil', component: AccueilComponent },
-  { path: 'liste-cellier', component: ListeCellierComponent, canActivate:[GardienLoginGuard] },
-  { path: 'cellier/:id', component: CellierComponent, canActivate:[GardienLoginGuard] },
-  { path: 'ajouter-bouteille/:id', component: AjoutBouteilleComponent, canActivate:[GardienLoginGuard] },
-  { path: 'modifier-bouteille', component: ModifBouteilleComponent, canActivate:[GardienLoginGuard] },
-  { path: 'ajouter-cellier', component: AjoutCellierComponent, canActivate:[GardienLoginGuard] },
-  { path: 'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] },
+  { path: 'accueil', component: AccueilComponent , title: 'Accueil' },
+  { path: 'liste-cellier', component: ListeCellierComponent, canActivate:[GardienLoginGuard] , title: 'Celliers' },
+  { path: 'cellier/:id', component: CellierComponent, canActivate:[GardienLoginGuard] , title: 'Mon Cellier' },
+  { path: 'ajouter-bouteille/:id', component: AjoutBouteilleComponent, canActivate:[GardienLoginGuard] , title: 'Ajouter' },
+  { path: 'modifier-bouteille', component: ModifBouteilleComponent, canActivate:[GardienLoginGuard] , title: 'Modifier' },
+  { path: 'ajouter-cellier', component: AjoutCellierComponent, canActivate:[GardienLoginGuard] , title: 'Ajouter' },
+  { path: 'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] , title: 'Modifier' },
 
 ];
 
