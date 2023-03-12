@@ -76,6 +76,8 @@
         font-family: 'vinovino';
         font-size: 40px;
         color: var(--white);
+        margin-left: var(--small);
+
     }
 
     .top-nav {
@@ -87,7 +89,7 @@
         // background-color: var(--secondaire);
         background-color: var(--primaire);
         padding-top: var(--smaller);
-        align-items: center;
+        // align-items: center;
         height: 55px;
         width: 100%;
     }
