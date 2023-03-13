@@ -17,4 +17,4 @@ jobs:
           server: ftp.vinovino.ca
           username: ${{secrets.ftp_username}}
           password: ${{ secrets.ftp_password }}
-          server-dir: /public_html/
+          server-dir: site.vinovino.ca/public_html/
