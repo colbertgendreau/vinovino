@@ -5,11 +5,11 @@
 
   <article class="bouteille" *ngFor="let uneBouteille of bouteilles">
     <div class="card-bouteille-haut">
+      <picture>
+        <img [src]="uneBouteille.url_img ? uneBouteille.url_img : '../../assets/img/bouteilleNonDispo.png'" alt="Bouteille" />
+    </picture>
+    
 
-      <picture *ngIf="uneBouteille.url_img">
-        <img src="{{ uneBouteille.url_img }}" alt="Italian Trulli" />
-
-      </picture>
       <div class="info-bouteille">
         <!-- <h3 *ngIf="uneBouteille.url_img">{{ uneBouteille.nom }}</h3> -->
         <h3>{{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}</h3>
@@ -45,9 +45,8 @@
             <div class="icone icone-etoile"></div>
         -->
         <div>
-        <p>Quantité : </p>
         <!-- <span>{{ uneBouteille.quantite }}</span> -->
-        <span>{{ uneBouteille.quantite ? uneBouteille.quantite : uneBouteille.quantite_bouteillePerso }}</span>
+        <span>Quantité : {{ uneBouteille.quantite ? uneBouteille.quantite : uneBouteille.quantite_bouteillePerso }}</span>
 
         <a *ngIf="!uneBouteille.id_bouteille" class="" routerLink="/modifier-bouteille/{{ uneBouteille.id_mes_bouteilles }}">modification</a>
 

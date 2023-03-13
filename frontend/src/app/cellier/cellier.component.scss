@@ -34,6 +34,7 @@
     align-items: center;
     padding: var(--small);
     border-radius: var(--border-radius15);
+    
 
     // border: 5px solid rgb(228, 228, 228);
 
@@ -59,7 +60,11 @@
       }
 
       .info-bouteille {
-        justify-content: space-between;
+
+          justify-content: space-between;
+          min-width: 245px;
+
+
 
         div {
           display: flex;
@@ -114,9 +119,16 @@
 
     .card-bouteille-bas {
       align-self: flex-start;
+      width: 100%;
+
+      a{
+        text-decoration: none;
+      }
 
       div {
         display: flex;
+        flex-direction: row;
+        justify-content: space-between;
       }
 
       .icone-etoile {
