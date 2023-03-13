@@ -18,4 +18,9 @@ ainsi que le dossier backend -> app, config, database, lang, ressources, routes,
 
 
 Il faut faire très attention de ne pas écrasser le fichier .env sur siteground
-sinon le site ne fonctionnera plus
+sinon le site ne fonctionnera plus.
+
+Si la base de données a été mise à jour ddepuis la dernière mise à jour, il faut exporter un fihcier sql
+et modifier le nom de la base de données par celle sur siteground.
+
+Ensuite allez sur siteground et importez la BD.
