@@ -16,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/angular', function () {
     return view('welcome');
 });
-Route::get('/dashboard', function () {
+Route::get('', function () {
     return view('angular');
 });

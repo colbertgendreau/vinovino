@@ -98,7 +98,7 @@ class CellierController extends Controller
                 'nom' => $request->nom
             ]
         );
-   
+
     }
 
     /**
@@ -113,7 +113,7 @@ class CellierController extends Controller
     }
 
 
-   
+
     public function showCellier(Cellier $celliers)
     {
         //
