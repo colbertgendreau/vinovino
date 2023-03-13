@@ -21,13 +21,14 @@ const routes: Routes = [
   { path: 'inscription', component: SignupComponent , title: 'Inscription' },
   { path: 'profile', component: UserProfileComponent, canActivate:[GardienLoginGuard] , title: 'Profile' },
 
-  { path: 'accueil', component: AccueilComponent , title: 'Accueil' },
-  { path: 'liste-cellier', component: ListeCellierComponent, canActivate:[GardienLoginGuard] , title: 'Celliers' },
-  { path: 'cellier/:id', component: CellierComponent, canActivate:[GardienLoginGuard] , title: 'Mon Cellier' },
-  { path: 'ajouter-bouteille/:id', component: AjoutBouteilleComponent, canActivate:[GardienLoginGuard] , title: 'Ajouter' },
-  { path: 'modifier-bouteille', component: ModifBouteilleComponent, canActivate:[GardienLoginGuard] , title: 'Modifier' },
-  { path: 'ajouter-cellier', component: AjoutCellierComponent, canActivate:[GardienLoginGuard] , title: 'Ajouter' },
-  { path: 'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] , title: 'Modifier' },
+  { path: 'accueil', component: AccueilComponent },
+  { path: 'liste-cellier', component: ListeCellierComponent, canActivate:[GardienLoginGuard] },
+  { path: 'cellier/:id', component: CellierComponent, canActivate:[GardienLoginGuard] },
+  { path: 'ajouter-bouteille/:id', component: AjoutBouteilleComponent, canActivate:[GardienLoginGuard] },
+  { path: 'modifier-bouteille/:id', component: ModifBouteilleComponent, canActivate:[GardienLoginGuard] },
+  { path: 'ajouter-cellier', component: AjoutCellierComponent, canActivate:[GardienLoginGuard] },
+  { path: 'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] },
+
 
 ];
 
