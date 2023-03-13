@@ -3,6 +3,8 @@ width="40"
 alt="Laravel 
 Logo"></a></p>
 
+![Vinovino workflow](https://github.com/anperoconi/vinovino/actions/workflows/main.yml/badge.svg)
+
 # VINOVINO
 
 Projet de fin d'études pour du AEC en conception et programmation de sites web
