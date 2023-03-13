@@ -3,7 +3,7 @@
   <component name="WebServers">
     <option name="servers">
       <webServer id="d54abe17-734e-4f1f-8625-3f5e2f20e91b" name="vinovino" url="http://ftp.vinovino.ca">
-        <fileTransfer rootFolder="/vinovino.ca/public_html" host="ftp.vinovino.ca" port="21">
+        <fileTransfer host="ftp.vinovino.ca" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
           </advancedOptions>
