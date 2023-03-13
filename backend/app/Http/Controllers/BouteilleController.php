@@ -61,7 +61,7 @@ class BouteilleController extends Controller
             if ($request->id == '') {
                 $mon_id = mesBouteilles::create([
                     'nom_bouteillePerso' => $request->nom,
-                    'type_bouteillePerso' => $request->type,
+                    // 'type_bouteillePerso' => $request->type,
                     'pays_bouteillePerso' => $request->pays,
                     'format_bouteillePerso' => $request->format,
                     'prix_bouteillePerso' => $request->prix,

@@ -5,9 +5,11 @@
 
   <article class="bouteille" *ngFor="let uneBouteille of bouteilles">
     <div class="card-bouteille-haut">
+      
       <picture *ngIf="uneBouteille.url_img">
         <img src="{{ uneBouteille.url_img }}" alt="Italian Trulli" />
       </picture>
+
       <div class="info-bouteille">
         <!-- <h3 *ngIf="uneBouteille.url_img">{{ uneBouteille.nom }}</h3> -->
         <h3>{{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}</h3>
