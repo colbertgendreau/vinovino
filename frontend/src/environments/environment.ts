@@ -7,6 +7,6 @@
 //  in target-specific configuration files.
 
 export const environment = {
-  production: false,
-  apiUrl: 'http://vinovino.ca'
+  production: true,
+  apiUrl: 'https://vinovino.ca'
 };
