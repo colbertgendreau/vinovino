@@ -76,6 +76,10 @@
         font-family: 'vinovino';
         font-size: 40px;
         color: var(--white);
+        margin-left: var(--small);
+
+        margin-right: auto;
+
     }
 
     .top-nav {
@@ -83,14 +87,11 @@
         z-index: 1;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        // background-color: var(--secondaire);
         background-color: var(--primaire);
         padding-top: var(--smaller);
-        align-items: center;
         height: 55px;
         width: 100%;
-    }
+        }
 
     .nav_link a{
         display: none;
