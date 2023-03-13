@@ -45,9 +45,8 @@
             <div class="icone icone-etoile"></div>
         -->
         <div>
-        <p>Quantité : </p>
         <!-- <span>{{ uneBouteille.quantite }}</span> -->
-        <span>{{ uneBouteille.quantite ? uneBouteille.quantite : uneBouteille.quantite_bouteillePerso }}</span>
+        <span>Quantité : {{ uneBouteille.quantite ? uneBouteille.quantite : uneBouteille.quantite_bouteillePerso }}</span>
 
         <a *ngIf="!uneBouteille.id_bouteille" class="" routerLink="/modifier-bouteille/{{ uneBouteille.id_mes_bouteilles }}">modification</a>
 
