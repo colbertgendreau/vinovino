@@ -63,6 +63,7 @@ export class FetchService {
     return this.http.get<ICellier>(this.urlCellier+"/"+id);
   }
   modifCellier(id:number, cellier: ICellier):Observable<ICellier>{
+    console.log(this.urlCellier+"/"+id +" modifier le cellier url");
     return this.http.put<ICellier>(this.urlCellier+"/"+id, cellier);
   }
 
