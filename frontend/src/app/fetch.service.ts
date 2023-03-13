@@ -14,9 +14,9 @@ import { Imesbouteilles } from './imesbouteilles';
 })
 export class FetchService {
 
-  private urlBouteille:string = "http://127.0.0.1:8000/api/bouteilles/";
-  private url:string = "http://127.0.0.1:8000/api/bouteillesSAQ";
-  private urlCellier:string ="http://127.0.0.1:8000/api/celliers/";
+  private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
+  private url:string = environment.apiUrl+"/api/bouteillesSAQ";
+  private urlCellier:string = environment.apiUrl+"/api/celliers";
 
   constructor(private http:HttpClient) { }
 
@@ -26,7 +26,7 @@ export class FetchService {
 
   ajoutBouteille(bouteille: Imesbouteilles):Observable<Imesbouteilles>{
     console.log(bouteille);
-    
+
     return this.http.post<Imesbouteilles>(this.urlBouteille, bouteille);
   }
 
@@ -57,26 +57,28 @@ export class FetchService {
   // }
 
   getBouteillesCellier(id:number):Observable<Ilistemesbouteilles>{
-    return this.http.get<Ilistemesbouteilles>(this.urlCellier+id);
+    return this.http.get<Ilistemesbouteilles>(this.urlCellier+"/"+id);
   }
 
   getCelliers():Observable<IlisteCellier>{
     return this.http.get<IlisteCellier>(this.urlCellier);
   }
   ajoutCellier(cellier: ICellier):Observable<ICellier>{
+    console.log(this.urlCellier+ " l'url cellier");
+    console.log(cellier+ " cellier");
     return this.http.post<ICellier>(this.urlCellier, cellier);
   }
-  
+
   getUnCellier(id:number):Observable<ICellier>{
     console.log(id);
-    return this.http.get<ICellier>(this.urlCellier+id);
+    return this.http.get<ICellier>(this.urlCellier+"/"+id);
   }
   modifCellier(id:number, cellier: ICellier):Observable<ICellier>{
-    return this.http.put<ICellier>(this.urlCellier+id, cellier);
+    return this.http.put<ICellier>(this.urlCellier+"/"+id, cellier);
   }
 
   showCellier(id:number):Observable<ICellier>{
-    return this.http.get<ICellier>("http://127.0.0.1:8000/api/show/"+id);
+    return this.http.get<ICellier>(environment.apiUrl+"/api/show/"+id);
   }
 }
 
