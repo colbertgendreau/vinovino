@@ -33,7 +33,7 @@
         <h3>{{ bouteille.nom }}</h3>
         <div>
           <span class="icone icone-vin"></span>
-          <p>{{ bouteille.type }} | {{ bouteille.format }}</p>
+          <p>{{ bouteille.type_name }} | {{ bouteille.format }}</p>
         </div>
         <div>
           <span class="icone icone-location"></span>
@@ -119,23 +119,38 @@
       <div
         *ngIf="formSubmitted && ajouterBouteilleForm.controls['nom'].invalid"
         class="error-message"
-      >
-        <span *ngIf="ajouterBouteilleForm.controls['nom'].errors?.['required']"
-          >Le nom est requis.</span
         >
-      </div>
+        <span *ngIf="ajouterBouteilleForm.controls['nom'].errors?.['required']"
+        >Le nom est requis.</span
+        >
     </div>
+</div>
+
+
+<div>
+    <label for="type">Type</label>
+    <select name="type" id="type" formControlName="type">
+        <option value="">Type de vin</option>
+        <option value="2">vin blanc</option>
+        <option value="1">vin rouge</option>
+    </select>
+</div>
+
+<!--
     <div>
-      <label for="name">Type</label>
+        <label for="type">Type</label>
         <input
-          type="text"
-          id="type"
-          name="type"
-          formControlName="type"
-          [readonly]="isDataSelected"
-          placeholder="Type"
-      />
+        type="text"
+        id="type"
+        name="type"
+        formControlName="type"
+        [readonly]="isDataSelected"
+        placeholder="Type"
+        />
     </div>
+-->
+    
+    
     <div>
       <label for="pays">Pays</label>
         <input
@@ -194,10 +209,10 @@
         >
       </div>
     </div>
-
+    
+    <button class="btn-submit" class="grosPlus" type="submit">Confirmer</button>
     <button class="btn-effacer" *ngIf="isDataSelected" type="button" (click)="clearForm()">
       Effacer
     </button>
-    <button class="btn-submit" class="grosPlus" type="submit">+</button>
   </form>
 </div>
