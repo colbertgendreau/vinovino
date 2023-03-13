@@ -1,57 +1,72 @@
-.ajouter-cellier-component{
-    padding: var(--big) var(--smaller);
+.ajouter-cellier-component {
+    padding: 85px var(--big) 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
+    background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
+    height: calc(100vh - 183px);
 
     h1 {
         font-family: 'ruda';
     }
-    form{
-        margin-top: var(--big);
+
+    form {
         display: flex;
         flex-direction: column;
-        div{
-            border: 1px solid black;
-            border-radius: 5px;
+        align-items: center;
+        width: 100%;
+        // background-color: white;
+        background-color: var(--black-transparent50);
+        align-items: center;
+        margin-inline: var(--big);
+        margin-top: var(--big);
+        border-radius: var(--border-radius15);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+        div {
+
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 8px;
 
-            label{
-                margin-top: var(--smaller);
-                margin-bottom: var(--smaller);
-                font-family: 'ruda';
-                font-size: var(--bigger);
-                font-weight: 800;
-            }
-            input{
-                padding: var(--small);
-                font-size: var(--bigger);
+            label {
+                margin-top: var(--biggest);
+                margin-bottom: var(--big);
+                color: var(--white);
             }
 
-            button{
-                margin-top: var(--smaller);
-                background-color: var(--white);
-                border: 1px solid var(--black);
+            input {
+                height: var(--biggest);
+                border-radius: var(--border-radius5);
+                border: solid var(--smallest) var(--white);
+                width: 200px;
+            }
+
+            button {
+                margin-top: var(--big);
+                margin-bottom: var(--biggest);
+                margin-inline: var(--small);
+                height: var(--biggest);
+                border-radius: var(--border-radius);
+                border-style: none;
+                border: solid var(--smallest) var(--secondaire);
+                font-size: var(--med);
+                font-weight: var(--bold);
+                background-color: var(--secondaire);
                 color: var(--black);
-                bottom: var(--big);
-                padding: 8px;
-            }
-            .grosPlus {
-                font-size: 40px;
             }
 
-            button:hover{
+            button:hover {
                 background-color: var(--secondaire);
                 cursor: pointer;
             }
 
             .message-erreur {
+                margin-top: var(--small);
                 color: red;
-                font-size: 12px;
-                margin-top: 5px;
                 border: none;
-              }
+            }
         }
     }
 }

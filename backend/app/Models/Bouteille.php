@@ -20,12 +20,17 @@ class Bouteille extends Model
         'quantite',
         'celliers_id',
         'id_bouteille',
+        'id_mes_bouteilles',
 
     ];
 
     // public function bouteilleHasType(){ 
     //     return $this->hasOne('App\Models\Bouteille', '', '');       /// a voir ici regler la question du type
     // }
+
+    public function bouteilleHasId(){
+        return $this->hasOne('App\Models\BouteilleSAQ', 'id', 'bouteilles_id');
+    }
 
     
 }

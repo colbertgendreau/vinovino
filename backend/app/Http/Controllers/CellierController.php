@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bouteille;
 use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -39,7 +40,7 @@ class CellierController extends Controller
     {
         $res = Cellier::create([
             'nom' => $request->nom,
-            'users_id'=> Auth::user()->id
+            'users_id' => Auth::user()->id
         ]);
 
         return ['data' => $res];
@@ -53,7 +54,22 @@ class CellierController extends Controller
      */
     public function show(Cellier $cellier)
     {
-        //
+
+
+        $celliers_id = $cellier->id;
+
+        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+
+
+        $bouteilles = Bouteille::where('celliers_id', $celliers_id)
+        ->rightjoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
+        ->rightjoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
+        ->get();
+
+
+        return ['data' => $bouteilles];
+
+
     }
 
     /**
@@ -77,6 +93,12 @@ class CellierController extends Controller
     public function update(Request $request, Cellier $cellier)
     {
         //
+        $cellier->update(
+            [
+                'nom' => $request->nom
+            ]
+        );
+   
     }
 
     /**
@@ -88,5 +110,13 @@ class CellierController extends Controller
     public function destroy(Cellier $cellier)
     {
         //
+    }
+
+
+   
+    public function showCellier(Cellier $celliers)
+    {
+        //
+        return ['data' => $celliers];
     }
 }

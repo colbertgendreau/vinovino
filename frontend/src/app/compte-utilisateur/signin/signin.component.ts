@@ -30,13 +30,12 @@ export class SigninComponent implements OnInit {
     console.log(this.loginForm.value.name);
     console.log(this.loginForm.value.email);
     console.log(this.authService.signin(this.loginForm.value) +' aqui');
+
     this.authService.signin(this.loginForm.value).subscribe(
       (result) => {
-        console.log('aca');
         this.responseHandler(result);
       },
       (error) => {
-        console.log('por aca');
         this.errors = error.error;
       },
       () => {

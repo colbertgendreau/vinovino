@@ -1,4 +1,43 @@
-<h1>Mon cellier</h1>
-<p>Bienvenue {{ UserProfile.name }}!</p>
+<section class="monCellier">
+  <h1>Mon cellier</h1>
 
-<p>cellier works!</p>
+  <div class="overlay"></div>
+
+  <article class="bouteille" *ngFor="let uneBouteille of bouteilles">
+    <div class="card-bouteille-haut">
+      <picture>
+        <img class="image-bouteille" src="{{ uneBouteille.url_img }}" alt="image de bouteille" />
+      </picture>
+      <div class="info-bouteille">
+        <h3>{{ uneBouteille.nom }}</h3>
+        <div>
+            <span class="icone icone-vin"></span>
+            <p>{{ uneBouteille.type }} | {{ uneBouteille.format }}</p>
+        </div>
+        <div>
+            <span class="icone icone-location"></span><p> {{ uneBouteille.pays }}</p>
+        </div>
+        <div>
+            <span class="icone icone-dollar"></span><p> {{ uneBouteille.prix_saq }}</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-bouteille-bas">
+        <!--
+            <p>Note</p>
+            <div class="icone icone-etoile"></div>
+        -->
+        <div>
+        <p>Quantité : </p>
+        <span>{{ uneBouteille.quantite }}</span>
+      </div>
+    </div>
+  </article>
+
+
+<a class="ajouter-bouteille" routerLink="/ajouter-bouteille/{{unCellier}}">
+    Ajouter une bouteille
+</a>
+
+
+</section>

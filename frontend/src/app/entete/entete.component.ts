@@ -39,6 +39,11 @@ export class EnteteComponent implements OnInit {
     this.isOpen = !this.isOpen;
   }
 
+  pageCelliers() {
+    this.router.navigate(['liste-cellier']);
+    this.isOpen = !this.isOpen;
+  }
+
   pageConnexion() {
     this.router.navigate(['connexion']);
     this.isOpen = !this.isOpen;

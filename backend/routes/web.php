@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('', function () {
-    return view('angular');
+Route::get('/angular', function () {
+    return view('welcome');
 });
 Route::get('/dashboard', function () {
     return view('angular');

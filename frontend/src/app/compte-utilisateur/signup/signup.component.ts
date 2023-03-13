@@ -10,6 +10,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 export class SignupComponent implements OnInit {
   registerForm: FormGroup;
   errors: any = null;
+
   constructor(
     public router: Router,
     public fb: FormBuilder,
@@ -32,6 +33,7 @@ export class SignupComponent implements OnInit {
       },
       (error) => {
         this.errors = error.error;
+        this.errors = JSON.parse(this.errors);
       },
       () => {
         this.registerForm.reset();
