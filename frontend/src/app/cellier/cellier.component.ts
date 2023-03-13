@@ -29,6 +29,7 @@ export class CellierComponent implements OnInit {
   isSignedIn!: boolean;
   // title:string='Cellier';
   UserProfile!: User;
+  unCellier: any;
 
   constructor(
     private auth: AuthStateService,
@@ -54,8 +55,10 @@ export class CellierComponent implements OnInit {
     });
 
     this.route.params.subscribe((params) => {
+
       this.cellierId = params['id'];
       console.log(params['id']);
+
 
       this.fetchService
         .getBouteillesCellier(params['id'])
@@ -63,9 +66,8 @@ export class CellierComponent implements OnInit {
           this.bouteilles = data.data;
           
           console.log(this.bouteilles);
-          console.log("les bouteilles du cellier");
+          console.log('les bouteilles du cellier');
         });
     });
-      
   }
 }

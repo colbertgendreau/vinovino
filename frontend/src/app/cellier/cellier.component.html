@@ -5,9 +5,11 @@
 
   <article class="bouteille" *ngFor="let uneBouteille of bouteilles">
     <div class="card-bouteille-haut">
+
       
       <picture *ngIf="uneBouteille.url_img">
         <img src="{{ uneBouteille.url_img }}" alt="Italian Trulli" />
+
       </picture>
 
       <div class="info-bouteille">
@@ -56,8 +58,10 @@
   </article>
 
 
+
   <a class="ajouter-bouteille" routerLink="/ajouter-bouteille/{{ cellierId }}">
     Ajouter
+
 </a>
 
 
