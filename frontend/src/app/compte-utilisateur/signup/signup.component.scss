@@ -1,7 +1,11 @@
 .auth-wrapper {
+    // padding-top: 31px;
     padding-top: 63px;
-    height: calc(100vh - 63px);
-    background-image: url(../../../assets/img/1A_01643.jpg);
+    // height: calc(100vh - 63px);
+    background-attachment: fixed;
+    height: 100vh;
+
+    background-image: url(../../../assets/img/background-statique-mobile.png);
     background-size: cover;
     object-position: right;
     display: flex;
@@ -13,15 +17,19 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: var(--black-transparent50);
+    background-color: var(--white);
+    // background-color: rgba(255, 255, 255, 0.924);
+    // background-color: var(--black-transparent50);
     align-items: center;
     margin-inline: var(--big);
     border-radius: var(--border-radius15);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
 
     .h3 {
         margin-top: var(--biggest);
         margin-bottom: var(--big);
-        color: var(--white);
+        color: var(--black);
     }
 
     .form-group {
@@ -40,6 +48,7 @@
             border-radius: var(--border-radius5);
             border-style: none;
             border: solid var(--smallest) var(--white);
+            border: solid var(--smallest) var(--black);
             width: calc(100% - (var(--biggest) + var(--bigger)));
             padding-inline: var(--small);
         }
@@ -50,8 +59,9 @@
             color: var(--primaire);
             margin-inline: var(--small);
             margin-bottom: var(--small);
-            background-color: var(--black-transparent40);
-            border-radius: var(--border-radius5);
+            background-color: transparent;
+            // background-color: var(--black-transparent40);
+                border-radius: var(--border-radius5);
             padding-inline: 13px;
         }
     }
@@ -63,6 +73,7 @@
         height: var(--biggest);
         border-radius: var(--border-radius);
         border-style: none;
+        // border: solid var(--smallest) var(--primaire);
         border: solid var(--smallest) var(--secondaire);
         width: calc(100% - var(--biggest));
         font-size: var(--med);
