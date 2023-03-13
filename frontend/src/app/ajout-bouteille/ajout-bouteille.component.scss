@@ -208,10 +208,6 @@ label {
     display: var(--display-none);
 }
 
-.btn-submit {
-
-}
-
 button {
     margin: var(--small);
     height: var(--biggest);
@@ -229,4 +225,15 @@ button {
 button:hover {
     background-color: var(--secondaire);
 }
+.btn-effacer {
+    background-color: var(--primaire-transparent80);
+    border: solid var(--smallest) var(--primaire);
+
+}
+
+.btn-effacer:hover {
+    background-color: var(--primaire);
+
+}
+
 }
