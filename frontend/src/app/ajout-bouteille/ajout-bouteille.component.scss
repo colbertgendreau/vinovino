@@ -38,6 +38,7 @@ input, select {
 
 select {
     // margin: 0px;
+    box-sizing: content-box;
 }
 
 .recherche-input {
