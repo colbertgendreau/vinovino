@@ -24,7 +24,7 @@ h1 {
   margin-top: var(--big);
 }
 
-input {
+input, select {
     margin-block: var(--small);
     margin-inline: var(--small);
     height: var(--biggest);
@@ -34,6 +34,10 @@ input {
     padding-inline: var(--small);
     // border: solid var(--smallest) var(--white);
     border: solid var(--smallest) var(--black);
+}
+
+select {
+    // margin: 0px;
 }
 
 .recherche-input {
