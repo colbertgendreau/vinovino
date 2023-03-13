@@ -1,5 +1,5 @@
 export interface IBouteille {
-
+    id:number;
     nom:string;
     image:string;
     code_saq:string;

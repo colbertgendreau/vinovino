@@ -14,10 +14,17 @@ class BouteilleSAQController extends Controller
      */
     public function index()
     {
-        $bouteilles = BouteilleSAQ::all();
-        
-        
-        return ['data'=>$bouteilles];
+        // $bouteilleSAQ = BouteilleSAQ::leftJoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
+        // ->select('vino__bouteille.id', 'vino__bouteille.nom', 'vino__type.type as type_name')
+        // ->get();
+
+        // return ['data' => $bouteilleSAQ];
+
+        $bouteilleSAQ = BouteilleSAQ::leftJoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
+            ->select('vino__bouteille.*', 'vino__type.type as type_name')
+            ->get();
+
+        return ['data' => $bouteilleSAQ];
     }
 
     /**
@@ -49,6 +56,11 @@ class BouteilleSAQController extends Controller
      */
     public function show(BouteilleSAQ $bouteilleSAQ)
     {
+
+        // $bouteilleSAQ = BouteilleSAQ::leftJoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
+        // ->get();
+
+
         return ['data'=>$bouteilleSAQ];
     }
 

@@ -154,6 +154,8 @@ export class AjoutBouteilleComponent implements OnInit{
     
     this.fetchService.getBouteilleSAQ().subscribe((response) => {
       this.arrayBouteille = response.data;
+      console.log(this.arrayBouteille);
+      
     });
 
     this.ajouterBouteilleForm = this.formBuilder.group({

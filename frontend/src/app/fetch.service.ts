@@ -14,11 +14,9 @@ import { Imesbouteilles } from './imesbouteilles';
 })
 export class FetchService {
 
-
   private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
   private url:string = environment.apiUrl+"/api/bouteillesSAQ";
   private urlCellier:string = environment.apiUrl+"/api/celliers";
-
 
   constructor(private http:HttpClient) { }
 
@@ -30,6 +28,19 @@ export class FetchService {
     console.log(bouteille);
 
     return this.http.post<Imesbouteilles>(this.urlBouteille, bouteille);
+  }
+
+  modifBouteille(id:number, bouteille: Imesbouteilles):Observable<Imesbouteilles>{
+    console.log(bouteille);
+    console.log(id);
+    
+    return this.http.put<Imesbouteilles>(this.urlBouteille+id, bouteille);
+  }
+
+  showBouteille(id:number):Observable<Imesbouteilles>{
+    console.log(id);
+    
+    return this.http.get<Imesbouteilles>(this.urlBouteille+id);
   }
   // getBouteilleSAQ():Observable<IlisteBouteille>{
   //   return this.http.get<IlisteBouteille>(environment.production+"/api/bouteilles");
