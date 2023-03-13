@@ -64,6 +64,7 @@ export class ModifBouteilleComponent implements OnInit {
           pays_bouteillePerso: this.bouteille.pays_bouteillePerso,
           format_bouteillePerso: this.bouteille.format_bouteillePerso,
           prix_bouteillePerso: this.bouteille.prix_bouteillePerso,
+          quantite_bouteillePerso: this.bouteille.quantite,
           description_bouteillePerso: this.bouteille.description_bouteillePerso
         });
       });
