@@ -45,9 +45,9 @@
     //   justify-content: space-between;
       width: 100%;
       // border-bottom: 5px solid var(--secondaire-turquoise);
-      border-bottom: 5px solid rgb(228, 228, 228);
-      padding-bottom: var(--med);
-      margin-bottom: var(--med);
+      border-bottom: 1px solid rgb(228, 228, 228);
+      padding-bottom: var(--small);
+      margin-bottom: var(--smaller);
 
       div {
         text-align: start;
@@ -55,8 +55,12 @@
         flex-direction: column;
       }
 
-      .image-bouteille {
-        min-width: 100px;
+      // .image-bouteille {
+      //   min-width: 75px;
+      // }
+
+      picture img {
+        max-width: 80px;
       }
 
       .info-bouteille {
@@ -101,7 +105,7 @@
         }
 
         h3 {
-          margin-bottom: var(--biggest);
+          margin-bottom: var(--big);
           padding-left: var(--smaller);
 
           font-size: clamp(
