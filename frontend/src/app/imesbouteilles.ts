@@ -10,6 +10,7 @@ export interface Imesbouteilles {
     prix_saq: number;
     quantite: number;
     description: string;
+    id_mes_bouteilles:number;
 
     id_bouteillePerso: number;
     nom_bouteillePerso: string;

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
@@ -31,6 +31,12 @@ export class CellierComponent implements OnInit {
   UserProfile!: User;
   unCellier: any;
 
+//   counter:number = 1;
+  counterValue:number = 0;
+  quantite:number;
+  id:number;
+
+
   constructor(
     private auth: AuthStateService,
     public router: Router,
@@ -54,6 +60,7 @@ export class CellierComponent implements OnInit {
       console.log(this.isSignedIn);
     });
 
+
     this.route.params.subscribe((params) => {
 
       this.cellierId = params['id'];
@@ -69,5 +76,57 @@ export class CellierComponent implements OnInit {
           console.log('les bouteilles du cellier');
         });
     });
+  }
+  plus(id:number, quantite:number) {
+    console.log("plus");
+
+    this.quantite = quantite;
+    this.quantite++;
+
+    console.log(this.quantite);
+    console.log(id);
+    
+           
+        this.fetchService.showBouteille(id).subscribe((data: any) => {
+          this.bouteille = data.data;
+          console.log(this.bouteille);
+        //   this.modifBouteilleForm.setValue({
+        //     id_bouteillePerso: this.bouteille.id,
+        //     nom_bouteillePerso: this.bouteille.nom_bouteillePerso,
+        //     type_bouteillePerso: this.bouteille.type_bouteillePerso,
+        //     pays_bouteillePerso: this.bouteille.pays_bouteillePerso,
+        //     format_bouteillePerso: this.bouteille.format_bouteillePerso,
+        //     prix_bouteillePerso: this.bouteille.prix_bouteillePerso,
+        //     quantite_bouteillePerso: this.bouteille.quantite,
+        //     description_bouteillePerso: this.bouteille.description_bouteillePerso
+        //   });
+        });
+  
+
+
+
+    // this.quantite = quantite;
+
+    
+    // this.quantite = this.counter;
+    // console.log(this.quantite);
+
+    // this.counter ++;
+    // console.log(this.counter);
+
+    // this.route.params.subscribe((params) => {
+    //     let updateBouteille: Imesbouteilles = this.modifBouteilleForm.value;
+
+    //     this.fetchService.modifBouteille(params['id'], updateBouteille).subscribe((retour) => {
+    //       this.router.navigate(['liste-cellier']);
+    //     });
+    // });
+
+    
+  }
+
+  moins() {
+    console.log("moins");
+    
   }
 }
