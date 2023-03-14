@@ -21,7 +21,7 @@
     border-radius: var(--border-radius15);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
-    
+
     .h3 {
         margin-top: var(--biggest);
         margin-bottom: var(--big);
@@ -64,8 +64,7 @@
     }
     
     button {
-        margin-top: var(--small);
-        margin-bottom: var(--biggest);
+        margin-block: var(--small);
         margin-inline: var(--small);
         height: var(--biggest);
         border-radius: var(--border-radius);
@@ -76,9 +75,28 @@
         font-weight: var(--bold);
         background-color: var(--secondaire-transparent80);
         color: var(--black);
+
     }
     
     button:hover {
         background-color: var(--secondaire);
+    }
+
+    .nouveau-membre {
+        border-top: 5px solid rgb(228, 228, 228);
+
+        align-self: stretch;
+        display: flex;
+        justify-content: space-between;
+        margin-top: var(--small);
+        margin-inline: var(--big);
+        padding-block: var(--big);
+
+        a {
+            font-size: 14px;
+            color: var(--secondaire-turquoise);
+            text-align: right;
+        }
+
     }
 }
