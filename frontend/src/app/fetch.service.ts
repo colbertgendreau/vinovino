@@ -13,7 +13,9 @@ import { Imesbouteilles } from './imesbouteilles';
   providedIn: 'root'
 })
 export class FetchService {
-
+  // Important: Ne pas utilsier http://127.0.0.1:800, à la place 'ut iliser
+  // private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
+  //
   private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
   private url:string = environment.apiUrl+"/api/bouteillesSAQ";
   private urlCellier:string = environment.apiUrl+"/api/celliers";
