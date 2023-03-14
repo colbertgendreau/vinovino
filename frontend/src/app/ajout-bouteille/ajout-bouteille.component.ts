@@ -163,7 +163,7 @@ export class AjoutBouteilleComponent implements OnInit{
     this.ajouterBouteilleForm = this.formBuilder.group({
       id: [''],
       nom: ['', [Validators.required]],
-      type: [0],
+      type: [''],
       pays: [''],
       format: [''],
       prix_saq: [''],
