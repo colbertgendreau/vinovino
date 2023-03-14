@@ -19,7 +19,9 @@ jobs:
           working_dir: ./backend/
           
       - name: Install composer dependencies
-        run: composer install
+        run: |
+          cd ./backend/
+          composer update
         
       - name: Use Node.js 16
         uses: actions/setup-node@v2
