@@ -1,12 +1,12 @@
 <div class="ajouter-bouteille">
-  <h1>Trouver une bouteille</h1>
+  <h1>Ajouter une bouteille</h1>
   <input class="recherche-input"
     type="text"
     [(ngModel)]="searchTerm"
     (keyup)="filterData(searchTerm)"
     placeholder="Recherche"
   />
-<!--
+  <!--
     <table>
         <tbody>
             <tr *ngFor="let bouteille of filteredData">
@@ -187,7 +187,7 @@
     <div>
       <label for="quantite">Quantité</label>
         <input
-          type="number"
+          type="text"
           id="quantite"
           name="quantite"
           formControlName="quantite"
@@ -212,7 +212,7 @@
     
     <button class="btn-submit" class="grosPlus" type="submit">Confirmer</button>
     <button class="btn-effacer" *ngIf="isDataSelected" type="button" (click)="clearForm()">
-      Rétablir
+      Effacer
     </button>
   </form>
 </div>
