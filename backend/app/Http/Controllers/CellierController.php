@@ -19,6 +19,13 @@ class CellierController extends Controller
         $users_id = Auth::id();
         $celliers = Cellier::where('users_id', $users_id)->get();
         return ['data' => $celliers];
+
+
+        // $users_id = Auth::id();
+        // $celliers = Cellier::where('users_id', $users_id)
+        // ->leftjoin('bouteilles', 'bouteilles.celliers_id', '=', 'celliers.id')
+        // ->get();
+        return ['data' => $celliers];
     }
 
     /**
