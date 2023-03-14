@@ -3,7 +3,7 @@
     margin-block: var(--big);
   }
 
-  background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
+  // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
   background-attachment: fixed;
   height: 100%;
   padding: 85px var(--big) calc(100vh - 122px);
@@ -92,7 +92,7 @@
         }
 
         .icone-dollar {
-          // background: url(../../assets/img/dollaricon.png);
+          background: url(../../assets/img/dollaricon.png);
           // background:red;
           height: var(--big);
           width: var(--big);

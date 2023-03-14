@@ -129,7 +129,8 @@ class BouteilleController extends Controller
     ->first();
 
 
-return ['data' => $res];
+    return ['data' => $res];
+    
     }
 
 

@@ -124,6 +124,8 @@ export class AjoutBouteilleComponent implements OnInit{
     if (this.ajouterBouteilleForm.valid) {
       this.route.params.subscribe((params) => {
         let nouvelleBouteille: Imesbouteilles = this.ajouterBouteilleForm.value;
+        nouvelleBouteille.type = Number(nouvelleBouteille.type)
+        
         nouvelleBouteille.celliers_id = params['id'];
         this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
           this.router.navigate(['liste-cellier']);
@@ -161,7 +163,7 @@ export class AjoutBouteilleComponent implements OnInit{
     this.ajouterBouteilleForm = this.formBuilder.group({
       id: [''],
       nom: ['', [Validators.required]],
-      type: [''],
+      type: [0],
       pays: [''],
       format: [''],
       prix_saq: [''],
