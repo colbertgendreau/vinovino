@@ -11,20 +11,20 @@ jobs:
       - name: 🚚 Get latest code
         uses: actions/checkout@v3
 
-      - name: Use Node.js 16
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
-          
       - name: Install composer dependencies
         uses: php-actions/composer@v6
         with:
           php_version: "8.2"
           version: 2.x
-          run: |
-            cd backend
-            composer install
-            cd ..
+          working_dir: .backend/
+          
+      - name: Install composer dependencies
+        run: composer install
+        
+      - name: Use Node.js 16
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
       - name: Install dependencies
         run: |
