@@ -48,22 +48,22 @@ class BouteilleController extends Controller
      */
     public function store(Request $request)
     {
-        
+
             // $res = Bouteille::create([
             //     'celliers_id' => $request->celliers_id,
             //     'id' =>$request->id_mes_bouteilles,
             //     'quantite' =>$request->quantite,
-                
+
             // ]);
 // $bouteille = Bouteille::find($request->id);             a regarder cest quoi roxanne
-       
+
 
             if ($request->id == '') {
                 $mon_id = mesBouteilles::create([
                     'nom_bouteillePerso' => $request->nom,
                     'type_bouteillePerso' => $request->type,
                     'pays_bouteillePerso' => $request->pays,
-                    'format_bouteillePerso' => $request->format,
+//                    'format_bouteillePerso' => $request->format,
                     'prix_bouteillePerso' => $request->prix,
                     'quantite_bouteillePerso' => $request->quantite,
                 ]);
@@ -83,7 +83,7 @@ class BouteilleController extends Controller
                 ]);
             }
 
-        
+
 
         return ['data' => $res];
     }
@@ -97,10 +97,10 @@ class BouteilleController extends Controller
     public function show(Bouteille $bouteille)
     {
 
-          
+
 
         // $id = $bouteille->id_bouteillePerso;
-      
+
         // $id = $bouteille->id_bouteillePerso;
         // $res = Bouteille::where('id_mes_bouteilles', $id)
         // ->leftJoin('mes_bouteilles', 'id_bouteillePerso', '=', 'id_mes_bouteilles')
@@ -131,8 +131,8 @@ class BouteilleController extends Controller
 
 return ['data' => $res];
     }
-   
-    
+
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -165,7 +165,7 @@ return ['data' => $res];
 
 
 
-        
+
     }
 
     /**
