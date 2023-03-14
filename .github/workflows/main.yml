@@ -16,7 +16,7 @@ jobs:
         with:
           php_version: "8.2"
           version: 2.x
-          working_dir: .backend/
+          working_dir: ./backend/
           
       - name: Install composer dependencies
         run: composer install
