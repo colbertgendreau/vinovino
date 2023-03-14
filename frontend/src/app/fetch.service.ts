@@ -24,8 +24,9 @@ export class FetchService {
     return this.http.get<IlisteBouteille>(this.url);
   }
 
-  ajoutBouteille(bouteille: Imesbouteilles):Observable<Imesbouteilles>{
-    console.log(bouteille);
+  ajoutBouteille(bouteille    : Imesbouteilles):Observable<Imesbouteilles>{
+    console.log(bouteille + "test ajout bouteille custom" );
+    console.log(bouteille  );
 
     return this.http.post<Imesbouteilles>(this.urlBouteille, bouteille);
   }
@@ -33,14 +34,14 @@ export class FetchService {
   modifBouteille(id:number, bouteille: Imesbouteilles):Observable<Imesbouteilles>{
     console.log(bouteille);
     console.log(id);
-    
-    return this.http.put<Imesbouteilles>(this.urlBouteille+id, bouteille);
+
+    return this.http.put<Imesbouteilles>(this.urlBouteille+"/"+id, bouteille);
   }
 
   showBouteille(id:number):Observable<Imesbouteilles>{
     console.log(id);
-    
-    return this.http.get<Imesbouteilles>(this.urlBouteille+id);
+
+    return this.http.get<Imesbouteilles>(this.urlBouteille+"/"+id);
   }
   // getBouteilleSAQ():Observable<IlisteBouteille>{
   //   return this.http.get<IlisteBouteille>(environment.production+"/api/bouteilles");
