@@ -21,7 +21,7 @@ jobs:
       - name: Install composer dependencies
         run: |
           cd ./backend/
-          composer update
+          composer install
         
       - name: Use Node.js 16
         uses: actions/setup-node@v2
