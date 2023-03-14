@@ -17,12 +17,7 @@ jobs:
           php_version: "8.1"
           version: 2.x
           working_dir: ./backend/
-          
-      - name: Install composer dependencies
-        run: |
-          cd ./backend/
-          sudo composer install
-        
+
       - name: Use Node.js 16
         uses: actions/setup-node@v2
         with:
