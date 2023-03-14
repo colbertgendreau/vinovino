@@ -4,25 +4,44 @@
 
 <form [formGroup]="modifBouteilleForm" (ngSubmit)="modifier()"class="form-mofif">
       
-    <input type="hidden" id="id" name="id_bouteillePerso" formControlName="id_bouteillePerso" [value]="bouteille?.id_bouteillePerso">
+    <div>
+        <input type="hidden" id="id" name="id_bouteillePerso" formControlName="id_bouteillePerso" [value]="bouteille?.id_bouteillePerso">
+    </div>
+    <div>
   
     <label for="name">Name:</label>
     <input type="text" id="name" name="name_bouteillePerso" formControlName="nom_bouteillePerso" [value]="bouteille?.nom_bouteillePerso" placeholder="Name">
+    </div>
+
+    <div>
 
     <label for="name">Type:</label>
     <input type="text" id="type" name="type_bouteillePerso" formControlName="type_bouteillePerso" [value]="bouteille?.type" placeholder="Type">
+        </div>
+
+    <div>
 
     <label for="pays">Pays:</label>
     <input type="text" id="pays" name="pays_bouteillePerso" formControlName="pays_bouteillePerso" [value]="bouteille?.pays_bouteillePerso" placeholder="Pays">
+        </div>
+
+    <div>
 
     <label for="format">Format:</label>
     <input type="text" id="format" name="format_bouteillePerso" formControlName="format_bouteillePerso" [value]="bouteille?.format_bouteillePerso" placeholder="Format">
+        </div>
+
+    <div>
 
     <label for="prix_saq">Prix:</label>
     <input type="text" id="prix_saq" name="prix_bouteillePerso" formControlName="prix_bouteillePerso" [value]="bouteille?.prix_bouteillePerso" placeholder="Prix">
+        </div>
+
+    <div>
 
     <label for="quantite">Quantité:</label>
     <input type="text" id="quantite" name="quantite_bouteillePerso" formControlName="quantite_bouteillePerso" [value]="bouteille?.quantite" placeholder="Quantité">
+    </div>
 
     <button class="btn-submit" class="grosPlus" type="submit">Confirmer</button>
     <button class="btn-effacer" type="button" (click)="clearForm()">
