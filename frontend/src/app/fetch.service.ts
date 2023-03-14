@@ -34,13 +34,11 @@ export class FetchService {
   modifBouteille(id:number, bouteille: Imesbouteilles):Observable<Imesbouteilles>{
     console.log(bouteille);
     console.log(id);
-
     return this.http.put<Imesbouteilles>(this.urlBouteille+"/"+id, bouteille);
   }
 
   showBouteille(id:number):Observable<Imesbouteilles>{
     console.log(id);
-
     return this.http.get<Imesbouteilles>(this.urlBouteille+"/"+id);
   }
   // getBouteilleSAQ():Observable<IlisteBouteille>{

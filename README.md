@@ -3,11 +3,12 @@ width="40"
 alt="Laravel 
 Logo"></a></p>
 
-![Vinovino workflow](https://github.com/anperoconi/vinovino/actions/workflows/main.yml/badge.svg)
+![Status de Vinovino](https://github.com/anperoconi/vinovino/actions/workflows/main.yml/badge.svg)
 
 # VINOVINO
 
-Projet de fin d'études pour du AEC en conception et programmation de sites web
+Projet de fin d'études pour du AEC en conception et programmation de sites web.
+URL du site: [Vinovino ](https://vinovino.ca)
 
 # Backend
 
@@ -34,13 +35,22 @@ version 15.
 `ng serve` à l'intérieur du dossier frontend pour l'application client.
 Naviguez vers `http://localhost:4200/`. L'application devrait être en ligne.
 
+### Connexion
+- Une fois sur l'application, créez un compte ou utilisez le compte par défault.
+- Courriel: pca@pca.com
+- Mot de passe: 123456
+
+### Documentation
+- Toute la documentation du projet se trouve dans le dossier Documentation 
+- à l'intérieur de ce repositoire.
+
 ## Build
 
 Pour production, executez `npm build:prod` pour faire le build du projet. Les artefacts
 de build seront mis dans le dossier /backend/public/assets/angular.
 
 
-## Further help
+## Équipe
 
 Travail réalisé par:
 Pedro Contreras Avendano.
