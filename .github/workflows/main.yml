@@ -17,7 +17,12 @@ jobs:
           node-version: '16'
 
       - name: Install dependencies
-          run: npm install
+          run: |
+          cd backend
+          npm install
+          cd ..
+          cd frontend
+          npm install
 
       - name: 🔨 Build Project
         run: |
