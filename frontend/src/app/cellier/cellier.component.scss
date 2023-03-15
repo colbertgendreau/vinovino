@@ -45,9 +45,9 @@
     //   justify-content: space-between;
       width: 100%;
       // border-bottom: 5px solid var(--secondaire-turquoise);
-      border-bottom: 1px solid rgb(228, 228, 228);
-      padding-bottom: var(--small);
-      margin-bottom: var(--smaller);
+    //   border-bottom: 1px solid rgb(228, 228, 228);
+    //   padding-bottom: var(--small);
+    //   margin-bottom: var(--smaller);
 
       div {
         text-align: start;
@@ -61,13 +61,16 @@
 
       picture img {
         max-width: 80px;
+        margin-inline: -24px;
       }
 
       .info-bouteille {
 
         //   justify-content: space-between;
         //   min-width: 245px;
-
+        min-width: 4ch;
+        margin-right: var(--big);
+        margin-left: var(--small);
 
 
         div {
@@ -105,9 +108,10 @@
         }
 
         h3 {
-          margin-bottom: var(--big);
-          padding-left: var(--smaller);
-
+          margin-bottom: var(--small);
+          word-break: break-all;
+          margin-left: var(--smaller);
+        //   width: 10ch;
           font-size: clamp(
             0.9375rem,
             0.5729166666666666rem + 1.8229166666666667vw,
@@ -174,4 +178,41 @@
 .return a{
   text-decoration: none;
 
+}
+
+.plus {
+    all: unset;
+    background-image: url(../../assets/icones/addbleu.png);
+    height: var(--biggest);
+    width: var(--biggest);
+    background-size: cover;
+    object-position: center;
+
+}
+
+.moins {
+    all: unset;
+    background-image: url(../../assets/icones/minusblue.png);
+    height: var(--biggest);
+    width: var(--biggest);
+    background-size: cover;
+    object-position: center;
+}
+
+.quantite {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: auto;
+    justify-self: flex-end;
+}
+
+.modifier {
+    background-image: url(../../assets/icones/editpeche.png);
+    height: var(--biggest);
+    width: var(--biggest);
+    background-size: cover;
+    object-position: center;
+
+    margin-bottom: var(--small);
 }
