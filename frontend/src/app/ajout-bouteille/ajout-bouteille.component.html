@@ -1,12 +1,12 @@
 <div class="ajouter-bouteille">
-  <h1>Trouver une bouteille</h1>
+  <h1>Ajouter une bouteille</h1>
   <input class="recherche-input"
     type="text"
     [(ngModel)]="searchTerm"
     (keyup)="filterData(searchTerm)"
     placeholder="Recherche"
   />
-<!--
+  <!--
     <table>
         <tbody>
             <tr *ngFor="let bouteille of filteredData">
@@ -128,41 +128,16 @@
 </div>
 
 
-<!-- <div>
-    <label for="type">Type</label>
-    <select name="type" id="type" formControlName="type">
-        <option value="">Type de vin</option>
-        <option value="2">vin blanc</option>
-        <option value="1">vin rouge</option>
-    </select>
-</div> -->
-
-<!--
-    <div>
-        <label for="type">Type</label>
-        <input
-        type="text"
-        id="type"
-        name="type"
-        formControlName="type"
-        [readonly]="isDataSelected"
-        placeholder="Type"
-        />
-    </div>
--->
-
 <div>
-    <label for="type">Type</label>
-    <select name="type" id="type" formControlName="type" [class.disabled]="isDataSelected">
-        <option value="">Type</option>
-        <option value="1">Vin rouge</option>
-        <option value="2">Vin blanc</option>
-        <option value="3">Autre</option>
-    </select>
-</div>    
+  <label for="type">Type</label>
+  <select name="type" id="type" formControlName="type">
+      <option value="" disabled selected>Type de vin</option>
+      <option value="2">vin blanc</option>
+      <option value="1">vin rouge</option>
+      <option value="3">Autre</option>
+  </select>
+</div>
 
-    
-    
     <div>
       <label for="pays">Pays</label>
         <input
@@ -202,7 +177,7 @@
     <div>
       <label for="quantite">Quantité</label>
         <input
-          type="number"
+          type="text"
           id="quantite"
           name="quantite"
           formControlName="quantite"
@@ -227,7 +202,7 @@
     
     <button class="btn-submit" class="grosPlus" type="submit">Confirmer</button>
     <button class="btn-effacer" *ngIf="isDataSelected" type="button" (click)="clearForm()">
-      Rétablir
+      Effacer
     </button>
   </form>
 </div>

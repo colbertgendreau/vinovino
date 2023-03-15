@@ -1,4 +1,5 @@
 <section class="monCellier">
+  <!-- <a class="return" href="/liste-cellier">retourner sur la liste cellier</a> -->
   <h1>Mon cellier</h1>
 
   <div class="overlay"></div>
@@ -6,7 +7,7 @@
   <article class="bouteille" *ngFor="let uneBouteille of bouteilles">
     <div class="card-bouteille-haut">
       <picture>
-        <img [src]="uneBouteille.url_img ? uneBouteille.url_img : '../../assets/img/bouteilleNonDispo.png'" alt="Bouteille" />
+        <img [src]="uneBouteille.url_img ? uneBouteille.url_img : '../../assets/img/nonDispo.webp'" alt="Bouteille" />
     </picture>
     
 
@@ -69,7 +70,7 @@
 
 
   <a class="ajouter-bouteille" routerLink="/ajouter-bouteille/{{ cellierId }}">
-    Ajouter
+    Ajouter une bouteille
 
 </a>
 

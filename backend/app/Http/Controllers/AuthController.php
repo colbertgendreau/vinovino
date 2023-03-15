@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Cellier;
 use Validator;
 
 class AuthController extends Controller
@@ -52,6 +53,11 @@ class AuthController extends Controller
             $validator->validated(),
             ['password' => bcrypt($request->password)]
         ));
+
+        $res = Cellier::create([
+            'nom' => 'Mon premier cellier',
+            'users_id' => $user->id
+        ]);
         return response()->json([
             'message' => 'User successfully registered',
             'user' => $user
