@@ -115,10 +115,11 @@
           formControlName="nom"
           [readonly]="isDataSelected"
           placeholder="Nom"
+            [class.disabled]="isDataSelected"
       />
       <div
         *ngIf="formSubmitted && ajouterBouteilleForm.controls['nom'].invalid"
-        class="error-message"
+        class="error-message" 
         >
         <span *ngIf="ajouterBouteilleForm.controls['nom'].errors?.['required']"
         >Le nom est requis.</span
@@ -136,7 +137,7 @@
     </select>
 </div> -->
 
-
+<!--
     <div>
         <label for="type">Type</label>
         <input
@@ -148,6 +149,17 @@
         placeholder="Type"
         />
     </div>
+-->
+
+<div>
+    <label for="type">Type</label>
+    <select name="type" id="type" formControlName="type" [class.disabled]="isDataSelected">
+        <option value="">Type</option>
+        <option value="1">Vin rouge</option>
+        <option value="2">Vin blanc</option>
+        <option value="3">Autre</option>
+    </select>
+</div>    
 
     
     
@@ -160,6 +172,7 @@
           formControlName="pays"
           [readonly]="isDataSelected"
           placeholder="Pays"
+          [class.disabled]="isDataSelected"
       />
     </div>
     <div>
@@ -171,6 +184,7 @@
           formControlName="format"
           [readonly]="isDataSelected"
           placeholder="Format"
+          [class.disabled]="isDataSelected"
       />
     </div>
     <div>
@@ -182,6 +196,7 @@
           formControlName="prix_saq"
           [readonly]="isDataSelected"
           placeholder="Prix"
+          [class.disabled]="isDataSelected"
       />
     </div>
     <div>
