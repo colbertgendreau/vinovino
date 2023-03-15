@@ -181,7 +181,19 @@
                   "maximumError": "4kb"
                 }
               ],
+              "outputPath": "../backend/public/assets/admin",
+              "deployUrl": "/assets/admin/",
               "outputHashing": "all"
+            },
+            "dev": {
+              "outputPath": "dist/assets/admin",
+              "baseHref": "/assets/ang",
+              "fileReplacements": [
+                {
+                  "replace": "projects/admin/src/environments/environment.development.ts",
+                  "with": "projects/admin/src/environments/environment.ts"
+                }
+              ]
             },
             "development": {
               "buildOptimizer": false,
@@ -189,7 +201,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/admin/src/environments/environment.ts",
+                  "with": "projects/admin/src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
