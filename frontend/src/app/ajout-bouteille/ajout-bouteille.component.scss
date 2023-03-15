@@ -170,6 +170,12 @@ form {
 
 /////////////////////// FORM /////////////////////////
 
+.disabled {
+    background-color: rgb(172, 172, 172);
+    // color: linen;
+    opacity: 1;
+}
+
 .form-ajout {
   display: flex;
   flex-direction: column;

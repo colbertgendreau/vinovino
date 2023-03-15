@@ -47,11 +47,23 @@
         -->
         <div>
         <!-- <span>{{ uneBouteille.quantite }}</span> -->
-        <span>Quantité : {{ uneBouteille.quantite ? uneBouteille.quantite : uneBouteille.quantite_bouteillePerso }}</span>
+        <span>Quantité : </span>
+
+        <button (click)="plus(uneBouteille.id_bouteille, uneBouteille.quantite)">+</button>
+        
+        <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
+        <button (click)="moins()">-</button>
+        
 
         <a *ngIf="!uneBouteille.id_bouteille" class="" routerLink="/modifier-bouteille/{{ uneBouteille.id_mes_bouteilles }}">modification</a>
 
       </div>
+    </div>
+    <div [(ngModel)]="uneBouteille.quantite">
+<!--
+    {{uneBouteille.quantite}}
+-->
+
     </div>
   </article>
 

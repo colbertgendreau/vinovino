@@ -10,5 +10,5 @@ export interface IBouteille {
     prix_saq:number;
     format:any;
     type:any;
-
+    id_mes_bouteilles:number;
 }
