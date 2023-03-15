@@ -29,6 +29,9 @@ Route::resource('celliers', CellierController::class);
 use App\Http\Controllers\BouteilleController;
 Route::resource('bouteilles', BouteilleController::class);
 
+use App\Http\Controllers\UserController;
+Route::resource('utilisateurs', UserController::class);
+
 Route::get('/show/{celliers}', [CellierController::class, 'showCellier']);
 
 
