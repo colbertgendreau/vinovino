@@ -62,7 +62,7 @@ export class EnteteComponent implements OnInit {
   signOut() {
     this.auth.setAuthState(false);
     this.token.removeToken();
-    this.router.navigate(['accueil']);
+    this.router.navigate(['']);
     this.isOpen = !this.isOpen;
   }
 
