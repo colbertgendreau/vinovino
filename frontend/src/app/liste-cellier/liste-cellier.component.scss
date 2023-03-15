@@ -28,6 +28,13 @@ div {
         text-decoration: none;
     }
 
+    .effacer-cellier{
+        position: absolute;
+        top: var(--smaller);
+        right: var(--smaller);
+        text-decoration: none;
+    }
+
     .ajout-bouteille{
         position: absolute;
         bottom: var(--smaller);
