@@ -11,7 +11,7 @@ export class EffacerModalComponent {
   @Output() deleteConfirmed = new EventEmitter<void>();
   @Output() closed = new EventEmitter<void>();
   
-  effacer(){
+  confirmer(){
     console.log("effacer");
   }
 

@@ -5,7 +5,7 @@
         <a class="unCellier" routerLink="/cellier/{{unCellier.id}}">
             <h2>{{unCellier.nom}}</h2>
         </a>
-        <button (click)="openModal(unCellier.id)"><img class="icones" src="../../assets/icones/trash-347.png" alt="Icône de suppression d'un cellier"></button>
+        <button class="btn-effacer" (click)="openModal(unCellier.id)"><img class="icones" src="../../assets/icones/trash-347.png" alt="Icône de suppression d'un cellier"></button>
         <a class="ajout-bouteille"  routerLink="/ajouter-bouteille/{{unCellier.id}}">Ajouter une bouteille</a>
         <a class="modif-cellier"  routerLink="/modifier-cellier/{{unCellier.id}}"><img class="icones" src="../../assets/icones/edit-black.png" alt="Icône de modification d'un cellier"></a>
     </article>

@@ -9,32 +9,49 @@
     display: flex;
     align-items: center;
     justify-content: center;
-  
+
     .modal-interieur {
-      background-color: #fff;
-      border: 1px solid #ccc;
-      padding: 20px;
-      max-width: 600px;
-      width: 100%;
-      position: relative;
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        margin: 0 var(--big);
+        padding: 20px;
+        max-width: 600px;
+        width: 100%;
+        position: relative;
+        border-radius: var(--border-radius15);
+
+        h2 {
+            margin-bottom: var(--small);
+        }
+
+        .btn-modal {
+            display: flex;
+            justify-content: center;
+
+            button {
+                min-width: 85px;
+                margin: var(--small);
+                height: var(--biggest);
+                border-radius: var(--border-radius);
+                border-style: none;
+                border: solid var(--smallest) var(--secondaire);
+                background-color: var(--secondaire-transparent80);
+                color: var(--black);
+                // width: calc(100% - var(--biggest));
+                // width: 100%;
+                font-size: var(--med);
+                font-weight: var(--bold);
+            }
+
+            .btn-annuler {
+                background-color: var(--primaire);
+                border: solid var(--smallest) var(--primaire);
+            }
+
+
+        }
     }
-    //   .modal-title {
-    //     font-size: 1.5rem;
-    //     font-weight: bold;
-    //     margin-bottom: 20px;
-    //   }
-  
-//       .modal-message {
-//         margin-bottom: 20px;
-//       }
-  
-//       .modal-buttons {
-//         display: flex;
-//         justify-content: flex-end;
-  
-//         button {
-//           margin-left: 10px;
-//         }
-//       }
-//     }
-  }
+}

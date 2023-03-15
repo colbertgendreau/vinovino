@@ -28,13 +28,6 @@ div {
         text-decoration: none;
     }
 
-    .effacer-cellier{
-        position: absolute;
-        top: var(--smaller);
-        right: var(--smaller);
-        text-decoration: none;
-    }
-
     .ajout-bouteille{
         position: absolute;
         bottom: var(--smaller);
@@ -43,6 +36,19 @@ div {
         text-decoration: none;
     }
 
+    .btn-effacer{
+        background: none;
+        border: none;
+        padding: 0;
+        position: absolute;
+        top: var(--smaller);
+        right: var(--smaller);
+    }
+
+    .btn-effacer{
+        cursor: pointer;
+    }
+    
     .icones {
         height: var(--big);
     }
