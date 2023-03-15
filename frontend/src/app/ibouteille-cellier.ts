@@ -20,7 +20,7 @@ export interface Ibouteillecellier {
     celliers_id:number;
     id_bouteille:number;
 
-
+    id_bouteillePerso:number;
 
     nom_bouteillePerso: string;
     type_bouteillePerso: string;

@@ -19,6 +19,13 @@ class CellierController extends Controller
         $users_id = Auth::id();
         $celliers = Cellier::where('users_id', $users_id)->get();
         return ['data' => $celliers];
+
+
+        // $users_id = Auth::id();
+        // $celliers = Cellier::where('users_id', $users_id)
+        // ->leftjoin('bouteilles', 'bouteilles.celliers_id', '=', 'celliers.id')
+        // ->get();
+        return ['data' => $celliers];
     }
 
     /**
@@ -63,11 +70,19 @@ class CellierController extends Controller
         // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
 
 
+        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)
+        // ->leftjoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
+        // ->leftjoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'id_mes_bouteilles')
+        // ->leftjoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
+        // ->leftjoin('vino__type', 'vino__type.id', '=', 'mes_bouteilles.type_bouteillePerso')
+        // ->get();
+
         $bouteilles = Bouteille::where('celliers_id', $celliers_id)
-        ->leftjoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
-        ->leftjoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'id_mes_bouteilles')
-        ->leftjoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
-        ->get();
+            ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
+            ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'id_mes_bouteilles')
+            ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
+            ->leftJoin('vino__type as type_mes', 'type_mes.id', '=', 'mes_bouteilles.type_bouteillePerso')
+            ->get();
 
 
         return ['data' => $bouteilles];
