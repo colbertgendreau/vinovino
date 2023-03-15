@@ -28,8 +28,6 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest",
-              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [
@@ -58,12 +56,12 @@
               "outputHashing": "all"
             },
             "dev": {
-              "outputPath": "dist/assets/angular",
-              "baseHref": "/assets/ang",
+              "outputPath": "dist/",
+              "baseHref": "/assets/",
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.development.ts",
-                  "with": "src/environments/environment.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
                 }
               ]
             },
@@ -131,8 +129,6 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest",
-              "src/manifest.webmanifest",
               "src/manifest.webmanifest"
             ],
             "styles": [
@@ -140,6 +136,7 @@
               "src/styles.scss"
             ],
             "scripts": []
+
           }
         }
       }

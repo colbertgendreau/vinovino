@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --configuration=dev -o",
-    "build": "ng build",
+    "build": "ng build--configuration=dev",
     "build:prod": "ng build --configuration=production && cp ../backend/public/assets/angular/index.html ../backend/resources/views/angular.blade.php",
     "build-admin:prod": "ng build admin --configuration=production && cp ../backend/public/assets/admin/index.html ../backend/resources/views/admin.blade.php",
     "build:staging": "ng build --configuration=staging && cp ../backend/public/assets/angular/index.html ../backend/resources/views/angular.blade.php",
