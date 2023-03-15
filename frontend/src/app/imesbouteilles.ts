@@ -4,16 +4,17 @@ export interface Imesbouteilles {
     celliers_id:number;
     id_bouteille:number;
     nom: string;
-    type: string;
+    type: number;
     pays: string;
     format: string;
     prix_saq: number;
     quantite: number;
     description: string;
+    id_mes_bouteilles:number;
 
     id_bouteillePerso: number;
     nom_bouteillePerso: string;
-    type_bouteillePerso: string;
+    type_bouteillePerso: number;
     pays_bouteillePerso: string;
     format_bouteillePerso: string;
     prix_bouteillePerso: number;

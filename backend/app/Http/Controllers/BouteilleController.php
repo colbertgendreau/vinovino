@@ -64,7 +64,7 @@ class BouteilleController extends Controller
                     'type_bouteillePerso' => $request->type,
                     'pays_bouteillePerso' => $request->pays,
 //                    'format_bouteillePerso' => $request->format,
-                    'prix_bouteillePerso' => $request->prix,
+                    'prix_bouteillePerso' => $request->prix_saq,
                     'quantite_bouteillePerso' => $request->quantite,
                 ]);
 
@@ -129,7 +129,8 @@ class BouteilleController extends Controller
     ->first();
 
 
-return ['data' => $res];
+    return ['data' => $res];
+
     }
 
 
