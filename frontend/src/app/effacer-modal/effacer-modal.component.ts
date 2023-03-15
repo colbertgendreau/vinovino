@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-effacer-modal',
@@ -6,11 +6,18 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./effacer-modal.component.scss']
 })
 export class EffacerModalComponent {
-  @Input() isVisible: boolean;
-  @Output() deleteConfirmed = new EventEmitter();
+  @Input() id!: number;
+  @Input() isVisible = false;
+  @Output() deleteConfirmed = new EventEmitter<void>();
+  @Output() closed = new EventEmitter<void>();
+  
+  effacer(){
+    console.log("effacer");
+  }
 
-  onDelete() {
-    this.deleteConfirmed.emit();
+  annuler(){
+    console.log("annuler");
     this.isVisible = false;
+    this.closed.emit(); // emit the 'closed' event
   }
 }
