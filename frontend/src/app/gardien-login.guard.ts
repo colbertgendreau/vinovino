@@ -14,7 +14,7 @@ export class GardienLoginGuard implements CanActivate {
     this.authServ.statutConnexion().subscribe((etat)=>{
       this.estConnecte = etat;
       if(this.estConnecte === false) {
-        this.router.navigate(["/"]);
+        this.router.navigate(["/connexion"]);
       }
     });
   }
