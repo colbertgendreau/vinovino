@@ -28,7 +28,7 @@ export class FetchService {
 
   ajoutBouteille(bouteille    : Imesbouteilles):Observable<Imesbouteilles>{
     console.log(bouteille + "test ajout bouteille custom" );
-    console.log(bouteille  );
+    console.log(bouteille);
 
     return this.http.post<Imesbouteilles>(this.urlBouteille, bouteille);
   }

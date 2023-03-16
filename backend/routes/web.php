@@ -16,8 +16,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('', function () {
-    return view('angular');
+
+Route::group(['prefix'=>'app'],function (){
+    Route::get('/{any_path}','SpaController@index')->where('any_path', '(.*)');
 });
 
 Route::get('/admin', function () {
