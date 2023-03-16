@@ -20,7 +20,8 @@
         </div> -->
         <div>
           <span class="icone icone-vin"></span>
-          <p>{{ uneBouteille.type?.length ? uneBouteille.type : uneBouteille.type_bouteillePerso }} | {{ uneBouteille.format?.length ? uneBouteille.format : uneBouteille.format_bouteillePerso }}</p>
+          <!-- <p>{{ uneBouteille.type ? uneBouteille.type : uneBouteille.type_bouteillePerso }} | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso }}</p> -->
+          <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name : uneBouteille.type_mes_name }} | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso }}</p>
         </div>
         <!-- <div>
             <span class="icone icone-location"></span><p> {{ uneBouteille.pays }}</p>
@@ -49,22 +50,23 @@
         <!-- <span>{{ uneBouteille.quantite }}</span> -->
         <span>Quantité : </span>
 
-        <button (click)="plus(uneBouteille.id_bouteille, uneBouteille.quantite)">+</button>
+        <button (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)">+</button>
         
         <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
-        <button (click)="moins()">-</button>
+
+        <button (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)">-</button>
         
 
-        <a *ngIf="!uneBouteille.id_bouteille" class="" routerLink="/modifier-bouteille/{{ uneBouteille.id_mes_bouteilles }}">modification</a>
+        <a *ngIf="!uneBouteille.id_bouteille" class="" routerLink="/modifier-bouteille/{{ uneBouteille.id_supreme }}">modification</a>
 
       </div>
     </div>
-    <div [(ngModel)]="uneBouteille.quantite">
+    <!-- <div [(ngModel)]="uneBouteille.quantite"> -->
 <!--
     {{uneBouteille.quantite}}
 -->
 
-    </div>
+    <!-- </div> -->
   </article>
 
 

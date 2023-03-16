@@ -1,5 +1,6 @@
 export interface Imesbouteilles {
     id?:number;
+    id_supreme?:number;
     prix?:number;
     celliers_id:number;
     id_bouteille:number;

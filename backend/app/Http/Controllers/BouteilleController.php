@@ -97,35 +97,14 @@ class BouteilleController extends Controller
     public function show(Bouteille $bouteille)
     {
 
-
-
-        // $id = $bouteille->id_bouteillePerso;
-
-        // $id = $bouteille->id_bouteillePerso;
-        // $res = Bouteille::where('id_mes_bouteilles', $id)
-        // ->leftJoin('mes_bouteilles', 'id_bouteillePerso', '=', 'id_mes_bouteilles')
-        // ->get();
-
-        // return ['data' => $res];
-
-        // $res = Bouteille::leftJoin('mes_bouteilles', 'id_bouteillePerso', '=', 'id_mes_bouteilles')
-        //     ->where('Bouteilles.id_mes_bouteilles', $id)
-        //     ->get();
-
-        // $res = Bouteille::leftJoin('mes_bouteilles', 'id_bouteillePerso', '=', 'id_mes_bouteilles')
-        // ->where('id_mes_bouteilles', $bouteille->id_bouteillePerso)
-        // ->first();
-
-        // return ['data' => $res];
-
-
+// faut faire comme cellier et donner des alias au ranger jai besoin de id_supreme
 
     $id = $bouteille->id_bouteillePerso;
 
 
     $res = Bouteille::leftJoin('mes_bouteilles', 'Bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
     ->leftjoin('vino__type', 'vino__type.id', '=', 'mes_bouteilles.type_bouteillePerso')
-    ->where('Bouteilles.id_mes_bouteilles', $bouteille->id_mes_bouteilles)
+    ->where('Bouteilles.id', $bouteille->id)
     ->first();
 
 
@@ -152,17 +131,23 @@ class BouteilleController extends Controller
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, mesBouteilles $bouteille)
+    public function update(Request $request, mesBouteilles $maBouteille, bouteille $bouteille)
     {
 
-
-        $bouteille->update([
+        // if ($request->id == '') {
+        $maBouteille->update([
             'quantite_bouteillePerso' => $request->quantite_bouteillePerso,
             'nom_bouteillePerso' => $request->nom_bouteillePerso,
             'type_bouteillePerso' => $request->type_bouteillePerso,
             'pays_bouteillePerso' => $request->pays_bouteillePerso,
             'format_bouteillePerso' => $request->format_bouteillePerso
         ]);
+    // }else{
+        $bouteille->update([
+            'quantite' => $request->quantite,
+
+        ]);
+    // }
 
 
 
