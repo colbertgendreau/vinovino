@@ -76,6 +76,13 @@ export class ListeCellierComponent implements OnInit {
     this.isVisible = false;
   }
 
+  rafraichirListe(){
+    this.fetchService.getCelliers().subscribe((data: any) => {
+      this.listeCelliers = data.data;
+      console.log(this.listeCelliers);
+    });
+  }
+
   
 
 
