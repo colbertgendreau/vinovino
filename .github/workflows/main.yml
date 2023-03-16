@@ -35,6 +35,7 @@ jobs:
         run: |
           cd frontend
           npm run build:prod
+          npm run build-admin:prod
 
       - name: 📂 Sync files
         uses: SamKirkland/FTP-Deploy-Action@4.3.3

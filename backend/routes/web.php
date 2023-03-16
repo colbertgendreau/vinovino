@@ -19,3 +19,7 @@ Route::get('/', function () {
 Route::get('', function () {
     return view('angular');
 });
+
+Route::get('/admin', function () {
+    return view('admin');
+});
