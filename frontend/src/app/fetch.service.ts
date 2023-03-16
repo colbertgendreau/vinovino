@@ -88,7 +88,7 @@ export class FetchService {
   }
 
   supprimerBouteille(id:number):Observable<Imesbouteilles>{
-    return this.http.delete<Imesbouteilles>(this.urlCellier+"/"+id);
+    return this.http.delete<Imesbouteilles>(this.urlBouteille+"/"+id);
   }
 }
 
