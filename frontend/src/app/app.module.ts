@@ -20,6 +20,8 @@ import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
 import { MesBouteillesComponent } from './mes-bouteilles/mes-bouteilles.component';
 import { ListeMesbouteillesComponent } from './liste-mesbouteilles/liste-mesbouteilles.component';
 import { EffacerModalComponent } from './effacer-modal/effacer-modal.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { SpinnerOverlayWrapperComponent } from './spinner-overlay-wrapper/spinner-overlay-wrapper.component';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
 
@@ -40,6 +42,8 @@ import { EffacerModalComponent } from './effacer-modal/effacer-modal.component';
     MesBouteillesComponent,
     ListeMesbouteillesComponent,
     EffacerModalComponent,
+    SpinnerComponent,
+    SpinnerOverlayWrapperComponent,
   ],
   imports: [
     BrowserModule,

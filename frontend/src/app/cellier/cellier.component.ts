@@ -8,6 +8,7 @@ import { FetchService } from '../fetch.service';
 import { ActivatedRoute } from '@angular/router';
 import { Ibouteillecellier } from '../ibouteille-cellier';
 import { Imesbouteilles } from '../imesbouteilles';
+import { SpinnerComponent } from '../spinner/spinner.component';
 
 
 // User interface
@@ -31,6 +32,8 @@ export class CellierComponent implements OnInit {
   // title:string='Cellier';
   UserProfile!: User;
   unCellier: any;
+  showSpinner: boolean = true;
+  SpinnerComponent: boolean = true;
 
 //   counter:number = 1;
   counterValue:number = 0;
@@ -43,7 +46,7 @@ export class CellierComponent implements OnInit {
     public token: TokenService,
     public authService: AuthService,
     public fetchService: FetchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
@@ -55,6 +58,7 @@ export class CellierComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.showSpinner = true;
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
