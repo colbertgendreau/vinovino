@@ -1,0 +1,128 @@
+:host {
+    padding-inline: 16px;
+}
+
+@media(min-width: 945px) {
+
+    .titre {
+        padding-inline: 64px;
+        padding-top: 64px;
+        padding-bottom: 32px;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    section {
+        padding: 0 0px 32px 0px;
+
+        mat-form-field {
+            width: 100%;
+        }
+    }
+
+    .liste {
+
+        display: flex;
+        flex-direction: column;
+
+        table {
+
+            overflow: auto;
+            padding-inline: 16px;
+        
+            .icones {
+                width: 30px;
+                text-align: center;
+            }
+        
+            td, th {
+                padding: 16px;
+            }
+
+            .mobile-label {
+                display: none;
+            }
+        }
+    }
+}
+
+@media(max-width: 945px) {
+
+    .titre {
+        padding-inline: 64px;
+        padding-top: 64px;
+        padding-bottom: 32px;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%;
+    }
+
+    section {
+        // padding: 0 64px 16px 64px;
+
+        mat-form-field {
+            width: 100%;
+        }
+    }
+
+    .liste {
+
+        table {
+
+            overflow: auto;
+            padding: 0 64px 64px 64px;
+        
+            th {
+                padding: 16px;
+            }
+            
+            td {
+                padding: 8px 16px;
+                display: flex;
+                justify-content: space-between;
+                text-align: right;
+                border: none;
+            }
+            
+            .mobile-label {
+                font-size: 500;
+                text-align: left;
+            }
+          
+            .mat-header-row {
+                display: none;
+            }
+          
+            .mat-row { 
+                flex-direction: column;
+                align-items: start;
+                padding: 8px 24px;
+            }
+           
+            tr td:first-of-type {
+                border-top: 5px solid lightgray;
+                margin-top: 32px;
+            }
+
+            tr td:last-of-type {
+                border-bottom: 5px solid lightgray;
+                margin-bottom: 32px;
+            }
+
+            .mat-icon {
+                height: 12px;
+            }
+
+            .material-icons {
+                font-size: 12px;
+            }
+        }
+    }
+}

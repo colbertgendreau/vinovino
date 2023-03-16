@@ -128,7 +128,7 @@ export class AjoutBouteilleComponent implements OnInit{
         
         nouvelleBouteille.celliers_id = params['id'];
         this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
-          this.router.navigate(['liste-cellier']);
+          this.router.navigate(['cellier/'+nouvelleBouteille.celliers_id]);
         });
     });
     }
