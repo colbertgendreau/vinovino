@@ -39,6 +39,10 @@ export class AjoutBouteilleComponent implements OnInit{
   isDataSelected:boolean;
 
   formSubmitted = false;
+  spin: boolean;
+  hide: boolean;
+  hideForm: boolean = false;
+
   
   
   constructor(
@@ -60,17 +64,40 @@ export class AjoutBouteilleComponent implements OnInit{
   }
 
   filterData(searchTerm: string) {
+    this.spin = true;
     if (searchTerm.length < 3) {
       this.filteredData = [];
     }else{
 
+      console.log("recherche commencé");
+      
+      
+      if (this.searchTerm === '') {
+          this.filteredData = [];
+        }else{
+            this.spin = true;
+            this.hide = true;
+            this.hideForm = true;
+            
       this.filteredData = this.arrayBouteille.filter(item =>
         item.nom.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
+    this.spin = false;
+    this.hide = false;
+
   }
 
   selectData(bouteille: any) {
+
+    window.scroll({ 
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+ });
+
+    this.hideForm = false;
+
     this.selectedData = bouteille;
     console.log(this.selectedData);
     
