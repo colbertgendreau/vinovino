@@ -5,10 +5,10 @@
 <section>
     <mat-form-field>
         <mat-label>Filtre</mat-label>
-        <input matInput (keyup)="filtrer($event)" placeholder="Exemple: bière" #input>
+        <input matInput (keyup)="filtrer($event)" placeholder="Exemple: Administrateur" #input>
     </mat-form-field>
     <div class="bouton-ajouter" >
-      <a mat-raised-button color="primary" routerLink="/ajout">Ajouter un usager</a>
+      <a mat-raised-button color="primary" routerLink="/ajout-admin">Ajouter un administrateur</a>
     </div>
 </section>
 
@@ -26,22 +26,26 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Courriel </th>
             <td mat-cell *matCellDef="let unUsager" data-label="courriel"><span class="mobile-label">Courriel</span> {{unUsager.email}} </td>
         </ng-container>
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'usager </th>
+            <td mat-cell *matCellDef="let unUsager" data-label="type"><span class="mobile-label">Type d'usager</span> {{unUsager.type}} </td>
+        </ng-container>
         <ng-container matColumnDef="created_at">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Date d'ajout </th>
             <td mat-cell *matCellDef="let unUsager" data-label="date d'ajout"><span class="mobile-label">Date d'ajout</span> {{unUsager.created_at}} </td>
         </ng-container>
-        <ng-container matColumnDef="updated_at">
+        <!-- <ng-container matColumnDef="updated_at">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de modification </th>
             <td mat-cell *matCellDef="let unUsager" data-label="date de modification"><span class="mobile-label">Date de modification</span> {{unUsager.updated_at}} </td>
-        </ng-container>
-        <ng-container matColumnDef="modifier">
+        </ng-container> -->
+        <!-- <ng-container matColumnDef="modifier">
             <th mat-header-cell class="icones" *matHeaderCellDef> Modifier </th>
             <td mat-cell class="icones" *matCellDef="let unUsager" data-label="modifier"><span class="mobile-label">Modifier</span> <a routerLink="/produit/{{unUsager.id_biere}}"><mat-icon>edit</mat-icon></a> </td>
-        </ng-container>
+        </ng-container> -->
         <ng-container matColumnDef="supprimer">
             <th mat-header-cell class="icones" *matHeaderCellDef> Supprimer </th>
-            <!-- <td mat-cell class="icones" *matCellDef="let unProduit" data-label="supprimer"><span class="mobile-label">Supprimer</span> <a (click)="supprimer(unProduit)"><mat-icon>delete</mat-icon></a> </td> -->
-            <td mat-cell class="icones" *matCellDef="let unProduit" data-label="supprimer"><span class="mobile-label">Supprimer</span> <a><mat-icon>delete</mat-icon></a> </td>
+            <td mat-cell class="icones" *matCellDef="let unUsager" data-label="supprimer"><span class="mobile-label">Supprimer</span> <a (click)="supprimer(unUsager)"><mat-icon>delete</mat-icon></a> </td>
+            <!-- <td mat-cell class="icones" *matCellDef="let unProduit" data-label="supprimer"><span class="mobile-label">Supprimer</span> <a><mat-icon>delete</mat-icon></a> </td> -->
         </ng-container>
 
         <tr class="mat-header-row" mat-header-row *matHeaderRowDef="colonnesAffichees"></tr>
