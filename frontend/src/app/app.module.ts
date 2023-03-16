@@ -19,9 +19,8 @@ import { ModifCellierComponent } from './modif-cellier/modif-cellier.component';
 import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
 import { MesBouteillesComponent } from './mes-bouteilles/mes-bouteilles.component';
 import { ListeMesbouteillesComponent } from './liste-mesbouteilles/liste-mesbouteilles.component';
-import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-modal.component';
-// import { ServiceWorkerModule } from '@angular/service-worker';
-
+import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-modal.component';// import { ServiceWorkerModule } from '@angular/service-worker';
+import { EffacerBouteilleModalComponent } from './effacer-bouteille-modal/effacer-bouteille-modal.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +39,7 @@ import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-m
     MesBouteillesComponent,
     ListeMesbouteillesComponent,
     EffacerModalComponent,
+    EffacerBouteilleModalComponent,
   ],
   imports: [
     BrowserModule,
