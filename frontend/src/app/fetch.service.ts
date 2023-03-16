@@ -60,6 +60,9 @@ export class FetchService {
   getBouteillesCellier(id:number):Observable<Ilistemesbouteilles>{
     return this.http.get<Ilistemesbouteilles>(this.urlCellier+"/"+id);
   }
+  getMesBouteilles():Observable<Ilistemesbouteilles>{
+    return this.http.get<Ilistemesbouteilles>(this.urlBouteille);
+  }
 
   getCelliers():Observable<IlisteCellier>{
     return this.http.get<IlisteCellier>(this.urlCellier);

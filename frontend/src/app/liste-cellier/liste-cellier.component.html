@@ -1,5 +1,37 @@
 <div>
     <h1>Mes celliers</h1>
+    <input class="recherche-input"
+    type="text"
+    [(ngModel)]="searchTerm"
+    (keyup)="filterData(searchTerm)"
+    placeholder="Recherche dans vos celliers"
+  />
+  <a class="open-modal" (click)="openModalFilter()">Filter</a>
+  <div class="modal" [ngClass]="{'active': isVisibleM}">
+    <div class="modal-content">
+      <button class="close-modal-btn" (click)="closeModalFilter()">X</button>
+      <h4>Type</h4>
+      
+        <a (click)="filterByType('Vin rouge')">Rouge</a>
+        <a (click)="filterByType('Vin blanc')">blanc</a>
+      
+    </div>
+  </div>
+  
+  
+
+  
+
+
+  <table>
+    <tbody>
+        <tr *ngFor="let bouteille of filteredData">
+            <td >{{ bouteille.nom }}</td>
+            <td >cellier :{{ bouteille.celliers_nom }}</td>
+        </tr>
+    </tbody>
+</table>
+
 
     <article class="boite-cellier celliers" *ngFor="let unCellier of listeCelliers;">
         <a class="unCellier" routerLink="/cellier/{{unCellier.id}}">

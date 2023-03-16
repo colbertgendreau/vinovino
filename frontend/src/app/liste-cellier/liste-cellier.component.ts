@@ -8,6 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 import { IlisteCellier } from '../iliste-cellier';
 import { ICellier } from '../icellier';
 import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
+import { Ilistemesbouteilles } from '../ilistemesbouteilles';
+import { Imesbouteilles } from '../imesbouteilles';
 
 // User interface
 // export class User {
@@ -27,10 +29,15 @@ export class ListeCellierComponent implements OnInit {
   // title:string='Liste des celliers';
   // UserProfile!: User;
   listeCelliers: Array<ICellier>;
+  listeMesBouteilles: Array<Imesbouteilles>;
   unCellier: ICellier;
 
+  filteredData:any = [];
+  searchTerm:any = '';
   id: number;
   isVisible = false;
+
+  isVisibleM: boolean = false;
 
   iconeTrash = '../assets/icones/trash-347.png';
   iconeModif = '../assets/icones/edit-black.png';
@@ -59,6 +66,19 @@ export class ListeCellierComponent implements OnInit {
       console.log(this.listeCelliers);
     });
 
+    this.fetchService.getMesBouteilles().subscribe((data: any) => {
+      this.listeMesBouteilles = data.data;
+      for (let i = 0; i < this.listeMesBouteilles.length; i++) {
+        if (this.listeMesBouteilles[i].nom == null) {
+          this.listeMesBouteilles[i].nom = this.listeMesBouteilles[i].nom_bouteillePerso
+        }
+        if (this.listeMesBouteilles[i].type_vino_name == null) {
+          this.listeMesBouteilles[i].type_vino_name = this.listeMesBouteilles[i].type_mes_name
+        }
+      }
+      console.log(this.listeMesBouteilles);
+    });
+
   }
 
   // modal d'effacement
@@ -79,6 +99,13 @@ export class ListeCellierComponent implements OnInit {
     this.isVisible = false;
   }
 
+  openModalFilter() {
+    this.isVisibleM = true;
+  }
+  closeModalFilter() {
+    this.isVisibleM = false;
+  }
+
   rafraichirListe(){
     this.fetchService.getCelliers().subscribe((data: any) => {
       this.listeCelliers = data.data;
@@ -86,7 +113,30 @@ export class ListeCellierComponent implements OnInit {
     });
   }
 
+
+  filterData(searchTerm: string) {
+  console.log(searchTerm);
   
+  if (searchTerm.length < 3) {
+    this.filteredData = [];
+  } else {
+    this.filteredData = this.listeMesBouteilles.filter(item =>
+      item.nom.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+  }
+}
+
+filterByType(type: string) {
+  console.log(type);
+  
+  this.filteredData = this.listeMesBouteilles.filter(bouteille => 
+    bouteille.type_vino_name == type
+    );
+    console.log(type);
+    
+  console.log(this.filteredData);
+  
+}
 
 
 }
