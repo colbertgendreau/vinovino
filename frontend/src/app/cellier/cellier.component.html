@@ -2,15 +2,12 @@
     class="monCellier">
     <h1>Mon cellier</h1>
 
-    <div class="overlay"></div>
+ <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
 
-    <div class="lds-ripple">
-        <div></div>
-        <div></div>
-    </div>
 
-    <article class="bouteille" *ngFor="let uneBouteille of bouteilles">
+ <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngFor="let uneBouteille of bouteilles">
+
         <div class="card-bouteille-haut">
             <picture>
                 <img [src]="uneBouteille.url_img ? uneBouteille.url_img : '../../assets/img/nonDispo.webp'" alt="Bouteille"/>
