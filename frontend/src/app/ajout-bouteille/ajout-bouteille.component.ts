@@ -10,6 +10,7 @@ import { FetchService } from '../fetch.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Imesbouteilles } from '../imesbouteilles';
 import { ActivatedRoute } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // User interface
 export class User {
@@ -64,6 +65,9 @@ export class AjoutBouteilleComponent implements OnInit{
 
   filterData(searchTerm: string) {
     this.spin = true;
+    if (searchTerm.length < 3) {
+      this.filteredData = [];
+    }else{
 
       console.log("recherche commencé");
       
@@ -105,24 +109,12 @@ export class AjoutBouteilleComponent implements OnInit{
       prix_saq: bouteille.prix_saq,
       pays: bouteille.pays,
       description: bouteille.description,
-      
+      quantite: 1,
 
     });
     this.filteredData = [];
     this.isDataSelected = true; // set the flag to true when data is selected
     console.log('isDataSelected:', this.isDataSelected); // add this line
-    // const idControl = this.ajouterBouteilleForm.get('id');
-    // if (idControl) {
-    //   idControl.disable();
-    // }
-    
-    // const nomControl = this.ajouterBouteilleForm.get('nom');
-    // if (nomControl) {
-    //   nomControl.disable();
-    // }
-
-    // const controls = this.ajouterBouteilleForm.controls;
-    // Object.keys(controls).forEach(controlName => controls[controlName].disable());
   }
 
   onInputChange() {
@@ -179,7 +171,7 @@ export class AjoutBouteilleComponent implements OnInit{
       pays: [''],
       format: [''],
       prix_saq: [''],
-      quantite: ['', [Validators.required, Validators.pattern(/^-?[0-9]+(\.[0-9]*)?$/)]],
+      quantite: [1, [Validators.required, Validators.pattern(/^-?[0-9]+(\.[0-9]*)?$/)]],
       description: [''],
       
 
