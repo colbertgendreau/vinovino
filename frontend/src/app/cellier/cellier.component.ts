@@ -31,6 +31,8 @@ export class CellierComponent implements OnInit {
   // title:string='Cellier';
   UserProfile!: User;
   unCellier: any;
+  spin: boolean = true;
+  hide: boolean = true;
 
 //   counter:number = 1;
   counterValue:number = 0;
@@ -74,6 +76,9 @@ export class CellierComponent implements OnInit {
           
           console.log('les bouteilles du cellier');
           console.log(this.bouteilles);
+          this.spin = false;
+          this.hide = false;
+        
         });
     });
   }

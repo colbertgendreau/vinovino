@@ -237,3 +237,16 @@ form {
     background-color: var(--primaire);
   }
 }
+    // spin 
+    .spin {
+    }
+    .nospin {
+        background: green;
+        display: none;
+    }
+    .hide {
+        display: none;
+    }
+    .nohide {
+        display: flex;
+    }

@@ -2,17 +2,8 @@
   <!-- <a class="return" href="/liste-cellier">retourner sur la liste cellier</a> -->
   <h1>Mon cellier</h1>
 
-  <div class="overlay"></div>
 
-
-  <div [className]="spin ? 'spin' : 'nospin'"> 
-    <p>spin</p>
-    <div class="lds-ripple">
-        <div></div>
-        <div></div>
-    </div>
-
-</div>
+  <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
   <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngFor="let uneBouteille of bouteilles">
     <div class="card-bouteille-haut">
