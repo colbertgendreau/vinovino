@@ -28,7 +28,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "src/assets/angular/assets",
+                "output": "/assets/angular/assets/"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -53,7 +58,6 @@
               ],
               "outputPath": "../backend/public/assets/angular",
               "deployUrl": "/assets/angular/",
-              "baseHref": "/assets/angular/",
               "outputHashing": "all"
             },
             "dev": {
