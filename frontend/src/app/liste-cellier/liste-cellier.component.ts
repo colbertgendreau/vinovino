@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IlisteCellier } from '../iliste-cellier';
 import { ICellier } from '../icellier';
 import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
+import { environment } from '../../environments/environment';
 
 // User interface
 // export class User {
@@ -32,8 +33,8 @@ export class ListeCellierComponent implements OnInit {
   id: number;
   isVisible = false;
 
-  iconeTrash = 'assets/icones/trash-347.png';
-  iconeModif = 'assets/icones/edit-black.png';
+  iconeTrash =  environment.baseImg + 'icones/trash-347.png';
+  iconeModif =  environment.baseImg + 'icones/edit-black.png';
 
   constructor(
     private auth: AuthStateService,
