@@ -5,12 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
 class Bouteille extends Model
 {
     use HasFactory;
 
     protected $table = 'bouteilles';
-    protected $primaryKey = 'id_mes_bouteilles';
+    // protected $primaryKey = 'id_mes_bouteilles';
+    // protected $primaryKey = 'id_bouteille';
     
     
     protected $fillable = [ //les champ dans la base de donner quon veux modifier, ne pas mettre les auto ecrement
@@ -22,6 +24,7 @@ class Bouteille extends Model
         'celliers_id',
         'id_bouteille',
         'id_mes_bouteilles',
+        'id',
 
     ];
 

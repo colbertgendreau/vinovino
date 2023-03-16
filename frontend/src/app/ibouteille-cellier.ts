@@ -1,5 +1,6 @@
 export interface Ibouteillecellier {
     id:number;
+    id_supreme?:number;
     nom:string;
     image:string;
     code_saq:string;
@@ -19,7 +20,8 @@ export interface Ibouteillecellier {
     quantite:number;
     celliers_id:number;
     id_bouteille:number;
-
+    type_vino_name:string;
+    type_mes_name:string;
     id_bouteillePerso:number;
 
     nom_bouteillePerso: string;

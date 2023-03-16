@@ -86,6 +86,7 @@ export class AjoutBouteilleComponent implements OnInit{
     });
     this.filteredData = [];
     this.isDataSelected = true; // set the flag to true when data is selected
+    console.log('isDataSelected:', this.isDataSelected); // add this line
     // const idControl = this.ajouterBouteilleForm.get('id');
     // if (idControl) {
     //   idControl.disable();
