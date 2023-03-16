@@ -18,7 +18,6 @@ import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
 const routes: Routes = [
 //   { path: '', redirectTo: 'accueil', pathMatch: 'full' , title: 'Accueil' },
   { path: '', component: SigninComponent , title: 'Connection' },
-  // { path: '', component: ListeCellierComponent, canActivate:[GardienLoginGuard] },
   { path: 'connexion', component: SigninComponent , title: 'Connection' },
   { path: 'inscription', component: SignupComponent , title: 'Inscription' },
   { path: 'profile', component: UserProfileComponent, canActivate:[GardienLoginGuard] , title: 'Profile' },
