@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Ibouteillecellier } from '../ibouteille-cellier';
 import { Imesbouteilles } from '../imesbouteilles';
 
+
 // User interface
 export class User {
   name: any;
@@ -34,8 +35,7 @@ export class CellierComponent implements OnInit {
 //   counter:number = 1;
   counterValue:number = 0;
   quantite:number;
-  id:number;
-
+  id:number;  
 
   constructor(
     private auth: AuthStateService,

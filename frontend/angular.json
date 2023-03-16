@@ -27,12 +27,15 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "serviceWorker": true,
+            "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
             "production": {
@@ -53,12 +56,12 @@
               "outputHashing": "all"
             },
             "dev": {
-              "outputPath": "dist/assets/angular",
-              "baseHref": "/assets/ang",
+              "outputPath": "dist/",
+              "baseHref": "/assets/",
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.development.ts",
-                  "with": "src/environments/environment.ts"
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
                 }
               ]
             },
@@ -125,13 +128,15 @@
             "inlineStyleLanguage": "scss",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
             "scripts": []
+
           }
         }
       }
@@ -163,6 +168,7 @@
               "projects/admin/src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/admin/src/styles.scss"
             ],
             "scripts": []
@@ -181,7 +187,19 @@
                   "maximumError": "4kb"
                 }
               ],
+              "outputPath": "../backend/public/assets/admin",
+              "deployUrl": "/assets/admin/",
               "outputHashing": "all"
+            },
+            "dev": {
+              "outputPath": "dist/assets/admin",
+              "baseHref": "/assets/ang",
+              "fileReplacements": [
+                {
+                  "replace": "projects/admin/src/environments/environment.development.ts",
+                  "with": "projects/admin/src/environments/environment.ts"
+                }
+              ]
             },
             "development": {
               "buildOptimizer": false,
@@ -189,7 +207,13 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/admin/src/environments/environment.ts",
+                  "with": "projects/admin/src/environments/environment.development.ts"
+                }
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -226,6 +250,7 @@
               "projects/admin/src/assets"
             ],
             "styles": [
+              "@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/admin/src/styles.scss"
             ],
             "scripts": []

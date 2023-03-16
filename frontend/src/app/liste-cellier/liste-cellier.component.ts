@@ -7,6 +7,7 @@ import { FetchService } from '../fetch.service';
 import { ActivatedRoute } from '@angular/router';
 import { IlisteCellier } from '../iliste-cellier';
 import { ICellier } from '../icellier';
+import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
 
 // User interface
 // export class User {
@@ -25,8 +26,11 @@ export class ListeCellierComponent implements OnInit {
   isSignedIn!: boolean;
   // title:string='Liste des celliers';
   // UserProfile!: User;
-  listeCelliers: Array<ICellier>; 
-  unCellier: ICellier; 
+  listeCelliers: Array<ICellier>;
+  unCellier: ICellier;
+
+  id: number;
+  isVisible = false;
 
   constructor(
     private auth: AuthStateService,
@@ -34,7 +38,7 @@ export class ListeCellierComponent implements OnInit {
     public token: TokenService,
     public authService: AuthService,
     public fetchService: FetchService,
-    private route:ActivatedRoute, 
+    private route: ActivatedRoute,
   ) {
 
     this.listeCelliers = [];
@@ -52,10 +56,34 @@ export class ListeCellierComponent implements OnInit {
       console.log(this.listeCelliers);
     });
 
-   
-   
-
-    
   }
+
+  // modal d'effacement
+
+  openModal(id: number) {
+   console.log(id);
+   console.log(this.isVisible);
+   this.id = id;
+   this.isVisible = true;
+   
+  }
+
+  closeModal() {
+    this.isVisible = false;
+  }
+
+  onModalClosed() {
+    this.isVisible = false;
+  }
+
+  rafraichirListe(){
+    this.fetchService.getCelliers().subscribe((data: any) => {
+      this.listeCelliers = data.data;
+      console.log(this.listeCelliers);
+    });
+  }
+
+  
+
 
 }
