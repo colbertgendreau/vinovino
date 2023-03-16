@@ -60,6 +60,7 @@
 
             </div>
 
+            <button class="btn-effacer" (click)="openModal(uneBouteille.id_supreme)"><img class="icones" [src]="iconeTrash" alt="Icône de suppression d'un cellier"></button>
 
         </div>
 
@@ -70,3 +71,6 @@
         Ajouter une bouteille
     </a>
 </section>
+
+<app-effacer-bouteille-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()" (itemEfface)="rafraichirListe()"></app-effacer-bouteille-modal>
+
