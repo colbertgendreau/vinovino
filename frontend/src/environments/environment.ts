@@ -8,6 +8,6 @@
 
 export const environment = {
   production: true,
-  apiUrl: 'https://site.vinovino.ca',
+  apiUrl: 'https://vinovino.ca',
   baseImg: 'assets/angular/assets/'
 };
