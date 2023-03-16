@@ -4,7 +4,7 @@
     type="text"
     [(ngModel)]="searchTerm"
     (keyup)="filterData(searchTerm)"
-    placeholder="Recherche"
+    placeholder="Recherche (entrez les 3 premiere lettres)"
   />
   <!--
     <table>
@@ -132,8 +132,8 @@
   <label for="type">Type</label>
   <select name="type" id="type" formControlName="type" [disabled]="isDataSelected">
       <option value="" disabled selected>Type de vin</option>
-      <option value="2" >vin blanc</option>
       <option value="1">vin rouge</option>
+      <option value="2">vin blanc</option>
       <option value="3">Autre</option>
   </select>
 </div>
@@ -165,7 +165,7 @@
     <div>
       <label for="prix_saq">Prix</label>
         <input
-          type="text"
+          type="number"
           id="prix_saq"
           name="prix_saq"
           formControlName="prix_saq"
