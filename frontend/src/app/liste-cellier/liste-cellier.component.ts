@@ -32,6 +32,9 @@ export class ListeCellierComponent implements OnInit {
   id: number;
   isVisible = false;
 
+  iconeTrash = 'assets/icones/trash-347.png';
+  iconeModif = '/assets/icones/edit-black.png';
+
   constructor(
     private auth: AuthStateService,
     public router: Router,
