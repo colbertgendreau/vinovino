@@ -1,9 +1,17 @@
-<app-spinner-overlay-wrapper></app-spinner-overlay-wrapper>
 <section class="monCellier">
   <!-- <a class="return" href="/liste-cellier">retourner sur la liste cellier</a> -->
   <h1>Mon cellier</h1>
 
   <div class="overlay"></div>
+
+    <div [className]="spin ? 'spin' : 'nospin'"> 
+        <p>spin</p>
+        <div class="lds-ripple">
+            <div></div>
+            <div></div>
+        </div>
+    
+    </div>
 
 <!--
     <div class="lds-ripple">
@@ -12,7 +20,7 @@
     </div>
 -->
 
-  <article class="bouteille" *ngFor="let uneBouteille of bouteilles">
+<article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngFor="let uneBouteille of bouteilles">
     <div class="card-bouteille-haut">
       <picture>
         <img [src]="

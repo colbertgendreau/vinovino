@@ -24,7 +24,6 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { SpinnerOverlayWrapperComponent } from './spinner-overlay-wrapper/spinner-overlay-wrapper.component';
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +50,7 @@ import { SpinnerOverlayWrapperComponent } from './spinner-overlay-wrapper/spinne
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    
     // ServiceWorkerModule.register('ngsw-worker.js', {
     //   enabled: !isDevMode(),
     //   // Register the ServiceWorker as soon as the application is stable
