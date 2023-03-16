@@ -157,6 +157,7 @@ export class CellierComponent implements OnInit {
 
           console.log('raffraichissement des bouteilles');
           console.log(this.bouteilles);
+          this.isVisible = false;
         });
     });
    }
