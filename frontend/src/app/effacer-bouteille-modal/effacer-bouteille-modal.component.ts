@@ -22,9 +22,11 @@ export class EffacerBouteilleModalComponent {
 
   confirmer() {
     this.isVisible = false;
-    console.log("works");
+    console.log(this.id);
     
     this.fetchService.supprimerBouteille(this.id).subscribe((retour) => {
+      console.log(retour);
+      
       this.itemEfface.emit();
     });
   }
