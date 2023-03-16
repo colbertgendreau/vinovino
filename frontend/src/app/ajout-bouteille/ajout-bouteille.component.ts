@@ -10,6 +10,7 @@ import { FetchService } from '../fetch.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Imesbouteilles } from '../imesbouteilles';
 import { ActivatedRoute } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // User interface
 export class User {
