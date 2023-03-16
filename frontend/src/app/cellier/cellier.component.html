@@ -5,12 +5,16 @@
   <div class="overlay"></div>
 
 
-  <div class="lds-ripple">
-    <div></div>
-    <div></div>
-  </div>
+  <div [className]="spin ? 'spin' : 'nospin'"> 
+    <p>spin</p>
+    <div class="lds-ripple">
+        <div></div>
+        <div></div>
+    </div>
 
-  <article class="bouteille" *ngFor="let uneBouteille of bouteilles">
+</div>
+
+  <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngFor="let uneBouteille of bouteilles">
     <div class="card-bouteille-haut">
       <picture>
         <img [src]="
