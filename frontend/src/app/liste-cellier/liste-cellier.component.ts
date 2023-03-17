@@ -39,6 +39,8 @@ export class ListeCellierComponent implements OnInit {
 
   iconeTrash =  environment.baseImg + 'icones/trash-347.png';
   iconeModif =  environment.baseImg + 'icones/edit-black.png';
+  iconeAjout =  environment.baseImg + 'icones/plus-black.png';
+  iconeBouteille =  environment.baseImg + 'icones/wine-bottle.png';
 
   constructor(
     private auth: AuthStateService,

@@ -6,14 +6,14 @@ div {
     display: flex;
     flex-direction: column;
     gap: var(--big);
-    
+
 
     h1 {
-        font-family: 'ruda';
         text-align: center;
+        font-size: 1.5em;
     }
 
-    .modif-cellier{
+    .modif-cellier {
         // color: var(--white);
         color: var(--secondaire-turquoise);
         position: absolute;
@@ -22,15 +22,16 @@ div {
         text-decoration: none;
     }
 
-    .ajout-bouteille{
+    .ajout-bouteille {
         position: absolute;
+        display: flex;
         bottom: var(--smaller);
         left: var(--smaller);
         color: var(--secondaire);
         text-decoration: none;
     }
 
-    .btn-effacer{
+    .btn-effacer {
         background: none;
         border: none;
         padding: 0;
@@ -39,10 +40,10 @@ div {
         right: var(--smaller);
     }
 
-    .btn-effacer{
+    .btn-effacer {
         cursor: pointer;
     }
-    
+
     .icones {
         height: var(--big);
     }
@@ -57,7 +58,7 @@ div {
         justify-content: center;
         padding: 20px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        position:relative;
+        position: relative;
 
         .unCellier {
             text-decoration: none;
@@ -68,46 +69,47 @@ div {
 
             h2 {
                 color: var(--black);
-                font-family: 'ruda';
-                font-size: var(--bigger);
-                font-weight: 800;
                 display: flex;
                 align-items: center;
                 word-break: break-all;
                 text-align: center;
+                font-size: clamp(0.9375rem,
+                        0.5729166666666666rem + 1.8229166666666667vw,
+                        3.125rem);
             }
 
         }
 
     }
- 
-        .ajouter-cellier {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: var(--small);
-            margin-bottom: var(--small);
-            margin-inline: var(--big);
-            height: var(--biggest);
-            border-radius: var(--border-radius);
-            border-style: none;
-            border: solid var(--smallest) var(--secondaire);
-            font-size: var(--med);
-            font-weight: var(--bold);
-            background-color: var(--secondaire);
-            color: var(--black);
-            position: fixed;
-            bottom: var(--big);
-            padding: 8px;
-            right: 0;
-            left: 0;
-            z-index: 2;
-            text-decoration: none;
-            color: var(--black);
-        }
-        .ajouter-cellier:hover {
-            background-color: var(--secondaire);
-        }
-    
+
+    .ajouter-cellier {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: var(--small);
+        margin-bottom: var(--small);
+        margin-inline: var(--big);
+        height: var(--biggest);
+        border-radius: var(--border-radius);
+        border-style: none;
+        border: solid var(--smallest) var(--secondaire);
+        font-size: var(--med);
+        font-weight: var(--bold);
+        background-color: var(--secondaire);
+        color: var(--black);
+        position: fixed;
+        bottom: var(--big);
+        padding: 8px;
+        right: 0;
+        left: 0;
+        z-index: 2;
+        text-decoration: none;
+        color: var(--black);
+    }
+
+    .ajouter-cellier:hover {
+        background-color: var(--secondaire);
+    }
+
 
 }
