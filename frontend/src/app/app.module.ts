@@ -23,9 +23,9 @@ import { ListeMesbouteillesComponent } from './liste-mesbouteilles/liste-mesbout
 // import { EffacerModalComponent } from './effacer-modal/effacer-modal.component';
 
 import { EffacerBouteilleModalComponent } from './effacer-bouteille-modal/effacer-bouteille-modal.component';
-
+import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-modal.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
+// import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -44,7 +44,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     MesBouteillesComponent,
     ListeMesbouteillesComponent,
 
-    // EffacerModalComponent,
+    EffacerModalComponent,
 
     EffacerBouteilleModalComponent,
 

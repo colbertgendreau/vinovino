@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1679060913490,
+  "timestamp": 1679067282120,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -13,7 +13,7 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main.dd71bfcdd9359341.js",
+        "/main.2a90a4e6b7d6a079.js",
         "/manifest.webmanifest",
         "/polyfills.794d7387aea30963.js",
         "/runtime.89bfad0fe920d2c9.js",
@@ -134,16 +134,16 @@
     "/assets/img/vino-white-wine-glasses-set-of-4-z.jpg": "e325daa5789ccdf3f22fea85a8af2ef7402eb72e",
     "/assets/img/vinobottle.PNG": "b7d25001439953326a4454d5cb91058ce8eaa793",
     "/assets/img/wineicon.png": "53cbc2ed91bf469a59047e89e83da105a6ea68e1",
-    "/assets/logo/logo.svg": "47582475c536912176f852fbf9ed1d24d5cfbeb8",
+    "/assets/logo/logo.svg": "950b9fbf36211adbbe2f815140a43a55fed50352",
     "/background-statique-desktop.37a76fb350b2e3bc.png": "dd6609840b0a0d7bcc2fc47fde55e0230fa617b1",
     "/background-statique-mobile.dd51affe8f9a895b.png": "1aff44a3993670c296c840183895a58d289c8282",
     "/dollaricon.a6db0874bd03f606.png": "33dee047c4963d7a4f611167d453bbab14977259",
     "/editpeche.8fdeca584d8ae2e9.png": "3c3d751b6534124a6085a9de9b52ea01ecdef986",
     "/favicon.ico": "4b9e280cb610e84f3dc7a295f1c75771dab0f2ef",
-    "/index.html": "924de5dee7fae94374f668d904695e0898b0c143",
+    "/index.html": "57c372e18bef610b1234ac06a8e164c5af030042",
     "/locationicon.1bd9d90c4d7b2b7c.png": "a5472ba041bdc475e1556ee5adfb99723669cf8e",
-    "/main.dd71bfcdd9359341.js": "ed5d6821a3c4412187dae48303982cdf80c678ab",
-    "/manifest.webmanifest": "7839a3c631a458109eba1a15d885fcb08947a8f2",
+    "/main.2a90a4e6b7d6a079.js": "9492a516eed05e26bbb9f62de6feee142fe65a69",
+    "/manifest.webmanifest": "a15018d576770add32b93eaca4bcd129e834f46f",
     "/minusblue.58d3f2b3c3ee4c9e.png": "4b04eec853966858a29fb7822dfba55f5e1a742f",
     "/polyfills.794d7387aea30963.js": "0b5d2ac7f91a9b9cac378b1b551f7bce1d1cfa4d",
     "/runtime.89bfad0fe920d2c9.js": "cedf50c3e04737c71d8b05b4d80ec9ba64003b4d",
