@@ -180,5 +180,27 @@ export class CellierComponent implements OnInit {
     });
    }
 
+   goUp() {
+    console.log("par en haut");
+    
+    window.scroll({ // pour scroll up quand on arrive sur la page
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
+   }
+
+   pageCelliers() {
+        window.scroll({ // pour scroll up 
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
+
+    this.router.navigate(['liste-cellier']);
+  }
+
 
 }
