@@ -34,13 +34,14 @@
 
 
     .btn-effacer {
-      background: none;
-      border: none;
-      padding: 0;
-      position: absolute;
-      bottom: var(--smaller);
-      right: var(--smaller);
-    }
+        all: unset;
+        background-image: url(../../assets/icones/trash-347.png);
+        height: var(--big);
+        width: var(--big);
+        background-size: cover;
+        object-position: center;
+        cursor: pointer;
+          }
 
     .icones {
       height: var(--big);
@@ -168,8 +169,8 @@
 .plus {
   all: unset;
   background-image: url(../../assets/icones/addbleu.png);
-  height: var(--biggest);
-  width: var(--biggest);
+  height: var(--big);
+  width: var(--big);
   background-size: cover;
   object-position: center;
   cursor: pointer;
@@ -178,8 +179,8 @@
 .moins {
   all: unset;
   background-image: url(../../assets/icones/minusblue.png);
-  height: var(--biggest);
-  width: var(--biggest);
+  height: var(--big);
+  width: var(--big);
   background-size: cover;
   object-position: center;
   cursor: pointer;
@@ -190,16 +191,29 @@
   align-items: center;
   margin-left: auto;
   justify-self: flex-end;
+  justify-content: space-between;
 }
 .modifier {
-  background-image: url(../../assets/icones/editpeche.png);
-  height: var(--biggest);
-  width: var(--biggest);
+  background-image: url(../../assets/icones/edit-gris.png);
+  height: var(--big);
+  width: var(--big);
   background-size: cover;
   object-position: center;
 
-  margin-bottom: var(--small);
+//   margin-bottom: var(--small);
 }
+
+.modifier-gris {
+  background-image: url(../../assets/icones/edit-black.png);
+  height: var(--big);
+  width: var(--big);
+  background-size: cover;
+  object-position: center;
+
+//   margin-bottom: var(--small);
+}
+
+
 
 
 // spinner //
