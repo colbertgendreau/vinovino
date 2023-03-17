@@ -1,6 +1,7 @@
 .monCellier {
   h1 {
     margin-block: var(--big);
+    font-size: 1.5rem;
   }
 
   background-attachment: fixed;
@@ -64,8 +65,7 @@
       }
       .info-bouteille {
         min-width: 4ch;
-        margin-right: var(--big);
-        margin-left: var(--small);
+        margin-inline: var(--small);
 
         div {
           display: flex;

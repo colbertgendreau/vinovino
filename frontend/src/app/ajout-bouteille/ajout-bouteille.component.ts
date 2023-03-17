@@ -88,7 +88,7 @@ export class AjoutBouteilleComponent implements OnInit{
 }
 
   selectData(bouteille: any) {
-    window.scroll({ 
+    window.scroll({ // pour scroll up quand on clique sur une bouteille
         top: 0, 
         left: 0, 
         behavior: 'smooth' 
@@ -138,6 +138,12 @@ export class AjoutBouteilleComponent implements OnInit{
   }
 
   clearForm() {
+    window.scroll({ // pour scroll up quand on clique sur une bouteille
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
     this.isDataSelected = false;
     const controls = this.ajouterBouteilleForm.controls;
     Object.keys(controls).forEach(controlName => {
@@ -150,6 +156,13 @@ export class AjoutBouteilleComponent implements OnInit{
   
 
   ngOnInit(): void {
+
+    window.scroll({ // pour scroll up quand on arrive sur la page
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
 
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;

@@ -63,7 +63,17 @@ export class CellierComponent implements OnInit {
 
   }
 
+  
+
   ngOnInit() {
+
+    window.scroll({ // pour scroll up quand on arrive sur la page
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
+
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
@@ -92,6 +102,9 @@ export class CellierComponent implements OnInit {
 
 
   modifier(id: number, quantite: number) {
+
+
+
     console.log(id + "id");
     console.log(quantite + "quantite");
 
