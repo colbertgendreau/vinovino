@@ -24,6 +24,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDividerModule } from '@angular/material/divider';
 import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
 import { ModalComponent } from './modal/modal.component';
+import { ConnexionAdminComponent } from './connexion-admin/connexion-admin.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ModalComponent } from './modal/modal.component';
     ListeUsagerComponent,
     ListeCatalogueComponent,
     AjoutAdminComponent,
-    ModalComponent
+    ModalComponent,
+    ConnexionAdminComponent
   ],
   imports: [
     BrowserModule,
