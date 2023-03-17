@@ -88,6 +88,7 @@ export class ListeCellierComponent implements OnInit {
     this.fetchService.getCelliers().subscribe((data: any) => {
       this.listeCelliers = data.data;
       console.log(this.listeCelliers);
+      this.isVisible = false;
     });
   }
 
