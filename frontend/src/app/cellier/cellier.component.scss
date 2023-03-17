@@ -137,31 +137,59 @@
     }
   }
 
-  .ajouter-bouteille {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: var(--small);
-    margin-bottom: var(--small);
-    margin-inline: var(--big);
-    height: var(--biggest);
-    border-radius: var(--border-radius);
-    border-style: none;
-    border: solid var(--smallest) var(--secondaire);
-    font-size: var(--med);
-    font-weight: var(--bold);
-    background-color: var(--secondaire);
-    color: var(--black);
-    position: fixed;
-    bottom: var(--big);
-    padding: 8px;
-    right: 0;
-    left: 0;
-    z-index: 2;
-    text-decoration: none;
-    color: var(--black);
-  }
-}
+  .footer {
+    background: var(--secondaire);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    //   margin-inline: var(--big);
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 2;
+      height: 63px;
+      padding-inline: var(--big);
+      
+      .up {
+          background-image: url(../../assets/icones/upblanc.png);
+          height: var(--biggest);
+          width: var(--biggest);
+          background-size: cover;
+          object-position: center;
+          z-index: 3;
+          
+        }
+        .back {
+            background: blue($color: #000000);
+        z-index: 3;
+        background-image: url(../../assets/icones/backblanc.png);
+        height: var(--biggest);
+        width: var(--biggest);
+        background-size: cover;
+        object-position: center;
+    
+    }
+    
+      
+      .ajouter-bouteille {
+          display: flex;
+          align-items: center;
+        //   padding: 8px;
+          text-decoration: none;
+        //   margin-bottom: var(--small);
+        //   margin-inline: var(--small);
+          height: var(--biggest);
+        //   border-radius: var(--border-radius);
+          border-style: none;
+          font-size: var(--med);
+          font-weight: var(--bold);
+          background-color: var(--secondaire);
+          color: var(--white);
+          max-width: 10ch;
+        }
+    }
+    }
 
 .return a {
   text-decoration: none;
@@ -269,4 +297,3 @@
     opacity: 0;
   }
 }
-
