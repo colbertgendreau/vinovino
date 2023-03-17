@@ -21,6 +21,12 @@ export class EffacerBouteilleModalComponent {
 
 
   confirmer() {
+    window.scroll({ // pour scroll up quand on arrive sur la page
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
     this.isVisible = false;
     console.log(this.id);
     

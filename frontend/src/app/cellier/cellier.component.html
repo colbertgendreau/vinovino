@@ -42,31 +42,39 @@
             <div class="quantite">
 
 
-                <a *ngIf="!uneBouteille.id_bouteille" class="modifier" routerLink="/modifier-bouteille/{{ uneBouteille.id_supreme }}"></a>
+                <a *ngIf="!uneBouteille.code_saq" class="modifier-gris" routerLink="/modifier-bouteille/{{ uneBouteille.id_supreme }}"></a>
+
+                <a *ngIf="uneBouteille.code_saq" class="modifier"></a>
 
 
-                <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)"></button>
+                <div class="quantite">
 
-                <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
-
-                <button class="moins" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)"></button>
+                    <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)"></button>
+                    
+                    <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
+                    
+                    <button class="moins" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)"></button>
+                </div>
 
 
                 <!-- <a *ngIf="!uneBouteille.id_bouteille" class="" routerLink="/modifier-bouteille/{{ uneBouteille.id_supreme }}">modification</a> -->
 
 
+                <button class="btn-effacer icones" (click)="openModal(uneBouteille.id_supreme)"></button>
             </div>
 
-            <button class="btn-effacer" (click)="openModal(uneBouteille.id_supreme)"><img class="icones" [src]="iconeTrash" alt="Icône de suppression d'un cellier"></button>
 
         </div>
 
 
     </article>
-
-    <a class="ajouter-bouteille" routerLink="/ajouter-bouteille/{{ cellierId }}">
-        Ajouter une bouteille
-    </a>
+    <section class="footer">
+            <div class="back" (click)="pageCelliers()"></div>
+        <a class="ajouter-bouteille" routerLink="/ajouter-bouteille/{{ cellierId }}">
+            Ajouter une bouteille
+        </a>
+            <div class="up" (click)="goUp()"></div>
+    </section>
 </section>
 
 <app-effacer-bouteille-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()" (itemEfface)="rafraichirListe()"></app-effacer-bouteille-modal>

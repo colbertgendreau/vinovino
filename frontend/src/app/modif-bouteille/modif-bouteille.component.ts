@@ -45,6 +45,12 @@ export class ModifBouteilleComponent implements OnInit {
   }
 
   ngOnInit() {
+    window.scroll({ // pour scroll up quand on arrive sur la page
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
@@ -94,6 +100,12 @@ export class ModifBouteilleComponent implements OnInit {
   }
 
   clearForm() {
+    window.scroll({ // pour scroll up quand on arrive sur la page
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
 
     const controls = this.modifBouteilleForm.controls;
     Object.keys(controls).forEach(controlName => {
