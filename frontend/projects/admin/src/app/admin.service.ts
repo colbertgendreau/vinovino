@@ -22,4 +22,15 @@ export class AdminService {
   getUtilisateur():Observable<IlisteUser> {
     return this.http.get<IlisteUser>(this.urlUtilisateur);
   }
+
+  ajouterUtilisateur(data:IUser):Observable<IUser> {
+    return this.http.post<IUser>(this.urlUtilisateur, data);
+  }
+
+  effacerUtilisateur(id:number):Observable<IUser> {
+    console.log(this.urlUtilisateur+"/"+id);
+    return this.http.delete<IUser>(this.urlUtilisateur+"/"+id);
+  }
+
+
 }
