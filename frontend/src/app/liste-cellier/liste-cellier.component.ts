@@ -7,7 +7,7 @@ import { FetchService } from '../fetch.service';
 import { ActivatedRoute } from '@angular/router';
 import { IlisteCellier } from '../iliste-cellier';
 import { ICellier } from '../icellier';
-import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
+// import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
 import { environment } from '../../environments/environment';
 
 // User interface
