@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EffacerModalComponent } from './effacer-modal.component';
+import { EffacerModalComponent } from './effacer-cellier-modal.component';
 
 describe('EffacerModalComponent', () => {
   let component: EffacerModalComponent;

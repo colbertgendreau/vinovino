@@ -8,6 +8,9 @@ import { FetchService } from '../fetch.service';
 import { ActivatedRoute } from '@angular/router';
 import { Ibouteillecellier } from '../ibouteille-cellier';
 import { Imesbouteilles } from '../imesbouteilles';
+import { EffacerBouteilleModalComponent } from '../effacer-bouteille-modal/effacer-bouteille-modal.component';
+import { environment } from '../../environments/environment';
+
 
 
 // User interface
@@ -34,10 +37,14 @@ export class CellierComponent implements OnInit {
   spin: boolean = true;
   hide: boolean = true;
 
-//   counter:number = 1;
-  counterValue:number = 0;
-  quantite:number;
-  id:number;  
+  //   counter:number = 1;
+  counterValue: number = 0;
+  quantite: number;
+  id: number;
+
+  isVisible = false;
+
+  iconeTrash = environment.baseImg + 'icones/trash-347.png';
 
   constructor(
     private auth: AuthStateService,
@@ -53,7 +60,7 @@ export class CellierComponent implements OnInit {
     });
     this.bouteilles = [];
 
-    
+
   }
 
   ngOnInit() {
@@ -73,7 +80,7 @@ export class CellierComponent implements OnInit {
         .getBouteillesCellier(params['id'])
         .subscribe((data: any) => {
           this.bouteilles = data.data;
-          
+
           console.log('les bouteilles du cellier');
           console.log(this.bouteilles);
           this.spin = false;
@@ -84,7 +91,7 @@ export class CellierComponent implements OnInit {
   }
 
 
-  modifier(id:number, quantite:number) {
+  modifier(id: number, quantite: number) {
     console.log(id + "id");
     console.log(quantite + "quantite");
 
@@ -93,34 +100,72 @@ export class CellierComponent implements OnInit {
       this.bouteille = data.data;
       // this.bouteille.id = id;
       this.bouteille.quantite = quantite;
-      
-      
+
+
       let updateBouteille: Imesbouteilles = this.bouteille;
       console.log(updateBouteille);
 
       this.fetchService.modifBouteille(id, updateBouteille).subscribe((retour) => {
-  
-  
+
+
         this.route.params.subscribe((params) => {
-  
+
           this.cellierId = params['id'];
-    
-    
+
+
           this.fetchService
             .getBouteillesCellier(params['id'])
             .subscribe((data: any) => {
               this.bouteilles = data.data;
-  
+
             });
         });
-        
+
       });
     });
+
+
+
+
+  }
+
+  
+  // modal d'effacement
+
+  openModal(id: number) {
+    console.log(id);
+    console.log(this.isVisible);
+    this.id = id;
+    this.isVisible = true;
     
-
-  
-  
-}
-
+   }
  
+   closeModal() {
+     this.isVisible = false;
+   }
+ 
+   onModalClosed() {
+     this.isVisible = false;
+   }
+ 
+   rafraichirListe(){
+    this.route.params.subscribe((params) => {
+
+      this.cellierId = params['id'];
+      console.log(params['id']);
+
+
+      this.fetchService
+        .getBouteillesCellier(params['id'])
+        .subscribe((data: any) => {
+          this.bouteilles = data.data;
+
+          console.log('raffraichissement des bouteilles');
+          console.log(this.bouteilles);
+          this.isVisible = false;
+        });
+    });
+   }
+
+
 }
