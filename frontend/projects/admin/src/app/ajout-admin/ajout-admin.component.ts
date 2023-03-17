@@ -36,7 +36,7 @@ export class AjoutAdminComponent implements OnInit {
       this.utilisateur.type = this.utilisateur.type;
       console.log(retour);
 
-      this.router.navigate(["/admin"]);
+      this.router.navigate(["/liste-usager"]);
     });
   }
 }
