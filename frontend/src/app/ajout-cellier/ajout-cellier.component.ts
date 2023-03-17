@@ -47,7 +47,7 @@ export class AjoutCellierComponent implements OnInit {
       console.log(this.isSignedIn);
     });
     this.cellierForm = this.formBuilder.group({
-      nom: ['', [Validators.required]],
+      nom: ['', [Validators.required, Validators.maxLength(20)]],
     });
   }
 
