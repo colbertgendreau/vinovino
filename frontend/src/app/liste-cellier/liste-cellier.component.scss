@@ -13,12 +13,6 @@ div {
         text-align: center;
     }
 
-    .boite-cellier {
-    
-        position:relative;
-
-    }
-
     .modif-cellier{
         // color: var(--white);
         color: var(--secondaire-turquoise);
@@ -63,11 +57,14 @@ div {
         justify-content: center;
         padding: 20px;
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
+        position:relative;
 
         .unCellier {
             text-decoration: none;
             color: var(--black);
+            width: 100%;
+            display: flex;
+            justify-content: center;
 
             h2 {
                 color: var(--black);
@@ -76,7 +73,8 @@ div {
                 font-weight: 800;
                 display: flex;
                 align-items: center;
-
+                word-break: break-all;
+                text-align: center;
             }
 
         }
