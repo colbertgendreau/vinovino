@@ -20,6 +20,12 @@ export class EffacerModalComponent {
 
 
   confirmer() {
+    window.scroll({ // pour scroll up quand on arrive sur la page
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
     this.isVisible = false;
     this.fetchService.supprimerCellier(this.id).subscribe((retour) => {
       this.itemEfface.emit();

@@ -1,11 +1,12 @@
 .monCellier {
   h1 {
     margin-block: var(--big);
+    font-size: 1.5rem;
   }
 
   background-attachment: fixed;
   height: 100%;
-  padding: 85px var(--big) calc(100vh - 122px);
+  padding: 85px var(--big) 115px;
   display: flex;
   flex-direction: column;
   gap: var(--big);
@@ -34,13 +35,14 @@
 
 
     .btn-effacer {
-      background: none;
-      border: none;
-      padding: 0;
-      position: absolute;
-      bottom: var(--smaller);
-      right: var(--smaller);
-    }
+        all: unset;
+        background-image: url(../../assets/icones/trash-347.png);
+        height: var(--big);
+        width: var(--big);
+        background-size: cover;
+        object-position: center;
+        cursor: pointer;
+          }
 
     .icones {
       height: var(--big);
@@ -63,8 +65,7 @@
       }
       .info-bouteille {
         min-width: 4ch;
-        margin-right: var(--big);
-        margin-left: var(--small);
+        margin-inline: var(--small);
 
         div {
           display: flex;
@@ -136,31 +137,59 @@
     }
   }
 
-  .ajouter-bouteille {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: var(--small);
-    margin-bottom: var(--small);
-    margin-inline: var(--big);
-    height: var(--biggest);
-    border-radius: var(--border-radius);
-    border-style: none;
-    border: solid var(--smallest) var(--secondaire);
-    font-size: var(--med);
-    font-weight: var(--bold);
-    background-color: var(--secondaire);
-    color: var(--black);
-    position: fixed;
-    bottom: var(--big);
-    padding: 8px;
-    right: 0;
-    left: 0;
-    z-index: 2;
-    text-decoration: none;
-    color: var(--black);
-  }
-}
+  .footer {
+    background: var(--secondaire);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    //   margin-inline: var(--big);
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 2;
+      height: 63px;
+      padding-inline: var(--big);
+      
+      .up {
+          background-image: url(../../assets/icones/upblanc.png);
+          height: var(--biggest);
+          width: var(--biggest);
+          background-size: cover;
+          object-position: center;
+          z-index: 3;
+          
+        }
+        .back {
+            background: blue($color: #000000);
+        z-index: 3;
+        background-image: url(../../assets/icones/backblanc.png);
+        height: var(--biggest);
+        width: var(--biggest);
+        background-size: cover;
+        object-position: center;
+    
+    }
+    
+      
+      .ajouter-bouteille {
+          display: flex;
+          align-items: center;
+        //   padding: 8px;
+          text-decoration: none;
+        //   margin-bottom: var(--small);
+        //   margin-inline: var(--small);
+          height: var(--biggest);
+        //   border-radius: var(--border-radius);
+          border-style: none;
+          font-size: var(--med);
+          font-weight: var(--bold);
+          background-color: var(--secondaire);
+          color: var(--white);
+          max-width: 10ch;
+        }
+    }
+    }
 
 .return a {
   text-decoration: none;
@@ -168,8 +197,8 @@
 .plus {
   all: unset;
   background-image: url(../../assets/icones/addbleu.png);
-  height: var(--biggest);
-  width: var(--biggest);
+  height: var(--big);
+  width: var(--big);
   background-size: cover;
   object-position: center;
   cursor: pointer;
@@ -178,8 +207,8 @@
 .moins {
   all: unset;
   background-image: url(../../assets/icones/minusblue.png);
-  height: var(--biggest);
-  width: var(--biggest);
+  height: var(--big);
+  width: var(--big);
   background-size: cover;
   object-position: center;
   cursor: pointer;
@@ -190,16 +219,29 @@
   align-items: center;
   margin-left: auto;
   justify-self: flex-end;
+  justify-content: space-between;
 }
 .modifier {
-  background-image: url(../../assets/icones/editpeche.png);
-  height: var(--biggest);
-  width: var(--biggest);
+  background-image: url(../../assets/icones/edit-gris.png);
+  height: var(--big);
+  width: var(--big);
   background-size: cover;
   object-position: center;
 
-  margin-bottom: var(--small);
+//   margin-bottom: var(--small);
 }
+
+.modifier-gris {
+  background-image: url(../../assets/icones/edit-black.png);
+  height: var(--big);
+  width: var(--big);
+  background-size: cover;
+  object-position: center;
+
+//   margin-bottom: var(--small);
+}
+
+
 
 
 // spinner //
@@ -255,4 +297,3 @@
     opacity: 0;
   }
 }
-
