@@ -64,14 +64,13 @@ export class AjoutBouteilleComponent implements OnInit{
   }
 
   filterData(searchTerm: string) {
-    this.spin = true;
-    if (searchTerm.length < 3) {
-        this.filteredData = [];
-      }else{
+    this.clearForm();
+      this.hideForm = false;
+      if (searchTerm.length < 3) {
+          this.filteredData = [];
+        }else{
+          this.spin = true;
   
-        console.log("recherche commencé");
-        
-        
         if (this.searchTerm === '') {
             this.filteredData = [];
           }else{
@@ -89,7 +88,7 @@ export class AjoutBouteilleComponent implements OnInit{
 }
 
   selectData(bouteille: any) {
-    window.scroll({ 
+    window.scroll({ // pour scroll up quand on clique sur une bouteille
         top: 0, 
         left: 0, 
         behavior: 'smooth' 
@@ -139,18 +138,31 @@ export class AjoutBouteilleComponent implements OnInit{
   }
 
   clearForm() {
+    window.scroll({ // pour scroll up quand on clique sur une bouteille
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
     this.isDataSelected = false;
     const controls = this.ajouterBouteilleForm.controls;
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue('');
     });
   
-    this.searchTerm = '';
+    // this.searchTerm = '';
   }
 
   
 
   ngOnInit(): void {
+
+    window.scroll({ // pour scroll up quand on arrive sur la page
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
 
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;

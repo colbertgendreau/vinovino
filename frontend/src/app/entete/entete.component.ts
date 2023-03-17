@@ -40,6 +40,12 @@ export class EnteteComponent implements OnInit {
   }
 
   pageCelliers() {
+    window.scroll({ // pour scroll up quand on clique sur une bouteille
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
     this.router.navigate(['liste-cellier']);
     this.isOpen = !this.isOpen;
   }
@@ -60,6 +66,12 @@ export class EnteteComponent implements OnInit {
   }
   
   signOut() {
+    window.scroll({ // pour scroll up quand on clique sur une bouteille
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
     this.auth.setAuthState(false);
     this.token.removeToken();
     this.router.navigate(['']);
