@@ -3,9 +3,9 @@ import { FetchService } from '../fetch.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-effacer-modal',
-  templateUrl: './effacer-modal.component.html',
-  styleUrls: ['./effacer-modal.component.scss']
+  selector: 'app-effacer-cellier-modal',
+  templateUrl: './effacer-cellier-modal.component.html',
+  styleUrls: ['./effacer-cellier-modal.component.scss']
 })
 export class EffacerModalComponent {
   @Input() id!: number;
