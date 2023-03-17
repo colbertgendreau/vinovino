@@ -8,6 +8,10 @@ import { FetchService } from '../fetch.service';
 import { ActivatedRoute } from '@angular/router';
 import { Ibouteillecellier } from '../ibouteille-cellier';
 import { Imesbouteilles } from '../imesbouteilles';
+import { EffacerBouteilleModalComponent } from '../effacer-bouteille-modal/effacer-bouteille-modal.component';
+import { environment } from '../../environments/environment';
+
+
 
 // User interface
 export class User {
@@ -30,12 +34,17 @@ export class CellierComponent implements OnInit {
   // title:string='Cellier';
   UserProfile!: User;
   unCellier: any;
+  spin: boolean = true;
+  hide: boolean = true;
 
-//   counter:number = 1;
-  counterValue:number = 0;
-  quantite:number;
-  id:number;
+  //   counter:number = 1;
+  counterValue: number = 0;
+  quantite: number;
+  id: number;
 
+  isVisible = false;
+
+  iconeTrash = environment.baseImg + 'icones/trash-347.png';
 
   constructor(
     private auth: AuthStateService,
@@ -51,7 +60,7 @@ export class CellierComponent implements OnInit {
     });
     this.bouteilles = [];
 
-    
+
   }
 
   ngOnInit() {
@@ -71,62 +80,92 @@ export class CellierComponent implements OnInit {
         .getBouteillesCellier(params['id'])
         .subscribe((data: any) => {
           this.bouteilles = data.data;
-          
-          console.log(this.bouteilles);
+
           console.log('les bouteilles du cellier');
+          console.log(this.bouteilles);
+          this.spin = false;
+          this.hide = false;
+        
         });
     });
   }
-  plus(id:number, quantite:number) {
-    console.log("plus");
 
-    this.quantite = quantite;
-    this.quantite++;
 
-    console.log(this.quantite);
-    console.log(id);
-    
-           
-        this.fetchService.showBouteille(id).subscribe((data: any) => {
-          this.bouteille = data.data;
-          console.log(this.bouteille);
-        //   this.modifBouteilleForm.setValue({
-        //     id_bouteillePerso: this.bouteille.id,
-        //     nom_bouteillePerso: this.bouteille.nom_bouteillePerso,
-        //     type_bouteillePerso: this.bouteille.type_bouteillePerso,
-        //     pays_bouteillePerso: this.bouteille.pays_bouteillePerso,
-        //     format_bouteillePerso: this.bouteille.format_bouteillePerso,
-        //     prix_bouteillePerso: this.bouteille.prix_bouteillePerso,
-        //     quantite_bouteillePerso: this.bouteille.quantite,
-        //     description_bouteillePerso: this.bouteille.description_bouteillePerso
-        //   });
+  modifier(id: number, quantite: number) {
+    console.log(id + "id");
+    console.log(quantite + "quantite");
+
+
+    this.fetchService.showBouteille(id).subscribe((data: any) => {
+      this.bouteille = data.data;
+      // this.bouteille.id = id;
+      this.bouteille.quantite = quantite;
+
+
+      let updateBouteille: Imesbouteilles = this.bouteille;
+      console.log(updateBouteille);
+
+      this.fetchService.modifBouteille(id, updateBouteille).subscribe((retour) => {
+
+
+        this.route.params.subscribe((params) => {
+
+          this.cellierId = params['id'];
+
+
+          this.fetchService
+            .getBouteillesCellier(params['id'])
+            .subscribe((data: any) => {
+              this.bouteilles = data.data;
+
+            });
         });
+
+      });
+    });
+
+
+
+
+  }
+
   
+  // modal d'effacement
 
-
-
-    // this.quantite = quantite;
-
+  openModal(id: number) {
+    console.log(id);
+    console.log(this.isVisible);
+    this.id = id;
+    this.isVisible = true;
     
-    // this.quantite = this.counter;
-    // console.log(this.quantite);
+   }
+ 
+   closeModal() {
+     this.isVisible = false;
+   }
+ 
+   onModalClosed() {
+     this.isVisible = false;
+   }
+ 
+   rafraichirListe(){
+    this.route.params.subscribe((params) => {
 
-    // this.counter ++;
-    // console.log(this.counter);
+      this.cellierId = params['id'];
+      console.log(params['id']);
 
-    // this.route.params.subscribe((params) => {
-    //     let updateBouteille: Imesbouteilles = this.modifBouteilleForm.value;
 
-    //     this.fetchService.modifBouteille(params['id'], updateBouteille).subscribe((retour) => {
-    //       this.router.navigate(['liste-cellier']);
-    //     });
-    // });
+      this.fetchService
+        .getBouteillesCellier(params['id'])
+        .subscribe((data: any) => {
+          this.bouteilles = data.data;
 
-    
-  }
+          console.log('raffraichissement des bouteilles');
+          console.log(this.bouteilles);
+          this.isVisible = false;
+        });
+    });
+   }
 
-  moins() {
-    console.log("moins");
-    
-  }
+
 }

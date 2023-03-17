@@ -82,6 +82,14 @@ export class FetchService {
   showCellier(id:number):Observable<ICellier>{
     return this.http.get<ICellier>(environment.apiUrl+"/api/show/"+id);
   }
+
+  supprimerCellier(id:number):Observable<ICellier>{
+    return this.http.delete<ICellier>(this.urlCellier+"/"+id);
+  }
+
+  supprimerBouteille(id:number):Observable<Imesbouteilles>{
+    return this.http.delete<Imesbouteilles>(this.urlBouteille+"/"+id);
+  }
 }
 
 
