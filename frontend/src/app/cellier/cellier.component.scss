@@ -3,7 +3,6 @@
     margin-block: var(--big);
   }
 
-  // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
   background-attachment: fixed;
   height: 100%;
   padding: 85px var(--big) calc(100vh - 122px);
@@ -11,15 +10,6 @@
   flex-direction: column;
   gap: var(--big);
   text-align: center;
-
-  //   text-align: center;
-  //   display: flex;
-  //   align-items: center;
-  //   flex-direction: column;
-  //   align-items: stretch;
-  //   padding: var(--small);
-  //   padding-bottom: 100px;
-  //   padding-top: 63px;
 
   .bouteille {
     margin-bottom: var(--small);
@@ -44,34 +34,20 @@
       display: flex;
     //   justify-content: space-between;
       width: 100%;
-      // border-bottom: 5px solid var(--secondaire-turquoise);
-    //   border-bottom: 1px solid rgb(228, 228, 228);
-    //   padding-bottom: var(--small);
-    //   margin-bottom: var(--smaller);
-
       div {
         text-align: start;
         display: flex;
         flex-direction: column;
       }
 
-      // .image-bouteille {
-      //   min-width: 75px;
-      // }
-
       picture img {
         max-width: 80px;
         margin-inline: -24px;
       }
-
       .info-bouteille {
-
-        //   justify-content: space-between;
-        //   min-width: 245px;
         min-width: 4ch;
         margin-right: var(--big);
         margin-left: var(--small);
-
 
         div {
           display: flex;
@@ -79,34 +55,27 @@
           align-items: center;
           padding-block: var(--smallest);
         }
-
         .icone-vin {
           background: url(../../assets/img/wineicon.png);
-          // background:red;
           height: var(--big);
           width: var(--big);
           background-size: cover;
           object-position: center;
         }
-
         .icone-location {
           background: url(../../assets/img/locationicon.png);
-          // background:red;
           height: var(--big);
           width: var(--big);
           background-size: cover;
           object-position: center;
         }
-
         .icone-dollar {
           background: url(../../assets/img/dollaricon.png);
-          // background:red;
           height: var(--big);
           width: var(--big);
           background-size: cover;
           object-position: center;
         }
-
         h3 {
           margin-bottom: var(--small);
           word-break: break-all;
@@ -116,7 +85,7 @@
             0.9375rem,
             0.5729166666666666rem + 1.8229166666666667vw,
             3.125rem
-          ); //   font-size: clamp(0.9375rem, 0.49999999999999994rem + 2.1875vw, 3.125rem);
+          ); 
         }
 
         p {
@@ -174,12 +143,10 @@
     color: var(--black);
   }
 }
-
 .return a{
   text-decoration: none;
 
 }
-
 .plus {
     all: unset;
     background-image: url(../../assets/icones/addbleu.png);
@@ -190,7 +157,6 @@
     cursor: pointer;
 
 }
-
 .moins {
     all: unset;
     background-image: url(../../assets/icones/minusblue.png);
@@ -200,7 +166,6 @@
     object-position: center;
     cursor: pointer;
 }
-
 .quantite {
     display: flex;
     flex-direction: column;
@@ -208,7 +173,6 @@
     margin-left: auto;
     justify-self: flex-end;
 }
-
 .modifier {
     background-image: url(../../assets/icones/editpeche.png);
     height: var(--biggest);
