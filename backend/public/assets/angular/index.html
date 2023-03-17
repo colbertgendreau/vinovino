@@ -23,6 +23,6 @@
 <body>
   <app-root>
   </app-root>
-<script src="/assets/angular/runtime.89bfad0fe920d2c9.js" type="module"></script><script src="/assets/angular/polyfills.794d7387aea30963.js" type="module"></script><script src="/assets/angular/main.dd71bfcdd9359341.js" type="module"></script>
+<script src="/assets/angular/runtime.89bfad0fe920d2c9.js" type="module"></script><script src="/assets/angular/polyfills.794d7387aea30963.js" type="module"></script><script src="/assets/angular/main.2a90a4e6b7d6a079.js" type="module"></script>
 
 </body></html>
