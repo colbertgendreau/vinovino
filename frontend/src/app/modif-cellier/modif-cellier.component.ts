@@ -62,7 +62,7 @@ export class ModifCellierComponent implements OnInit {
     })
 
     this.cellierForm = this.formBuilder.group({
-      nom: ['', [Validators.required]],
+      nom: ['', [Validators.required, Validators.maxLength(20)]],
     });
 
     

@@ -2,7 +2,7 @@
   // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
   background-attachment: fixed;
   height: 100%;
-  padding: 63px var(--big) calc(100vh - 122px);
+  padding: 63px var(--big) 115px;
   display: flex;
   flex-direction: column;
   // gap: var(--big);
@@ -21,7 +21,6 @@
 h1 {
   margin-top: var(--big);
   font-size: 1.5rem;
-
 }
 
 input,
@@ -244,8 +243,7 @@ form {
   }
 }
     // spin 
-    .spin {
-    }
+  
     .nospin {
         background: green;
         display: none;
