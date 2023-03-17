@@ -4,7 +4,6 @@ import { AuthService } from 'src/app/shared/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TokenService } from 'src/app/shared/token.service';
 import { AuthStateService } from 'src/app/shared/auth-state.service';
-import { IUser } from '../iuser';
 
 @Component({
   selector: 'app-connexion-admin',
@@ -16,6 +15,7 @@ export class ConnexionAdminComponent implements OnInit {
 
   loginForm: FormGroup;
   errors:any = null;
+  erreur:any;
 
   constructor(
     public router: Router,
@@ -24,34 +24,49 @@ export class ConnexionAdminComponent implements OnInit {
     private token: TokenService,
     private authState: AuthStateService
   ) {
+
+    // console.log(token);
+    // console.log(authService);
+    // console.log(authState);
+
     this.loginForm = this.fb.group({
       email: [],
       password: [],
+      type: [],
     });
   }
 
   ngOnInit() {}
 
   onSubmit() {
-    console.log('Je suis à l\'intérieur de connexion-admin.component.ts');
-    console.log(this.loginForm.value.name);
-    console.log(this.loginForm.value.email);
-    console.log(this.authService.signin(this.loginForm.value) +' aqui');
+    // console.log('Je suis à l\'intérieur de connexion-admin.component.ts');
+    // console.log(this.loginForm.value.password);
+    // console.log(this.loginForm.value.email);
+    // console.log(this.authService.signinAdmin(this.loginForm.value) +' aqui');
+    
+    // console.log(this.loginForm);
 
-    this.authService.signin(this.loginForm.value).subscribe(
+    this.authService.signinAdmin(this.loginForm.value).subscribe(      
       (result) => {
-        console.log(result);
-        this.responseHandler(result);
+        this.responseHandler(result);        
+        if (result.user.type === "1") {
+          this.authState.setAuthState(true);
+          this.loginForm.reset();
+          this.router.navigate(['liste-usager']);
+        } else if (result.user.type === "0") {
+          this.loginForm.reset();
+          this.router.navigate(['admin']);
+          this.erreur = "Vous avez besoin d'une autorisation que seul un administrateur peut accorder. Veuillez demander à un administrateur d'accorder une autorisation à cette application avant de pouvoir l'utiliser.";
+        }
       },
       (error) => {
         this.errors = error.error;
       },
-      () => {
-        this.authState.setAuthState(true);
-        this.loginForm.reset();
-        // this.router.navigate(['profile']);
-        this.router.navigate(['liste-usager']);
-      }
+      // () => {
+      //   this.authState.setAuthState(true);
+      //   this.loginForm.reset();
+      //   this.router.navigate(['liste-usager']);
+      // }
     );
   }
 
