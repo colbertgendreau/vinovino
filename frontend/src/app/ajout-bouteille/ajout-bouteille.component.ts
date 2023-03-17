@@ -64,14 +64,13 @@ export class AjoutBouteilleComponent implements OnInit{
   }
 
   filterData(searchTerm: string) {
-    this.spin = true;
-    if (searchTerm.length < 3) {
-        this.filteredData = [];
-      }else{
+    this.clearForm();
+      this.hideForm = false;
+      if (searchTerm.length < 3) {
+          this.filteredData = [];
+        }else{
+          this.spin = true;
   
-        console.log("recherche commencé");
-        
-        
         if (this.searchTerm === '') {
             this.filteredData = [];
           }else{
@@ -145,7 +144,7 @@ export class AjoutBouteilleComponent implements OnInit{
       controls[controlName].setValue('');
     });
   
-    this.searchTerm = '';
+    // this.searchTerm = '';
   }
 
   
