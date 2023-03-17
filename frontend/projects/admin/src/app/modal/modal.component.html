@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Supprimer l'utilisateur</h1>
+<mat-dialog-content>
+  Êtes-vous certain de vouloir supprimer l'utilisateur {{data.nom}} {{data.id}}?
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close mat-dialog-close="true">Annuler</button>
+  <button mat-button mat-dialog-close mat-dialog-close="false" cdkFocusInitial routerLink="/admin">Supprimer</button>
+</mat-dialog-actions>

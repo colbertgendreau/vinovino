@@ -1,0 +1,32 @@
+<div>
+    <h1>Ajouter un administrateur</h1>
+</div>
+
+<form>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Nom</mat-label>
+        <input matInput [(ngModel)]="utilisateur.name" name="name">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Courriel</mat-label>
+        <input type="email" matInput [(ngModel)]="utilisateur.email" name="email">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Mot de passe</mat-label>
+        <input type="password" matInput [(ngModel)]="utilisateur.password" name="password">
+    </mat-form-field>
+
+    <mat-form-field class="hidden" appearance="fill">
+        <mat-label>Type d'usager</mat-label>
+        <input disabled matInput [(ngModel)]="utilisateur.type" name="type">
+    </mat-form-field>
+
+    <div class="boutons">
+        <button mat-stroked-button color="primary" (click)="ajouter('Administrateur ajouté!', '👨‍💼')">Ajouter l'administrateur</button>
+        <button mat-stroked-button color="basic" (click)="ngOnInit()">Rétablir les champs</button>
+    </div>
+    
+</form>
