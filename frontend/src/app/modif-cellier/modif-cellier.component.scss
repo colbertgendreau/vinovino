@@ -14,7 +14,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        width: 100%;
+        min-width: 100%;
         background-color: var(--white);
         align-items: center;
         margin-inline: var(--big);
@@ -23,9 +23,10 @@
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
         div {
-
+            min-width: 100%;
             display: flex;
             flex-direction: column;
+            align-items: center;
 
             label {
                 margin-top: var(--biggest);
@@ -37,14 +38,14 @@
                 height: var(--biggest);
                 border-radius: var(--border-radius5);
                 border: solid var(--smallest) var(--black);
-                width: 200px;
+                width: calc(100% - (var(--biggest) + var(--bigger)));
                 padding-left: var(--small);
             }
 
             button {
                 margin-top: var(--big);
                 margin-bottom: var(--biggest);
-                margin-inline: var(--small);
+                // margin-inline: var(--small);
                 height: var(--biggest);
                 border-radius: var(--border-radius);
                 border-style: none;
@@ -53,6 +54,7 @@
                 font-weight: var(--bold);
                 background-color: var(--secondaire);
                 color: var(--black);
+                width: calc(100% - var(--biggest));
             }
 
             button:hover {

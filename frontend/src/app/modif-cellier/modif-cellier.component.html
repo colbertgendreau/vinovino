@@ -1,13 +1,16 @@
 <div class="modifier-cellier-component">
     <h1>Modifier un cellier</h1>
-     <form [formGroup]="cellierForm" (ngSubmit)="modifier()">
+    <form [formGroup]="cellierForm" (ngSubmit)="modifier()">
         <div>
             <label for="nom">Nom du cellier</label>
             <input type="text" formControlName="nom" value="{{unCellier?.nom}}">
-            <div *ngIf="cellierForm.controls['nom'].invalid && (cellierForm.controls['nom'].dirty || cellierForm.controls['nom'].touched)" class="message-erreur">
-                <span *ngIf="cellierForm.controls['nom']?.errors?.['required']">Le nom est requis.</span>
-              </div>
+            <div *ngIf="cellierForm.controls['nom'].invalid && (cellierForm.controls['nom'].dirty || cellierForm.controls['nom'].touched)"
+                class="message-erreur">
+                <div *ngIf="cellierForm.controls['nom']?.errors?.['required']">Le nom est requis.</div>
+                <div *ngIf="cellierForm.controls['nom']?.errors?.['maxlength']">Doit comporter un maximum de 20
+                    caractères</div>
+            </div>
             <button type="submit">Modifier</button>
         </div>
-    </form>  
+    </form>
 </div>
