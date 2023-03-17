@@ -36,6 +36,19 @@ div {
         text-decoration: none;
     }
 
+    .btn-effacer{
+        background: none;
+        border: none;
+        padding: 0;
+        position: absolute;
+        top: var(--smaller);
+        right: var(--smaller);
+    }
+
+    .btn-effacer{
+        cursor: pointer;
+    }
+    
     .icones {
         height: var(--big);
     }

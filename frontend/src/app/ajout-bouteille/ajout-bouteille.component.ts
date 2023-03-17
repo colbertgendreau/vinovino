@@ -37,6 +37,11 @@ export class AjoutBouteilleComponent implements OnInit{
   nouvelleBouteille:Imesbouteilles;
   isDataSelected:boolean;
 
+  spin: boolean;
+  hide: boolean;
+  hideForm: boolean = false;
+
+
   formSubmitted = false;
   
   
@@ -59,64 +64,63 @@ export class AjoutBouteilleComponent implements OnInit{
   }
 
   filterData(searchTerm: string) {
-    if (this.searchTerm === '') {
-      this.filteredData = [];
-    }else{
-
-      this.filteredData = this.arrayBouteille.filter(item =>
-        item.nom.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    this.spin = true;
+    if (searchTerm.length < 3) {
+        this.filteredData = [];
+      }else{
+  
+        console.log("recherche commencé");
+        
+        
+        if (this.searchTerm === '') {
+            this.filteredData = [];
+          }else{
+              this.spin = true;
+              this.hide = true;
+              this.hideForm = true;
+              
+        this.filteredData = this.arrayBouteille.filter(item =>
+          item.nom.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }
+      this.spin = false;
+      this.hide = false;
     }
-  }
+}
 
   selectData(bouteille: any) {
+    window.scroll({ 
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
+    this.hideForm = false;
+
     this.selectedData = bouteille;
     console.log(this.selectedData);
     
     this.ajouterBouteilleForm.patchValue({
-      id:bouteille.id,
-      nom: bouteille.nom,
-      type: bouteille.type,
-      format: bouteille.format,
-      prix_saq: bouteille.prix_saq,
-      pays: bouteille.pays,
-      description: bouteille.description,
+        id:bouteille.id,
+        nom: bouteille.nom,
+        type: bouteille.type,
+        format: bouteille.format,
+        prix_saq: bouteille.prix_saq,
+        pays: bouteille.pays,
+        description: bouteille.description,
+        quantite: 1,
+  
       
 
     });
     this.filteredData = [];
     this.isDataSelected = true; // set the flag to true when data is selected
-    // const idControl = this.ajouterBouteilleForm.get('id');
-    // if (idControl) {
-    //   idControl.disable();
-    // }
-    
-    // const nomControl = this.ajouterBouteilleForm.get('nom');
-    // if (nomControl) {
-    //   nomControl.disable();
-    // }
-
-    // const controls = this.ajouterBouteilleForm.controls;
-    // Object.keys(controls).forEach(controlName => controls[controlName].disable());
+    console.log('isDataSelected:', this.isDataSelected); // add this line
   }
 
   onInputChange() {
     this.isDataSelected = false;
     
-    // const idControl = this.ajouterBouteilleForm.get('id');
-    // if (idControl) {
-    //   idControl.enable();
-    // }
-    
-    // const nomControl = this.ajouterBouteilleForm.get('nom');
-    // if (nomControl) {
-    //   nomControl.enable();
-    // }
-
-    // const controls = this.ajouterBouteilleForm.controls;
-    // Object.keys(controls).forEach(controlName =>
-    //   controls[controlName].enable()
-    // );
   }
 
   ajouter() {
@@ -128,7 +132,7 @@ export class AjoutBouteilleComponent implements OnInit{
         
         nouvelleBouteille.celliers_id = params['id'];
         this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
-          this.router.navigate(['liste-cellier']);
+          this.router.navigate(['cellier/'+nouvelleBouteille.celliers_id]);
         });
     });
     }
@@ -145,7 +149,6 @@ export class AjoutBouteilleComponent implements OnInit{
   }
 
   
-
 
   ngOnInit(): void {
 
@@ -175,6 +178,5 @@ export class AjoutBouteilleComponent implements OnInit{
       
     });
   }
-
 
 }
