@@ -6,36 +6,35 @@ import { UserProfileComponent } from './compte-utilisateur/user-profile/user-pro
 
 import { GardienLoginGuard } from './gardien-login.guard';
 
-import { EnteteComponent } from './entete/entete.component';
-import { AccueilComponent } from './accueil/accueil.component';
+
 import { CellierComponent } from './cellier/cellier.component';
 import { ListeCellierComponent } from './liste-cellier/liste-cellier.component';
 import { AjoutBouteilleComponent } from './ajout-bouteille/ajout-bouteille.component';
 import { ModifBouteilleComponent } from './modif-bouteille/modif-bouteille.component';
 import { ModifCellierComponent } from './modif-cellier/modif-cellier.component';
 import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
+import {environment} from "../environments/environment";
 
 const routes: Routes = [
 //   { path: '', redirectTo: 'accueil', pathMatch: 'full' , title: 'Accueil' },
 //   { path: '', component: SigninComponent , title: 'Connection' },
-  { path: '', component: ListeCellierComponent, canActivate:[GardienLoginGuard] },
-  { path: 'connexion', component: SigninComponent , title: 'Connection' },
+//  { path: '/xyc', component: ListeCellierComponent, canActivate:[GardienLoginGuard] },
+
   { path: 'inscription', component: SignupComponent , title: 'Inscription' },
   { path: 'profile', component: UserProfileComponent, canActivate:[GardienLoginGuard] , title: 'Profile' },
 
 //   { path: 'accueil', component: AccueilComponent },
-  { path: 'liste-cellier', component: ListeCellierComponent, canActivate:[GardienLoginGuard] },
-  { path: 'cellier/:id', component: CellierComponent, canActivate:[GardienLoginGuard] },
-  { path: 'ajouter-bouteille/:id', component: AjoutBouteilleComponent, canActivate:[GardienLoginGuard] },
-  { path: 'modifier-bouteille/:id', component: ModifBouteilleComponent, canActivate:[GardienLoginGuard] },
-  { path: 'ajouter-cellier', component: AjoutCellierComponent, canActivate:[GardienLoginGuard] },
-  { path: 'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] },
-
-
+  { path: environment.profilPrefix+'liste-cellier', component: ListeCellierComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'cellier/:id', component: CellierComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'ajouter-bouteille/:id', component: AjoutBouteilleComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'modifier-bouteille/:id', component: ModifBouteilleComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'ajouter-cellier', component: AjoutCellierComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] },
+  { path: 'connexion', component: SigninComponent , title: 'Connection' }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { enableTracing: true })],
   exports: [RouterModule],
 })
 
