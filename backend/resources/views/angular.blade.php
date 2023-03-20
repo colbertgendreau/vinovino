@@ -15,7 +15,11 @@
 <!--  Colberrt icons-->
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="../src/drunk.png">
+<<<<<<< HEAD
+  <link rel="apple-touch-icon" href="assets/src/drunk.png">
+=======
   <link rel="apple-touch-icon" href="../src/drunk.png">
+>>>>>>> fix-routes
   <link rel="apple-touch-icon-precomposed" href="../src/drunk.png">
 
   <meta name="theme-color" content="#1976d2">

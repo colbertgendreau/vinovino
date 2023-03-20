@@ -38,6 +38,22 @@
             "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
+            "dev": {
+              "outputPath": "dist/",
+              "baseHref": "/assets/",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.development.ts"
+                }
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -57,16 +73,6 @@
               "deployUrl": "/assets/angular/",
               "outputHashing": "all"
             },
-            "dev": {
-              "outputPath": "dist/",
-              "baseHref": "/assets/",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
-                }
-              ]
-            },
             "staging": {
               "outputPath": "../backend/public/assets/angular",
               "deployUrl": "/assets/angular/",
@@ -75,20 +81,6 @@
                 {
                   "replace": "src/environments/environment.ts",
                   "with": "src/environments/environment.stage.ts"
-                }
-              ]
-            },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
                 }
               ]
             }
