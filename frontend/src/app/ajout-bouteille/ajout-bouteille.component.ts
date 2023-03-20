@@ -10,7 +10,6 @@ import { FetchService } from '../fetch.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { Imesbouteilles } from '../imesbouteilles';
 import { ActivatedRoute } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
 
 // User interface
 export class User {
@@ -38,6 +37,11 @@ export class AjoutBouteilleComponent implements OnInit{
   nouvelleBouteille:Imesbouteilles;
   isDataSelected:boolean;
 
+  spin: boolean;
+  hide: boolean;
+  hideForm: boolean = false;
+
+
   formSubmitted = false;
   
   
@@ -60,29 +64,52 @@ export class AjoutBouteilleComponent implements OnInit{
   }
 
   filterData(searchTerm: string) {
-    if (searchTerm.length < 3) {
-      this.filteredData = [];
-    }else{
-
-      this.filteredData = this.arrayBouteille.filter(item =>
-        item.nom.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+    this.clearForm();
+      this.hideForm = false;
+      if (searchTerm.length < 3) {
+          this.filteredData = [];
+        }else{
+          this.spin = true;
+  
+        if (this.searchTerm === '') {
+            this.filteredData = [];
+          }else{
+              this.spin = true;
+              this.hide = true;
+              this.hideForm = true;
+              
+        this.filteredData = this.arrayBouteille.filter(item =>
+          item.nom.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+      }
+      this.spin = false;
+      this.hide = false;
     }
-  }
+}
 
   selectData(bouteille: any) {
+    window.scroll({ // pour scroll up quand on clique sur une bouteille
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
+    this.hideForm = false;
+
     this.selectedData = bouteille;
     console.log(this.selectedData);
     
     this.ajouterBouteilleForm.patchValue({
-      id:bouteille.id,
-      nom: bouteille.nom,
-      type: bouteille.type,
-      format: bouteille.format,
-      prix_saq: bouteille.prix_saq,
-      pays: bouteille.pays,
-      description: bouteille.description,
-      quantite: 1,
+        id:bouteille.id,
+        nom: bouteille.nom,
+        type: bouteille.type,
+        format: bouteille.format,
+        prix_saq: bouteille.prix_saq,
+        pays: bouteille.pays,
+        description: bouteille.description,
+        quantite: 1,
+  
+      
 
     });
     this.filteredData = [];
@@ -111,19 +138,31 @@ export class AjoutBouteilleComponent implements OnInit{
   }
 
   clearForm() {
+    window.scroll({ // pour scroll up quand on clique sur une bouteille
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
     this.isDataSelected = false;
     const controls = this.ajouterBouteilleForm.controls;
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue('');
     });
   
-    this.searchTerm = '';
+    // this.searchTerm = '';
   }
 
   
 
-
   ngOnInit(): void {
+
+    window.scroll({ // pour scroll up quand on arrive sur la page
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
 
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
@@ -144,13 +183,12 @@ export class AjoutBouteilleComponent implements OnInit{
       pays: [''],
       format: [''],
       prix_saq: [''],
-      quantite: [1, [Validators.required, Validators.pattern(/^-?[0-9]+(\.[0-9]*)?$/)]],
+      quantite: ['', [Validators.required, Validators.pattern(/^-?[0-9]+(\.[0-9]*)?$/)]],
       description: [''],
       
 
       
     });
   }
-
 
 }

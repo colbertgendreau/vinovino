@@ -1,25 +1,16 @@
 .monCellier {
   h1 {
     margin-block: var(--big);
+    font-size: 1.5rem;
   }
 
-  // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
   background-attachment: fixed;
   height: 100%;
-  padding: 85px var(--big) calc(100vh - 122px);
+  padding: 85px var(--big) 115px;
   display: flex;
   flex-direction: column;
   gap: var(--big);
   text-align: center;
-
-  //   text-align: center;
-  //   display: flex;
-  //   align-items: center;
-  //   flex-direction: column;
-  //   align-items: stretch;
-  //   padding: var(--small);
-  //   padding-bottom: 100px;
-  //   padding-top: 63px;
 
   .bouteille {
     margin-bottom: var(--small);
@@ -34,44 +25,47 @@
     align-items: center;
     padding: var(--small);
     border-radius: var(--border-radius15);
-    
+
 
     // border: 5px solid rgb(228, 228, 228);
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
+    position:relative;
+
+
+    .btn-effacer {
+        all: unset;
+        background-image: url(../../assets/icones/trash-347.png);
+        height: var(--big);
+        width: var(--big);
+        background-size: cover;
+        object-position: center;
+        cursor: pointer;
+          }
+
+    .icones {
+      height: var(--big);
+  }
+
+
     .card-bouteille-haut {
       display: flex;
-    //   justify-content: space-between;
+      //   justify-content: space-between;
       width: 100%;
-      // border-bottom: 5px solid var(--secondaire-turquoise);
-    //   border-bottom: 1px solid rgb(228, 228, 228);
-    //   padding-bottom: var(--small);
-    //   margin-bottom: var(--smaller);
-
       div {
         text-align: start;
         display: flex;
         flex-direction: column;
       }
 
-      // .image-bouteille {
-      //   min-width: 75px;
-      // }
-
       picture img {
         max-width: 80px;
         margin-inline: -24px;
       }
-
       .info-bouteille {
-
-        //   justify-content: space-between;
-        //   min-width: 245px;
         min-width: 4ch;
-        margin-right: var(--big);
-        margin-left: var(--small);
-
+        margin-inline: var(--small);
 
         div {
           display: flex;
@@ -79,34 +73,27 @@
           align-items: center;
           padding-block: var(--smallest);
         }
-
         .icone-vin {
           background: url(../../assets/img/wineicon.png);
-          // background:red;
           height: var(--big);
           width: var(--big);
           background-size: cover;
           object-position: center;
         }
-
         .icone-location {
           background: url(../../assets/img/locationicon.png);
-          // background:red;
           height: var(--big);
           width: var(--big);
           background-size: cover;
           object-position: center;
         }
-
         .icone-dollar {
           background: url(../../assets/img/dollaricon.png);
-          // background:red;
           height: var(--big);
           width: var(--big);
           background-size: cover;
           object-position: center;
         }
-
         h3 {
           margin-bottom: var(--small);
           word-break: break-all;
@@ -116,7 +103,7 @@
             0.9375rem,
             0.5729166666666666rem + 1.8229166666666667vw,
             3.125rem
-          ); //   font-size: clamp(0.9375rem, 0.49999999999999994rem + 2.1875vw, 3.125rem);
+          ); 
         }
 
         p {
@@ -129,7 +116,7 @@
       align-self: flex-start;
       width: 100%;
 
-      a{
+      a {
         text-decoration: none;
       }
 
@@ -149,75 +136,113 @@
       }
     }
   }
-  .ajouter-bouteille {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: var(--small);
-    margin-bottom: var(--small);
-    margin-inline: var(--big);
-    height: var(--biggest);
-    border-radius: var(--border-radius);
-    border-style: none;
-    border: solid var(--smallest) var(--secondaire);
-    font-size: var(--med);
-    font-weight: var(--bold);
-    background-color: var(--secondaire);
-    color: var(--black);
-    position: fixed;
-    bottom: var(--big);
-    padding: 8px;
-    right: 0;
-    left: 0;
-    z-index: 2;
-    text-decoration: none;
-    color: var(--black);
-  }
-}
 
-.return a{
+  .footer {
+    background: var(--secondaire);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    //   margin-inline: var(--big);
+      position: fixed;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      z-index: 2;
+      height: 63px;
+      padding-inline: var(--big);
+      
+      .up {
+          background-image: url(../../assets/icones/upblanc.png);
+          height: var(--biggest);
+          width: var(--biggest);
+          background-size: cover;
+          object-position: center;
+          z-index: 3;
+          
+        }
+        .back {
+            background: blue($color: #000000);
+        z-index: 3;
+        background-image: url(../../assets/icones/backblanc.png);
+        height: var(--biggest);
+        width: var(--biggest);
+        background-size: cover;
+        object-position: center;
+    
+    }
+    
+      
+      .ajouter-bouteille {
+          display: flex;
+          align-items: center;
+        //   padding: 8px;
+          text-decoration: none;
+        //   margin-bottom: var(--small);
+        //   margin-inline: var(--small);
+          height: var(--biggest);
+        //   border-radius: var(--border-radius);
+          border-style: none;
+          font-size: var(--med);
+          font-weight: var(--bold);
+          background-color: var(--secondaire);
+          color: var(--white);
+          max-width: 10ch;
+        }
+    }
+    }
+
+.return a {
   text-decoration: none;
-
 }
-
 .plus {
-    all: unset;
-    background-image: url(../../assets/icones/addbleu.png);
-    height: var(--biggest);
-    width: var(--biggest);
-    background-size: cover;
-    object-position: center;
-    cursor: pointer;
+  all: unset;
+  background-image: url(../../assets/icones/addbleu.png);
+  height: var(--big);
+  width: var(--big);
+  background-size: cover;
+  object-position: center;
+  cursor: pointer;
 
 }
-
 .moins {
-    all: unset;
-    background-image: url(../../assets/icones/minusblue.png);
-    height: var(--biggest);
-    width: var(--biggest);
-    background-size: cover;
-    object-position: center;
-    cursor: pointer;
+  all: unset;
+  background-image: url(../../assets/icones/minusblue.png);
+  height: var(--big);
+  width: var(--big);
+  background-size: cover;
+  object-position: center;
+  cursor: pointer;
 }
-
 .quantite {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: auto;
-    justify-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  justify-self: flex-end;
+  justify-content: space-between;
 }
-
 .modifier {
-    background-image: url(../../assets/icones/editpeche.png);
-    height: var(--biggest);
-    width: var(--biggest);
-    background-size: cover;
-    object-position: center;
+  background-image: url(../../assets/icones/edit-gris.png);
+  height: var(--big);
+  width: var(--big);
+  background-size: cover;
+  object-position: center;
 
-    margin-bottom: var(--small);
+//   margin-bottom: var(--small);
 }
+
+.modifier-gris {
+  background-image: url(../../assets/icones/edit-black.png);
+  height: var(--big);
+  width: var(--big);
+  background-size: cover;
+  object-position: center;
+
+//   margin-bottom: var(--small);
+}
+
+
+
 
 // spinner //
 .lds-ripple {
@@ -226,6 +251,7 @@
   width: 80px;
   height: 80px;
 }
+
 .lds-ripple div {
   position: absolute;
   border: 4px solid #cef;
@@ -233,9 +259,11 @@
   border-radius: 50%;
   animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
 }
+
 .lds-ripple div:nth-child(2) {
   animation-delay: -0.5s;
 }
+
 @keyframes lds-ripple {
   0% {
     top: 36px;
@@ -244,6 +272,7 @@
     height: 0;
     opacity: 0;
   }
+
   4.9% {
     top: 36px;
     left: 36px;
@@ -251,6 +280,7 @@
     height: 0;
     opacity: 0;
   }
+
   5% {
     top: 36px;
     left: 36px;
@@ -258,6 +288,7 @@
     height: 0;
     opacity: 1;
   }
+
   100% {
     top: 0px;
     left: 0px;

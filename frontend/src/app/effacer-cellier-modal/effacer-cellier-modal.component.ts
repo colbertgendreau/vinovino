@@ -3,9 +3,9 @@ import { FetchService } from '../fetch.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-effacer-modal',
-  templateUrl: './effacer-modal.component.html',
-  styleUrls: ['./effacer-modal.component.scss']
+  selector: 'app-effacer-cellier-modal',
+  templateUrl: './effacer-cellier-modal.component.html',
+  styleUrls: ['./effacer-cellier-modal.component.scss']
 })
 export class EffacerModalComponent {
   @Input() id!: number;
@@ -20,6 +20,12 @@ export class EffacerModalComponent {
 
 
   confirmer() {
+    window.scroll({ // pour scroll up quand on arrive sur la page
+        top: 0, 
+        left: 0, 
+        behavior: 'smooth' 
+    });
+
     this.isVisible = false;
     this.fetchService.supprimerCellier(this.id).subscribe((retour) => {
       this.itemEfface.emit();

@@ -19,9 +19,13 @@ import { ModifCellierComponent } from './modif-cellier/modif-cellier.component';
 import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
 import { MesBouteillesComponent } from './mes-bouteilles/mes-bouteilles.component';
 import { ListeMesbouteillesComponent } from './liste-mesbouteilles/liste-mesbouteilles.component';
-import { EffacerModalComponent } from './effacer-modal/effacer-modal.component';
-// import { ServiceWorkerModule } from '@angular/service-worker';
 
+// import { EffacerModalComponent } from './effacer-modal/effacer-modal.component';
+
+import { EffacerBouteilleModalComponent } from './effacer-bouteille-modal/effacer-bouteille-modal.component';
+import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-modal.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+// import { ServiceWorkerModule } from '@angular/service-worker';
 
 @NgModule({
   declarations: [
@@ -39,7 +43,13 @@ import { EffacerModalComponent } from './effacer-modal/effacer-modal.component';
     AjoutCellierComponent,
     MesBouteillesComponent,
     ListeMesbouteillesComponent,
+
     EffacerModalComponent,
+
+    EffacerBouteilleModalComponent,
+
+    SpinnerComponent,
+
   ],
   imports: [
     BrowserModule,

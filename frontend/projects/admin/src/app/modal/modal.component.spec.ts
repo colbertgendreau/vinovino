@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EffacerModalComponent } from './effacer-modal.component';
+import { ModalComponent } from './modal.component';
 
-describe('EffacerModalComponent', () => {
-  let component: EffacerModalComponent;
-  let fixture: ComponentFixture<EffacerModalComponent>;
+describe('ModalComponent', () => {
+  let component: ModalComponent;
+  let fixture: ComponentFixture<ModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ EffacerModalComponent ]
+      declarations: [ ModalComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(EffacerModalComponent);
+    fixture = TestBed.createComponent(ModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

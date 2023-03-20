@@ -28,7 +28,12 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "src/assets/angular/assets",
+                "output": "/assets/angular/assets/"
+              }
             ],
             "styles": [
               "src/styles.scss"
@@ -64,7 +69,7 @@
                 {
                   "type" : "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "5kb"
                 }
               ],
               "optimization": true,
@@ -178,7 +183,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+                  "maximumError": "5kb"
                 }
               ],
               "outputPath": "../backend/public/assets/admin",

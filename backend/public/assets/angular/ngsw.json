@@ -1,12 +1,17 @@
 {
   "configVersion": 1,
 <<<<<<< HEAD
+<<<<<<< HEAD
   "timestamp": 1678986279231,
   "index": "/assets/angular/index.html",
 =======
   "timestamp": 1679114007261,
   "index": "/index.html",
 >>>>>>> fix-routes
+=======
+  "timestamp": 1679067282120,
+  "index": "/index.html",
+>>>>>>> 24195c2d22e2c37ce31aa01f92b812157b381e9a
   "assetGroups": [
     {
       "name": "app",
@@ -16,13 +21,13 @@
         "ignoreVary": true
       },
       "urls": [
-        "/assets/angular/favicon.ico",
-        "/assets/angular/index.html",
-        "/assets/angular/main.fee509a0794b1221.js",
-        "/assets/angular/manifest.webmanifest",
-        "/assets/angular/polyfills.794d7387aea30963.js",
-        "/assets/angular/runtime.89bfad0fe920d2c9.js",
-        "/assets/angular/styles.e405cdcd5ac14a06.css"
+        "/favicon.ico",
+        "/index.html",
+        "/main.2a90a4e6b7d6a079.js",
+        "/manifest.webmanifest",
+        "/polyfills.794d7387aea30963.js",
+        "/runtime.89bfad0fe920d2c9.js",
+        "/styles.e1657a6b0a34009a.css"
       ],
       "patterns": []
     },
@@ -34,6 +39,7 @@
         "ignoreVary": true
       },
       "urls": [
+<<<<<<< HEAD
 <<<<<<< HEAD
         "/assets/angular/8A_01650.3bbaaf41717d2d5d.jpg",
         "/assets/angular/BudokanRounded-Bold.2be58e7d9618daa0.ttf",
@@ -90,6 +96,8 @@
         "/assets/angular/staricon.b1e21c9667e08e32.png",
         "/assets/angular/wineicon.ba08c62c21b86ffd.png"
 =======
+=======
+>>>>>>> 24195c2d22e2c37ce31aa01f92b812157b381e9a
         "/8A_01650.3bbaaf41717d2d5d.jpg",
         "/BudokanRounded-Bold.2be58e7d9618daa0.ttf",
         "/Ruda-VariableFont_wght.af8f6ca7ee65c61b.ttf",
@@ -144,13 +152,17 @@
         "/minusblue.58d3f2b3c3ee4c9e.png",
         "/staricon.b1e21c9667e08e32.png",
         "/wineicon.ba08c62c21b86ffd.png"
+<<<<<<< HEAD
 >>>>>>> fix-routes
+=======
+>>>>>>> 24195c2d22e2c37ce31aa01f92b812157b381e9a
       ],
       "patterns": []
     }
   ],
   "dataGroups": [],
   "hashTable": {
+<<<<<<< HEAD
 <<<<<<< HEAD
     "/assets/angular/8A_01650.3bbaaf41717d2d5d.jpg": "bf4e0bdad75543d0773e01ce97fe4ee373160e92",
     "/assets/angular/BudokanRounded-Bold.2be58e7d9618daa0.ttf": "5975fc14e45a303d26bf7870cdf1d7f17fd30418",
@@ -214,6 +226,8 @@
     "/assets/angular/styles.e405cdcd5ac14a06.css": "efb840af823e889d0a4995aed0543bf1b529a960",
     "/assets/angular/wineicon.ba08c62c21b86ffd.png": "53cbc2ed91bf469a59047e89e83da105a6ea68e1"
 =======
+=======
+>>>>>>> 24195c2d22e2c37ce31aa01f92b812157b381e9a
     "/8A_01650.3bbaaf41717d2d5d.jpg": "bf4e0bdad75543d0773e01ce97fe4ee373160e92",
     "/BudokanRounded-Bold.2be58e7d9618daa0.ttf": "5975fc14e45a303d26bf7870cdf1d7f17fd30418",
     "/Ruda-VariableFont_wght.af8f6ca7ee65c61b.ttf": "9260d9685a01f8af8b70fa86e36879aa64cc4c92",
@@ -265,6 +279,7 @@
     "/dollaricon.a6db0874bd03f606.png": "33dee047c4963d7a4f611167d453bbab14977259",
     "/editpeche.8fdeca584d8ae2e9.png": "3c3d751b6534124a6085a9de9b52ea01ecdef986",
     "/favicon.ico": "4b9e280cb610e84f3dc7a295f1c75771dab0f2ef",
+<<<<<<< HEAD
     "/index.html": "c2abddb08f5da3579ec3276541c67462aefda70a",
     "/locationicon.1bd9d90c4d7b2b7c.png": "a5472ba041bdc475e1556ee5adfb99723669cf8e",
     "/main.065d96106207140e.js": "329c5913fafeb3329323e7b44cdb57a4821b8c50",
@@ -276,6 +291,18 @@
     "/styles.09abd6f18bc684b7.css": "70402f43a400ec922f2cbce29f41cfef1b6ed6f8",
     "/wineicon.ba08c62c21b86ffd.png": "53cbc2ed91bf469a59047e89e83da105a6ea68e1"
 >>>>>>> fix-routes
+=======
+    "/index.html": "57c372e18bef610b1234ac06a8e164c5af030042",
+    "/locationicon.1bd9d90c4d7b2b7c.png": "a5472ba041bdc475e1556ee5adfb99723669cf8e",
+    "/main.2a90a4e6b7d6a079.js": "9492a516eed05e26bbb9f62de6feee142fe65a69",
+    "/manifest.webmanifest": "a15018d576770add32b93eaca4bcd129e834f46f",
+    "/minusblue.58d3f2b3c3ee4c9e.png": "4b04eec853966858a29fb7822dfba55f5e1a742f",
+    "/polyfills.794d7387aea30963.js": "0b5d2ac7f91a9b9cac378b1b551f7bce1d1cfa4d",
+    "/runtime.89bfad0fe920d2c9.js": "cedf50c3e04737c71d8b05b4d80ec9ba64003b4d",
+    "/staricon.b1e21c9667e08e32.png": "00d2495ed57eb06e84243f0e585b7d386e0948f5",
+    "/styles.e1657a6b0a34009a.css": "0e64edfba919b1c1863e00d3ee9b92dce3967646",
+    "/wineicon.ba08c62c21b86ffd.png": "53cbc2ed91bf469a59047e89e83da105a6ea68e1"
+>>>>>>> 24195c2d22e2c37ce31aa01f92b812157b381e9a
   },
   "navigationUrls": [
     {
