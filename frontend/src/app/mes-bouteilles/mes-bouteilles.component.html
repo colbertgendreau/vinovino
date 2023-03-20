@@ -1,8 +1,13 @@
-<!-- <table>
+<table>
+    <div *ngFor="let filter of filters">
+        <span>{{ filter }}</span>
+        <button (click)="removeFilter(filter)">x</button>
+      </div>
+      
     <tbody>
         <tr *ngFor="let bouteille of filteredData">
             <td >{{ bouteille.nom }}</td>
             <td >cellier :{{ bouteille.celliers_nom }}</td>
         </tr>
     </tbody>
-</table> -->
+</table>

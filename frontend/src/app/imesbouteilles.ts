@@ -23,5 +23,6 @@ export interface Imesbouteilles {
     prix_bouteillePerso: number;
     quantite_bouteillePerso: number;
     description_bouteillePerso: string;
+    cellier_nom:string;
 
 }

@@ -10,6 +10,22 @@
     transition: all 0.3s ease;
     z-index: 3;
   }
+
+  div{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .recherche-input {
+    
+    margin-bottom: 20px;
+  }
+
+  .modal-input {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
   
   .modal.active {
     width: 100%;
@@ -48,6 +64,7 @@
     background: none;
     padding: 0;
     margin: 0;
+    margin-bottom: 10px;
 
   }
 

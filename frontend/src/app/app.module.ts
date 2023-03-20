@@ -61,6 +61,7 @@ import { RechercherModalComponent } from './rechercher-modal/rechercher-modal.co
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
+      
     },
   ],
   bootstrap: [AppComponent],

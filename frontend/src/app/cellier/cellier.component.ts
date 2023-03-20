@@ -27,6 +27,7 @@ export class CellierComponent implements OnInit {
   bouteilles: Array<Ibouteillecellier>;
   bouteille: Imesbouteilles;
   cellierId: string;
+  cellierNom:string;
   isSignedIn!: boolean;
   // title:string='Cellier';
   UserProfile!: User;
@@ -72,6 +73,7 @@ export class CellierComponent implements OnInit {
         .subscribe((data: any) => {
           this.bouteilles = data.data;
           
+          this.cellierNom = this.bouteilles[0].cellier_nom;
           console.log('les bouteilles du cellier');
           console.log(this.bouteilles);
         });

@@ -37,6 +37,45 @@ export class RechercherModalComponent{
   iconeTrash = '../assets/icones/trash-347.png';
   iconeModif = '../assets/icones/edit-black.png';
 
+  constructor(
+    private auth: AuthStateService,
+    public router: Router,
+    public token: TokenService,
+    public authService: AuthService,
+    public fetchService: FetchService,
+    private route: ActivatedRoute,
+  ) {
+
+    // this.listeCelliers = [];
+
+  }
+
+  ngOnInit() {
+  this.fetchService.getMesBouteilles().subscribe((data: any) => {
+    this.listeMesBouteilles = data.data;
+    for (let i = 0; i < this.listeMesBouteilles.length; i++) {
+      if (this.listeMesBouteilles[i].nom == null) {
+        this.listeMesBouteilles[i].nom = this.listeMesBouteilles[i].nom_bouteillePerso
+      }
+      if (this.listeMesBouteilles[i].type_vino_name == null) {
+        this.listeMesBouteilles[i].type_vino_name = this.listeMesBouteilles[i].type_mes_name
+      }
+      if (this.listeMesBouteilles[i].pays == null) {
+        this.listeMesBouteilles[i].pays = this.listeMesBouteilles[i].pays_bouteillePerso
+      }
+      if (this.listeMesBouteilles[i].prix_saq == null) {
+        this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_bouteillePerso
+      }else{
+        if (this.listeMesBouteilles[i].prix_bouteillePerso == null) {
+          this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_saq;
+        }
+      }
+    }
+    console.log(this.listeMesBouteilles);
+  });
+
+}
+
   filterData(searchTerm: string) {
     console.log(searchTerm);
     
@@ -65,6 +104,7 @@ export class RechercherModalComponent{
   
       console.log(type);
       this.isVisibleM = false;
+      this.closed.emit();
       
     console.log(this.filteredData);
     
