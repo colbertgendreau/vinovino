@@ -4,6 +4,8 @@ import { AuthService } from './../../shared/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TokenService } from '../../shared/token.service';
 import { AuthStateService } from '../../shared/auth-state.service';
+import {environment} from '../../../environments/environment';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -26,11 +28,6 @@ export class SigninComponent implements OnInit {
   }
   ngOnInit() {}
   onSubmit() {
-    console.log('Je suis à l\'intérieur de signin.component.ts');
-    console.log(this.loginForm.value.name);
-    console.log(this.loginForm.value.email);
-    console.log(this.authService.signin(this.loginForm.value) +' aqui');
-
     this.authService.signin(this.loginForm.value).subscribe(
       (result) => {
         this.responseHandler(result);
@@ -42,7 +39,13 @@ export class SigninComponent implements OnInit {
         this.authState.setAuthState(true);
         this.loginForm.reset();
         // this.router.navigate(['profile']);
-        this.router.navigate(['liste-cellier']);
+        console.log(environment.profilPrefix + ' aqui/liste-cellier');
+        this.router.navigateByUrl("/"+environment.profilPrefix+'liste-cellier')
+          .then(nav => {
+            console.log(nav); // true if navigation is successful
+          }, err => {
+            console.log(err) // when there's an error
+          });
       }
     );
   }

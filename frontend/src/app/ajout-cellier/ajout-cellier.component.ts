@@ -55,7 +55,7 @@ export class AjoutCellierComponent implements OnInit {
     if (this.cellierForm.valid) {
       let unCellier: ICellier = this.cellierForm.value;
       this.fetchService.ajoutCellier(unCellier).subscribe((retour) => {
-        this.router.navigate(['liste-cellier']);
+        this.router.navigate(['profil/liste-cellier']);
       });
     }
   }

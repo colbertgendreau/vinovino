@@ -75,7 +75,7 @@ export class ListeCellierComponent implements OnInit {
    console.log(this.isVisible);
    this.id = id;
    this.isVisible = true;
-   
+
   }
 
   closeModal() {
@@ -94,7 +94,7 @@ export class ListeCellierComponent implements OnInit {
     });
   }
 
-  
+
 
 
 }
