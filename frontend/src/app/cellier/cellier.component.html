@@ -2,9 +2,16 @@
     class="monCellier">
     <h1>Mon cellier</h1>
 
+   
+
+
  <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
-
+ <div class="cellierVide" *ngIf="!bouteilles[0]">
+    <h2>Vous n'avez aucune bouteille dans ce cellier</h2>
+    <p>Pour ajouter une bouteille appuyez sur le bouton</p>
+    <span> &#8681;</span>
+</div>
 
  <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngFor="let uneBouteille of bouteilles">
 
