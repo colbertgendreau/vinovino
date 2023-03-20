@@ -1,7 +1,7 @@
 <?php
 
+use App\Http\Controllers\SpaController;
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,14 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+//Route::get('/', function () {
+//    return view('welcome');
+//});
+
+
+
+Route::group(['prefix'=>'profil'],function (){
+
+    Route::get('/{any_path}',[SpaController::class, 'index'])->where('any_path', '(.*)');
+//    Route::get('/{any_path}','SpaController@index')->where('any_path', '(.*)');
+
+    Route::get('/admin', function () {
+        return view('admin');
+    });
 });
 
-Route::group(['prefix'=>'app'],function (){
-    Route::get('/{any_path}','SpaController@index')->where('any_path', '(.*)');
+Route::get('', function () {
+    return redirect('connexion');
+});
+Route::get('connexion', function () {
+    return view('angular');
 });
 
-Route::get('/admin', function () {
-    return view('admin');
-});
+
