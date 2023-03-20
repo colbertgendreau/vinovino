@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+<<<<<<< HEAD
     <data-source source="LOCAL" name="dbegwyokxaeygv@vinovino.ca" uuid="18c5f4d0-2c92-4bf3-9f7f-cbd6820ec988">
+=======
+    <data-source source="LOCAL" name="dbegwyokxaeygv@vinovino.ca" uuid="9ef47100-6ecb-46fd-b28b-ff9ba7543316">
+>>>>>>> fix-routes
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>

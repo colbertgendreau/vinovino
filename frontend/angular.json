@@ -46,11 +46,13 @@
                   "maximumError": "1mb"
                 },
                 {
-                  "type": "anyComponentStyle",
+                  "type" : "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
                 }
               ],
+              "optimization": true,
+              "sourceMap": true,
               "outputPath": "../backend/public/assets/angular",
               "deployUrl": "/assets/angular/",
               "outputHashing": "all"
@@ -189,11 +191,13 @@
               ],
               "outputPath": "../backend/public/assets/admin",
               "deployUrl": "/assets/admin/",
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "sourceMap": true
             },
             "dev": {
-              "outputPath": "dist/assets/admin",
-              "baseHref": "/assets/ang",
+              "outputPath": "../backend/public/assets/admin",
+              "deployUrl": "/assets/admin/",
+              "sourceMap": true,
               "fileReplacements": [
                 {
                   "replace": "projects/admin/src/environments/environment.development.ts",
@@ -210,8 +214,8 @@
               "namedChunks": true,
               "fileReplacements": [
                 {
-                  "replace": "projects/admin/src/environments/environment.ts",
-                  "with": "projects/admin/src/environments/environment.development.ts"
+                  "replace": "projects/admin/src/environments/environment.development.ts",
+                  "with": "projects/admin/src/environments/environment.angular.ts"
                 }
               ]
             }
