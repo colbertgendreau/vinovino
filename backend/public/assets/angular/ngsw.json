@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1679347693640,
+  "timestamp": 1679341549417,
   "index": "/assets/angular/index.html",
   "assetGroups": [
     {
@@ -13,11 +13,12 @@
       "urls": [
         "/assets/angular/favicon.ico",
         "/assets/angular/index.html",
-        "/assets/angular/main.5a7c612a48934844.js",
+        "/assets/angular/main.3096df46e6b0d42c.js",
         "/assets/angular/manifest.webmanifest",
-        "/assets/angular/polyfills.ca5e931803a18e23.js",
-        "/assets/angular/runtime.f4714178cd93cb3d.js",
-        "/assets/angular/styles.8ecf544d1619c86a.css"
+        "/assets/angular/polyfills.12520353619540ef.js",
+        "/assets/angular/runtime.a2c1910bd63fda3c.js",
+        "/assets/angular/styles.f504c208e0ac88ae.css",
+        "/assets/angular/vendor.957b6b5150e155f9.js"
       ],
       "patterns": []
     },
@@ -43,7 +44,6 @@
         "/assets/angular/assets/icones/addpeche.png",
         "/assets/angular/assets/icones/backOrange.png",
         "/assets/angular/assets/icones/backblanc.png",
-        "/assets/angular/assets/icones/cellier.png",
         "/assets/angular/assets/icones/edit-black.png",
         "/assets/angular/assets/icones/edit-gris.png",
         "/assets/angular/assets/icones/edit.png",
@@ -117,7 +117,6 @@
     "/assets/angular/assets/icones/addpeche.png": "bfc00d46780ac1b28776d4242ea9fd892e329d28",
     "/assets/angular/assets/icones/backOrange.png": "444344c3402de4840d8d030aa0307d721ddd41d4",
     "/assets/angular/assets/icones/backblanc.png": "e81f5c1c3cd0c2677808bf64b2a07fd4bfc60595",
-    "/assets/angular/assets/icones/cellier.png": "db1c3ed54474818e74b639ace16462e450cc348d",
     "/assets/angular/assets/icones/edit-black.png": "ab0877aecf31c1f35d2ff738954e9301b6d7a0a5",
     "/assets/angular/assets/icones/edit-gris.png": "1ab870ae9d4c589670c88c321ab53d5fa2838a52",
     "/assets/angular/assets/icones/edit.png": "9eb8a101130fb36baf8cd9908d07381c49eda4d2",
@@ -166,17 +165,18 @@
     "/assets/angular/edit-black.99f94e7d17aeb1c0.png": "ab0877aecf31c1f35d2ff738954e9301b6d7a0a5",
     "/assets/angular/edit-gris.5af2fc6ca3f17db2.png": "1ab870ae9d4c589670c88c321ab53d5fa2838a52",
     "/assets/angular/favicon.ico": "4b9e280cb610e84f3dc7a295f1c75771dab0f2ef",
-    "/assets/angular/index.html": "9d26430a0fc6ef6ee5a54387581c8801d6c7a2c5",
+    "/assets/angular/index.html": "f6c62442f9dbea14456282f8aa92c5689cf79eb5",
     "/assets/angular/locationicon.1bd9d90c4d7b2b7c.png": "a5472ba041bdc475e1556ee5adfb99723669cf8e",
-    "/assets/angular/main.5a7c612a48934844.js": "f75c26367426093c2b764d91dfebf2655b42aa17",
+    "/assets/angular/main.3096df46e6b0d42c.js": "3eb2bdf096a64fb779dbb401463c387be71b26c8",
     "/assets/angular/manifest.webmanifest": "7839a3c631a458109eba1a15d885fcb08947a8f2",
     "/assets/angular/minusblue.58d3f2b3c3ee4c9e.png": "4b04eec853966858a29fb7822dfba55f5e1a742f",
-    "/assets/angular/polyfills.ca5e931803a18e23.js": "af9d286ee7a6a238d03d8bcf82bac107fb0baea6",
-    "/assets/angular/runtime.f4714178cd93cb3d.js": "7727cc2e9e92df3123ce77e9f93a0ffef1692251",
+    "/assets/angular/polyfills.12520353619540ef.js": "9b16daabc92354d253cd918b888821160d251197",
+    "/assets/angular/runtime.a2c1910bd63fda3c.js": "acbabff67feb358189559bca54d43b176e8137e2",
     "/assets/angular/staricon.b1e21c9667e08e32.png": "00d2495ed57eb06e84243f0e585b7d386e0948f5",
-    "/assets/angular/styles.8ecf544d1619c86a.css": "fd2329fd881f2f815829d0d4ff42140b338a7601",
+    "/assets/angular/styles.f504c208e0ac88ae.css": "218be3260346b1c354f199f7fc03b4aba4b799ad",
     "/assets/angular/trash-347.db2277f2d0366eef.png": "646bf29ecf18d66ef43011cb4dda43361f6774ad",
     "/assets/angular/upblanc.5fda3a5ac5104adf.png": "6b5398ca6505a974cb9a02c7d6337c264194b2c6",
+    "/assets/angular/vendor.957b6b5150e155f9.js": "34051c239b219973ba0b942a85ea1f65c3a3f0a3",
     "/assets/angular/wineicon.ba08c62c21b86ffd.png": "53cbc2ed91bf469a59047e89e83da105a6ea68e1"
   },
   "navigationUrls": [
