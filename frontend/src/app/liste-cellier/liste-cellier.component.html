@@ -9,28 +9,22 @@
 
 
     <article class="boite-cellier celliers" *ngFor="let unCellier of listeCelliers;">
-        <a class="unCellier" routerLink="/cellier/{{unCellier.id}}">
+
+        <a class="unCellier" routerLink="/profil/cellier/{{unCellier.id}}">
             <img class="iconeCellier" [src]="iconeCellier"
             alt="Icône d'ajout de bouteille">
+
             <h2>{{unCellier.nom}}</h2>
         </a>
-        <button class="btn-effacer" (click)="openModal(unCellier.id)"><img class="icones" [src]="iconeTrash"
-                alt="Icône de suppression d'un cellier"></button>
-        <a class="ajout-bouteille" routerLink="/ajouter-bouteille/{{unCellier.id}}"><img class="icones" [src]="iconeAjout"
-            alt="Icône d'ajout de bouteille"><img class="icones" [src]="iconeBouteille"
-            alt="Icône d'ajout de bouteille"></a>
-        <a class="modif-cellier" routerLink="/modifier-cellier/{{unCellier.id}}"><img class="icones" [src]="iconeModif"
-                alt="Icône de modification d'un cellier"></a>
+        <button class="btn-effacer" (click)="openModal(unCellier.id)"><img class="icones" [src]="iconeTrash" alt="Icône de suppression d'un cellier"></button>
+        <a class="ajout-bouteille"  routerLink="/profil/ajouter-bouteille/{{unCellier.id}}">Ajouter une bouteille</a>
+        <a class="modif-cellier"  routerLink="/profil/modifier-cellier/{{unCellier.id}}"><img class="icones"
+                                                                                        [src]="iconeModif" alt="Icône de modification d'un cellier"></a>
+
     </article>
-
-
-    <a class="ajouter-cellier" routerLink="/ajouter-cellier">
-        Ajouter un cellier
-    </a>
-
-
-</section>
-
-
+        <a class="ajouter-cellier" routerLink="/profil/ajouter-cellier">
+            Ajouter un cellier
+        </a>
+</div>
 <app-effacer-cellier-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()"
     (itemEfface)="rafraichirListe()"></app-effacer-cellier-modal>
