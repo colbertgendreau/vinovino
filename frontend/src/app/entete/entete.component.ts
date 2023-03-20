@@ -40,7 +40,7 @@ export class EnteteComponent implements OnInit {
   }
 
   pageCelliers() {
-    this.router.navigate(['liste-cellier']);
+    this.router.navigate(['/profil/liste-cellier']);
     this.isOpen = !this.isOpen;
   }
 
@@ -58,11 +58,11 @@ export class EnteteComponent implements OnInit {
     this.router.navigate(['inscription']);
     this.isOpen = !this.isOpen;
   }
-  
+
   signOut() {
     this.auth.setAuthState(false);
     this.token.removeToken();
-    this.router.navigate(['']);
+    this.router.navigate(['connexion']);
     this.isOpen = !this.isOpen;
   }
 
