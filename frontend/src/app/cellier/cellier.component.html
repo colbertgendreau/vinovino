@@ -51,7 +51,7 @@
 
                     <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)"></button>
                     
-                    <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
+                    <span>{{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
                     
                     <button class="moins" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)"></button>
                 </div>
