@@ -1,8 +1,10 @@
-<div>
+<section>
     <h1>Mes celliers</h1>
 
     <article class="boite-cellier celliers" *ngFor="let unCellier of listeCelliers;">
         <a class="unCellier" routerLink="/cellier/{{unCellier.id}}">
+            <img class="iconeCellier" [src]="iconeCellier"
+            alt="Icône d'ajout de bouteille">
             <h2>{{unCellier.nom}}</h2>
         </a>
         <button class="btn-effacer" (click)="openModal(unCellier.id)"><img class="icones" [src]="iconeTrash"
@@ -20,7 +22,7 @@
     </a>
 
 
-</div>
+</section>
 
 
 <app-effacer-cellier-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()"
