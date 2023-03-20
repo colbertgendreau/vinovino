@@ -13,7 +13,7 @@ import { Imesbouteilles } from './imesbouteilles';
   providedIn: 'root'
 })
 export class FetchService {
-  // Important: Ne pas utilsier http://127.0.0.1:800, à la place 'ut iliser
+  // Important: Ne pas utilsier http://127.0.0.1:800, à la place utiliser
   // private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
   //
   private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
@@ -58,10 +58,12 @@ export class FetchService {
   // }
 
   getBouteillesCellier(id:number):Observable<Ilistemesbouteilles>{
+    console.log(this.urlCellier+"/"+id + ' bouteilles udu celier');
     return this.http.get<Ilistemesbouteilles>(this.urlCellier+"/"+id);
   }
 
   getCelliers():Observable<IlisteCellier>{
+    console.log(this.urlCellier + ' celier');
     return this.http.get<IlisteCellier>(this.urlCellier);
   }
   ajoutCellier(cellier: ICellier):Observable<ICellier>{

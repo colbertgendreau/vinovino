@@ -28,12 +28,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest",
-              {
-                "glob": "**/*",
-                "input": "src/assets/angular/assets",
-                "output": "/assets/angular/assets/"
-              }
+              "src/manifest.webmanifest"
             ],
             "styles": [
               "src/styles.scss"
@@ -43,9 +38,9 @@
             "ngswConfigPath": "ngsw-config.json"
           },
           "configurations": {
-            "dev": {
+            "local": {
               "outputPath": "dist/",
-              "baseHref": "/assets/",
+              "baseHref": "/",
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -55,7 +50,25 @@
               "fileReplacements": [
                 {
                   "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.development.ts"
+                  "with": "src/environments/environment.local.ts"
+                }
+              ]
+            },
+            "stagging": {
+              "outputPath": "../backend/public/assets/angular",
+              "deployUrl": "/assets/angular/",
+              "baseHref": "/assets/angular/",
+              "outputHashing": "all",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stagging.ts"
                 }
               ]
             },
@@ -76,18 +89,8 @@
               "sourceMap": true,
               "outputPath": "../backend/public/assets/angular",
               "deployUrl": "/assets/angular/",
+              "baseHref": "/assets/angular/",
               "outputHashing": "all"
-            },
-            "staging": {
-              "outputPath": "../backend/public/assets/angular",
-              "deployUrl": "/assets/angular/",
-              "baseHref": "/assets/ang",
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.stage.ts"
-                }
-              ]
             }
           },
           "defaultConfiguration": "production"
@@ -95,20 +98,17 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "production": {
-              "browserTarget": "frontend:build:production"
-            },
-            "dev":{
-              "browserTarget": "frontend:build:dev"
+            "local":{
+              "browserTarget": "frontend:build:local"
             },
             "staging":{
               "browserTarget": "frontend:build:staging"
             },
-            "development": {
-              "browserTarget": "frontend:build:development"
+            "production": {
+              "browserTarget": "frontend:build:production"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "local"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
