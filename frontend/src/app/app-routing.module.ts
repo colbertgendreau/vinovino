@@ -14,6 +14,8 @@ import { AjoutBouteilleComponent } from './ajout-bouteille/ajout-bouteille.compo
 import { ModifBouteilleComponent } from './modif-bouteille/modif-bouteille.component';
 import { ModifCellierComponent } from './modif-cellier/modif-cellier.component';
 import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
+import { MesBouteillesComponent } from './mes-bouteilles/mes-bouteilles.component';
+
 
 const routes: Routes = [
 //   { path: '', redirectTo: 'accueil', pathMatch: 'full' , title: 'Accueil' },
@@ -29,6 +31,7 @@ const routes: Routes = [
   { path: 'modifier-bouteille/:id', component: ModifBouteilleComponent, canActivate:[GardienLoginGuard] },
   { path: 'ajouter-cellier', component: AjoutCellierComponent, canActivate:[GardienLoginGuard] },
   { path: 'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] },
+  { path: 'recherche', component: MesBouteillesComponent, canActivate:[GardienLoginGuard] },
 
 
 ];

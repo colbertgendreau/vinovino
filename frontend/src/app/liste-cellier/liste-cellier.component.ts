@@ -34,6 +34,8 @@ export class ListeCellierComponent implements OnInit {
 
   filteredData:any = [];
   searchTerm:any = '';
+  minPrice:number;
+  maxPrice:number;
   id: number;
   isVisible = false;
 
@@ -74,6 +76,16 @@ export class ListeCellierComponent implements OnInit {
         }
         if (this.listeMesBouteilles[i].type_vino_name == null) {
           this.listeMesBouteilles[i].type_vino_name = this.listeMesBouteilles[i].type_mes_name
+        }
+        if (this.listeMesBouteilles[i].pays == null) {
+          this.listeMesBouteilles[i].pays = this.listeMesBouteilles[i].pays_bouteillePerso
+        }
+        if (this.listeMesBouteilles[i].prix_saq == null) {
+          this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_bouteillePerso
+        }else{
+          if (this.listeMesBouteilles[i].prix_bouteillePerso == null) {
+            this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_saq;
+          }
         }
       }
       console.log(this.listeMesBouteilles);
@@ -126,16 +138,48 @@ export class ListeCellierComponent implements OnInit {
   }
 }
 
-filterByType(type: string) {
+  filterByType(type: string) {
   console.log(type);
+  console.log(this.filteredData);
   
-  this.filteredData = this.listeMesBouteilles.filter(bouteille => 
-    bouteille.type_vino_name == type
-    );
+  
+  if(this.filteredData.length){
+    this.filteredData = this.filteredData.filter(bouteille => 
+      bouteille.type_vino_name == type);
+  }else{
+
+    this.filteredData = this.listeMesBouteilles.filter(bouteille => 
+      bouteille.type_vino_name == type);
+  }
+
     console.log(type);
+    this.isVisibleM = false;
     
   console.log(this.filteredData);
   
+}
+
+  filterByCountry(pays: string) {
+  console.log(pays);
+  
+  this.filteredData = this.listeMesBouteilles.filter(bouteille => 
+    bouteille.pays == pays);
+    console.log(pays);
+    this.isVisibleM = false;
+    
+  console.log(this.filteredData);
+  
+}
+
+filterByPrice(minPrice: number, maxPrice: number) {
+  console.log(minPrice, maxPrice);
+
+  this.filteredData = this.listeMesBouteilles.filter(bouteille => 
+    bouteille.prix >= minPrice && bouteille.prix <= maxPrice);
+
+  this.isVisibleM = false;
+
+  console.log(this.filteredData);
 }
 
 
