@@ -41,6 +41,7 @@ export class ListeCellierComponent implements OnInit {
   iconeModif =  environment.baseImg + 'icones/edit-black.png';
   iconeAjout =  environment.baseImg + 'icones/plus-black.png';
   iconeBouteille =  environment.baseImg + 'icones/wine-bottle.png';
+  iconeCellier =  environment.baseImg + 'icones/cellier.png';
 
   constructor(
     private auth: AuthStateService,

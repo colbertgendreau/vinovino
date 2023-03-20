@@ -183,7 +183,7 @@ export class AjoutBouteilleComponent implements OnInit{
       pays: [''],
       format: [''],
       prix_saq: [''],
-      quantite: ['', [Validators.required, Validators.pattern(/^-?[0-9]+(\.[0-9]*)?$/)]],
+      quantite: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
     });
   }

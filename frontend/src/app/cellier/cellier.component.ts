@@ -135,6 +135,9 @@ export class CellierComponent implements OnInit {
         });
 
       });
+      if(this.bouteille.quantite == 0){
+        this.openModal(id);
+      }
     });
 
 

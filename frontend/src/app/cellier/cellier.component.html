@@ -2,9 +2,16 @@
     class="monCellier">
     <h1>Mon cellier</h1>
 
+   
+
+
  <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
-
+ <div class="cellierVide" *ngIf="!bouteilles[0]">
+    <h2>Vous n'avez aucune bouteille dans ce cellier</h2>
+    <p>Pour ajouter une bouteille appuyez sur le bouton</p>
+    <span> &#8681;</span>
+</div>
 
  <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngFor="let uneBouteille of bouteilles">
 
@@ -51,9 +58,9 @@
 
                     <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)"></button>
                     
-                    <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
+                    <span>{{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
                     
-                    <button class="moins" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)"></button>
+                    <button class="moins" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)" [disabled]="uneBouteille.quantite == 0" ></button>
                 </div>
 
 
@@ -70,7 +77,7 @@
     </article>
     <section class="footer">
             <div class="back" (click)="pageCelliers()"></div>
-        <a class="ajouter-bouteille" routerLink="/ajouter-bouteille/{{ cellierId }}">
+        <a class="ajouter-bouteille" routerLink="/profil/ajouter-bouteille/{{ cellierId }}">
             Ajouter une bouteille
         </a>
             <div class="up" (click)="goUp()"></div>
