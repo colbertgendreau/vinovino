@@ -15,7 +15,7 @@
   </div>
 </nav>
 <nav class="burger">
-  <a href="/recherche">Recherche</a>
+  <a class="open-modal" (click)="openModalFilter()">Recherche</a>
   
   <div class="menu-toggle">
     <input type="checkbox" (change)="onToggle($any($event.target)?.checked)" [checked]="isOpen">
@@ -35,3 +35,6 @@
     </ul>
   </div>
 </nav>
+
+
+<app-rechercher-modal [isVisibleM]="isVisibleM" (closed)="onModalClosed()"></app-rechercher-modal>

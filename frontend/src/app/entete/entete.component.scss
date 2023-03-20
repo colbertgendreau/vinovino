@@ -109,15 +109,13 @@
 
     .burger {
         position: fixed;
-
         z-index: 3;
-
         top: 0;
         // left: 0;
         right: 0;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        gap: 20px;
         background-color: var(--primaire);
         align-items: center;
         margin-bottom: 0;
@@ -164,7 +162,7 @@
     // }
     .burger .menu-toggle input {
         display: block;
-        width: 90px;
+        width: 55px;
         height: 90px;
         position: absolute;
         top: -46px;
@@ -242,6 +240,12 @@
         padding-block: var(--biggest);
         font-size: var(--biggest);
         text-align: center;
+    }
+
+    .open-modal {
+        color: white;
+        cursor: pointer;
+        align-self: center;
     }
     
     
