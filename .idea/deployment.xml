@@ -19,7 +19,8 @@
       <paths name="XAMPP INPLACE SERVER">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping local="$PROJECT_DIR$/backend" web="C:\www\vinovino\backend" />
+            <mapping local="" />
           </mappings>
         </serverdata>
       </paths>

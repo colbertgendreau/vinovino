@@ -89,7 +89,6 @@
               "sourceMap": true,
               "outputPath": "../backend/public/assets/angular",
               "deployUrl": "/assets/angular/",
-              "baseHref": "/assets/angular/",
               "outputHashing": "all"
             }
           },
