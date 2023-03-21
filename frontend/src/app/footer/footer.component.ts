@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { CellierComponent } from '../cellier/cellier.component';
@@ -17,6 +17,9 @@ import { ModifBouteilleComponent } from '../modif-bouteille/modif-bouteille.comp
 })
 export class FooterComponent {
 
+    @Input() id!: number;
+
+
     pageActuelle:object;
     idCellier:number;
 
@@ -25,7 +28,7 @@ export class FooterComponent {
     constructor(
         public router: Router,
         private route: ActivatedRoute,
-        private boutonAjouterBouteille: AjoutBouteilleComponent,
+        // private boutonAjouterBouteille: AjoutBouteilleComponent,
     ) {}
 
     
@@ -58,7 +61,10 @@ export class FooterComponent {
         } else if(this.pageActuelle == ModifCellierComponent) {
             this.router.navigate(['liste-cellier']);   
         } else if(this.pageActuelle == ModifBouteilleComponent) {
-            this.router.navigate(['liste-cellier']);   
+            this.router.navigate(['/cellier/'+this.id]);
+            
+
+            // this.router.navigate(['liste-cellier']);   
         }
         
         window.scroll({ // pour scroll up 

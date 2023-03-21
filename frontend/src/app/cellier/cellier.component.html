@@ -41,15 +41,6 @@
             </div>
         </div>
     </article>
-    <!--
-        <section class="footer">
-            <div class="back" (click)="pageCelliers()"></div>
-            <a class="ajouter-bouteille" routerLink="/ajouter-bouteille/{{ cellierId }}">
-                Ajouter une bouteille
-            </a>
-            <div class="up" (click)="goUp()"></div>
-        </section>
-    -->
 </section>
-<app-footer class="footerCellier"></app-footer>
+    <app-footer class="footerCellier"></app-footer>
 <app-effacer-bouteille-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()" (itemEfface)="rafraichirListe()"></app-effacer-bouteille-modal>
