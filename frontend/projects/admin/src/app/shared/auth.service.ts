@@ -21,11 +21,11 @@ export class AuthService {
   register(user: User): Observable<any> {
 
     if (isDevMode()) {
-      console.log('Development frontend!');
+      console.log('Development admin!');
       console.log(environment.apiUrl);
       return this.http.post<any>(environment.apiUrl+'/api/auth/register', user);
     } else {
-      console.log('Production frontend!');
+      console.log('Production admin!');
       console.log(environment.apiUrl);
       return this.http.post<any>(environment.apiUrl+'/api/auth/register', user);
     }
@@ -45,11 +45,11 @@ export class AuthService {
   signin(user: User): Observable<any> {
 
     if (isDevMode()) {
-      console.log('Development frontend!');
+      console.log('Development admin!');
       console.log(environment.apiUrl);
       return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
     } else {
-      console.log('Production fronted!');
+      console.log('Production admin!');
       console.log(environment.apiUrl);
       return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
     }

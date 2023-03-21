@@ -86,7 +86,7 @@ export class AjoutAdminComponent implements OnInit {
       () => {
         this.registerForm.reset();
         this.snackBar.open(message, action, { duration: 5000 });
-        this.router.navigate(['liste-usager']);
+        this.router.navigate(['admin/liste-usager']);
       }
     );
   }

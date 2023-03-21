@@ -9,9 +9,9 @@ import { ListeUsagerComponent } from './liste-usager/liste-usager.component';
 
 const routes: Routes = [
   { path : "admin", component : ConnexionAdminComponent},
-  { path : "liste-usager", component : ListeUsagerComponent, canActivate:[GardienLoginAdminGuard]},
-  { path : "catalogue", component : ListeCatalogueComponent, canActivate:[GardienLoginAdminGuard]},
-  { path : "ajout-admin", component : AjoutAdminComponent, canActivate:[GardienLoginAdminGuard]},
+  { path : "admin/liste-usager", component : ListeUsagerComponent, canActivate:[GardienLoginAdminGuard]},
+  { path : "admin/catalogue", component : ListeCatalogueComponent, canActivate:[GardienLoginAdminGuard]},
+  { path : "admin/ajout-admin", component : AjoutAdminComponent, canActivate:[GardienLoginAdminGuard]},
 ];
 
 @NgModule({
