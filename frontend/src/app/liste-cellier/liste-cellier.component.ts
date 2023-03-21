@@ -36,6 +36,8 @@ export class ListeCellierComponent implements OnInit {
 
   id: number;
   isVisible = false;
+  spin: boolean = true;
+  hide: boolean = true;
 
   iconeTrash =  environment.baseImg + 'icones/trash-347.png';
   iconeModif =  environment.baseImg + 'icones/edit-black.png';
@@ -65,6 +67,8 @@ export class ListeCellierComponent implements OnInit {
     this.fetchService.getCelliers().subscribe((data: any) => {
       this.listeCelliers = data.data;
       console.log(this.listeCelliers);
+      this.spin = false;
+      this.hide = false;
     });
 
   }

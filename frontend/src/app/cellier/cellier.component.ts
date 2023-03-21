@@ -69,9 +69,9 @@ export class CellierComponent implements OnInit {
   ngOnInit() {
 
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
 
 
@@ -136,7 +136,7 @@ export class CellierComponent implements OnInit {
         });
 
       });
-      if(this.bouteille.quantite == 0){
+      if (this.bouteille.quantite == 0) {
         this.openModal(id);
       }
     });
@@ -155,17 +155,17 @@ export class CellierComponent implements OnInit {
     this.id = id;
     this.isVisible = true;
 
-   }
+  }
 
-   closeModal() {
-     this.isVisible = false;
-   }
+  closeModal() {
+    this.isVisible = false;
+  }
 
-   onModalClosed() {
-     this.isVisible = false;
-   }
+  onModalClosed() {
+    this.isVisible = false;
+  }
 
-   rafraichirListe(){
+  rafraichirListe() {
     this.route.params.subscribe((params) => {
 
       this.cellierId = params['id'];
@@ -182,19 +182,20 @@ export class CellierComponent implements OnInit {
           this.isVisible = false;
         });
     });
-   }
+  }
+
 
 
    goUp() {
     console.log("par en haut");
 
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
 
-   }
+  }
 
 
    pageCelliers() {
@@ -202,6 +203,7 @@ export class CellierComponent implements OnInit {
         top: 0,
         left: 0,
         behavior: 'smooth'
+
     });
 
 
