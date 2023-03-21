@@ -9,6 +9,7 @@ export class User {
   email!: String;
   password!: String;
   password_confirmation!: String;
+  type!: String;
 }
 @Injectable({
   providedIn: 'root',
@@ -22,6 +23,10 @@ export class AuthService {
   // Login
   signin(user: User): Observable<any> {
     return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
+  }
+  // LoginAdmin
+  signinAdmin(user: User): Observable<any> {
+    return this.http.post<any>(environment.apiUrl+'/api/auth/loginAdmin', user);
   }
   // Access user profile
   profileUser(): Observable<any> {
