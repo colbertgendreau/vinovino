@@ -1,32 +1,88 @@
-<div>
-    <h1>Ajouter un administrateur</h1>
-</div>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" [opened]="isOpen">
+        <div>
+            <a mat-button routerLink="/admin/liste-usager" routerLinkActive="estActif">Liste des usagers</a>
+            <a mat-button routerLink="/admin/ajout-admin" routerLinkActive="estActif">Ajouter un administrateur</a>
+            <a mat-button routerLink="/admin/catalogue" routerLinkActive="estActif">Catalogue</a>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content">
 
-<form>
+            <div class="titre">
+                <h1>Ajouter un administrateur</h1>
+            </div>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Nom</mat-label>
-        <input matInput [(ngModel)]="utilisateur.name" name="name">
-    </mat-form-field>
+            <!-- <form>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Courriel</mat-label>
-        <input type="email" matInput [(ngModel)]="utilisateur.email" name="email">
-    </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Nom</mat-label>
+                    <input matInput [(ngModel)]="utilisateur.name" name="name">
+                </mat-form-field>
 
-    <mat-form-field appearance="fill">
-        <mat-label>Mot de passe</mat-label>
-        <input type="password" matInput [(ngModel)]="utilisateur.password" name="password">
-    </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Courriel</mat-label>
+                    <input type="email" matInput [(ngModel)]="utilisateur.email" name="email">
+                </mat-form-field>
 
-    <mat-form-field class="hidden" appearance="fill">
-        <mat-label>Type d'usager</mat-label>
-        <input disabled matInput [(ngModel)]="utilisateur.type" name="type">
-    </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Mot de passe</mat-label>
+                    <input type="password" matInput [(ngModel)]="utilisateur.password" name="password">
+                </mat-form-field>
 
-    <div class="boutons">
-        <button mat-stroked-button color="primary" (click)="ajouter('Administrateur ajouté!', '👨‍💼')">Ajouter l'administrateur</button>
-        <button mat-stroked-button color="basic" (click)="ngOnInit()">Rétablir les champs</button>
-    </div>
-    
-</form>
+                <mat-form-field class="hidden" appearance="fill">
+                    <mat-label>Type d'usager</mat-label>
+                    <input disabled matInput [(ngModel)]="utilisateur.type" name="type">
+                </mat-form-field>
+
+                <div class="boutons">
+                    <button mat-stroked-button color="primary" (click)="ajouter('Administrateur ajouté!', '👨‍💼')">Ajouter l'administrateur</button>
+                    <button mat-stroked-button color="basic" (click)="viderFormulaire()">Rétablir les champs</button>
+                </div>
+
+            </form> -->
+
+            <form [formGroup]="registerForm">
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Nom</mat-label>
+                    <input type="text" matInput class="form-control" formControlName="name">
+                </mat-form-field>
+                <div *ngIf="errors?.name" class="alert alert-danger mt-3">{{ errors?.name }}</div>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Courriel</mat-label>
+                    <input type="email" matInput class="form-control" formControlName="email">
+                </mat-form-field>
+                <div *ngIf="errors?.email" class="alert alert-danger mt-3">{{ errors?.email }}</div>
+
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Mot de passe</mat-label>
+                    <input type="password" matInput class="form-control" formControlName="password">
+                </mat-form-field>
+                <div *ngIf="errors?.password" class="alert alert-danger mt-3">
+                    <span>{{ errors?.password[1] }}</span>
+                    <span>{{ errors?.password[0] }}</span>
+                </div>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Confirmation du mot de passe</mat-label>
+                    <input type="password" matInput class="form-control" formControlName="password_confirmation">
+                </mat-form-field>
+
+                <mat-form-field disabled class="hidden" appearance="fill">
+                    <mat-label>Type d'usager</mat-label>
+                    <input matInput class="form-control" formControlName="type">
+                </mat-form-field>
+
+                <div class="boutons">
+                    <button mat-stroked-button color="primary" (click)="ajouter('Administrateur ajouté!', '👨‍💼')">Ajouter l'administrateur</button>
+                    <button mat-stroked-button color="basic" (click)="viderFormulaire()">Rétablir les champs</button>
+                </div>
+
+            </form>
+
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

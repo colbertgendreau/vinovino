@@ -25,9 +25,13 @@ import { ListeMesbouteillesComponent } from './liste-mesbouteilles/liste-mesbout
 import { EffacerBouteilleModalComponent } from './effacer-bouteille-modal/effacer-bouteille-modal.component';
 import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-modal.component';
 import { SpinnerComponent } from './spinner/spinner.component';
+import { FooterComponent } from './footer/footer.component';
 // import { ServiceWorkerModule } from '@angular/service-worker';
+
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { environment } from '../environments/environment';
+
 
 
 @NgModule({
@@ -52,8 +56,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     EffacerBouteilleModalComponent,
 
     SpinnerComponent,
-   
-    
+
+    FooterComponent,
+
 
   ],
   imports: [
@@ -65,7 +70,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatSnackBarModule,
     BrowserAnimationsModule,
     // ServiceWorkerModule.register('ngsw-worker.js', {
-    //   enabled: !isDevMode(),
+    //   enabled: environment.production,
     //   // Register the ServiceWorker as soon as the application is stable
     //   // or after 30 seconds (whichever comes first).
     //   registrationStrategy: 'registerWhenStable:30000'
@@ -80,4 +85,4 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

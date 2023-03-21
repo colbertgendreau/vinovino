@@ -83,8 +83,6 @@ class BouteilleController extends Controller
                 ]);
             }
 
-
-
         return ['data' => $res];
     }
 

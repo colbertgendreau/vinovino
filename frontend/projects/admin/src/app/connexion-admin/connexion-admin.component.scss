@@ -1,0 +1,63 @@
+// :host {
+//     min-width: 40vw;
+// }
+
+.content {
+    margin: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    div {
+        padding-inline: 64px;
+        padding-top: 64px;
+        padding-bottom: 32px;
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    
+        mat-form-field {
+            width: 50vw;
+        }
+    
+        .erreur {
+            color: red;
+            width: 40vw;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: flex-start;
+        }
+    
+    
+        .hidden {
+            display: none;
+        }
+    
+        div {
+            padding: 0;
+            flex-direction: row;
+    
+            button {
+                margin: 16px;
+            }
+        }
+    
+    }
+}
+
+mat-sidenav-container {
+    margin: 16px;
+    height: calc(100vh - 128px);
+}
+

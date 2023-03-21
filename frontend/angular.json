@@ -33,9 +33,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "scripts": []
           },
           "configurations": {
             "local": {
@@ -56,8 +54,8 @@
             },
             "stagging": {
               "outputPath": "../backend/public/assets/angular",
+              "baseHref": "/",
               "deployUrl": "/assets/angular/",
-              "baseHref": "/assets/angular/",
               "outputHashing": "all",
               "buildOptimizer": false,
               "optimization": false,
@@ -88,9 +86,12 @@
               "optimization": true,
               "sourceMap": true,
               "outputPath": "../backend/public/assets/angular",
+              "baseHref": "/",
               "deployUrl": "/assets/angular/",
-              "baseHref": "/assets/angular/",
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+
             }
           },
           "defaultConfiguration": "production"
@@ -173,6 +174,40 @@
             "scripts": []
           },
           "configurations": {
+            "local": {
+              "outputPath": "dist/",
+              "baseHref": "/",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "projects/admin/src/environments/environment.ts",
+                  "with": "projects/admin/src/environments/environment.development.ts"
+                }
+              ]
+            },
+            "stagging": {
+              "outputPath": "../backend/public/assets/admin",
+              "baseHref": "/",
+              "deployUrl": "/assets/admin/",
+              "outputHashing": "all",
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true,
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.stagging.ts"
+                }
+              ]
+            },
             "production": {
               "budgets": [
                 {
@@ -186,23 +221,15 @@
                   "maximumError": "5kb"
                 }
               ],
+              "optimization": true,
+              "sourceMap": true,
               "outputPath": "../backend/public/assets/admin",
+              "baseHref": "/",
               "deployUrl": "/assets/admin/",
               "outputHashing": "all",
               "sourceMap": true
             },
-            "dev": {
-              "outputPath": "../backend/public/assets/admin",
-              "deployUrl": "/assets/admin/",
-              "sourceMap": true,
-              "fileReplacements": [
-                {
-                  "replace": "projects/admin/src/environments/environment.development.ts",
-                  "with": "projects/admin/src/environments/environment.ts"
-                }
-              ]
-            },
-            "development": {
+            "development1": {
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -211,8 +238,8 @@
               "namedChunks": true,
               "fileReplacements": [
                 {
-                  "replace": "projects/admin/src/environments/environment.development.ts",
-                  "with": "projects/admin/src/environments/environment.angular.ts"
+                  "replace": "projects/admin/src/environments/environment.ts",
+                  "with": "projects/admin/src/environments/environment.development.ts"
                 }
               ]
             }
@@ -222,14 +249,17 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
+            "local":{
+              "browserTarget": "admin:build:local"
+            },
+            "staging":{
+              "browserTarget": "admin:build:staging"
+            },
             "production": {
               "browserTarget": "admin:build:production"
-            },
-            "development": {
-              "browserTarget": "admin:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "local"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

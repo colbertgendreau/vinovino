@@ -18,15 +18,15 @@ use Illuminate\Support\Facades\Route;
 //});
 
 
-
 Route::group(['prefix'=>'profil'],function (){
 
     Route::get('/{any_path}',[SpaController::class, 'index'])->where('any_path', '(.*)');
 //    Route::get('/{any_path}','SpaController@index')->where('any_path', '(.*)');
+});
 
-    Route::get('/admin', function () {
-        return view('admin');
-    });
+Route::group(['prefix'=>'admin'],function (){
+    Route::get('/{any_path}',[SpaController::class, 'admin'])->where('any_path', '(.*)');
+//    Route::get('/{any_path}','SpaController@index')->where('any_path', '(.*)');
 });
 
 Route::get('', function () {

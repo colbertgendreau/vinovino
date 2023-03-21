@@ -8,6 +8,5 @@
 
 export const environment = {
   production: true,
-  // apiUrl: 'https://vinovino.ca'
-  apiUrl: 'https://site.vinovino.ca'
+  apiUrl: 'https://site.vinovino.ca',
 };

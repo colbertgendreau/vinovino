@@ -1,0 +1,14 @@
+<section class="footer">
+
+    <div class="back" (click)="back()"></div>
+    
+    <div *ngIf="pageActuelle == 'cellier'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"><div class="icone-plus"></div></div></div>
+    <div *ngIf="pageActuelle == 'ajoutBouteille'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"></div></div>
+    <div *ngIf="pageActuelle == 'modifBouteille'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"></div></div>
+    <div *ngIf="pageActuelle == 'listeCellier'" class="ajouter" (click)="ajouter()"><div class="icone-cellier"><div class="icone-plus-rond"></div></div></div>
+    <div *ngIf="pageActuelle == 'ajoutCellier'" class="ajouter" (click)="ajouter()"><div class="icone-cellier"></div></div>
+    <div *ngIf="pageActuelle == 'modifCellier'" class="ajouter" (click)="ajouter()"><div class="icone-cellier"></div></div>
+        
+    
+    <div class="goUp" (click)="goUp()"></div>
+</section>

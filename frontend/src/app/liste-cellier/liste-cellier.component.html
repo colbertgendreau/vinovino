@@ -25,10 +25,13 @@
         <a class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"><img class="icones"
                 [src]="iconeModif" alt="Icône de modification d'un cellier"></a>
 
+
+                    <app-footer></app-footer>
+
+
+
     </article>
-    <a class="ajouter-cellier" routerLink="/profil/ajouter-cellier">
-        Ajouter un cellier
-    </a>
 </section>
+
 <app-effacer-cellier-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()"
     (itemEfface)="rafraichirListe()"></app-effacer-cellier-modal>

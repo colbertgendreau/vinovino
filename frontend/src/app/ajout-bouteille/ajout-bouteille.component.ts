@@ -138,6 +138,7 @@ export class AjoutBouteilleComponent implements OnInit {
         nouvelleBouteille.type = Number(nouvelleBouteille.type)
         console.log(nouvelleBouteille.id);
 
+
         console.log(params);
         this.present = false;
         this.fetchService
@@ -176,6 +177,7 @@ export class AjoutBouteilleComponent implements OnInit {
         
       
       });
+
     }
   }
 
