@@ -24,6 +24,9 @@ Route::group(['prefix'=>'profil'],function (){
     Route::get('/{any_path}',[SpaController::class, 'index'])->where('any_path', '(.*)');
 //    Route::get('/{any_path}','SpaController@index')->where('any_path', '(.*)');
 
+    Route::get('/admin', function () {
+        return view('admin');
+    });
 });
 
 Route::get('', function () {
@@ -31,10 +34,6 @@ Route::get('', function () {
 });
 Route::get('connexion', function () {
     return view('angular');
-});
-
-Route::get('/admin', function () {
-    return view('admin');
 });
 
 
