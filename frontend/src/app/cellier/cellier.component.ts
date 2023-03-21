@@ -36,6 +36,7 @@ export class CellierComponent implements OnInit {
   unCellier: any;
   spin: boolean = true;
   hide: boolean = true;
+  pageCellier: boolean = true;
 
   //   counter:number = 1;
   counterValue: number = 0;
@@ -183,6 +184,7 @@ export class CellierComponent implements OnInit {
     });
    }
 
+
    goUp() {
     console.log("par en haut");
 
@@ -193,6 +195,7 @@ export class CellierComponent implements OnInit {
     });
 
    }
+
 
    pageCelliers() {
         window.scroll({ // pour scroll up

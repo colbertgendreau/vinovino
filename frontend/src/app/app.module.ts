@@ -25,8 +25,10 @@ import { ListeMesbouteillesComponent } from './liste-mesbouteilles/liste-mesbout
 import { EffacerBouteilleModalComponent } from './effacer-bouteille-modal/effacer-bouteille-modal.component';
 import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-modal.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-import { ServiceWorkerModule } from '@angular/service-worker';
+import { FooterComponent } from './footer/footer.component';
+// import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { environment } from '../environments/environment';
     EffacerBouteilleModalComponent,
 
     SpinnerComponent,
+     FooterComponent,
 
   ],
   imports: [
