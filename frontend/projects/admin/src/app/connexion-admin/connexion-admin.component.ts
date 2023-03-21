@@ -1,9 +1,9 @@
 import { Component, OnInit, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'projects/admin/src/app/shared/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { TokenService } from 'src/app/shared/token.service';
-import { AuthStateService } from 'src/app/shared/auth-state.service';
+import { TokenService } from 'projects/admin/src/app/shared/token.service';
+import { AuthStateService } from 'projects/admin/src/app/shared/auth-state.service';
 
 @Component({
   selector: 'app-connexion-admin',
@@ -40,11 +40,7 @@ export class ConnexionAdminComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (isDevMode()) {
-      console.log('Development!');
-    } else {
-      console.log('Production!');
-    }
+
     // console.log(this.auth.userAuthState);
     this.authState.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
@@ -56,14 +52,20 @@ export class ConnexionAdminComponent implements OnInit {
 
   onSubmit() {
 
-    // this.authService.signinAdmin(this.loginForm.value).subscribe(      
-    this.authService.signin(this.loginForm.value).subscribe(      
+
+    // this.authService.signinAdmin(this.loginForm.value).subscribe(
+
+    this.authService.signin(this.loginForm.value).subscribe(
       (result) => {
-        this.responseHandler(result);        
+        this.responseHandler(result);
+        console.log(result);
         if (result.user.type === "1") {
+          console.log("liste-usager 1")
           this.authState.setAuthState(true);
           this.loginForm.reset();
-          this.router.navigate(['liste-usager']);
+          console.log("liste-usager 1")
+
+          this.router.navigate(['admin/liste-usager']);
         } else if (result.user.type === "0") {
           this.loginForm.reset();
           this.router.navigate(['admin']);
@@ -79,7 +81,7 @@ export class ConnexionAdminComponent implements OnInit {
       //   this.router.navigate(['liste-usager']);
       // }
 
-      
+
       // (result) => {
       //   this.responseHandler(result);
       //   console.log(result);

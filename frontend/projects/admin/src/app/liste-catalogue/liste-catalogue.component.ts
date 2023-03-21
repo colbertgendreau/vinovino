@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TokenService } from 'src/app/shared/token.service';
-import { AuthStateService } from 'src/app/shared/auth-state.service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { TokenService } from 'projects/admin/src/app/shared/token.service';
+import { AuthStateService } from 'projects/admin/src/app/shared/auth-state.service';
+import { AuthService } from 'projects/admin/src/app/shared/auth.service';
 
 @Component({
   selector: 'app-liste-catalogue',
@@ -20,7 +20,7 @@ export class ListeCatalogueComponent implements OnInit {
     public token: TokenService,
     public authService: AuthService,
   ) {}
-  
+
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;

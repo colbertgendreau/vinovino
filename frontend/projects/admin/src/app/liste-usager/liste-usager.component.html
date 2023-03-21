@@ -53,9 +53,9 @@
 <mat-sidenav-container class="example-container">
     <mat-sidenav mode="side" [opened]="isOpen">
         <div>
-            <a mat-button routerLink="/liste-usager" routerLinkActive="estActif">Liste des usagers</a>
-            <a mat-button routerLink="/ajout-admin" routerLinkActive="estActif">Ajouter un administrateur</a>
-            <a mat-button routerLink="/catalogue" routerLinkActive="estActif">Catalogue</a>
+            <a mat-button routerLink="/admin/liste-usager" routerLinkActive="estActif">Liste des usagers</a>
+            <a mat-button routerLink="/admin/ajout-admin" routerLinkActive="estActif">Ajouter un administrateur</a>
+            <a mat-button routerLink="/admin/catalogue" routerLinkActive="estActif">Catalogue</a>
         </div>
     </mat-sidenav>
     <mat-sidenav-content>
@@ -64,17 +64,17 @@
             <div class="titre">
                 <h1>Liste des usagers</h1>
             </div>
-            
+
             <section>
                 <mat-form-field>
                     <mat-label>Filtre</mat-label>
                     <input matInput (keyup)="filtrer($event)" placeholder="Exemple: Administrateur" #input>
                 </mat-form-field>
                 <div class="bouton-ajouter" >
-                  <a mat-raised-button color="primary" routerLink="/ajout-admin">Ajouter un administrateur</a>
+                  <a mat-raised-button color="primary" routerLink="/admin/ajout-admin">Ajouter un administrateur</a>
                 </div>
             </section>
-            
+
             <div class="liste">
                 <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
                     <ng-container matColumnDef="id">
@@ -101,14 +101,14 @@
                         <th mat-header-cell class="icones" *matHeaderCellDef> Supprimer </th>
                         <td mat-cell class="icones" *matCellDef="let unUsager" data-label="supprimer"><span class="mobile-label">Supprimer</span> <a (click)="supprimer(unUsager)"><mat-icon>delete</mat-icon></a> </td>
                     </ng-container>
-            
+
                     <tr class="mat-header-row" mat-header-row *matHeaderRowDef="colonnesAffichees"></tr>
                     <tr class="mat-row" mat-row class="mat-row" *matRowDef="let myRowData; columns: colonnesAffichees;"></tr>
-            
+
                     <tr *matNoDataRow>
                         <td class="mat-cell" colspan="4">Aucune donnée ne correspond au filtre "{{input.value}}"</td>
                     </tr>
-            
+
                 </table>
             </div>
 
