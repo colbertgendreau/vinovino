@@ -100,9 +100,9 @@ class BouteilleController extends Controller
     $id = $bouteille->id_bouteillePerso;
 
 
-    $res = Bouteille::leftJoin('mes_bouteilles', 'Bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
+    $res = Bouteille::leftJoin('mes_bouteilles', 'bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
     ->leftjoin('vino__type', 'vino__type.id', '=', 'mes_bouteilles.type_bouteillePerso')
-    ->where('Bouteilles.id', $bouteille->id)
+    ->where('bouteilles.id', $bouteille->id)
     ->first();
 
 
