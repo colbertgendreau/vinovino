@@ -1,5 +1,5 @@
 .footer {
-    background: rgb(205, 205, 205);
+    background: #cdcdcd;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -18,7 +18,9 @@
     animation-name: footerUp;
     animation-duration: 0.3s;
     
-
+    .hidden {
+        display: none;
+    }
 
     .goUp {
         background-image: url(../../assets/icones/upBlack.png);
@@ -42,8 +44,8 @@
   
     
     .ajouter {
-        display: flex;
-        align-items: center;
+        // display: flex;
+        align-self: start;
       //   padding: 8px;
         text-decoration: none;
       //   margin-bottom: var(--small);
@@ -56,4 +58,61 @@
         color: var(--black);
         max-width: 10ch;
       }
+
+      
+    .icone-bouteille {
+        position: relative;
+        bottom: 15px;
+        background: url(../../assets/icones/wine-bottle.png);
+        // height: var(--biggest);
+        // width: var(--biggest);
+        height: 60px;
+        width: 60px;
+        background-size: cover;
+        // object-position: center;
+    }
+    
+    .icone-cellier {
+        position: relative;
+        bottom: 13px;
+        background: url(../../assets/icones/cellierBlack.png);
+        // height: var(--biggest);
+        // width: var(--biggest);
+        height: 54px;
+        width: 54px;
+        background-size: cover;
+        // object-position: center;
+    }
+    
+    .icone-plus {
+        position: relative;
+        top: 4px;
+        left: 39px;
+
+        
+        background: url(../../assets/icones/plusWithBack.png);
+        // height: 48px;
+        // width: 48px;
+        height: var(--big);
+        width: var(--big);
+        background-size: cover;
+        // object-position: center;
+    }
+
+    .icone-plus-rond {
+        position: relative;
+        top: 0px;
+        left: 45px;
+
+        
+        background: url(../../assets/icones/plusWithBack.png);
+        // height: 48px;
+        // width: 48px;
+        height: var(--big);
+        width: var(--big);
+        background-size: cover;
+        // object-position: center;
+    }
+
+
   }
