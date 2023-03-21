@@ -67,17 +67,17 @@ class CellierController extends Controller
 
         $celliers_id = $cellier->id;
         // var_dump($cellier->id);
-        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+        // $bouteilles = bouteille::where('celliers_id', $celliers_id)->get();
 
 
-        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)
+        // $bouteilles = bouteille::where('celliers_id', $celliers_id)
         // ->leftjoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
         // ->leftjoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'id_mes_bouteilles')
         // ->leftjoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
         // ->leftjoin('vino__type', 'vino__type.id', '=', 'mes_bouteilles.type_bouteillePerso')
         // ->get();
 
-        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)
+        // $bouteilles = bouteille::where('celliers_id', $celliers_id)
         //     ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
         //     ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'id_mes_bouteilles')
         //     ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
@@ -90,8 +90,8 @@ class CellierController extends Controller
 
 
         $bouteilles = Bouteille::select(
-            'Bouteilles.id AS id_supreme',
-            'Bouteilles.*',
+            'bouteilles.id AS id_supreme',
+            'bouteilles.*',
             'vino__bouteille.id AS vino__bouteille_id',
             'vino__bouteille.*',
             'mes_bouteilles.*',
@@ -104,7 +104,7 @@ class CellierController extends Controller
         ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'bouteilles.id_mes_bouteilles')
         ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
         ->leftJoin('vino__type as type_mes', 'type_mes.id', '=', 'mes_bouteilles.type_bouteillePerso')
-        ->where('Bouteilles.celliers_id', $celliers_id)
+        ->where('bouteilles.celliers_id', $celliers_id)
         ->get();
         
         return ['data' => $bouteilles];
