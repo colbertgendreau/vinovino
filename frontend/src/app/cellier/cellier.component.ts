@@ -44,7 +44,7 @@ export class CellierComponent implements OnInit {
 
   isVisible = false;
 
-  iconeTrash = environment.baseImg + 'icones/trash-347.png';
+  imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
   constructor(
     private auth: AuthStateService,
@@ -63,14 +63,14 @@ export class CellierComponent implements OnInit {
 
   }
 
-  
+
 
   ngOnInit() {
 
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0, 
-        left: 0, 
-        behavior: 'smooth' 
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
     });
 
 
@@ -95,7 +95,7 @@ export class CellierComponent implements OnInit {
           console.log(this.bouteilles);
           this.spin = false;
           this.hide = false;
-        
+
         });
     });
   }
@@ -135,6 +135,9 @@ export class CellierComponent implements OnInit {
         });
 
       });
+      if(this.bouteille.quantite == 0){
+        this.openModal(id);
+      }
     });
 
 
@@ -142,7 +145,7 @@ export class CellierComponent implements OnInit {
 
   }
 
-  
+
   // modal d'effacement
 
   openModal(id: number) {
@@ -150,17 +153,17 @@ export class CellierComponent implements OnInit {
     console.log(this.isVisible);
     this.id = id;
     this.isVisible = true;
-    
+
    }
- 
+
    closeModal() {
      this.isVisible = false;
    }
- 
+
    onModalClosed() {
      this.isVisible = false;
    }
- 
+
    rafraichirListe(){
     this.route.params.subscribe((params) => {
 
@@ -182,24 +185,24 @@ export class CellierComponent implements OnInit {
 
    goUp() {
     console.log("par en haut");
-    
+
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0, 
-        left: 0, 
-        behavior: 'smooth' 
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
     });
 
    }
 
    pageCelliers() {
-        window.scroll({ // pour scroll up 
-        top: 0, 
-        left: 0, 
-        behavior: 'smooth' 
+        window.scroll({ // pour scroll up
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
     });
 
 
-    this.router.navigate(['liste-cellier']);
+    this.router.navigateByUrl('profil/liste-cellier');
   }
 
 
