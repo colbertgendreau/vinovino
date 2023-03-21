@@ -104,7 +104,7 @@ class CellierController extends Controller
 
         ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')
         ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'bouteilles.id_mes_bouteilles')
-
+        ->leftJoin('celliers', 'celliers.id', '=', 'bouteilles.celliers_id')
         ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
         ->leftJoin('vino__type as type_mes', 'type_mes.id', '=', 'mes_bouteilles.type_bouteillePerso')
         ->where('bouteilles.celliers_id', $celliers_id)
