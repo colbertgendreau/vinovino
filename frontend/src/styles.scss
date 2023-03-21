@@ -122,3 +122,17 @@ form {
       opacity: 0;
     }
   }
+
+  .mon-snackbar {
+
+    position: fixed !important;
+    background-color: #333;
+    bottom: 100px !important;
+    margin: 0 !important;
+    transform: translateX(-50%);
+    color: #fff;
+    font-size: 16px;
+  }
+  .mdc-button__label{
+    color: #fff;
+  }
