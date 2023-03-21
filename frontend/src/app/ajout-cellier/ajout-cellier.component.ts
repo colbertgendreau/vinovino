@@ -6,6 +6,8 @@ import { AuthService } from '../shared/auth.service';
 import { ICellier } from '../icellier';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FetchService } from '../fetch.service';
+import { MatSnackBar, MatSnackBarConfig  } from '@angular/material/snack-bar';
+
 
 // User interface
 export class User {
@@ -34,6 +36,7 @@ export class AjoutCellierComponent implements OnInit {
     public authService: AuthService,
     public fetchService: FetchService,
     private formBuilder: FormBuilder,
+    private snackBar: MatSnackBar
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
@@ -55,9 +58,22 @@ export class AjoutCellierComponent implements OnInit {
     if (this.cellierForm.valid) {
       let unCellier: ICellier = this.cellierForm.value;
       this.fetchService.ajoutCellier(unCellier).subscribe((retour) => {
+        this.openSnackBar('Cellier ajouté avec succès', 'Fermer')
         this.router.navigate(['profil/liste-cellier']);
       });
     }
   }
+
+    /**
+ * Cette fonction affiche un message de type snackbar.
+ * @param message Le message à afficher.
+ * @param action L'action à afficher sur le bouton de fermeture du snackbar.
+ */
+    openSnackBar(message: string, action: string) {
+      const config = new MatSnackBarConfig();
+      config.duration = 3000; // Set the duration to 3 seconds
+      config.panelClass = ['mon-snackbar']; // Add a custom CSS class
+      this.snackBar.open(message, action, config);
+    }
 
 }
