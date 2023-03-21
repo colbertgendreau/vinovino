@@ -27,7 +27,7 @@ export class ModifCellierComponent implements OnInit {
   isSignedIn!: boolean;
   // title:string='Liste des celliers';
   UserProfile!: User;
-  unCellier: ICellier; 
+  unCellier: ICellier;
   @Input() cellier: ICellier;
   cellierForm: FormGroup;
 
@@ -36,7 +36,7 @@ export class ModifCellierComponent implements OnInit {
     public router: Router,
     public token: TokenService,
     public authService: AuthService,
-    private route:ActivatedRoute, 
+    private route:ActivatedRoute,
     public fetchService: FetchService,
     private formBuilder: FormBuilder,
   ) {
@@ -52,9 +52,9 @@ export class ModifCellierComponent implements OnInit {
       console.log(this.isSignedIn);
     });
 
-    this.route.params.subscribe((params)=>{ 
+    this.route.params.subscribe((params)=>{
       console.log(params);
-         
+
       this.fetchService.showCellier(params['id']).subscribe((data: any) => {
         this.unCellier = data.data;
         console.log(this.unCellier);
@@ -62,10 +62,10 @@ export class ModifCellierComponent implements OnInit {
     })
 
     this.cellierForm = this.formBuilder.group({
-      nom: ['', [Validators.required]],
+      nom: ['', [Validators.required, Validators.maxLength(20)]],
     });
 
-    
+
   }
 
   modifier() {
@@ -73,11 +73,11 @@ export class ModifCellierComponent implements OnInit {
     if (this.cellierForm.valid) {
       let unCellier: ICellier = this.cellierForm.value;
       console.log(unCellier);
-      
+
       this.fetchService.modifCellier(id, unCellier).subscribe((retour) => {
-        this.router.navigate(['liste-cellier']);
+        this.router.navigate(['/profil/liste-cellier']);
       });
     }
   }
-  
+
 }

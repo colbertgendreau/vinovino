@@ -1,1 +1,21 @@
-<p>liste-catalogue works!</p>
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" [opened]="isOpen">
+        <div>
+            <a mat-button routerLink="/admin/liste-usager" routerLinkActive="estActif">Liste des usagers</a>
+            <a mat-button routerLink="/admin/ajout-admin" routerLinkActive="estActif">Ajouter un administrateur</a>
+            <a mat-button routerLink="/admin/catalogue" routerLinkActive="estActif">Catalogue</a>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content">
+
+            <div class="titre">
+                <h1>Mise à jour du catalogue</h1>
+            </div>
+
+            <section>
+            </section>
+
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

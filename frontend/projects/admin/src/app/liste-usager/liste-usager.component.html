@@ -1,14 +1,14 @@
-<div class="titre">
+<!-- <div class="titre">
     <h1>Liste des usagers</h1>
 </div>
 
 <section>
     <mat-form-field>
         <mat-label>Filtre</mat-label>
-        <input matInput (keyup)="filtrer($event)" placeholder="Exemple: bière" #input>
+        <input matInput (keyup)="filtrer($event)" placeholder="Exemple: Administrateur" #input>
     </mat-form-field>
     <div class="bouton-ajouter" >
-      <a mat-raised-button color="primary" routerLink="/ajout">Ajouter un usager</a>
+      <a mat-raised-button color="primary" routerLink="/ajout-admin">Ajouter un administrateur</a>
     </div>
 </section>
 
@@ -26,31 +26,92 @@
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Courriel </th>
             <td mat-cell *matCellDef="let unUsager" data-label="courriel"><span class="mobile-label">Courriel</span> {{unUsager.email}} </td>
         </ng-container>
+        <ng-container matColumnDef="type">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'usager </th>
+            <td mat-cell *matCellDef="let unUsager" data-label="type"><span class="mobile-label">Type d'usager</span> {{unUsager.type}} </td>
+        </ng-container>
         <ng-container matColumnDef="created_at">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Date d'ajout </th>
             <td mat-cell *matCellDef="let unUsager" data-label="date d'ajout"><span class="mobile-label">Date d'ajout</span> {{unUsager.created_at}} </td>
         </ng-container>
-        <ng-container matColumnDef="updated_at">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Date de modification </th>
-            <td mat-cell *matCellDef="let unUsager" data-label="date de modification"><span class="mobile-label">Date de modification</span> {{unUsager.updated_at}} </td>
-        </ng-container>
-        <ng-container matColumnDef="modifier">
-            <th mat-header-cell class="icones" *matHeaderCellDef> Modifier </th>
-            <td mat-cell class="icones" *matCellDef="let unUsager" data-label="modifier"><span class="mobile-label">Modifier</span> <a routerLink="/produit/{{unUsager.id_biere}}"><mat-icon>edit</mat-icon></a> </td>
-        </ng-container>
         <ng-container matColumnDef="supprimer">
             <th mat-header-cell class="icones" *matHeaderCellDef> Supprimer </th>
-            <!-- <td mat-cell class="icones" *matCellDef="let unProduit" data-label="supprimer"><span class="mobile-label">Supprimer</span> <a (click)="supprimer(unProduit)"><mat-icon>delete</mat-icon></a> </td> -->
-            <td mat-cell class="icones" *matCellDef="let unProduit" data-label="supprimer"><span class="mobile-label">Supprimer</span> <a><mat-icon>delete</mat-icon></a> </td>
+            <td mat-cell class="icones" *matCellDef="let unUsager" data-label="supprimer"><span class="mobile-label">Supprimer</span> <a (click)="supprimer(unUsager)"><mat-icon>delete</mat-icon></a> </td>
         </ng-container>
 
         <tr class="mat-header-row" mat-header-row *matHeaderRowDef="colonnesAffichees"></tr>
         <tr class="mat-row" mat-row class="mat-row" *matRowDef="let myRowData; columns: colonnesAffichees;"></tr>
 
-        <!-- Ligne affichée lorsqu'il n'y a pas de données correspondantes. -->
         <tr *matNoDataRow>
             <td class="mat-cell" colspan="4">Aucune donnée ne correspond au filtre "{{input.value}}"</td>
         </tr>
 
     </table>
-</div>
+</div> -->
+
+
+<mat-sidenav-container class="example-container">
+    <mat-sidenav mode="side" [opened]="isOpen">
+        <div>
+            <a mat-button routerLink="/admin/liste-usager" routerLinkActive="estActif">Liste des usagers</a>
+            <a mat-button routerLink="/admin/ajout-admin" routerLinkActive="estActif">Ajouter un administrateur</a>
+            <a mat-button routerLink="/admin/catalogue" routerLinkActive="estActif">Catalogue</a>
+        </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <div class="content">
+
+            <div class="titre">
+                <h1>Liste des usagers</h1>
+            </div>
+
+            <section>
+                <mat-form-field>
+                    <mat-label>Filtre</mat-label>
+                    <input matInput (keyup)="filtrer($event)" placeholder="Exemple: Administrateur" #input>
+                </mat-form-field>
+                <div class="bouton-ajouter" >
+                  <a mat-raised-button color="primary" routerLink="/admin/ajout-admin">Ajouter un administrateur</a>
+                </div>
+            </section>
+
+            <div class="liste">
+                <table mat-table [dataSource]="dataSource" matSort (matSortChange)="announceSortChange($event)">
+                    <ng-container matColumnDef="id">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+                        <td mat-cell *matCellDef="let unUsager" data-label="id"><span class="mobile-label">ID</span> {{unUsager.id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header sortActionDescription="Sort by name"> Nom </th>
+                        <td mat-cell *matCellDef="let unUsager" data-label="nom"><span class="mobile-label">Nom</span> {{unUsager.name}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="email">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Courriel </th>
+                        <td mat-cell *matCellDef="let unUsager" data-label="courriel"><span class="mobile-label">Courriel</span> {{unUsager.email}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="type">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Type d'usager </th>
+                        <td mat-cell *matCellDef="let unUsager" data-label="type"><span class="mobile-label">Type d'usager</span> {{unUsager.type}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="created_at">
+                        <th mat-header-cell *matHeaderCellDef mat-sort-header> Date d'ajout </th>
+                        <td mat-cell *matCellDef="let unUsager" data-label="date d'ajout"><span class="mobile-label">Date d'ajout</span> {{unUsager.created_at}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="supprimer">
+                        <th mat-header-cell class="icones" *matHeaderCellDef> Supprimer </th>
+                        <td mat-cell class="icones" *matCellDef="let unUsager" data-label="supprimer"><span class="mobile-label">Supprimer</span> <a (click)="supprimer(unUsager)"><mat-icon>delete</mat-icon></a> </td>
+                    </ng-container>
+
+                    <tr class="mat-header-row" mat-header-row *matHeaderRowDef="colonnesAffichees"></tr>
+                    <tr class="mat-row" mat-row class="mat-row" *matRowDef="let myRowData; columns: colonnesAffichees;"></tr>
+
+                    <tr *matNoDataRow>
+                        <td class="mat-cell" colspan="4">Aucune donnée ne correspond au filtre "{{input.value}}"</td>
+                    </tr>
+
+                </table>
+            </div>
+
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

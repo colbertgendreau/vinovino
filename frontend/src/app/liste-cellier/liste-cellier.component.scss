@@ -1,87 +1,173 @@
-div {
-    // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
-    background-attachment: fixed;
-    height: 100%;
-    padding: 85px var(--big) calc(100vh - 122px);
+section {
+  // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
+  background-attachment: fixed;
+  height: 100%;
+  padding: 85px var(--big) 115px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--big);
+
+
+  h1 {
+    text-align: center;
+    font-size: 1.5em;
+  }
+
+  .cellierVide {
+
     display: flex;
     flex-direction: column;
-    gap: var(--big);
-    
+    text-align: center;
+    align-items: center;
+    gap: var(--small);
+    margin-top: 50px;
 
-    h1 {
-        font-family: 'ruda';
-        text-align: center;
+    background-color: var(--white);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    h2 {
+      font-size: 1.2em;
     }
 
-    .boite-cellier {
-    
-        position:relative;
-
+    span {
+      font-size: 80px;
     }
+  }
 
-    .modif-cellier{
-        // color: var(--white);
-        color: var(--secondaire-turquoise);
-        position: absolute;
-        bottom: var(--smaller);
-        right: var(--smaller);
-        text-decoration: none;
-    }
+  .modif-cellier {
+    // color: var(--white);
+    color: var(--secondaire-turquoise);
+    position: absolute;
+    bottom: calc(50% - 15px);
+    right: var(--smaller);
+    text-decoration: none;
+  }
 
-    .ajout-bouteille{
-        position: absolute;
-        bottom: var(--smaller);
-        left: var(--smaller);
-        color: var(--secondaire);
-        text-decoration: none;
-    }
+  .ajout-bouteille {
+    position: absolute;
+    display: flex;
 
-    .btn-effacer{
-        background: none;
-        border: none;
-        padding: 0;
-        position: absolute;
-        top: var(--smaller);
-        right: var(--smaller);
-    }
+    bottom: var(--smaller);
+    right: var(--smaller);
+    color: var(--secondaire);
+    text-decoration: none;
+  }
 
-    .btn-effacer{
-        cursor: pointer;
-    }
-    
-    .icones {
-        height: var(--big);
-    }
+  .btn-effacer {
+    background: none;
+    border: none;
+    padding: 0;
+    position: absolute;
+    top: var(--smaller);
+    right: var(--smaller);
+  }
+
+  .btn-effacer {
+    cursor: pointer;
+  }
+
+  .icones {
+    height: var(--big);
+  }
+
+  .iconeCellier {
+    margin-right: var(--small);
+    max-width: 80px;
+    max-height: 80px;
+  }
 
 
-    .celliers {
-        // border: 1px solid var(--black);
-        height: 80px;
-        background-color: var(--white);
-        border-radius: 5px;
+  .celliers {
+    // border: 1px solid var(--black);
+    height: 80px;
+    background-color: var(--white);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    position: relative;
+
+    .unCellier {
+      text-decoration: none;
+      color: var(--black);
+      width: 100%;
+      display: flex;
+      justify-content: left;
+
+      h2 {
+        color: var(--black);
         display: flex;
-        justify-content: center;
-        padding: 20px;
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-
-        .unCellier {
-            text-decoration: none;
-            color: var(--black);
-
-            h2 {
-                color: var(--black);
-                font-family: 'ruda';
-                font-size: var(--bigger);
-                font-weight: 800;
-                display: flex;
-                align-items: center;
-
-            }
-
-        }
+        align-items: center;
+        word-break: break-all;
+        text-align: center;
+        font-size: clamp(0.9375rem,
+            0.5729166666666666rem + 1.8229166666666667vw,
+            3.125rem);
+      }
 
     }
+
+  }
+
+
+  // spinner //
+  .lds-ripple {
+    display: inline-block;
+    position: relative;
+    width: 80px;
+    height: 80px;
+  }
+
+  .lds-ripple div {
+    position: absolute;
+    border: 4px solid #cef;
+    opacity: 1;
+    border-radius: 50%;
+    animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+  }
+
+  .lds-ripple div:nth-child(2) {
+    animation-delay: -0.5s;
+  }
+
+  @keyframes lds-ripple {
+    0% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+
+    4.9% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 0;
+    }
+
+    5% {
+      top: 36px;
+      left: 36px;
+      width: 0;
+      height: 0;
+      opacity: 1;
+    }
+
+    100% {
+      top: 0px;
+      left: 0px;
+      width: 72px;
+      height: 72px;
+      opacity: 0;
+    }
+
  
         .ajouter-cellier {
             display: flex;
@@ -110,6 +196,8 @@ div {
         .ajouter-cellier:hover {
             background-color: var(--secondaire);
         }
+        
+        
     /***************************************************///// modal filtre
 
 
@@ -165,6 +253,10 @@ div {
         margin: 0;
 
       }
+
+  
+
+
 
       div {
         padding: 0;

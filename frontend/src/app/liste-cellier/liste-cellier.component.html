@@ -1,4 +1,4 @@
-<div>
+<section>
     <h1>Mes celliers</h1>
     <!-- <input class="recherche-input"
     type="text"
@@ -57,22 +57,37 @@
 </table> -->
 
 
+    <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
+
+    <div class="cellierVide" *ngIf="!listeCelliers[0] && !spin">
+        <h2>Vous n'avez aucun cellier</h2>
+        <p>Pour ajouter un cellier appuyez sur le bouton</p>
+        <span> &#8681;</span>
+    </div>
+
+
     <article class="boite-cellier celliers" *ngFor="let unCellier of listeCelliers;">
-        <a class="unCellier" routerLink="/cellier/{{unCellier.id}}">
+
+        <a class="unCellier" routerLink="/profil/cellier/{{unCellier.id}}">
+            <img class="iconeCellier" [src]="iconeCellier" alt="Icône d'ajout de bouteille">
+
             <h2>{{unCellier.nom}}</h2>
         </a>
-        <button class="btn-effacer" (click)="openModal(unCellier.id)"><img class="icones" [src]="iconeTrash" alt="Icône de suppression d'un cellier"></button>
-        <a class="ajout-bouteille"  routerLink="/ajouter-bouteille/{{unCellier.id}}">Ajouter une bouteille</a>
-        <a class="modif-cellier"  routerLink="/modifier-cellier/{{unCellier.id}}"><img class="icones" [src]="iconeModif" alt="Icône de modification d'un cellier"></a>
+        <button class="btn-effacer" (click)="openModal(unCellier.id)"><img class="icones" [src]="iconeTrash"
+                alt="Icône de suppression d'un cellier"></button>
+        <a class="ajout-bouteille" routerLink="/profil/ajouter-bouteille/{{unCellier.id}}"><img class="icones"
+            [src]="iconeAjout" alt="Icône d'ajout"><img class="icones"
+            [src]="iconeBouteille" alt="Icône de bouteille"></a>
+        <a class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"><img class="icones"
+                [src]="iconeModif" alt="Icône de modification d'un cellier"></a>
+
+
+                    <app-footer></app-footer>
+
+
+
     </article>
-    
+</section>
 
-        <a class="ajouter-cellier" routerLink="/ajouter-cellier">
-            Ajouter un cellier
-        </a>
-    
-
-</div>
-
-
-<app-effacer-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()" (itemEfface)="rafraichirListe()"></app-effacer-modal>
+<app-effacer-cellier-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()"
+    (itemEfface)="rafraichirListe()"></app-effacer-cellier-modal>

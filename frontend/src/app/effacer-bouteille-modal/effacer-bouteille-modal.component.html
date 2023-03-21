@@ -1,0 +1,10 @@
+<dialog *ngIf="isVisible" class="modal">
+    <form class="modal-interieur">
+      <h2>Confirmer la suppression</h2>
+      <p>Voulez-vous supprimer cette bouteille?</p>
+      <div class="btn-modal">
+        <button (click)="confirmer()">Confirmer</button>
+        <button class="btn-annuler" (click)="annuler()">Annuler</button>
+      </div>
+    </form>
+  </dialog>

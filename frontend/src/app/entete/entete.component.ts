@@ -42,7 +42,13 @@ export class EnteteComponent implements OnInit {
   }
 
   pageCelliers() {
-    this.router.navigate(['liste-cellier']);
+    window.scroll({ // pour scroll up quand on clique sur une bouteille
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+
+    this.router.navigate(['/profil/liste-cellier']);
     this.isOpen = !this.isOpen;
   }
 
@@ -60,11 +66,17 @@ export class EnteteComponent implements OnInit {
     this.router.navigate(['inscription']);
     this.isOpen = !this.isOpen;
   }
-  
+
   signOut() {
+    window.scroll({ // pour scroll up quand on clique sur une bouteille
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
+    });
+
     this.auth.setAuthState(false);
     this.token.removeToken();
-    this.router.navigate(['']);
+    this.router.navigate(['connexion']);
     this.isOpen = !this.isOpen;
   }
 

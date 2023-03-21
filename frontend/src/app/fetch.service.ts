@@ -13,7 +13,7 @@ import { Imesbouteilles } from './imesbouteilles';
   providedIn: 'root'
 })
 export class FetchService {
-  // Important: Ne pas utilsier http://127.0.0.1:800, à la place 'ut iliser
+  // Important: Ne pas utilsier http://127.0.0.1:800, à la place utiliser
   // private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
   //
   private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
@@ -28,12 +28,12 @@ export class FetchService {
 
   ajoutBouteille(bouteille    : Imesbouteilles):Observable<Imesbouteilles>{
     console.log(bouteille + "test ajout bouteille custom" );
-    console.log(bouteille  );
+    console.log(bouteille);
 
     return this.http.post<Imesbouteilles>(this.urlBouteille, bouteille);
   }
 
-  modifBouteille(id:number, bouteille: Imesbouteilles):Observable<Imesbouteilles>{
+  modifBouteille(id:number, bouteille: any):Observable<Imesbouteilles>{
     console.log(bouteille);
     console.log(id);
     return this.http.put<Imesbouteilles>(this.urlBouteille+"/"+id, bouteille);
@@ -58,6 +58,7 @@ export class FetchService {
   // }
 
   getBouteillesCellier(id:number):Observable<Ilistemesbouteilles>{
+    console.log(this.urlCellier+"/"+id + ' bouteilles udu celier');
     return this.http.get<Ilistemesbouteilles>(this.urlCellier+"/"+id);
   }
   getMesBouteilles():Observable<Ilistemesbouteilles>{
@@ -65,6 +66,7 @@ export class FetchService {
   }
 
   getCelliers():Observable<IlisteCellier>{
+    console.log(this.urlCellier + ' celier');
     return this.http.get<IlisteCellier>(this.urlCellier);
   }
   ajoutCellier(cellier: ICellier):Observable<ICellier>{
@@ -88,6 +90,10 @@ export class FetchService {
 
   supprimerCellier(id:number):Observable<ICellier>{
     return this.http.delete<ICellier>(this.urlCellier+"/"+id);
+  }
+
+  supprimerBouteille(id:number):Observable<Imesbouteilles>{
+    return this.http.delete<Imesbouteilles>(this.urlBouteille+"/"+id);
   }
 }
 
