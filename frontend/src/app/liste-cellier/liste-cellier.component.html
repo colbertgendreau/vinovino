@@ -17,7 +17,9 @@
         </a>
         <button class="btn-effacer" (click)="openModal(unCellier.id)"><img class="icones" [src]="iconeTrash"
                 alt="Icône de suppression d'un cellier"></button>
-        <a class="ajout-bouteille" routerLink="/profil/ajouter-bouteille/{{unCellier.id}}">Ajouter une bouteille</a>
+        <a class="ajout-bouteille" routerLink="/profil/ajouter-bouteille/{{unCellier.id}}"><img class="icones"
+            [src]="iconeAjout" alt="Icône d'ajout"><img class="icones"
+            [src]="iconeBouteille" alt="Icône de bouteille"></a>
         <a class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"><img class="icones"
                 [src]="iconeModif" alt="Icône de modification d'un cellier"></a>
 
