@@ -112,34 +112,6 @@ section {
 
     }
 
-    .ajouter-cellier {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-top: var(--small);
-        margin-bottom: var(--small);
-        margin-inline: var(--big);
-        height: var(--biggest);
-        border-radius: var(--border-radius);
-        border-style: none;
-        border: solid var(--smallest) var(--secondaire);
-        font-size: var(--med);
-        font-weight: var(--bold);
-        background-color: var(--secondaire);
-        color: var(--black);
-        position: fixed;
-        bottom: var(--big);
-        padding: 8px;
-        right: 0;
-        left: 0;
-        z-index: 2;
-        text-decoration: none;
-        color: var(--black);
-    }
-
-    .ajouter-cellier:hover {
-        background-color: var(--secondaire);
-    }
 
 
 }
