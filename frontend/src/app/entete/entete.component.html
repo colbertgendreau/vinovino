@@ -15,7 +15,11 @@
   </div>
 </nav>
 <nav class="burger">
-  <a class="open-modal" (click)="openModalFilter()">Recherche</a>
+  <div *ngIf="isSignedIn">
+
+    <a href="/recherche"><img class="loupe" src="../../assets/icones/MicrosoftTeams-image.png" alt=""></a>
+    
+  </div>
   
   <div class="menu-toggle">
     <input type="checkbox" (change)="onToggle($any($event.target)?.checked)" [checked]="isOpen">
@@ -37,4 +41,3 @@
 </nav>
 
 
-<app-rechercher-modal [isVisibleM]="isVisibleM" (closed)="onModalClosed()"></app-rechercher-modal>

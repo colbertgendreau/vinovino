@@ -66,13 +66,13 @@ export class MesBouteillesComponent implements AfterViewInit {
       }
       console.log(this.listeMesBouteilles);
 
-      // if(this.type){
-      //   this.filterByType(this.type);
+      if(this.type){
+        this.filterByType(this.type);
         
-      // }
-      // if(this.pays){
-      //   this.filterByCountry(this.pays);
-      // }
+      }
+      if(this.pays){
+        this.filterByCountry(this.pays);
+      }
 
     });
 

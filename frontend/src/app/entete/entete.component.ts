@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
-import { RechercherModalComponent } from '../rechercher-modal/rechercher-modal.component';
+
 
 
 // import { AuthService } from '../shared/auth.service';
