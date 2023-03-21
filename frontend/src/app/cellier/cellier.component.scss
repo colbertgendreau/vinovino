@@ -69,8 +69,9 @@
 
     .icones {
       height: var(--big);
-  }
+    }
 
+    
 
     .card-bouteille-haut {
       display: flex;
@@ -162,65 +163,6 @@
 
   
 
-//   .footer {
-//       background: rgb(205, 205, 205);
-//       display: flex;
-//       justify-content: space-between;
-//       align-items: center;
-//       //   margin-inline: var(--big);
-//       position: fixed;
-//       bottom: 0;
-//       right: 0;
-//       left: 0;
-//       z-index: 2;
-//       //   height: var(--biggest);
-//       padding-block: var(--smaller);
-//       padding-inline: var(--big);
-//       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-
-//       animation-name: footerUp;
-//       animation-duration: 0.3s;
-      
-
-
-//       .up {
-//           background-image: url(../../assets/icones/upBlack.png);
-//           height: var(--biggest);
-//           width: var(--biggest);
-//           background-size: cover;
-//           object-position: center;
-//           z-index: 3;
-          
-//         }
-//         .back {
-//             background: blue($color: #000000);
-//         z-index: 3;
-//         background-image: url(../../assets/icones/backBlack.png);
-//         height: var(--biggest);
-//         width: var(--biggest);
-//         background-size: cover;
-//         object-position: center;
-    
-//     }
-    
-      
-//       .ajouter-bouteille {
-//           display: flex;
-//           align-items: center;
-//         //   padding: 8px;
-//           text-decoration: none;
-//         //   margin-bottom: var(--small);
-//         //   margin-inline: var(--small);
-//           height: var(--biggest);
-//         //   border-radius: var(--border-radius);
-//           border-style: none;
-//           font-size: var(--med);
-//           font-weight: var(--bold);
-//           color: var(--black);
-//           max-width: 10ch;
-//         }
-//     }
     }
 
     @keyframes footerUp {
