@@ -26,6 +26,9 @@ import { EffacerBouteilleModalComponent } from './effacer-bouteille-modal/efface
 import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-modal.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 // import { ServiceWorkerModule } from '@angular/service-worker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -49,6 +52,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     EffacerBouteilleModalComponent,
 
     SpinnerComponent,
+   
+    
 
   ],
   imports: [
@@ -57,6 +62,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
     // ServiceWorkerModule.register('ngsw-worker.js', {
     //   enabled: !isDevMode(),
     //   // Register the ServiceWorker as soon as the application is stable

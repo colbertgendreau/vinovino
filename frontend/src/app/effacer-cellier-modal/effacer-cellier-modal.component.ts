@@ -1,6 +1,8 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FetchService } from '../fetch.service';
 import { Router } from '@angular/router';
+import { MatSnackBar, MatSnackBarConfig  } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-effacer-cellier-modal',
@@ -16,6 +18,7 @@ export class EffacerModalComponent {
   constructor(
     public fetchService: FetchService,
     public router: Router,
+    private snackBar: MatSnackBar,
   ) { }
 
 
@@ -28,6 +31,7 @@ export class EffacerModalComponent {
 
     this.isVisible = false;
     this.fetchService.supprimerCellier(this.id).subscribe((retour) => {
+      this.openSnackBar('Cellier effacé avec succès', 'Fermer')
       this.itemEfface.emit();
     });
   }
@@ -37,4 +41,16 @@ export class EffacerModalComponent {
     this.isVisible = false;
     this.closed.emit(); // emit the 'closed' event
   }
+
+      /**
+ * Cette fonction affiche un message de type snackbar.
+ * @param message Le message à afficher.
+ * @param action L'action à afficher sur le bouton de fermeture du snackbar.
+ */
+      openSnackBar(message: string, action: string) {
+        const config = new MatSnackBarConfig();
+        config.duration = 3000; // Set the duration to 3 seconds
+        config.panelClass = ['mon-snackbar']; // Add a custom CSS class
+        this.snackBar.open(message, action, config);
+      }
 }
