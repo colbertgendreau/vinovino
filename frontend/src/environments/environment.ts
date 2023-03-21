@@ -10,6 +10,5 @@ export const environment = {
   production: true,
   apiUrl: 'https://site.vinovino.ca',
   profilPrefix: 'profil/',
-  baseImg: 'assets/'
-
+  baseImg: '/assets/angular/assets/'
 };

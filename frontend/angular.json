@@ -33,9 +33,7 @@
             "styles": [
               "src/styles.scss"
             ],
-            "scripts": [],
-            "serviceWorker": true,
-            "ngswConfigPath": "ngsw-config.json"
+            "scripts": []
           },
           "configurations": {
             "local": {
@@ -56,8 +54,8 @@
             },
             "stagging": {
               "outputPath": "../backend/public/assets/angular",
+              "baseHref": "/",
               "deployUrl": "/assets/angular/",
-              "baseHref": "/assets/angular/",
               "outputHashing": "all",
               "buildOptimizer": false,
               "optimization": false,
@@ -88,9 +86,12 @@
               "optimization": true,
               "sourceMap": true,
               "outputPath": "../backend/public/assets/angular",
+              "baseHref": "/",
               "deployUrl": "/assets/angular/",
-              "baseHref": "/assets/angular/",
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "serviceWorker": true,
+              "ngswConfigPath": "ngsw-config.json"
+
             }
           },
           "defaultConfiguration": "production"

@@ -44,7 +44,7 @@ export class CellierComponent implements OnInit {
 
   isVisible = false;
 
-  iconeTrash = environment.baseImg + 'icones/trash-347.png';
+  imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
   constructor(
     private auth: AuthStateService,

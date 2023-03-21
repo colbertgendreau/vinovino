@@ -130,6 +130,7 @@ export class AjoutBouteilleComponent implements OnInit{
         nouvelleBouteille.type = Number(nouvelleBouteille.type)
 
         nouvelleBouteille.celliers_id = params['id'];
+        console.log(nouvelleBouteille+ " aqui adentrreo");
         this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
           this.router.navigateByUrl('profil/cellier/'+nouvelleBouteille.celliers_id);
         });

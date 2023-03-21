@@ -25,7 +25,8 @@ import { ListeMesbouteillesComponent } from './liste-mesbouteilles/liste-mesbout
 import { EffacerBouteilleModalComponent } from './effacer-bouteille-modal/effacer-bouteille-modal.component';
 import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-modal.component';
 import { SpinnerComponent } from './spinner/spinner.component';
-// import { ServiceWorkerModule } from '@angular/service-worker';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { SpinnerComponent } from './spinner/spinner.component';
     ReactiveFormsModule,
     FormsModule,
     // ServiceWorkerModule.register('ngsw-worker.js', {
-    //   enabled: !isDevMode(),
+    //   enabled: environment.production,
     //   // Register the ServiceWorker as soon as the application is stable
     //   // or after 30 seconds (whichever comes first).
     //   registrationStrategy: 'registerWhenStable:30000'
