@@ -24,7 +24,7 @@ export class User {
 })
 
 export class AjoutBouteilleComponent implements OnInit{
-  
+
   isSignedIn!: boolean;
   // title:string='Ajouter une bouteille';
   UserProfile!: User;
@@ -43,8 +43,8 @@ export class AjoutBouteilleComponent implements OnInit{
 
 
   formSubmitted = false;
-  
-  
+
+
   constructor(
     private auth: AuthStateService,
     public router: Router,
@@ -60,7 +60,7 @@ export class AjoutBouteilleComponent implements OnInit{
     });
 
     this.arrayBouteille = [];
-    
+
   }
 
   filterData(searchTerm: string) {
@@ -70,14 +70,14 @@ export class AjoutBouteilleComponent implements OnInit{
           this.filteredData = [];
         }else{
           this.spin = true;
-  
+
         if (this.searchTerm === '') {
             this.filteredData = [];
           }else{
               this.spin = true;
               this.hide = true;
               this.hideForm = true;
-              
+
         this.filteredData = this.arrayBouteille.filter(item =>
           item.nom.toLowerCase().includes(searchTerm.toLowerCase())
         );
@@ -89,16 +89,16 @@ export class AjoutBouteilleComponent implements OnInit{
 
   selectData(bouteille: any) {
     window.scroll({ // pour scroll up quand on clique sur une bouteille
-        top: 0, 
-        left: 0, 
-        behavior: 'smooth' 
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
     });
 
     this.hideForm = false;
 
     this.selectedData = bouteille;
     console.log(this.selectedData);
-    
+
     this.ajouterBouteilleForm.patchValue({
         id:bouteille.id,
         nom: bouteille.nom,
@@ -108,8 +108,8 @@ export class AjoutBouteilleComponent implements OnInit{
         pays: bouteille.pays,
         description: bouteille.description,
         quantite: 1,
-  
-      
+
+
 
     });
     this.filteredData = [];
@@ -119,7 +119,7 @@ export class AjoutBouteilleComponent implements OnInit{
 
   onInputChange() {
     this.isDataSelected = false;
-    
+
   }
 
   ajouter() {
@@ -128,10 +128,11 @@ export class AjoutBouteilleComponent implements OnInit{
       this.route.params.subscribe((params) => {
         let nouvelleBouteille: Imesbouteilles = this.ajouterBouteilleForm.value;
         nouvelleBouteille.type = Number(nouvelleBouteille.type)
-        
+
         nouvelleBouteille.celliers_id = params['id'];
+        console.log(nouvelleBouteille+ " aqui adentrreo");
         this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
-          this.router.navigate(['cellier/'+nouvelleBouteille.celliers_id]);
+          this.router.navigateByUrl('profil/cellier/'+nouvelleBouteille.celliers_id);
         });
     });
     }
@@ -139,9 +140,9 @@ export class AjoutBouteilleComponent implements OnInit{
 
   clearForm() {
     window.scroll({ // pour scroll up quand on clique sur une bouteille
-        top: 0, 
-        left: 0, 
-        behavior: 'smooth' 
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
     });
 
     this.isDataSelected = false;
@@ -149,18 +150,18 @@ export class AjoutBouteilleComponent implements OnInit{
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue('');
     });
-  
+
     // this.searchTerm = '';
   }
 
-  
+
 
   ngOnInit(): void {
 
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0, 
-        left: 0, 
-        behavior: 'smooth' 
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
     });
 
 
@@ -169,11 +170,11 @@ export class AjoutBouteilleComponent implements OnInit{
       console.log(this.isSignedIn);
     });
 
-    
+
     this.fetchService.getBouteilleSAQ().subscribe((response) => {
       this.arrayBouteille = response.data;
       console.log(this.arrayBouteille);
-      
+
     });
 
     this.ajouterBouteilleForm = this.formBuilder.group({
@@ -183,11 +184,8 @@ export class AjoutBouteilleComponent implements OnInit{
       pays: [''],
       format: [''],
       prix_saq: [''],
-      quantite: ['', [Validators.required, Validators.pattern(/^-?[0-9]+(\.[0-9]*)?$/)]],
+      quantite: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
-      
-
-      
     });
   }
 
