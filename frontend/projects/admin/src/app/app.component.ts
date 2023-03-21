@@ -11,8 +11,9 @@ import { environment } from '../environments/environment';
 })
 
 export class AppComponent implements OnInit {
-  title:string = 'admin';
+  title : string = 'admin';
   isSignedIn! : boolean;
+  isOpen : boolean = true;
 
   constructor(
     private auth:AuthStateService,
@@ -26,10 +27,22 @@ export class AppComponent implements OnInit {
     } else {
       console.log('Production!');
     }
+    // console.log(this.auth.userAuthState);
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
+      console.log(this.isSignedIn);
+      this.isOpen = !this.isOpen;
+      // console.log(this.isOpen);
     });
   }
+
+  // pageListeUsager() {
+  //   this.router.navigate(['liste-usager']);
+  // }
+
+  // pageCatalogue() {
+  //   this.router.navigate(['catalogue']);
+  // }
 
   signOut() {
     this.auth.setAuthState(false);
