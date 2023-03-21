@@ -1,3 +1,5 @@
 /back_conf
 /node_modules
 backend/public
+/dist
+/.vscode

@@ -21,6 +21,7 @@ export class SignupComponent implements OnInit {
       email: [''],
       password: [''],
       password_confirmation: [''],
+      type: ['0'],
     });
   }
   ngOnInit() {}

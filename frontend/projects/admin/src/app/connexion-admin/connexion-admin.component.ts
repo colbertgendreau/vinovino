@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { TokenService } from 'src/app/shared/token.service';
 import { AuthStateService } from 'src/app/shared/auth-state.service';
-import { IUser } from '../iuser';
 
 @Component({
   selector: 'app-connexion-admin',
@@ -14,8 +13,12 @@ import { IUser } from '../iuser';
 
 export class ConnexionAdminComponent implements OnInit {
 
+  isSignedIn! : boolean;
+  isOpen : boolean = true;
+
   loginForm: FormGroup;
   errors:any = null;
+  erreur:any;
 
   constructor(
     public router: Router,
@@ -24,34 +27,72 @@ export class ConnexionAdminComponent implements OnInit {
     private token: TokenService,
     private authState: AuthStateService
   ) {
+
+    // console.log(token);
+    // console.log(authService);
+    // console.log(authState);
+
     this.loginForm = this.fb.group({
       email: [],
       password: [],
+      // type: [],
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (isDevMode()) {
+      console.log('Development!');
+    } else {
+      console.log('Production!');
+    }
+    // console.log(this.auth.userAuthState);
+    this.authState.userAuthState.subscribe((val) => {
+      this.isSignedIn = val;
+      console.log(this.isSignedIn);
+      this.isOpen = !this.isOpen;
+      // console.log(this.isOpen);
+    });
+  }
 
   onSubmit() {
-    console.log('Je suis à l\'intérieur de connexion-admin.component.ts');
-    console.log(this.loginForm.value.name);
-    console.log(this.loginForm.value.email);
-    console.log(this.authService.signin(this.loginForm.value) +' aqui');
 
-    this.authService.signin(this.loginForm.value).subscribe(
+    // this.authService.signinAdmin(this.loginForm.value).subscribe(      
+    this.authService.signin(this.loginForm.value).subscribe(      
       (result) => {
-        console.log(result);
-        this.responseHandler(result);
+        this.responseHandler(result);        
+        if (result.user.type === "1") {
+          this.authState.setAuthState(true);
+          this.loginForm.reset();
+          this.router.navigate(['liste-usager']);
+        } else if (result.user.type === "0") {
+          this.loginForm.reset();
+          this.router.navigate(['admin']);
+          this.erreur = "Vous avez besoin d'une autorisation que seul un administrateur peut accorder. Veuillez demander à un administrateur d'accorder une autorisation à cette application avant de pouvoir l'utiliser.";
+        }
       },
       (error) => {
         this.errors = error.error;
       },
-      () => {
-        this.authState.setAuthState(true);
-        this.loginForm.reset();
-        // this.router.navigate(['profile']);
-        this.router.navigate(['liste-usager']);
-      }
+      // () => {
+      //   this.authState.setAuthState(true);
+      //   this.loginForm.reset();
+      //   this.router.navigate(['liste-usager']);
+      // }
+
+      
+      // (result) => {
+      //   this.responseHandler(result);
+      //   console.log(result);
+      // },
+      // (error) => {
+      //   console.log(error);
+      //   this.errors = error.error;
+      // },
+      // () => {
+      //   this.authState.setAuthState(true);
+      //   this.loginForm.reset();
+      //   this.router.navigate(['liste-usager']);
+      // }
     );
   }
 
@@ -59,4 +100,11 @@ export class ConnexionAdminComponent implements OnInit {
   responseHandler(data:any) {
     this.token.handleData(data.access_token);
   }
+
+  signOut() {
+    this.authState.setAuthState(false);
+    this.token.removeToken();
+    this.router.navigate(['admin']);
+  }
+
 }

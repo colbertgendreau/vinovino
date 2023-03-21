@@ -41,6 +41,7 @@ export class ListeCellierComponent implements OnInit {
   iconeModif =  environment.baseImg + 'icones/edit-black.png';
   iconeAjout =  environment.baseImg + 'icones/plus-black.png';
   iconeBouteille =  environment.baseImg + 'icones/wine-bottle.png';
+  iconeCellier =  environment.baseImg + 'icones/cellier.png';
 
   constructor(
     private auth: AuthStateService,
@@ -75,7 +76,7 @@ export class ListeCellierComponent implements OnInit {
    console.log(this.isVisible);
    this.id = id;
    this.isVisible = true;
-   
+
   }
 
   closeModal() {
@@ -94,7 +95,7 @@ export class ListeCellierComponent implements OnInit {
     });
   }
 
-  
+
 
 
 }

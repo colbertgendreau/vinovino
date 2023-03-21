@@ -11,7 +11,6 @@ import { AuthStateService } from 'src/app/shared/auth-state.service';
 
 export class EnteteComponent {
   isSignedIn!: boolean;
-  // isOpen:boolean = false;
 
   constructor(
     private auth: AuthStateService,
@@ -29,14 +28,6 @@ export class EnteteComponent {
     this.auth.setAuthState(false);
     this.token.removeToken();
     this.router.navigate(['admin']);
-    // this.isOpen = !this.isOpen;
   }
 
-  // onToggle(checked: boolean): void {
-  //   this.isOpen = checked;
-  // }
-
-  // get menuClass() {
-  //   return this.isOpen ? 'menu open' : 'menu';
-  // }
 }

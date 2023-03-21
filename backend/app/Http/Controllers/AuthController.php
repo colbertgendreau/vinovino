@@ -14,7 +14,7 @@ class AuthController extends Controller
      * @return void
      */
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login', 'loginAdmin', 'register']]);
     }
     /**
      * Get a JWT via given credentials.
@@ -26,6 +26,8 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required|string|min:6',
         ]);
+
+        //
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
@@ -35,6 +37,27 @@ class AuthController extends Controller
         }
         return $this->createNewToken($token);
     }
+
+    // /**
+    //  * Get a JWT via given credentials.
+    //  *
+    //  * @return \Illuminate\Http\JsonResponse
+    //  */
+    // public function loginAdmin(Request $request){
+    //     $validator = Validator::make($request->all(), [
+    //         'email' => 'required|email',
+    //         'password' => 'required|string|min:6',
+    //     ]);
+    //     if ($validator->fails()) {
+    //         return response()->json($validator->errors(), 422);
+    //     }
+    //     if (! $token = auth()->attempt($validator->validated())) {
+    //         // return response()->json(['error' => 'Unauthorized'], 401);
+    //         return response()->json(['error' => 'Le mot de passe saisi ne correspond pas au courriel.'], 401);
+    //     }
+    //     return $this->createNewToken($token);
+    // }
+
     /**
      * Register a User.
      *
@@ -45,6 +68,7 @@ class AuthController extends Controller
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
             'password' => 'required|string|confirmed|min:6',
+            'type' => 'required|string',
         ]);
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);

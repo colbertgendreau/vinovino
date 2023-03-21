@@ -1,4 +1,4 @@
-div {
+section {
     // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
     background-attachment: fixed;
     height: 100%;
@@ -13,11 +13,34 @@ div {
         font-size: 1.5em;
     }
 
+    .cellierVide {
+        
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        gap: var(--small);
+        margin-top: 50px;
+
+        background-color: var(--white);
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        h2 {
+            font-size: 1.2em;
+        }
+        span{
+            font-size: 80px;
+        }
+    }
+
     .modif-cellier {
         // color: var(--white);
         color: var(--secondaire-turquoise);
         position: absolute;
-        bottom: var(--smaller);
+        bottom: calc(50% - 15px);
         right: var(--smaller);
         text-decoration: none;
     }
@@ -25,8 +48,9 @@ div {
     .ajout-bouteille {
         position: absolute;
         display: flex;
+
         bottom: var(--smaller);
-        left: var(--smaller);
+        right: var(--smaller);
         color: var(--secondaire);
         text-decoration: none;
     }
@@ -48,6 +72,12 @@ div {
         height: var(--big);
     }
 
+    .iconeCellier {
+        margin-right: var(--small);
+       max-width: 80px;
+        max-height: 80px;
+    }
+
 
     .celliers {
         // border: 1px solid var(--black);
@@ -65,7 +95,7 @@ div {
             color: var(--black);
             width: 100%;
             display: flex;
-            justify-content: center;
+            justify-content: left;
 
             h2 {
                 color: var(--black);

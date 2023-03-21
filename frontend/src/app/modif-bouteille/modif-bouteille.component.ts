@@ -36,7 +36,7 @@ export class ModifBouteilleComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     public fetchService:FetchService,
-    
+
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
@@ -46,9 +46,9 @@ export class ModifBouteilleComponent implements OnInit {
 
   ngOnInit() {
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0, 
-        left: 0, 
-        behavior: 'smooth' 
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
     });
 
     this.auth.userAuthState.subscribe((val) => {
@@ -57,9 +57,9 @@ export class ModifBouteilleComponent implements OnInit {
     });
 
 
-    this.route.params.subscribe((params)=>{ 
+    this.route.params.subscribe((params)=>{
       console.log(params);
-         
+
       this.fetchService.showBouteille(params['id']).subscribe((data: any) => {
         this.bouteille = data.data;
         console.log(this.bouteille);
@@ -91,19 +91,19 @@ export class ModifBouteilleComponent implements OnInit {
   modifier() {
       this.route.params.subscribe((params) => {
         let updateBouteille: Imesbouteilles = this.modifBouteilleForm.value;
-        
+
         this.fetchService.modifBouteille(params['id'], updateBouteille).subscribe((retour) => {
-          this.router.navigate(['liste-cellier']);
+          this.router.navigate(['/profil/liste-cellier']);
         });
     });
-    
+
   }
 
   clearForm() {
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0, 
-        left: 0, 
-        behavior: 'smooth' 
+        top: 0,
+        left: 0,
+        behavior: 'smooth'
     });
 
 
@@ -111,7 +111,7 @@ export class ModifBouteilleComponent implements OnInit {
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue('');
     });
-  
+
 
   }
 }
