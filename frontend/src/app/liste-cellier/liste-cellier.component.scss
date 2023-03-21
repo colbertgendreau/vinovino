@@ -1,4 +1,4 @@
-section {
+.mesCelliers {
     // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
     background-attachment: fixed;
     height: 100%;
@@ -36,59 +36,78 @@ section {
         }
     }
 
-    .modif-cellier {
-        // color: var(--white);
-        color: var(--secondaire-turquoise);
-        position: absolute;
-        bottom: calc(50% - 15px);
-        right: var(--smaller);
-        text-decoration: none;
-    }
-
-    .ajout-bouteille {
-        position: absolute;
-        display: flex;
-
-        bottom: var(--smaller);
-        right: var(--smaller);
-        color: var(--secondaire);
-        text-decoration: none;
-    }
-
-    .btn-effacer {
+    .icones-cellier {
         background: none;
         border: none;
         padding: 0;
-        position: absolute;
-        top: var(--smaller);
-        right: var(--smaller);
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: end;
+        align-self: stretch;
+    }
+
+    .modif-cellier {
+        background: url(../../assets/icones/edit-black.png);
+        height: var(--bigger);
+        width: var(--bigger);
+        background-size: cover;
+        cursor: pointer;
+
     }
 
     .btn-effacer {
+
+        background: url(../../assets/icones/trash-347.png);
+        height: var(--bigger);
+        width: var(--bigger);
+        background-size: cover;
         cursor: pointer;
+
     }
 
-    .icones {
-        height: var(--big);
-    }
+    .ajout-bouteille {
+
+        background: url(../../assets/icones/wine-bottle.png);
+        height: var(--bigger);
+        width: var(--bigger);
+        background-size: cover;
+        cursor: pointer;
+
+        .icone-bouteille {
+            background: url(../../assets/icones/wine-bottle.png);
+            height: var(--bigger);
+            width: var(--bigger);
+            background-size: cover;
+        }
+        
+        .icone-plus {
+            position: relative;
+            top: 0px;
+            left: 14px;
+            background: url(../../assets/icones/plusWithBack.png);
+            height: var(--small);
+            width: var(--small);
+            background-size: cover;
+        }
+      }
 
     .iconeCellier {
         margin-right: var(--small);
-       max-width: 80px;
+        max-width: 80px;
         max-height: 80px;
     }
 
-
     .celliers {
-        // border: 1px solid var(--black);
-        height: 80px;
+        height: 100px;
         background-color: var(--white);
         border-radius: 5px;
         display: flex;
-        justify-content: center;
-        padding: 20px;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--small);
         box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-        position: relative;
 
         .unCellier {
             text-decoration: none;
