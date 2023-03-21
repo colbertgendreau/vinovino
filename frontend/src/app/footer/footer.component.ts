@@ -63,17 +63,17 @@ export class FooterComponent {
   back() {
     console.log(this.pageActuelle);
     if (this.pageActuelle == 'cellier') {
-      this.router.navigate(['liste-cellier']);
+      this.router.navigateByUrl('profil/liste-cellier');
     } else if (this.pageActuelle == 'listeCellier') {
       console.log('doit etre grisé');
     } else if (this.pageActuelle == 'ajoutBouteille') {
-      this.router.navigate(['/cellier/' + this.idCellier]);
+      this.router.navigateByUrl('profil/cellier/' + this.idCellier);
     } else if (this.pageActuelle == 'ajoutCellier') {
-      this.router.navigate(['liste-cellier']);
+      this.router.navigateByUrl('profil/liste-cellier');
     } else if (this.pageActuelle == 'modifCellier') {
-      this.router.navigate(['liste-cellier']);
+      this.router.navigateByUrl('profil/liste-cellier');
     } else if (this.pageActuelle == 'modifBouteille') {
-      this.router.navigate(['/cellier/' + this.id]);
+      this.router.navigateByUrl('profil/cellier/' + this.id);
 
       // this.router.navigate(['liste-cellier']);
     }
@@ -91,10 +91,10 @@ export class FooterComponent {
     console.log(this.pageActuelle);
     if (this.pageActuelle == 'cellier') {
       this.btnAjouter = 'ajoutCellier';
-      this.router.navigate(['/ajouter-bouteille/' + this.idCellier]);
+      this.router.navigateByUrl('profil/ajouter-bouteille/' + this.idCellier);
     } else if (this.pageActuelle == 'listeCellier') {
       this.btnAjouter = 'ajoutBouteille';
-      this.router.navigate(['ajouter-cellier']);
+      this.router.navigateByUrl('profil/ajouter-cellier');
     } else {
         console.log("different bouton ajouter");
         
