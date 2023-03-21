@@ -43,12 +43,12 @@ export class ConnexionAdminComponent implements OnInit {
     // console.log(this.loginForm.value.password);
     // console.log(this.loginForm.value.email);
     // console.log(this.authService.signinAdmin(this.loginForm.value) +' aqui');
-    
+
     // console.log(this.loginForm);
 
-    this.authService.signinAdmin(this.loginForm.value).subscribe(      
+    this.authService.signinAdmin(this.loginForm.value).subscribe(
       (result) => {
-        this.responseHandler(result);        
+        this.responseHandler(result);
         if (result.user.type === "1") {
           this.authState.setAuthState(true);
           this.loginForm.reset();
