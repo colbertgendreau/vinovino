@@ -27,7 +27,11 @@ import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-m
 import { SpinnerComponent } from './spinner/spinner.component';
 import { FooterComponent } from './footer/footer.component';
 // import { ServiceWorkerModule } from '@angular/service-worker';
+
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
+
 
 
 @NgModule({
@@ -52,7 +56,9 @@ import { environment } from '../environments/environment';
     EffacerBouteilleModalComponent,
 
     SpinnerComponent,
-     FooterComponent,
+
+    FooterComponent,
+
 
   ],
   imports: [
@@ -61,6 +67,8 @@ import { environment } from '../environments/environment';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
     // ServiceWorkerModule.register('ngsw-worker.js', {
     //   enabled: environment.production,
     //   // Register the ServiceWorker as soon as the application is stable
@@ -77,4 +85,4 @@ import { environment } from '../environments/environment';
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

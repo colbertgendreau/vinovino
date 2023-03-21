@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AuthStateService } from 'src/app/shared/auth-state.service';
+import { AuthStateService } from 'projects/admin/src/app/shared/auth-state.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class GardienLoginAdminGuard implements CanActivate {
       this.estConnecte = etat;
       console.log(etat);
       if(this.estConnecte === false) {
-        this.router.navigate(["/admin"]);
+        this.router.navigate(["admin"]);
       }
     });
   }
@@ -25,7 +25,7 @@ export class GardienLoginAdminGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
       let valide = false;
-      
+
       if (this.estConnecte) {
         valide = true;
       }
@@ -36,5 +36,5 @@ export class GardienLoginAdminGuard implements CanActivate {
     // return true;
 
   }
-  
+
 }

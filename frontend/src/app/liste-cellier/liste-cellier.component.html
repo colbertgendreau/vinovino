@@ -1,7 +1,9 @@
 <section class="mesCelliers">
     <h1>Mes celliers</h1>
 
-    <div class="cellierVide" *ngIf="!listeCelliers[0]">
+    <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
+
+    <div class="cellierVide" *ngIf="!listeCelliers[0] && !spin">
         <h2>Vous n'avez aucun cellier</h2>
         <p>Pour ajouter un cellier appuyez sur le bouton</p>
         <span> &#8681;</span>
