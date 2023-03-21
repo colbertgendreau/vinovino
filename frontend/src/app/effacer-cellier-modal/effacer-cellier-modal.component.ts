@@ -31,7 +31,7 @@ export class EffacerModalComponent {
 
     this.isVisible = false;
     this.fetchService.supprimerCellier(this.id).subscribe((retour) => {
-      this.openSnackBar('Cellier effacé avec succès', 'Fermer')
+      this.openSnackBar('Cellier effacé avec succès', 'Fermer');
       this.itemEfface.emit();
     });
   }
