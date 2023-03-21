@@ -6,6 +6,8 @@ export interface Imesbouteilles {
     id_bouteille:number;
     nom: string;
     type: number;
+    type_vino_name: string;
+    type_mes_name: string;
     pays: string;
     format: string;
     prix_saq: number;
@@ -21,5 +23,6 @@ export interface Imesbouteilles {
     prix_bouteillePerso: number;
     quantite_bouteillePerso: number;
     description_bouteillePerso: string;
+    cellier_nom:string;
 
 }

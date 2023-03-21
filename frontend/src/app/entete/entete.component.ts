@@ -4,6 +4,7 @@ import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
 
 
+
 // import { AuthService } from '../shared/auth.service';
 
 // // User interface
@@ -22,6 +23,7 @@ export class EnteteComponent implements OnInit {
   isSignedIn!: boolean;
   title:string='FrontEnd';
   isOpen:boolean = false;
+  isVisibleM = false;
 
   constructor(
     private auth: AuthStateService,
@@ -84,5 +86,15 @@ export class EnteteComponent implements OnInit {
 
   get menuClass() {
     return this.isOpen ? 'menu open' : 'menu';
+  }
+
+  openModalFilter() {
+    this.isVisibleM = true;
+  }
+  closeModalFilter() {
+    this.isVisibleM = false;
+  }
+  onModalClosed() {
+    this.isVisibleM = false;
   }
 }
