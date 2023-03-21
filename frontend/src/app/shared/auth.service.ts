@@ -24,12 +24,14 @@ export class AuthService {
   signin(user: User): Observable<any> {
     return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
   }
-  // LoginAdmin
-  signinAdmin(user: User): Observable<any> {
-    return this.http.post<any>(environment.apiUrl+'/api/auth/loginAdmin', user);
-  }
+  // // LoginAdmin
+  // signinAdmin(user: User): Observable<any> {
+  //   return this.http.post<any>(environment.apiUrl+'/api/auth/loginAdmin', user);
+  // }
   // Access user profile
   profileUser(): Observable<any> {
     return this.http.get(environment.apiUrl+'/api/auth/user-profile');
   }
+
+
 }

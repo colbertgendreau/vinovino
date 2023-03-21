@@ -1,6 +1,35 @@
-:host {
-    padding-inline: 16px;
-    width: 100%;
+mat-sidenav {
+    max-width: 25vw;
+    padding: 16px;
+    text-align: left;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        
+        a {
+            text-decoration: none;
+
+            &.estActif {
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+.content {
+    margin: 16px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+mat-sidenav-container {
+    margin: 16px;
+    height: calc(100vh - 128px);
 }
 
 @media(min-width: 945px) {
@@ -18,7 +47,9 @@
     }
 
     section {
-        padding: 0 0px 32px 0px;
+
+        width: 70vw;
+        padding: 0 0 32px 0;
 
         mat-form-field {
             width: 100%;
@@ -27,6 +58,7 @@
 
     .liste {
 
+        width: 70vw;
         display: flex;
         flex-direction: column;
 
@@ -66,7 +98,8 @@
     }
 
     section {
-        // padding: 0 64px 16px 64px;
+        padding: 0 0 32px 0;
+        width: 100%;
 
         mat-form-field {
             width: 100%;
@@ -74,6 +107,8 @@
     }
 
     .liste {
+
+        width: 100%;
 
         table {
 
