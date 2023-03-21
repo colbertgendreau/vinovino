@@ -31,7 +31,7 @@ export class GardienLoginAdminGuard implements CanActivate {
       }
       if (valide) return true;
       else
-      return this.router.parseUrl('/admin');
+      return this.router.parseUrl('/');
 
     // return true;
 

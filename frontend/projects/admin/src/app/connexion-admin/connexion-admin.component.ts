@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/auth.service';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -12,6 +12,9 @@ import { AuthStateService } from 'src/app/shared/auth-state.service';
 })
 
 export class ConnexionAdminComponent implements OnInit {
+
+  isSignedIn! : boolean;
+  isOpen : boolean = true;
 
   loginForm: FormGroup;
   errors:any = null;
@@ -32,21 +35,29 @@ export class ConnexionAdminComponent implements OnInit {
     this.loginForm = this.fb.group({
       email: [],
       password: [],
-      type: [],
+      // type: [],
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (isDevMode()) {
+      console.log('Development!');
+    } else {
+      console.log('Production!');
+    }
+    // console.log(this.auth.userAuthState);
+    this.authState.userAuthState.subscribe((val) => {
+      this.isSignedIn = val;
+      console.log(this.isSignedIn);
+      this.isOpen = !this.isOpen;
+      // console.log(this.isOpen);
+    });
+  }
 
   onSubmit() {
-    // console.log('Je suis à l\'intérieur de connexion-admin.component.ts');
-    // console.log(this.loginForm.value.password);
-    // console.log(this.loginForm.value.email);
-    // console.log(this.authService.signinAdmin(this.loginForm.value) +' aqui');
-    
-    // console.log(this.loginForm);
 
-    this.authService.signinAdmin(this.loginForm.value).subscribe(      
+    // this.authService.signinAdmin(this.loginForm.value).subscribe(      
+    this.authService.signin(this.loginForm.value).subscribe(      
       (result) => {
         this.responseHandler(result);        
         if (result.user.type === "1") {
@@ -67,6 +78,21 @@ export class ConnexionAdminComponent implements OnInit {
       //   this.loginForm.reset();
       //   this.router.navigate(['liste-usager']);
       // }
+
+      
+      // (result) => {
+      //   this.responseHandler(result);
+      //   console.log(result);
+      // },
+      // (error) => {
+      //   console.log(error);
+      //   this.errors = error.error;
+      // },
+      // () => {
+      //   this.authState.setAuthState(true);
+      //   this.loginForm.reset();
+      //   this.router.navigate(['liste-usager']);
+      // }
     );
   }
 
@@ -74,4 +100,11 @@ export class ConnexionAdminComponent implements OnInit {
   responseHandler(data:any) {
     this.token.handleData(data.access_token);
   }
+
+  signOut() {
+    this.authState.setAuthState(false);
+    this.token.removeToken();
+    this.router.navigate(['admin']);
+  }
+
 }
