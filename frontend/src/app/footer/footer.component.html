@@ -1,6 +1,6 @@
 <section class="footer">
 
-    <div class="back"></div>
+    <div class="back" (click)="back()"></div>
     
     <div *ngIf="pageActuelle == 'cellier'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"><div class="icone-plus"></div></div></div>
     <div *ngIf="pageActuelle == 'ajoutBouteille'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"></div></div>
