@@ -93,14 +93,20 @@ export class CellierComponent implements OnInit {
         .subscribe((data: any) => {
           this.bouteilles = data.data;
 
-          
-          this.cellierNom = this.bouteilles[0].cellier_nom;
+          console.log(this.bouteilles);
+  
+          if(this.bouteilles[0]) {
 
+              
+              this.cellierNom = this.bouteilles[0].cellier_nom;
+            }
+          
+          
           console.log('les bouteilles du cellier');
           console.log(this.bouteilles);
           this.spin = false;
           this.hide = false;
-
+          
         });
     });
   }
