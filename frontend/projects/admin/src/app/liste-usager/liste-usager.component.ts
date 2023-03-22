@@ -29,7 +29,8 @@ export class ListeUsagerComponent implements OnInit {
   utilisateur : IUser;
   utilisateurs : Array<IUser>;
   dataSource : MatTableDataSource<IUser>;
-  colonnesAffichees : string[] = ['id', 'name', 'email', 'type', 'created_at', 'supprimer'];
+  // colonnesAffichees : string[] = ['id', 'name', 'email', 'type', 'created_at', 'supprimer'];
+  colonnesAffichees : string[] = ['id', 'name', 'email', 'type', 'created_at'];
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
@@ -65,11 +66,11 @@ export class ListeUsagerComponent implements OnInit {
         utilisateur.created_at=utilisateur.created_at?.split("-").reverse().join("-");
         utilisateur.updated_at=utilisateur.updated_at?.split("T")[0];
         utilisateur.updated_at=utilisateur.updated_at?.split("-").reverse().join("-");
-        // if(utilisateur.type === "0") {
-        //   utilisateur.type = "Utilisateur";
-        // } else if (utilisateur.type === "1") {
-        //   utilisateur.type = "Administrateur";
-        // }
+        if(utilisateur.type === "0") {
+          utilisateur.type = "Utilisateur";
+        } else if (utilisateur.type === "1") {
+          utilisateur.type = "Administrateur";
+        }
       });
       this.dataSource = new MatTableDataSource(this.utilisateurs);
       this.dataSource.sort = this.sort;
