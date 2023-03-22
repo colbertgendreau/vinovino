@@ -22,11 +22,12 @@ export class AuthService {
   }
   // Login
   signin(user: User): Observable<any> {
+    console.log(environment.apiUrl);
     return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
   }
   // // LoginAdmin
   // signinAdmin(user: User): Observable<any> {
-  //   return this.http.post<any>(environment.apiUrl+'/api/auth/loginAdmin', user);
+  //   return this.http.post<any>('http://127.0.0.1:8000/api/auth/login', user);
   // }
   // Access user profile
   profileUser(): Observable<any> {
