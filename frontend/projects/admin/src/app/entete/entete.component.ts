@@ -29,5 +29,4 @@ export class EnteteComponent {
     this.token.removeToken();
     this.router.navigate(['admin']);
   }
-
 }
