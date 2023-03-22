@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild, EventEmitter, Output } from '@angular/core';
 import { AdminService } from '../admin.service';
 import { IUser } from '../iuser';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { ModalComponent } from '../modal/modal.component';
-import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -20,8 +19,6 @@ import { AuthService } from 'projects/admin/src/app/shared/auth.service';
 })
 
 export class ListeUsagerComponent implements OnInit {
-
-  @Output() itemEfface: EventEmitter<void> = new EventEmitter<void>();
 
   isSignedIn! : boolean;
   isOpen : boolean = true;
@@ -43,24 +40,18 @@ export class ListeUsagerComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
-      // this.isOpen = !this.isOpen;
-      // console.log(this.isOpen);
     });
-
     this.afficherListeUtilisateur();
   }
 
   afficherListeUtilisateur() {
-
     this.adminServ.getUtilisateur().subscribe((listeUtilisateur)=>{
       this.utilisateurs = listeUtilisateur.data;
       console.log(this.utilisateurs);
       this.utilisateurs.forEach(utilisateur => {
-        // console.log(utilisateur.type);
         utilisateur.created_at=utilisateur.created_at?.split("T")[0];
         utilisateur.created_at=utilisateur.created_at?.split("-").reverse().join("-");
         utilisateur.updated_at=utilisateur.updated_at?.split("T")[0];
@@ -77,9 +68,7 @@ export class ListeUsagerComponent implements OnInit {
   }
 
   supprimer(utilisateur:IUser) {
-
     console.log(utilisateur);
-
     let dialogRef = this.dialog.open(ModalComponent, {data: {nom: utilisateur.name, id: utilisateur.id}});
     dialogRef.afterClosed().subscribe((retour:string) =>{
       console.log(retour);
@@ -88,7 +77,6 @@ export class ListeUsagerComponent implements OnInit {
         this.adminServ.effacerUtilisateur(utilisateur.id).subscribe((result)=>{
           console.log(utilisateur.id);
           console.log(result);
-          this.itemEfface.emit();
           this.afficherListeUtilisateur();
         });
       }
