@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
-
+import { environment } from '../../environments/environment';
 
 
 // import { AuthService } from '../shared/auth.service';
@@ -24,6 +24,8 @@ export class EnteteComponent implements OnInit {
   title:string='FrontEnd';
   isOpen:boolean = false;
   isVisibleM = false;
+
+  iconeLoupe =  environment.baseImg + 'icones/loupe.png';
 
   constructor(
     private auth: AuthStateService,
