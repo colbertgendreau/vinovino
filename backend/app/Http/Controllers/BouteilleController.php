@@ -17,11 +17,33 @@ class BouteilleController extends Controller
      */
     public function index()
     {
-        // $celliers_id = Auth::id();
-        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)->get();
+        $id = Auth::id();
+        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)
+        // ->get();
 
-        // return ['data'=>$bouteilles];
+        $bouteilles = Bouteille::select(
+            'Bouteilles.id AS id_supreme',
+            'Bouteilles.*',
+            'vino__bouteille.id AS vino__bouteille_id',
+            'vino__bouteille.*',
+            'mes_bouteilles.*',
+            'type_vino.id AS type_vino_id',
+            'type_vino.type AS type_vino_name',
+            'type_mes.id AS type_mes_id',
+            'type_mes.type AS type_mes_name',
+            'celliers.nom AS celliers_nom',
+        )
+        ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'Bouteilles.id_bouteille')
+        ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'Bouteilles.id_mes_bouteilles')
+        ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
+        ->leftJoin('vino__type as type_mes', 'type_mes.id', '=', 'mes_bouteilles.type_bouteillePerso')
+        ->join('celliers', 'Bouteilles.celliers_id', '=', 'celliers.id')
+        ->where('celliers.users_id', $id)
+        ->get();
+
+        return ['data'=>$bouteilles];
     }
+ 
 
     // public function index() // la function ci dessous retourne une pagination a decider ce quon veut
     // {
@@ -100,9 +122,9 @@ class BouteilleController extends Controller
     $id = $bouteille->id_bouteillePerso;
 
 
-    $res = Bouteille::leftJoin('mes_bouteilles', 'Bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
+    $res = Bouteille::leftJoin('mes_bouteilles', 'bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
     ->leftjoin('vino__type', 'vino__type.id', '=', 'mes_bouteilles.type_bouteillePerso')
-    ->where('Bouteilles.id', $bouteille->id)
+    ->where('bouteilles.id', $bouteille->id)
     ->first();
 
 

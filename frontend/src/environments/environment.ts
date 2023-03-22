@@ -8,7 +8,9 @@
 
 export const environment = {
   production: true,
+
   apiUrl: 'https://site.vinovino.ca',
   profilPrefix: 'profil/',
   baseImg: '/assets/angular/assets/'
+
 };

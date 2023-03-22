@@ -14,9 +14,13 @@
     <a class="nav_link_a" (click)="signOut()" *ngIf="isSignedIn">Déconnexion</a>
   </div>
 </nav>
-
 <nav class="burger">
+  <div *ngIf="isSignedIn">
 
+    <a routerLink="profil/recherche"><img class="loupe" src="../../assets/icones/MicrosoftTeams-image.png" alt=""></a>
+    
+  </div>
+  
   <div class="menu-toggle">
     <input type="checkbox" (change)="onToggle($any($event.target)?.checked)" [checked]="isOpen">
     <span></span>
@@ -35,3 +39,4 @@
     </ul>
   </div>
 </nav>
+

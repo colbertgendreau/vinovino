@@ -1,0 +1,129 @@
+
+<section class="recherche">
+    <div class="recherche_filter">
+        <input class="recherche-input"
+            type="text"
+            [(ngModel)]="searchTerm"
+            (keyup)="filterData(searchTerm)"
+            placeholder="Recherche dans vos celliers"
+        />
+
+        <details>
+            <summary>Filtre</summary>
+            <div class="modal-type">
+                <h3>Type</h3>
+        
+                <div *ngFor="let type of choixTypes">
+                    
+                    <input type="checkbox" #checkedType [checked]="isSelected(type)" (change)="updateSelectedWineTypes(checkedType.checked, type)">
+                    {{ type }}
+                </div>
+          </div>
+    
+    
+            <div class="input-pays">
+                <h3>Pays</h3>
+                <select #selected (change)="updateSelectedWinePays(selected.value)">
+                    <option value="" disabled selected>Choose country</option>
+                    <option *ngFor="let pays of choixPays" [value]="pays" [selected]="isSelectedPays(pays)">
+                        {{ pays }}
+                    </option>
+                </select>
+            </div>
+          
+    
+    
+            <div class="modal-prix">
+                <h3>Prix</h3>
+            
+                <form (ngSubmit)="filterByPrice(minPrice, maxPrice)" #myForm="ngForm">
+                    <div class="formPrix">
+                        <label for="minPrice">Minimum:</label>
+                        <input type="range" [(ngModel)]="minPrice" name="minPrice" min="0" max="100" step="1">
+                        <span>{{ minPrice }}</span>
+                        <label for="maxPrice">Maximum:</label>
+                        <input type="range" [(ngModel)]="maxPrice" name="maxPrice" min="0" max="100" step="1">
+                        <span>{{ maxPrice }}</span>
+                    </div>
+                    <button type="submit">Filter</button>
+                </form>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+        </details>
+    </div>
+    
+
+
+
+
+
+    <div class="resultat">
+        <article class="bouteille" *ngFor="let uneBouteille of filteredData">
+            <div class="card-bouteille-haut">
+                <picture>
+                    <img [src]="uneBouteille.url_img ? uneBouteille.url_img : '../../assets/img/nonDispo.webp'" alt="Bouteille"/>
+                </picture>
+
+                <div class="info-bouteille">
+                    <h3>
+                        {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
+                    </h3>
+
+                    <div>
+                        <span class="icone icone-vin"></span>
+                        <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name : uneBouteille.type_mes_name }} | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso }}</p>
+                    </div>
+
+                    <div>
+                        <span class="icone icone-location"></span>
+                        <p>
+                            {{ uneBouteille.pays ? uneBouteille.pays : uneBouteille.pays_bouteillePerso }}
+                        </p>
+                    </div>
+
+                    <div>
+                        <span class="icone icone-dollar"></span>
+                        <p>
+                            {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }}
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="quantite">
+
+
+                    <a *ngIf="!uneBouteille.id_bouteille" class="modifier" routerLink="/modifier-bouteille/{{ uneBouteille.id_supreme }}"></a>
+
+
+                    <!-- <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)"></button> -->
+
+                    <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
+                    
+
+                    <!-- <button class="moins" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)"></button> -->
+
+
+                
+
+
+                </div>
+                
+                
+            </div>
+            <span class="cellier_nom">cellier :{{ uneBouteille.celliers_nom }}</span>
+
+
+        </article>
+    </div>
+
+</section>

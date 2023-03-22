@@ -23,7 +23,7 @@ export interface Ibouteillecellier {
     type_vino_name:string;
     type_mes_name:string;
     id_bouteillePerso:number;
-
+    cellier_nom:string;
     nom_bouteillePerso: string;
     type_bouteillePerso: string;
     pays_bouteillePerso: string;

@@ -96,16 +96,17 @@ export class AjoutBouteilleComponent implements OnInit {
   }
 
   selectData(bouteille: any) {
-    window.scroll({ // pour scroll up quand on clique sur une bouteille
-      top: 0,
+
+    window.scrollTo(0, 0);
+
+    window.scroll({ // pour scroll down quand on clique sur une bouteille
+      top: 300,
       left: 0,
       behavior: 'smooth'
     });
 
     this.hideForm = false;
-
     this.selectedData = bouteille;
-    console.log(this.selectedData);
 
     this.ajouterBouteilleForm.patchValue({
       id: bouteille.id,
@@ -116,9 +117,6 @@ export class AjoutBouteilleComponent implements OnInit {
       pays: bouteille.pays,
       description: bouteille.description,
       quantite: 1,
-
-
-
     });
     this.filteredData = [];
     this.isDataSelected = true; // set the flag to true when data is selected
@@ -194,30 +192,23 @@ export class AjoutBouteilleComponent implements OnInit {
       controls[controlName].setValue('');
     });
 
-    // this.searchTerm = '';
   }
 
-
-
   ngOnInit(): void {
-
     window.scroll({ // pour scroll up quand on arrive sur la page
       top: 0,
       left: 0,
       behavior: 'smooth'
     });
 
-
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
     });
 
-
     this.fetchService.getBouteilleSAQ().subscribe((response) => {
       this.arrayBouteille = response.data;
       console.log(this.arrayBouteille);
-
     });
 
     this.ajouterBouteilleForm = this.formBuilder.group({

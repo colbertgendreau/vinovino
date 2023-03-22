@@ -1,11 +1,11 @@
-section {
-  // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
-  background-attachment: fixed;
-  height: 100%;
-  padding: 85px var(--big) 115px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--big);
+.mesCelliers {
+    // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
+    background-attachment: fixed;
+    height: 100%;
+    padding: 85px var(--big) 115px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--big);
 
 
   h1 {
@@ -38,59 +38,78 @@ section {
     }
   }
 
-  .modif-cellier {
-    // color: var(--white);
-    color: var(--secondaire-turquoise);
-    position: absolute;
-    bottom: calc(50% - 15px);
-    right: var(--smaller);
-    text-decoration: none;
-  }
+    .icones-cellier {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: end;
+        align-self: stretch;
+    }
 
-  .ajout-bouteille {
-    position: absolute;
-    display: flex;
+    .modif-cellier {
+        background: url(../../assets/icones/edit-black.png);
+        height: var(--bigger);
+        width: var(--bigger);
+        background-size: cover;
+        cursor: pointer;
 
-    bottom: var(--smaller);
-    right: var(--smaller);
-    color: var(--secondaire);
-    text-decoration: none;
-  }
+    }
 
-  .btn-effacer {
-    background: none;
-    border: none;
-    padding: 0;
-    position: absolute;
-    top: var(--smaller);
-    right: var(--smaller);
-  }
+    .btn-effacer {
 
-  .btn-effacer {
-    cursor: pointer;
-  }
+        background: url(../../assets/icones/trash-347.png);
+        height: var(--bigger);
+        width: var(--bigger);
+        background-size: cover;
+        cursor: pointer;
 
-  .icones {
-    height: var(--big);
-  }
+    }
 
-  .iconeCellier {
-    margin-right: var(--small);
-    max-width: 80px;
-    max-height: 80px;
-  }
+    .ajout-bouteille {
 
+        background: url(../../assets/icones/wine-bottle.png);
+        height: var(--bigger);
+        width: var(--bigger);
+        background-size: cover;
+        cursor: pointer;
 
-  .celliers {
-    // border: 1px solid var(--black);
-    height: 80px;
-    background-color: var(--white);
-    border-radius: 5px;
-    display: flex;
-    justify-content: center;
-    padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    position: relative;
+        .icone-bouteille {
+            background: url(../../assets/icones/wine-bottle.png);
+            height: var(--bigger);
+            width: var(--bigger);
+            background-size: cover;
+        }
+        
+        .icone-plus {
+            position: relative;
+            top: 0px;
+            left: 14px;
+            background: url(../../assets/icones/plusWithBack.png);
+            height: var(--small);
+            width: var(--small);
+            background-size: cover;
+        }
+      }
+
+    .iconeCellier {
+        margin-right: var(--small);
+        max-width: 80px;
+        max-height: 80px;
+    }
+
+    .celliers {
+        height: 100px;
+        background-color: var(--white);
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: var(--small);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     .unCellier {
       text-decoration: none;
@@ -167,7 +186,124 @@ section {
       height: 72px;
       opacity: 0;
     }
-  }
+}
+
+ 
+        .ajouter-cellier {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: var(--small);
+            margin-bottom: var(--small);
+            margin-inline: var(--big);
+            height: var(--biggest);
+            border-radius: var(--border-radius);
+            border-style: none;
+            border: solid var(--smallest) var(--secondaire);
+            font-size: var(--med);
+            font-weight: var(--bold);
+            background-color: var(--secondaire);
+            color: var(--black);
+            position: fixed;
+            bottom: var(--big);
+            padding: 8px;
+            right: 0;
+            left: 0;
+            z-index: 2;
+            text-decoration: none;
+            color: var(--black);
+        }
+        .ajouter-cellier:hover {
+            background-color: var(--secondaire);
+        }
+        
+        
+    /***************************************************///// modal filtre
 
 
+    .modal {
+        position: fixed;
+        // top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 3;
+      }
+      
+      .modal.active {
+        width: 100%;
+        opacity: 1;
+        visibility: visible;
+      }
+      
+      .modal-content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 70%;
+        background-color: #fff;
+        padding: 20px;
+        transform: translateX(-100%);
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .modal.active .modal-content {
+        transform: translateX(0);
+      }
+
+      .open-modal{
+        cursor: pointer;
+
+      }
+
+      .close-modal-btn{
+        width: fit-content;
+        align-self: end;
+        appearance: none;
+        border: none;
+        background: none;
+        padding: 0;
+        margin: 0;
+
+      }
+
+  
+
+
+
+      div {
+        padding: 0;
+        height: fit-content;
+  
+      }
+
+      div a {
+        cursor: pointer;
+      }
+
+      div a:active{
+        text-decoration:underline;
+    }
+      
+      
+
+}
+
+.formPrix {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+
+
+    input {
+        width: 6ch;
+    }
 }

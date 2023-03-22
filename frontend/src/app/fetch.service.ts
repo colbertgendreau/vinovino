@@ -61,6 +61,9 @@ export class FetchService {
     console.log(this.urlCellier+"/"+id + ' bouteilles udu celier');
     return this.http.get<Ilistemesbouteilles>(this.urlCellier+"/"+id);
   }
+  getMesBouteilles():Observable<Ilistemesbouteilles>{
+    return this.http.get<Ilistemesbouteilles>(this.urlBouteille);
+  }
 
   getCelliers():Observable<IlisteCellier>{
     console.log(this.urlCellier + ' celier');
