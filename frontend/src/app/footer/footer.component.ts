@@ -49,7 +49,7 @@ export class FooterComponent {
         this.pageActuelle = 'ajoutCellier';
         break;
       case ModifCellierComponent:
-        this.pageActuelle = 'cellier';
+        this.pageActuelle = 'modifCellier';
         break;
       case ModifBouteilleComponent:
         this.pageActuelle = 'modifBouteille';
