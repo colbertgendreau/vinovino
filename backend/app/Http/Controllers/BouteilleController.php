@@ -22,8 +22,8 @@ class BouteilleController extends Controller
         // ->get();
 
         $bouteilles = Bouteille::select(
-            'Bouteilles.id AS id_supreme',
-            'Bouteilles.*',
+            'bouteilles.id AS id_supreme',
+            'bouteilles.*',
             'vino__bouteille.id AS vino__bouteille_id',
             'vino__bouteille.*',
             'mes_bouteilles.*',
@@ -33,11 +33,11 @@ class BouteilleController extends Controller
             'type_mes.type AS type_mes_name',
             'celliers.nom AS celliers_nom',
         )
-            ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'Bouteilles.id_bouteille')
-            ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'Bouteilles.id_mes_bouteilles')
+            ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')
+            ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'bouteilles.id_mes_bouteilles')
             ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
             ->leftJoin('vino__type as type_mes', 'type_mes.id', '=', 'mes_bouteilles.type_bouteillePerso')
-            ->join('celliers', 'Bouteilles.celliers_id', '=', 'celliers.id')
+            ->join('celliers', 'bouteilles.celliers_id', '=', 'celliers.id')
             ->where('celliers.users_id', $id)
             ->get();
 

@@ -44,6 +44,7 @@ export class AuthService {
 
   signin(user: User): Observable<any> {
 
+
     if (isDevMode()) {
       console.log('Development frontend!');
       console.log(environment.apiUrl);
@@ -56,7 +57,7 @@ export class AuthService {
   }
   // // LoginAdmin
   // signinAdmin(user: User): Observable<any> {
-  //   return this.http.post<any>(environment.apiUrl+'/api/auth/loginAdmin', user);
+  //   return this.http.post<any>('http://127.0.0.1:8000/api/auth/login', user);
   // }
   // Access user profile
   profileUser(): Observable<any> {

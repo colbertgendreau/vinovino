@@ -6,6 +6,7 @@ import { AuthStateService } from 'projects/admin/src/app/shared/auth-state.servi
 @Injectable({
   providedIn: 'root'
 })
+
 export class GardienLoginAdminGuard implements CanActivate {
 
   estConnecte : boolean = false;
@@ -32,9 +33,5 @@ export class GardienLoginAdminGuard implements CanActivate {
       if (valide) return true;
       else
       return this.router.parseUrl('/');
-
-    // return true;
-
   }
-
 }
