@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { TokenService } from 'src/app/shared/token.service';
-import { AuthStateService } from 'src/app/shared/auth-state.service';
+import { TokenService } from 'projects/admin/src/app/shared/token.service';
+import { AuthStateService } from 'projects/admin/src/app/shared/auth-state.service';
 
 @Component({
   selector: 'app-entete',
@@ -23,7 +23,7 @@ export class EnteteComponent {
       this.isSignedIn = val;
     });
   }
-  
+
   signOut() {
     this.auth.setAuthState(false);
     this.token.removeToken();

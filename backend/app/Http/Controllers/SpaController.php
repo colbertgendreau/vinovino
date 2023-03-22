@@ -10,6 +10,10 @@ class SpaController extends Controller
         return view('angular');
     }
 
+    public function admin(){
+        return view('admin');
+    }
+
     public function nonexisting(){
         throw new Exception('Cette page n\'existe pas ');
     }

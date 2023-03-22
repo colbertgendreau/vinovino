@@ -83,7 +83,7 @@
       <option value="" disabled selected>Type de vin</option>
       <option value="1">vin rouge</option>
       <option value="2">vin blanc</option>
-      <option value="3">Autre</option>
+      <option value="3">vin rosé</option>
   </select>
 </div>
 
@@ -149,9 +149,10 @@
       </div>
     </div>
     
-    <button class="btn-submit" class="grosPlus" type="submit">Confirmer</button>
+    <button class="btn-submit grosPlus" type="submit" >Confirmer</button>
     <button class="btn-effacer" *ngIf="isDataSelected" type="button" (click)="clearForm()">
       Rétablir
     </button>
   </form>
 </div>
+<app-footer></app-footer>

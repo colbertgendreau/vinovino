@@ -33,7 +33,7 @@ export class FetchService {
     return this.http.post<Imesbouteilles>(this.urlBouteille, bouteille);
   }
 
-  modifBouteille(id:number, bouteille: Imesbouteilles):Observable<Imesbouteilles>{
+  modifBouteille(id:number, bouteille: any):Observable<Imesbouteilles>{
     console.log(bouteille);
     console.log(id);
     return this.http.put<Imesbouteilles>(this.urlBouteille+"/"+id, bouteille);
@@ -60,6 +60,9 @@ export class FetchService {
   getBouteillesCellier(id:number):Observable<Ilistemesbouteilles>{
     console.log(this.urlCellier+"/"+id + ' bouteilles udu celier');
     return this.http.get<Ilistemesbouteilles>(this.urlCellier+"/"+id);
+  }
+  getMesBouteilles():Observable<Ilistemesbouteilles>{
+    return this.http.get<Ilistemesbouteilles>(this.urlBouteille);
   }
 
   getCelliers():Observable<IlisteCellier>{

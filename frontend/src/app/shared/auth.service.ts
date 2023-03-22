@@ -1,7 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable, isDevMode} from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
+
 
 // User interface
 export class User {
@@ -18,12 +19,41 @@ export class AuthService {
   constructor(private http: HttpClient) {}
   // User registration
   register(user: User): Observable<any> {
-    return this.http.post(environment.apiUrl+'/api/auth/register', user);
+
+    if (isDevMode()) {
+      console.log('Development frontend!');
+      console.log(environment.apiUrl);
+      return this.http.post<any>(environment.apiUrl+'/api/auth/register', user);
+    } else {
+      console.log('Production frontend!');
+      console.log(environment.apiUrl);
+      return this.http.post<any>(environment.apiUrl+'/api/auth/register', user);
+    }
   }
   // Login
+  // signin(user: User): Observable<any> {
+  //
+  //   if (isDevMode()) {
+  //     console.log('Development admin!');
+  //   } else {
+  //     console.log('Production admin!');
+  //   }
+  //   console.log(environment.apiUrl+'/api/auth/login' +" aqui tratando de connectarnos a ladmin1")
+  //   return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
+  // }
+
   signin(user: User): Observable<any> {
-    console.log(environment.apiUrl);
-    return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
+
+
+    if (isDevMode()) {
+      console.log('Development frontend!');
+      console.log(environment.apiUrl);
+      return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
+    } else {
+      console.log('Production fronted!');
+      console.log(environment.apiUrl);
+      return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
+    }
   }
   // // LoginAdmin
   // signinAdmin(user: User): Observable<any> {
@@ -36,3 +66,4 @@ export class AuthService {
 
 
 }
+

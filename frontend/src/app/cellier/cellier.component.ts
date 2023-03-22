@@ -30,12 +30,14 @@ export class CellierComponent implements OnInit {
   bouteilles: Array<Ibouteillecellier>;
   bouteille: Imesbouteilles;
   cellierId: string;
+  cellierNom:string;
   isSignedIn!: boolean;
   // title:string='Cellier';
   UserProfile!: User;
   unCellier: any;
   spin: boolean = true;
   hide: boolean = true;
+  pageCellier: boolean = true;
 
   //   counter:number = 1;
   counterValue: number = 0;
@@ -68,9 +70,9 @@ export class CellierComponent implements OnInit {
   ngOnInit() {
 
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
 
 
@@ -90,6 +92,9 @@ export class CellierComponent implements OnInit {
         .getBouteillesCellier(params['id'])
         .subscribe((data: any) => {
           this.bouteilles = data.data;
+
+          
+          this.cellierNom = this.bouteilles[0].cellier_nom;
 
           console.log('les bouteilles du cellier');
           console.log(this.bouteilles);
@@ -135,7 +140,7 @@ export class CellierComponent implements OnInit {
         });
 
       });
-      if(this.bouteille.quantite == 0){
+      if (this.bouteille.quantite == 0) {
         this.openModal(id);
       }
     });
@@ -154,17 +159,17 @@ export class CellierComponent implements OnInit {
     this.id = id;
     this.isVisible = true;
 
-   }
+  }
 
-   closeModal() {
-     this.isVisible = false;
-   }
+  closeModal() {
+    this.isVisible = false;
+  }
 
-   onModalClosed() {
-     this.isVisible = false;
-   }
+  onModalClosed() {
+    this.isVisible = false;
+  }
 
-   rafraichirListe(){
+  rafraichirListe() {
     this.route.params.subscribe((params) => {
 
       this.cellierId = params['id'];
@@ -181,24 +186,28 @@ export class CellierComponent implements OnInit {
           this.isVisible = false;
         });
     });
-   }
+  }
+
+
 
    goUp() {
     console.log("par en haut");
 
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
 
-   }
+  }
+
 
    pageCelliers() {
         window.scroll({ // pour scroll up
         top: 0,
         left: 0,
         behavior: 'smooth'
+
     });
 
 

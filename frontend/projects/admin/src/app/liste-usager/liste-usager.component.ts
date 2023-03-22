@@ -8,9 +8,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { LiveAnnouncer } from '@angular/cdk/a11y';
-import { AuthStateService } from 'src/app/shared/auth-state.service';
-import { TokenService } from 'src/app/shared/token.service';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthStateService } from 'projects/admin/src/app/shared/auth-state.service';
+import { TokenService } from 'projects/admin/src/app/shared/token.service';
+import { AuthService } from 'projects/admin/src/app/shared/auth.service';
 
 
 @Component({
@@ -51,7 +51,7 @@ export class ListeUsagerComponent implements OnInit {
       // this.isOpen = !this.isOpen;
       // console.log(this.isOpen);
     });
-    
+
     this.afficherListeUtilisateur();
   }
 
@@ -101,7 +101,7 @@ export class ListeUsagerComponent implements OnInit {
     this.dataSource.filter = valeur.trim().toLowerCase();
   }
 
-  announceSortChange(sortState: Sort) {   
+  announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
     } else {

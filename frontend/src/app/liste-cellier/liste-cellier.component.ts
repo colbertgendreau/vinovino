@@ -8,11 +8,17 @@ import { ActivatedRoute } from '@angular/router';
 import { IlisteCellier } from '../iliste-cellier';
 import { ICellier } from '../icellier';
 
+
+import { Ilistemesbouteilles } from '../ilistemesbouteilles';
+import { Imesbouteilles } from '../imesbouteilles';
+
+
 // import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
 
 import { EffacerModalComponent } from '../effacer-cellier-modal/effacer-cellier-modal.component';
 
 import { environment } from '../../environments/environment';
+
 
 // User interface
 // export class User {
@@ -32,16 +38,27 @@ export class ListeCellierComponent implements OnInit {
   // title:string='Liste des celliers';
   // UserProfile!: User;
   listeCelliers: Array<ICellier>;
+  listeMesBouteilles: Array<Imesbouteilles>;
   unCellier: ICellier;
 
+  filteredData:any = [];
+  searchTerm:any = '';
+  minPrice:number;
+  maxPrice:number;
   id: number;
   isVisible = false;
+  spin: boolean = true;
+  hide: boolean = true;
+
+
+
 
   iconeTrash =  environment.baseImg + 'icones/trash-347.png';
   iconeModif =  environment.baseImg + 'icones/edit-black.png';
   iconeAjout =  environment.baseImg + 'icones/plus-black.png';
   iconeBouteille =  environment.baseImg + 'icones/wine-bottle.png';
   iconeCellier =  environment.baseImg + 'icones/cellier.png';
+
 
   constructor(
     private auth: AuthStateService,
@@ -65,7 +82,32 @@ export class ListeCellierComponent implements OnInit {
     this.fetchService.getCelliers().subscribe((data: any) => {
       this.listeCelliers = data.data;
       console.log(this.listeCelliers);
+      this.spin = false;
+      this.hide = false;
     });
+
+    // this.fetchService.getMesBouteilles().subscribe((data: any) => {
+    //   this.listeMesBouteilles = data.data;
+    //   for (let i = 0; i < this.listeMesBouteilles.length; i++) {
+    //     if (this.listeMesBouteilles[i].nom == null) {
+    //       this.listeMesBouteilles[i].nom = this.listeMesBouteilles[i].nom_bouteillePerso
+    //     }
+    //     if (this.listeMesBouteilles[i].type_vino_name == null) {
+    //       this.listeMesBouteilles[i].type_vino_name = this.listeMesBouteilles[i].type_mes_name
+    //     }
+    //     if (this.listeMesBouteilles[i].pays == null) {
+    //       this.listeMesBouteilles[i].pays = this.listeMesBouteilles[i].pays_bouteillePerso
+    //     }
+    //     if (this.listeMesBouteilles[i].prix_saq == null) {
+    //       this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_bouteillePerso
+    //     }else{
+    //       if (this.listeMesBouteilles[i].prix_bouteillePerso == null) {
+    //         this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_saq;
+    //       }
+    //     }
+    //   }
+    //   console.log(this.listeMesBouteilles);
+    // });
 
   }
 
@@ -87,6 +129,13 @@ export class ListeCellierComponent implements OnInit {
     this.isVisible = false;
   }
 
+  // openModalFilter() {
+  //   this.isVisibleM = true;
+  // }
+  // closeModalFilter() {
+  //   this.isVisibleM = false;
+  // }
+
   rafraichirListe(){
     this.fetchService.getCelliers().subscribe((data: any) => {
       this.listeCelliers = data.data;
@@ -94,6 +143,7 @@ export class ListeCellierComponent implements OnInit {
       this.isVisible = false;
     });
   }
+
 
 
 
