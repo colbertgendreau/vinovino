@@ -5,8 +5,6 @@ import { environment } from "../environments/environment";
 import { IUser } from './iuser';
 import { IlisteUser } from './iliste-user';
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,14 +21,8 @@ export class AdminService {
     return this.http.get<IlisteUser>(this.urlUtilisateur);
   }
 
-  // ajouterUtilisateur(data:IUser):Observable<IUser> {
-  //   return this.http.post<IUser>(this.urlUtilisateur, data);
-  // }
-
   effacerUtilisateur(id:number):Observable<IUser> {
     console.log(this.urlUtilisateur+"/"+id);
     return this.http.delete<IUser>(this.urlUtilisateur+"/"+id);
   }
-
-
 }

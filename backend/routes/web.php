@@ -22,6 +22,7 @@ Route::group(['prefix'=>'profil'],function (){
 
     Route::get('/{any_path}',[SpaController::class, 'index'])->where('any_path', '(.*)');
 //    Route::get('/{any_path}','SpaController@index')->where('any_path', '(.*)');
+
 });
 
 Route::group(['prefix'=>'admin'],function (){
