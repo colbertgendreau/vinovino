@@ -10,25 +10,29 @@
         text-decoration: none;
     }
 
-    h1 {
-        padding: 0;
+    // h1 {
+    //     padding: 0;
+    // }
+
+    .vinovino-admin {
+        padding-left: 8px;
     }
 
     span {
         flex-grow: 1;
     }
 
-    nav {
-        display: flex;
-        justify-content: center;
-        width: 100%;
+    // nav {
+    //     display: flex;
+    //     justify-content: center;
+    //     width: 100%;
 
-        a {
-            padding: 8px;
+    //     a {
+    //         padding: 8px;
 
-            &.estActif {
-                font-weight: bold;
-            }
-        }
-    }
+    //         &.estActif {
+    //             font-weight: bold;
+    //         }
+    //     }
+    // }
 }
