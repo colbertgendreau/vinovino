@@ -27,15 +27,9 @@ export class ConnexionAdminComponent implements OnInit {
     private token: TokenService,
     private authState: AuthStateService
   ) {
-
-    // console.log(token);
-    // console.log(authService);
-    // console.log(authState);
-
     this.loginForm = this.fb.group({
       email: [],
       password: [],
-      // type: [],
     });
   }
 
@@ -56,7 +50,6 @@ export class ConnexionAdminComponent implements OnInit {
 
   onSubmit() {
 
-    // this.authService.signinAdmin(this.loginForm.value).subscribe(      
     this.authService.signin(this.loginForm.value).subscribe(      
       (result) => {
         this.responseHandler(result);        
@@ -73,26 +66,6 @@ export class ConnexionAdminComponent implements OnInit {
       (error) => {
         this.errors = error.error;
       },
-      // () => {
-      //   this.authState.setAuthState(true);
-      //   this.loginForm.reset();
-      //   this.router.navigate(['liste-usager']);
-      // }
-
-      
-      // (result) => {
-      //   this.responseHandler(result);
-      //   console.log(result);
-      // },
-      // (error) => {
-      //   console.log(error);
-      //   this.errors = error.error;
-      // },
-      // () => {
-      //   this.authState.setAuthState(true);
-      //   this.loginForm.reset();
-      //   this.router.navigate(['liste-usager']);
-      // }
     );
   }
 
