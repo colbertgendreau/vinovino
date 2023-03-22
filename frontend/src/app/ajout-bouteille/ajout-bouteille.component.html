@@ -77,14 +77,18 @@
 </div>
 
 
-<div>
-  <label for="type">Type</label>
-  <select [class.disabled]="isDataSelected" name="type" id="type" formControlName="type" [disabled]="isDataSelected">
-      <option value="" disabled selected>Type de vin</option>
-      <option value="1">vin rouge</option>
-      <option value="2">vin blanc</option>
-      <option value="3">vin rosé</option>
-  </select>
+<div class="container-select">
+    <label for="type">Type</label>
+    <select [class.disabled]="isDataSelected" name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
+        <option value="" disabled selected>Type de vin</option>
+        <option value="1">vin rouge</option>
+        <option value="2">vin blanc</option>
+        <option value="3">vin rosé</option>
+    </select>
+    <div [class.voile]="isDataSelected"></div>
+    <!--
+        <div class="voile"></div>
+    -->
 </div>
 
     <div>
