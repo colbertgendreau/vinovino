@@ -125,6 +125,7 @@ export class CellierComponent implements OnInit {
 
       let updateBouteille: Imesbouteilles = this.bouteille;
       console.log(updateBouteille);
+      
 
       this.fetchService.modifBouteille(id, updateBouteille).subscribe((retour) => {
 

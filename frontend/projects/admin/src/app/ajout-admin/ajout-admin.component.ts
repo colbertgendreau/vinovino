@@ -5,7 +5,8 @@ import { AdminService } from '../admin.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { AuthService } from 'src/app/shared/auth.service';
+import { AuthService } from 'projects/admin/src/app/shared/auth.service';
+
 
 @Component({
   selector: 'app-ajout-admin',
