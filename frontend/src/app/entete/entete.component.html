@@ -16,9 +16,7 @@
 </nav>
 <nav class="burger">
   <div *ngIf="isSignedIn">
-
-    <a routerLink="profil/recherche"><img class="loupe" src="../../assets/icones/MicrosoftTeams-image.png" alt=""></a>
-    
+    <a routerLink="profil/recherche"><img class="loupe" [src]="iconeLoupe" alt=""></a>
   </div>
   
   <div class="menu-toggle">
