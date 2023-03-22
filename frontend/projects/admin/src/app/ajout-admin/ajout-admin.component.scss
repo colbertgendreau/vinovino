@@ -80,6 +80,10 @@ mat-sidenav-container {
             color: red;
             text-align: left;
             margin-bottom: 16px;
+
+            span {
+                display: block;
+            }
         }
     
     }
