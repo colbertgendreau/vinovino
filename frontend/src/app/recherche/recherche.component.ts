@@ -32,6 +32,9 @@ export class RechercheComponent {
   selectedWinePays = '';
   minPrice = '';
   maxPrice = '';
+  
+  imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
+
 
   isSelected(type: string): boolean {
     return this.selectedWineTypes.has(type);
