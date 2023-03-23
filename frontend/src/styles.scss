@@ -73,3 +73,17 @@ form {
     .nohide {
         display: flex;
     }
+
+  .mon-snackbar {
+    position: fixed !important;
+    background-color: #10D4E0;
+    bottom: 48px !important;
+    margin: 0 !important;
+    transform: translateX(-50%);
+    color: black;
+    font-size: 16px;
+    height: 48px;
+  }
+  .mdc-button__label{
+    color: black;
+  }

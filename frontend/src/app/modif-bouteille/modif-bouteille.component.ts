@@ -7,6 +7,8 @@ import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms'
 import { ActivatedRoute } from '@angular/router';
 import { Imesbouteilles } from '../imesbouteilles';
 import { FetchService } from '../fetch.service';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+
 
 // User interface
 export class User {
@@ -26,7 +28,9 @@ export class ModifBouteilleComponent implements OnInit {
   // title:string='Modifier la bouteille #';
   UserProfile!: User;
   modifBouteilleForm: FormGroup;
-  bouteille:Imesbouteilles;
+  bouteille: Imesbouteilles;
+
+  formSubmitted = false;
 
   constructor(
     private auth: AuthStateService,
@@ -35,7 +39,8 @@ export class ModifBouteilleComponent implements OnInit {
     public authService: AuthService,
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    public fetchService:FetchService,
+    public fetchService: FetchService,
+    private snackBar: MatSnackBar
 
   ) {
     this.authService.profileUser().subscribe((data: any) => {
@@ -46,9 +51,9 @@ export class ModifBouteilleComponent implements OnInit {
 
   ngOnInit() {
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
 
     this.auth.userAuthState.subscribe((val) => {
@@ -57,14 +62,14 @@ export class ModifBouteilleComponent implements OnInit {
     });
 
 
-    this.route.params.subscribe((params)=>{
+    this.route.params.subscribe((params) => {
       console.log(params);
 
       this.fetchService.showBouteille(params['id']).subscribe((data: any) => {
         this.bouteille = data.data;
         console.log(this.bouteille);
         this.modifBouteilleForm.setValue({
-          id_bouteillePerso: this.bouteille.id,
+          id_bouteillePerso: this.bouteille.id_bouteillePerso,
           nom_bouteillePerso: this.bouteille.nom_bouteillePerso,
           type_bouteillePerso: this.bouteille.type_bouteillePerso,
           pays_bouteillePerso: this.bouteille.pays_bouteillePerso,
@@ -88,22 +93,30 @@ export class ModifBouteilleComponent implements OnInit {
     });
   }
 
-  modifier() {
+  modifierBouteille() {
+    this.formSubmitted = true;
+    if (this.modifBouteilleForm.valid) {
       this.route.params.subscribe((params) => {
         let updateBouteille: Imesbouteilles = this.modifBouteilleForm.value;
-
+        console.log(params['id']);
+        
+        console.log(updateBouteille.id_bouteillePerso);
+        
         this.fetchService.modifBouteille(params['id'], updateBouteille).subscribe((retour) => {
-          this.router.navigate(['/profil/liste-cellier']);
-        });
-    });
+          console.log(retour);
+          this.openSnackBar('Modification effectuée avec succès', 'Fermer');
 
+          this.router.navigateByUrl('profil/cellier/' + this.bouteille.celliers_id);
+        });
+      });
+    }
   }
 
   clearForm() {
     window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
 
 
@@ -114,4 +127,16 @@ export class ModifBouteilleComponent implements OnInit {
 
 
   }
+
+    /**
+* Cette fonction affiche un message de type snackbar.
+* @param message Le message à afficher.
+* @param action L'action à afficher sur le bouton de fermeture du snackbar.
+*/
+openSnackBar(message: string, action: string) {
+  const config = new MatSnackBarConfig();
+  config.duration = 3000; // Set the duration to 3 seconds
+  config.panelClass = ['mon-snackbar']; // Add a custom CSS class
+  this.snackBar.open(message, action, config);
+}
 }

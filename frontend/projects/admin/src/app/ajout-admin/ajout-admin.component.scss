@@ -37,7 +37,7 @@ mat-sidenav-container {
 
     .titre {
         padding-inline: 64px;
-        padding-top: 64px;
+        padding-top: 32px;
         padding-bottom: 32px;
         display: flex;
         flex-direction: column;
@@ -80,8 +80,11 @@ mat-sidenav-container {
             color: red;
             text-align: left;
             margin-bottom: 16px;
+
+            span {
+                display: block;
+            }
         }
-    
     }
 }
 
