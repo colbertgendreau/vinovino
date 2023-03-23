@@ -7,52 +7,113 @@
   gap: var(--big);
   
   .recherche_filter {
-    // margin-top: 63px;
     display: flex;
     flex-direction: column;
-    // margin-top: 63px;
-    // background-color: rgb(224, 221, 221);
     
     .recherche-input{
-      margin-block: 20px;
+      margin-bottom: var(--big);
       border-radius: 5px;
       border: 1px solid var(--secondaire);
       height: 30px;
+      padding-inline: var(--small);
+    }
+
+    .or-line {
+      position: relative;
+      text-align: center;
+
+      span {
+        position: relative;
+        display: inline-block;
+        padding: 0 10px;
+        line-height: 1.5em;
+        z-index: 1;
+      }
+    }
+    
+    .or-line::before,
+    .or-line::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background-color: var(--secondaire-turquoise);
+    }
+    
+    .or-line::before {
+      left: 0;
+    }
+    
+    .or-line::after {
+      right: 0;
+    }
+    
+    h3 {
+      margin-top: var(--big);
+      margin-bottom: var(--small);
     }
     
     details {
       text-decoration: none;
+
+      summary {
+        margin-block: var(--smaller4);
+      }
       
       .type, .pays, .prix {
-        padding-block: var(--small);
+        padding-block: var(--med);
         
         h3 {
           padding-bottom: var(--smaller);
-        }
-        
-        div {
-          padding-bottom: var(--smaller4);
         }
 
         .types {
           display: flex;
           justify-content: space-between;
+
+          .input-checbox {
+            display: flex;
+            align-items: center;
+
+            input[type="checkbox"] {
+              border-radius: 5px;
+              border: 1px solid var(--secondaire);
+              width: var(--big);
+              height: var(--big);
+              margin-right: var(--smaller4);
+            }
+          }
         }
 
         select {
           width: 100%;
-          // margin-block: 20px;
           border-radius: 5px;
           border: 1px solid var(--secondaire);
           height: 30px;
+          padding-inline: var(--small);
         }
         
         .formPrix {
           display: flex;
-          flex-direction: column;
+          justify-content: space-around;
 
-          label:nth-of-type(2) {
-            padding-top: var(--small);
+          .prixMin, .prixMax {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            label {
+              margin-right: var(--smallest);
+            }
+
+            input {
+              width: var(--biggest);
+              border-radius: 5px;
+              border: 1px solid var(--secondaire);
+              height: var(--biggest);
+              padding-inline: var(--small);
+            }
           }
         }
 
