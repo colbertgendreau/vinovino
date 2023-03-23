@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { environment } from "../environments/environment";
 import { IUser } from './iuser';
 import { IlisteUser } from './iliste-user';
+import {ICatalogue} from "./icatalogue";
+import {Imesbouteilles} from "../../../../src/app/imesbouteilles";
+import {IDate} from "./idate";
 
 
 
@@ -16,6 +19,7 @@ export class AdminService {
   // private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
 
   private urlUtilisateur:string = environment.apiUrl+"/api/utilisateurs";
+  private urlExecute:string = environment.apiUrl+"/api/execute";
 
   constructor(private http:HttpClient) { }
 
@@ -32,5 +36,15 @@ export class AdminService {
     return this.http.delete<IUser>(this.urlUtilisateur+"/"+id);
   }
 
+  getDonnesSaq():Observable<ICatalogue> {
+    return this.http.get<any>(this.urlExecute);
+  }
 
+    executeSaq(heure):Observable<any> {
+    return this.http.post<IDate>(this.urlExecute, heure);
+  }
+
+  // ajoutBouteille(bouteille:Imesbouteilles):Observable<Imesbouteilles>{
+  //   return this.http.post<Imesbouteilles>(this.urlExecute, bouteille);
+  // }
 }

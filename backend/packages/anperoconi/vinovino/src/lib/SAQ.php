@@ -1,12 +1,4 @@
 <?php
-namespace Anperoconi\Vinovino\Models;
-
-use App\Models\User;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
-use DOMDocument;
-use Illuminate\Support\Facades\DB;
-use stdClass;
 
 /**
  * Class MonSQL
@@ -19,7 +11,7 @@ use stdClass;
  *
  *
  */
-class SAQ extends Model
+class SAQ extends Modele
 {
 
 	const DUPLICATION = 'duplication';
@@ -30,13 +22,14 @@ class SAQ extends Model
 	private static $_status;
 	private $stmt;
 
-//	public function __construct()
-//	{
-//		parent::__construct();
-//		if (!($this->stmt = $this->_db->prepare("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
-//			echo "Echec de la préparation : (" . $this->_db->errno . ") " . $this->_db->error;
-//		}
-//	}
+	public function __construct()
+	{
+		parent::__construct();
+		if (!($this->stmt = $this->_db->prepare("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays, description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
+			echo "Echec de la préparation : (" . $this->_db->errno . ") " . $this->_db->error;
+		}
+	}
+
 	function getMaxPages()
 	{
 
@@ -74,21 +67,21 @@ class SAQ extends Model
 				$text = $noeud->textContent;
 				preg_match("/sur\s*(\d+)/", $text, $matches);
 				$total = intval($matches[1]);
+				echo "Total: " . $total;
 				$maxPages = ceil($total / $nombre);
 				break;
 			}
 		}
+
 		return $maxPages;
 	}
-
-
 
 	/**
 	 * getProduits
 	 * @param int $nombre
 	 * @param int $debut
 	 */
-	public function getProduits($nombre = 96, $page, $numero_de_page, $temps_debut)
+	public function getProduits($nombre = 96, $page)
 	{
 		ini_set('max_execution_time', 0);
 		$s = curl_init();
@@ -148,17 +141,9 @@ class SAQ extends Model
 			}
 		}
 
-        // Mettre à jour la table progrès de l'éxecution du script SAQ.php
-        // à chaque page insérée dans la base de données
-
-        //public function getProduits($nombre = 96, $page, $numero_de_page, $temps_debut)
-
-        DB::update(DB::raw('UPDATE progres__crawler SET nb_pages_completees='.$numero_de_page.' WHERE temps_debut='.$temps_debut));
-        $user = DB::table('progres__crawler')->find($temps_debut);
-        print_r($user);
-
 		return $i;
 	}
+
 	private function get_inner_html($node)
 	{
 		$innerHTML = '';
@@ -169,12 +154,10 @@ class SAQ extends Model
 
 		return $innerHTML;
 	}
-
 	private function nettoyerEspace($chaine)
 	{
 		return preg_replace('/\s+/', ' ', $chaine);
 	}
-
 	private function recupereInfo($noeud)
 	{
 
@@ -245,25 +228,16 @@ class SAQ extends Model
 
 		//var_dump($bte);
 		// Récupère le type
+		$rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
+		if ($rows->num_rows == 1) {
+			$type = $rows->fetch_assoc();
+			//var_dump($type);
+			$type = $type['id'];
 
 
-        $rows = DB::select( "SELECT id FROM vino__type WHERE type = :type", array(
-            'type' => $bte->desc->type,
-        ));
 
-		//$rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
-		if (count($rows) == 1) {
-            //ddd($rows[0]->id);
-			$type = $rows[0]->id;
-
-
-            $rows = DB::select( DB::raw("SELECT id FROM vino__bouteille WHERE code_saq = :code_SAQ"), array(
-                'code_SAQ' => $bte->desc->code_SAQ,
-            ));
-
-			//$rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ .
-            // "'");
-            if (count($rows) == 1) {
+			$rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ . "'");
+			if ($rows->num_rows < 1) {
 
 				//format le prix en
 				// $prixF = str_replace("$", "", $bte->prix);
@@ -282,25 +256,10 @@ class SAQ extends Model
 
 				// Source: https://www.php.net/manual/en/mysqli-stmt.bind-param.php
 				//Damn you sissssdssssssssss
-
-                $reponse = DB::insert( DB::raw("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays,
-                            description, prix_saq, url_saq, url_img, format) VALUES (:nom, :type, :img, :code_SAQ, :pays, :description,
-                                                                                     :prix_saq, :url_saq, :url_img, :format)"), array(
-                    'nom' => $bte->nom,'type' => $type,'img' => $bte->img,'code_SAQ' => $bte->desc->code_SAQ,
-                    'pays'=>$bte->desc->pays,'description'=> $bte->desc->texte,'prix_saq' => $prixF,'url_saq' =>
-                        $bte->url,'url_img' => $bte->img,'format' => $bte->desc->format
-                ));
-//
-//                if (!($this->stmt = $this->_db->prepare("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays,
-//                            description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
-//                    echo "Echec de la préparation : (" . $this->_db->errno . ") " . $this->_db->error;
-//                }
-//
-//				$this->stmt->bind_param("sissssdsss", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays,
-//                    $bte->desc->texte, $prixF, $bte->url, $bte->img, $bte->desc->format);
-//				$retour->succes = $this->stmt->execute();
+				$this->stmt->bind_param("sissssdsss", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays, $bte->desc->texte, $prixF, $bte->url, $bte->img, $bte->desc->format);
+				$retour->succes = $this->stmt->execute();
 				$retour->raison = self::INSERE;
-				//var_dump($retour->raison);
+				var_dump($retour->raison);
 				//var_dump($this->stmt);
 			} else {
 				$retour->succes = false;
