@@ -37,10 +37,6 @@ export class RechercheComponent {
   
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
-
-  imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
-
-
   isSelected(type: string): boolean {
     return this.selectedWineTypes.has(type);
   }
