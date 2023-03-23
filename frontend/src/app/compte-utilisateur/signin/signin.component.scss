@@ -45,9 +45,11 @@
     
         min-width: 100%;
         padding-inline: var(--big);
+        position:relative;
+
         
-        label {
-            display: var(--display-none);
+        label{
+            position:relative;
         }
         
         input {
@@ -61,6 +63,27 @@
             width: calc(100% - (var(--biggest) + var(--bigger)));
             padding-inline: var(--small);
         }
+        input::placeholder{
+            opacity:0;
+        }
+        .floating {
+            padding: 5px;
+            position:absolute;
+            top:-21px;
+            left:20px;
+            transform:translateY(20px);
+            font-size:0.825em;
+            transition-duration:300ms;
+            color: gray;
+            background: white;
+        }
+
+        label:focus-within > span,
+        input:not(:placeholder-shown) + span{
+            color:var(--secondaire);
+            transform:translateY(0px);
+        }
+        
     }
     
     button {
