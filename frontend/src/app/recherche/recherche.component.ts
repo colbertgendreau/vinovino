@@ -34,6 +34,9 @@ export class RechercheComponent {
   selectedWinePays = '';
   minPrice = '';
   maxPrice = '';
+  
+  imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
+
 
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
