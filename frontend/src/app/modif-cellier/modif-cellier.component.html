@@ -4,7 +4,8 @@
         <div>
             <label for="nom">
             <input type="text" formControlName="nom" value="{{unCellier?.nom}}">
-            <span class="floating">Nom du cellier</span>
+            <span class="floating" *ngIf="!cellierForm.controls['nom'].invalid || (!cellierForm.controls['nom'].dirty && !cellierForm.controls['nom'].touched)">Nom du cellier</span>
+            <span class="floating floatingError" *ngIf="cellierForm.controls['nom'].invalid && (cellierForm.controls['nom'].dirty || cellierForm.controls['nom'].touched)">Nom du cellier</span>
             </label>
             <div *ngIf="cellierForm.controls['nom'].invalid && (cellierForm.controls['nom'].dirty || cellierForm.controls['nom'].touched)"
                 class="message-erreur">
