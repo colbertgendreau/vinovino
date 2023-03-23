@@ -83,6 +83,12 @@
             color:var(--secondaire);
             transform:translateY(0px);
         }
+
+        label:focus-within > .floatingError,
+        input:not(:placeholder-shown) + .floatingError{
+            color:var(--primaire);
+        }
+
         
     }
     
