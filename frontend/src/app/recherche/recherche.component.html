@@ -9,11 +9,11 @@
             placeholder="Recherche dans vos celliers"
         />
 
-        <div class="or-line">
-            <span>Ou</span>
-        </div>
-        
-        <h3>Filtres</h3>
+
+     <div class="or-line">
+        <span>Ou</span>
+    </div>
+
         <details>
             <summary>Types</summary>
             <div class="type">
@@ -59,6 +59,16 @@
     </div>
 
     <div class="resultat">
+        <span *ngIf="numberOfResult !== null && numberOfResult !== undefined">
+            <ng-container *ngIf="numberOfResult === 0">
+              Aucun résultat trouvé
+            </ng-container>
+            <ng-container *ngIf="numberOfResult > 0">
+              {{numberOfResult}} résultat(s) trouvé(s)
+            </ng-container>
+          </span>
+          
+
         <article class="bouteille" *ngFor="let uneBouteille of filteredData">
             <div class="card-bouteille-haut">
                 <picture>
@@ -94,7 +104,7 @@
                     <!-- <button class="moins" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)"></button> -->
                 </div>
             </div>
-            <span class="cellier_nom">cellier :{{ uneBouteille.celliers_nom }}</span>
+            <span class="cellier_nom">cellier : <a routerLink="/profil/cellier/{{ uneBouteille.celliers_id }}">{{ uneBouteille.celliers_nom }}</a></span>
         </article>
     </div>
 </section>
