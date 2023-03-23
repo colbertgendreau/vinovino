@@ -49,7 +49,7 @@ export class FooterComponent {
         this.pageActuelle = 'ajoutCellier';
         break;
       case ModifCellierComponent:
-        this.pageActuelle = 'cellier';
+        this.pageActuelle = 'modifCellier';
         break;
       case ModifBouteilleComponent:
         this.pageActuelle = 'modifBouteille';
@@ -61,7 +61,6 @@ export class FooterComponent {
   }
 
   back() {
-    console.log(this.pageActuelle);
     if (this.pageActuelle == 'cellier') {
       this.router.navigateByUrl('profil/liste-cellier');
     } else if (this.pageActuelle == 'listeCellier') {
@@ -87,8 +86,6 @@ export class FooterComponent {
   }
 
   ajouter() {
-    console.log('ajouter bouteille');
-    console.log(this.pageActuelle);
     if (this.pageActuelle == 'cellier') {
       this.btnAjouter = 'ajoutCellier';
       this.router.navigateByUrl('profil/ajouter-bouteille/' + this.idCellier);
@@ -97,7 +94,6 @@ export class FooterComponent {
       this.router.navigateByUrl('profil/ajouter-cellier');
     } else {
         console.log("different bouton ajouter");
-        
     }
 
     window.scroll({
@@ -109,8 +105,6 @@ export class FooterComponent {
   }
 
   goUp() {
-    console.log('par en haut');
-
     window.scroll({
       // pour scroll up quand on arrive sur la page
       top: 0,
