@@ -10,6 +10,8 @@ import { ICellier } from '../icellier';
 // import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
 import { Ilistemesbouteilles } from '../ilistemesbouteilles';
 import { Imesbouteilles } from '../imesbouteilles';
+import { environment } from '../../environments/environment';
+
 
 @Component({
   selector: 'app-recherche',
@@ -33,6 +35,9 @@ export class RechercheComponent {
   minPrice = '';
   maxPrice = '';
   
+  imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
+
+
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
 
