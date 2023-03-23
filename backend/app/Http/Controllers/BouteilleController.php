@@ -163,7 +163,8 @@ class BouteilleController extends Controller
                 'nom_bouteillePerso' => $request->nom_bouteillePerso,
                 'type_bouteillePerso' => $request->type_bouteillePerso,
                 'pays_bouteillePerso' => $request->pays_bouteillePerso,
-                'format_bouteillePerso' => $request->format_bouteillePerso
+                'format_bouteillePerso' => $request->format_bouteillePerso,
+                'prix_bouteillePerso' => $request->prix_bouteillePerso,
             ]);
             if ($request->id == '') {
                 $bouteille->update([
