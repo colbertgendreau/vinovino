@@ -90,4 +90,10 @@
   .btn-effacer:hover {
     background-color: var(--primaire);
   }
+
+  .message-erreur {
+    background-color: var(--white-transparent80);
+    color: red;
+    border: none;
+}
 }
