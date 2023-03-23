@@ -155,6 +155,7 @@ class BouteilleController extends Controller
     {
 
         // if ($request->id == '') {
+            var_dump($request);
         $maBouteille->update([
             'quantite_bouteillePerso' => $request->quantite_bouteillePerso,
             'nom_bouteillePerso' => $request->nom_bouteillePerso,
