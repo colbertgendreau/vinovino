@@ -1,15 +1,16 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
 import { AuthService } from '../shared/auth.service';
 import { ICellier } from '../icellier';
 import { FetchService } from '../fetch.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ibouteillecellier } from '../ibouteille-cellier';
 import { Imesbouteilles } from '../imesbouteilles';
 import { EffacerBouteilleModalComponent } from '../effacer-bouteille-modal/effacer-bouteille-modal.component';
 import { environment } from '../../environments/environment';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+
 
 
 
@@ -54,7 +55,8 @@ export class CellierComponent implements OnInit {
     public token: TokenService,
     public authService: AuthService,
     public fetchService: FetchService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
@@ -93,14 +95,20 @@ export class CellierComponent implements OnInit {
         .subscribe((data: any) => {
           this.bouteilles = data.data;
 
-          
-          this.cellierNom = this.bouteilles[0].cellier_nom;
+          console.log(this.bouteilles);
+  
+          if(this.bouteilles[0]) {
 
+              
+              this.cellierNom = this.bouteilles[0].cellier_nom;
+            }
+          
+          
           console.log('les bouteilles du cellier');
           console.log(this.bouteilles);
           this.spin = false;
           this.hide = false;
-
+          
         });
     });
   }
@@ -122,9 +130,11 @@ export class CellierComponent implements OnInit {
 
       let updateBouteille: Imesbouteilles = this.bouteille;
       console.log(updateBouteille);
+      
 
       this.fetchService.modifBouteille(id, updateBouteille).subscribe((retour) => {
 
+        this.openSnackBar('La quantité fut modifiée avec succès', 'Fermer');
 
         this.route.params.subscribe((params) => {
 
@@ -190,7 +200,7 @@ export class CellierComponent implements OnInit {
 
 
 
-   goUp() {
+  goUp() {
     console.log("par en haut");
 
     window.scroll({ // pour scroll up quand on arrive sur la page
@@ -202,11 +212,11 @@ export class CellierComponent implements OnInit {
   }
 
 
-   pageCelliers() {
-        window.scroll({ // pour scroll up
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
+  pageCelliers() {
+    window.scroll({ // pour scroll up
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
 
     });
 
@@ -215,4 +225,16 @@ export class CellierComponent implements OnInit {
   }
 
 
+
+  /**
+* Cette fonction affiche un message de type snackbar.
+* @param message Le message à afficher.
+* @param action L'action à afficher sur le bouton de fermeture du snackbar.
+*/
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 3000; // Set the duration to 3 seconds
+    config.panelClass = ['mon-snackbar']; // Add a custom CSS class
+    this.snackBar.open(message, action, config);
+  }
 }

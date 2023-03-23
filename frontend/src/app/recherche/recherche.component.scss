@@ -1,16 +1,3 @@
-.recherche_filter {
-    // margin-top: 63px;
-    
-    display: flex;
-    flex-direction: column;
-    // margin-top: 63px;
-}
-
-.recherche_filter{
-    background-color: rgb(224, 221, 221);
-
-}
-
 .recherche {
   background-attachment: fixed;
   height: 100%;
@@ -18,27 +5,160 @@
   display: flex;
   flex-direction: column;
   gap: var(--big);
+  
+  .recherche_filter {
+    display: flex;
+    flex-direction: column;
+    
+    .recherche-input{
+      margin-bottom: var(--big);
+      border-radius: 5px;
+      border: 1px solid var(--secondaire);
+      height: 30px;
+      padding-inline: var(--small);
+    }
+
+    .or-line {
+      position: relative;
+      text-align: center;
+
+      span {
+        position: relative;
+        display: inline-block;
+        padding: 0 10px;
+        line-height: 1.5em;
+        z-index: 1;
+      }
+    }
+    
+    .or-line::before,
+    .or-line::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 40%;
+      height: 1px;
+      background-color: var(--secondaire-turquoise);
+    }
+    
+    .or-line::before {
+      left: 0;
+    }
+    
+    .or-line::after {
+      right: 0;
+    }
+    
+    h3 {
+      margin-top: var(--big);
+      margin-bottom: var(--small);
+    }
+    
+    details {
+      text-decoration: none;
+
+      summary {
+        margin-block: var(--smaller4);
+      }
+      
+      .type, .pays, .prix {
+        padding-block: var(--med);
+        
+        h3 {
+          padding-bottom: var(--smaller);
+        }
+
+        .types {
+          display: flex;
+          justify-content: space-between;
+
+          .input-checbox {
+            display: flex;
+            align-items: center;
+
+            input[type="checkbox"] {
+              border-radius: 5px;
+              border: 1px solid var(--secondaire);
+              width: var(--big);
+              height: var(--big);
+              margin-right: var(--smaller4);
+            }
+          }
+        }
+
+        select {
+          width: 100%;
+          border-radius: 5px;
+          border: 1px solid var(--secondaire);
+          height: 30px;
+          padding-inline: var(--small);
+        }
+        
+        .formPrix {
+          display: flex;
+          justify-content: space-around;
+
+          .prixMin, .prixMax {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+
+            label {
+              margin-right: var(--smallest);
+            }
+
+            input {
+              width: var(--biggest);
+              border-radius: 5px;
+              border: 1px solid var(--secondaire);
+              height: var(--biggest);
+              padding-inline: var(--small);
+            }
+          }
+        }
+
+        button {
+          margin-top: var(--bigger);
+          width: 100%;
+          height: var(--biggest);
+          border-radius: var(--border-radius);
+          border-style: none;
+          border: solid var(--smallest) var(--secondaire);
+          font-size: var(--med);
+          font-weight: var(--bold);
+          background-color: var(--secondaire);
+          color: var(--black);
+        }
+
+        button:hover {
+          background-color: var(--secondaire-transparent80);
+          cursor: pointer;
+        }
+      }
+    }
+  }
 }
+
 
 
 .resultat {
-    h1 {
-      margin-block: var(--big);
-    }
+  h1 {
+    margin-block: var(--big);
+  }
   
-    // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
-    background-attachment: fixed;
-    height: 100%;
-    padding: 85px var(--big) calc(100vh - 122px);
-    display: flex;
-    flex-direction: column;
-    gap: var(--big);
-    text-align: center;
-}
+  // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
+  background-attachment: fixed;
+  height: 100%;
+  // padding: 85px var(--big) calc(100vh - 122px);
+  padding: 0 var(--big) calc(100vh - 122px);
+  display: flex;
+  flex-direction: column;
+  gap: var(--big);
+  text-align: center;
 
 
 
-.bouteille {
+  .bouteille {
     margin-bottom: var(--small);
     display: flex;
     flex-direction: column;
@@ -51,7 +171,6 @@
     align-items: center;
     padding: var(--small);
     border-radius: var(--border-radius15);
-    
 
     // border: 5px solid rgb(228, 228, 228);
 
@@ -59,12 +178,12 @@
 
     .card-bouteille-haut {
       display: flex;
-    //   justify-content: space-between;
+      // justify-content: space-between;
       width: 100%;
       // border-bottom: 5px solid var(--secondaire-turquoise);
-    //   border-bottom: 1px solid rgb(228, 228, 228);
-    //   padding-bottom: var(--small);
-    //   margin-bottom: var(--smaller);
+      // border-bottom: 1px solid rgb(228, 228, 228);
+      // padding-bottom: var(--small);
+      // margin-bottom: var(--smaller);
 
       div {
         text-align: start;
@@ -82,13 +201,11 @@
       }
 
       .info-bouteille {
-
-        //   justify-content: space-between;
-        //   min-width: 245px;
+        // justify-content: space-between;
+        // min-width: 245px;
         min-width: 4ch;
         margin-right: var(--big);
         margin-left: var(--small);
-
 
         div {
           display: flex;
@@ -128,7 +245,7 @@
           margin-bottom: var(--small);
           word-break: break-all;
           margin-left: var(--smaller);
-        //   width: 10ch;
+          // width: 10ch;
           font-size: clamp(
             0.9375rem,
             0.5729166666666666rem + 1.8229166666666667vw,
@@ -146,7 +263,7 @@
       align-self: flex-start;
       width: 100%;
 
-      a{
+      a {
         text-decoration: none;
       }
 
@@ -158,7 +275,6 @@
 
       .icone-etoile {
         background-image: url(../../assets/img/staricon.png);
-
         height: var(--biggest);
         width: var(--biggest);
         background-size: cover;
@@ -166,31 +282,32 @@
       }
     }
   }
-  .ajouter-bouteille {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: var(--small);
-    margin-bottom: var(--small);
-    margin-inline: var(--big);
-    height: var(--biggest);
-    border-radius: var(--border-radius);
-    border-style: none;
-    border: solid var(--smallest) var(--secondaire);
-    font-size: var(--med);
-    font-weight: var(--bold);
-    background-color: var(--secondaire);
-    color: var(--black);
-    position: fixed;
-    bottom: var(--big);
-    padding: 8px;
-    right: 0;
-    left: 0;
-    z-index: 2;
-    text-decoration: none;
-    color: var(--black);
-  }
+}
 
+.ajouter-bouteille {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: var(--small);
+  margin-bottom: var(--small);
+  margin-inline: var(--big);
+  height: var(--biggest);
+  border-radius: var(--border-radius);
+  border-style: none;
+  border: solid var(--smallest) var(--secondaire);
+  font-size: var(--med);
+  font-weight: var(--bold);
+  background-color: var(--secondaire);
+  color: var(--black);
+  position: fixed;
+  bottom: var(--big);
+  padding: 8px;
+  right: 0;
+  left: 0;
+  z-index: 2;
+  text-decoration: none;
+  color: var(--black);
+}
 
 .return a{
   text-decoration: none;
@@ -198,65 +315,43 @@
 }
 
 .plus {
-    all: unset;
-    background-image: url(../../assets/icones/addbleu.png);
-    height: var(--biggest);
-    width: var(--biggest);
-    background-size: cover;
-    object-position: center;
-    cursor: pointer;
-
+  all: unset;
+  background-image: url(../../assets/icones/addbleu.png);
+  height: var(--biggest);
+  width: var(--biggest);
+  background-size: cover;
+  object-position: center;
+  cursor: pointer;
 }
 
 .moins {
-    all: unset;
-    background-image: url(../../assets/icones/minusblue.png);
-    height: var(--biggest);
-    width: var(--biggest);
-    background-size: cover;
-    object-position: center;
-    cursor: pointer;
+  all: unset;
+  background-image: url(../../assets/icones/minusblue.png);
+  height: var(--biggest);
+  width: var(--biggest);
+  background-size: cover;
+  object-position: center;
+  cursor: pointer;
 }
 
 .quantite {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-left: auto;
-    justify-self: flex-end;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: auto;
+  justify-self: flex-end;
 }
 
 .modifier {
-    background-image: url(../../assets/icones/editpeche.png);
-    height: var(--biggest);
-    width: var(--biggest);
-    background-size: cover;
-    object-position: center;
-
-    margin-bottom: var(--small);
+  background-image: url(../../assets/icones/editpeche.png);
+  height: var(--biggest);
+  width: var(--biggest);
+  background-size: cover;
+  object-position: center;
+  margin-bottom: var(--small);
 }
-
 
 .cellier_nom {
-    align-self: end;
-    margin-top: 5px;
-}
-
-.formPrix {
-    display: flex;
-    flex-direction: column;
-    width: 200px;
-  
-}
-
-.recherche-input{
-    margin-top: 20px;
-    border-radius: 5px;
-    border: 1px solid red;
-    width: 200px;
-    height: 30px;
-}
-
-details {
-    text-decoration: none;
+  align-self: end;
+  margin-top: 5px;
 }

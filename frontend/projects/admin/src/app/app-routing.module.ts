@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
 import { ConnexionAdminComponent } from './connexion-admin/connexion-admin.component';
 import { GardienLoginAdminGuard } from './gardien-login-admin.guard';
-// import { GardienLoginAdminGuard } from './gardien-login-admin.guard';
 import { ListeCatalogueComponent } from './liste-catalogue/liste-catalogue.component';
 import { ListeUsagerComponent } from './liste-usager/liste-usager.component';
 

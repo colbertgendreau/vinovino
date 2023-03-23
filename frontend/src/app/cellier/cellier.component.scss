@@ -1,42 +1,43 @@
+h1 {
+  margin-top: 73px;
+  padding-left: var(--big);
+  font-size: 1.5rem;
+}
+
 .monCellier {
-  h1 {
-    margin-block: var(--big);
-    font-size: 1.5rem;
-  }
-
-  background-attachment: fixed;
-  height: 100%;
-  padding: 85px var(--big) 115px;
-  display: flex;
-  flex-direction: column;
-  gap: var(--big);
-  text-align: center;
-
+    background-attachment: fixed;
+    height: 100%;
+    padding:   var(--small) var(--small) 115px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--big);
+    text-align: center;
+    
   .cellierVide {
-        
+    
     display: flex;
     flex-direction: column;
     text-align: center;
     align-items: center;
     gap: var(--small);
-    // margin-top: 50px;
-
     background-color: var(--white);
     border-radius: 5px;
     display: flex;
     justify-content: center;
     padding: 20px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
     h2 {
         font-size: 1.2em;
     }
-    span{
+    span {
         font-size: 80px;
     }
 }
 
   .bouteille {
-    margin-bottom: var(--small);
+    // margin-bottom: var(--small);
+    min-height: 125px;
     display: flex;
     flex-direction: column;
     max-width: 100vw;
@@ -69,8 +70,9 @@
 
     .icones {
       height: var(--big);
-  }
+    }
 
+    
 
     .card-bouteille-haut {
       display: flex;
@@ -82,19 +84,31 @@
         flex-direction: column;
       }
 
+      picture {
+          justify-self: end;
+
+      }
+
       picture img {
         max-width: 80px;
         margin-inline: -24px;
+        position: relative;
+        bottom: -5px;
       }
       .info-bouteille {
         min-width: 4ch;
         margin-inline: var(--small);
+        justify-self: stretch;
+        display: flex;
+        flex-direction: column;
+        gap: var(--smallest);
 
         div {
           display: flex;
           flex-direction: row;
-          align-items: center;
-          padding-block: var(--smallest);
+          align-items: end;
+        //   align-items: center;
+        //   padding-block: var(--smallest);
         }
         .icone-vin {
           background: url(../../assets/img/wineicon.png);
@@ -118,7 +132,8 @@
           object-position: center;
         }
         h3 {
-          margin-bottom: var(--small);
+        //   margin-bottom: var(--small);
+          margin-bottom: auto;
           word-break: break-all;
           margin-left: var(--smaller);
         //   width: 10ch;
@@ -135,92 +150,10 @@
       }
     }
 
-    .card-bouteille-bas {
-      align-self: flex-start;
-      width: 100%;
-
-      a {
-        text-decoration: none;
-      }
-
-      div {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .icone-etoile {
-        background-image: url(../../assets/img/staricon.png);
-
-        height: var(--biggest);
-        width: var(--biggest);
-        background-size: cover;
-        object-position: center;
-      }
-    }
   }
 
   
 
-//   .footer {
-//       background: rgb(205, 205, 205);
-//       display: flex;
-//       justify-content: space-between;
-//       align-items: center;
-//       //   margin-inline: var(--big);
-//       position: fixed;
-//       bottom: 0;
-//       right: 0;
-//       left: 0;
-//       z-index: 2;
-//       //   height: var(--biggest);
-//       padding-block: var(--smaller);
-//       padding-inline: var(--big);
-//       box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
-
-//       animation-name: footerUp;
-//       animation-duration: 0.3s;
-      
-
-
-//       .up {
-//           background-image: url(../../assets/icones/upBlack.png);
-//           height: var(--biggest);
-//           width: var(--biggest);
-//           background-size: cover;
-//           object-position: center;
-//           z-index: 3;
-          
-//         }
-//         .back {
-//             background: blue($color: #000000);
-//         z-index: 3;
-//         background-image: url(../../assets/icones/backBlack.png);
-//         height: var(--biggest);
-//         width: var(--biggest);
-//         background-size: cover;
-//         object-position: center;
-    
-//     }
-    
-      
-//       .ajouter-bouteille {
-//           display: flex;
-//           align-items: center;
-//         //   padding: 8px;
-//           text-decoration: none;
-//         //   margin-bottom: var(--small);
-//         //   margin-inline: var(--small);
-//           height: var(--biggest);
-//         //   border-radius: var(--border-radius);
-//           border-style: none;
-//           font-size: var(--med);
-//           font-weight: var(--bold);
-//           color: var(--black);
-//           max-width: 10ch;
-//         }
-//     }
     }
 
     @keyframes footerUp {

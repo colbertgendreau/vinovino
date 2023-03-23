@@ -35,8 +35,6 @@ export class ListeCatalogueComponent implements OnInit {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
-      // this.isOpen = !this.isOpen;
-      // console.log(this.isOpen);
     });
   }
 
@@ -70,5 +68,4 @@ export class ListeCatalogueComponent implements OnInit {
     //   });
     // });
   }
-
 }

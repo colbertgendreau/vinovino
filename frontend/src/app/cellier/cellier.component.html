@@ -1,6 +1,6 @@
 <section
-    class="monCellier">
-    <h1>{{ cellierNom }}</h1>
+class="monCellier">
+<h1 class="titreCellier">{{ cellierNom }}</h1>
 
  <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
@@ -8,7 +8,7 @@
     <h2>Vous n'avez aucune bouteille dans ce cellier</h2>
     <p>Pour ajouter une bouteille appuyez sur le bouton</p>
     <span> &#8681;</span>
-</div>
+ </div>
 
  <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngFor="let uneBouteille of bouteilles">
         <div class="card-bouteille-haut">

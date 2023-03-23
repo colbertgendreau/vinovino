@@ -1,56 +1,90 @@
 <section class="modif-bouteille">
 
-<h1>Modifier une bouteille</h1>
+    <h1>Modifier une bouteille</h1>
 
-<form [formGroup]="modifBouteilleForm" (ngSubmit)="modifier()"class="form-mofif">
-      
-    <div>
-        <input type="hidden" id="id" name="id_bouteillePerso" formControlName="id_bouteillePerso" [value]="bouteille?.id_bouteillePerso">
-    </div>
-    <div>
-  
-    <label for="name">Name:</label>
-    <input type="text" id="name" name="name_bouteillePerso" formControlName="nom_bouteillePerso" [value]="bouteille?.nom_bouteillePerso" placeholder="Name">
-    </div>
+    <form [formGroup]="modifBouteilleForm" (ngSubmit)="modifierBouteille()" class="form-mofif">
 
-    <div>
+        <div>
+            <input type="hidden" id="id" name="id_bouteillePerso" formControlName="id_bouteillePerso"
+                [value]="bouteille?.id_bouteillePerso">
+        </div>
+        <div>
 
-    <label for="name">Type:</label>
-    <input type="text" id="type" name="type_bouteillePerso" formControlName="type_bouteillePerso" [value]="bouteille?.type" placeholder="Type">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="nom_bouteillePerso" formControlName="nom_bouteillePerso"
+                [value]="bouteille?.nom_bouteillePerso" placeholder="Nom">
+            <div *ngIf="formSubmitted && modifBouteilleForm.controls['nom_bouteillePerso'].invalid"
+                class="message-erreur">
+                <div *ngIf="modifBouteilleForm.controls['nom_bouteillePerso']?.errors?.['required']">Ce champs est
+                    requis
+                </div>
+            </div>
         </div>
 
-    <div>
-
-    <label for="pays">Pays:</label>
-    <input type="text" id="pays" name="pays_bouteillePerso" formControlName="pays_bouteillePerso" [value]="bouteille?.pays_bouteillePerso" placeholder="Pays">
+        <div>
+            <label for="type">Type:</label>
+            <select name="type_bouteillePerso" id="type" formControlName="type_bouteillePerso">
+                <option value="" disabled selected>Type de vin</option>
+                <option value="1">vin rouge</option>
+                <option value="2">vin blanc</option>
+                <option value="3">vin rosé</option>
+            </select>
         </div>
 
-    <div>
 
-    <label for="format">Format:</label>
-    <input type="text" id="format" name="format_bouteillePerso" formControlName="format_bouteillePerso" [value]="bouteille?.format_bouteillePerso" placeholder="Format">
+        <div>
+
+            <label for="pays">Pays:</label>
+            <input type="text" id="pays" name="pays_bouteillePerso" formControlName="pays_bouteillePerso"
+                [value]="bouteille?.pays_bouteillePerso" placeholder="Pays">
         </div>
 
-    <div>
+        <div>
 
-    <label for="prix_saq">Prix:</label>
-    <input type="text" id="prix_saq" name="prix_bouteillePerso" formControlName="prix_bouteillePerso" [value]="bouteille?.prix_bouteillePerso" placeholder="Prix">
+            <label for="format">Format:</label>
+            <input type="text" id="format" name="format_bouteillePerso" formControlName="format_bouteillePerso"
+                [value]="bouteille?.format_bouteillePerso" placeholder="Format">
         </div>
 
-    <div>
+        <div>
 
-    <label for="quantite">Quantité:</label>
-    <input type="number" id="quantite" name="quantite_bouteillePerso" formControlName="quantite_bouteillePerso" [value]="bouteille?.quantite" placeholder="Quantité">
-    </div>
+            <label for="prix_saq">Prix:</label>
+            <input type="text" id="prix_saq" name="prix_bouteillePerso" formControlName="prix_bouteillePerso"
+                [value]="bouteille?.prix_bouteillePerso" placeholder="Prix">
 
-    <button class="btn-submit" class="grosPlus" type="submit">Confirmer</button>
-    <button class="btn-effacer" type="button" (click)="clearForm()">
-      Rétablir
-    </button>
+            <div *ngIf="formSubmitted && modifBouteilleForm.controls['prix_bouteillePerso'].invalid"
+                class="message-erreur">
+                <div *ngIf="modifBouteilleForm.controls['prix_bouteillePerso']?.errors?.['pattern']">
+                    Doit être de format "22.22"
+                </div>
+            </div>
+        </div>
+
+        <div>
+
+            <label for="quantite">Quantité:</label>
+            <input type="number" id="quantite" name="quantite_bouteillePerso" formControlName="quantite_bouteillePerso"
+                [value]="bouteille?.quantite" placeholder="Quantité">
+
+            <div *ngIf="formSubmitted && modifBouteilleForm.controls['quantite_bouteillePerso'].invalid"
+                class="message-erreur">
+                <div *ngIf="modifBouteilleForm.controls['quantite_bouteillePerso']?.errors?.['required']">Ce
+                    champs est
+                    requis
+                </div>
+                <div *ngIf="modifBouteilleForm.controls['quantite_bouteillePerso']?.errors?.['pattern']">
+                    Doit être un entier positif
+                </div>
+            </div>
+        </div>
+
+        <button class="btn-submit" class="grosPlus" type="submit">Confirmer</button>
+        <button class="btn-effacer" type="button" (click)="clearForm()">
+            Rétablir
+        </button>
 
 
 
-</form>
+    </form>
 </section>
-<app-footer [id]="bouteille.celliers_id"></app-footer>
-
+<app-footer [id]="bouteille?.celliers_id"></app-footer>

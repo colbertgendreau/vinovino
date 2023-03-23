@@ -22,8 +22,8 @@ class BouteilleController extends Controller
         // ->get();
 
         $bouteilles = Bouteille::select(
-            'Bouteilles.id AS id_supreme',
-            'Bouteilles.*',
+            'bouteilles.id AS id_supreme',
+            'bouteilles.*',
             'vino__bouteille.id AS vino__bouteille_id',
             'vino__bouteille.*',
             'mes_bouteilles.*',
@@ -33,17 +33,17 @@ class BouteilleController extends Controller
             'type_mes.type AS type_mes_name',
             'celliers.nom AS celliers_nom',
         )
-        ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'Bouteilles.id_bouteille')
-        ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'Bouteilles.id_mes_bouteilles')
-        ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
-        ->leftJoin('vino__type as type_mes', 'type_mes.id', '=', 'mes_bouteilles.type_bouteillePerso')
-        ->join('celliers', 'Bouteilles.celliers_id', '=', 'celliers.id')
-        ->where('celliers.users_id', $id)
-        ->get();
+            ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')
+            ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'bouteilles.id_mes_bouteilles')
+            ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
+            ->leftJoin('vino__type as type_mes', 'type_mes.id', '=', 'mes_bouteilles.type_bouteillePerso')
+            ->join('celliers', 'bouteilles.celliers_id', '=', 'celliers.id')
+            ->where('celliers.users_id', $id)
+            ->get();
 
-        return ['data'=>$bouteilles];
+        return ['data' => $bouteilles];
     }
- 
+
 
     // public function index() // la function ci dessous retourne une pagination a decider ce quon veut
     // {
@@ -71,39 +71,39 @@ class BouteilleController extends Controller
     public function store(Request $request)
     {
 
-            // $res = Bouteille::create([
-            //     'celliers_id' => $request->celliers_id,
-            //     'id' =>$request->id_mes_bouteilles,
-            //     'quantite' =>$request->quantite,
+        // $res = Bouteille::create([
+        //     'celliers_id' => $request->celliers_id,
+        //     'id' =>$request->id_mes_bouteilles,
+        //     'quantite' =>$request->quantite,
 
-            // ]);
-// $bouteille = Bouteille::find($request->id);             a regarder cest quoi roxanne
+        // ]);
+        // $bouteille = Bouteille::find($request->id);             a regarder cest quoi roxanne
 
 
-            if ($request->id == '') {
-                $mon_id = mesBouteilles::create([
-                    'nom_bouteillePerso' => $request->nom,
-                    'type_bouteillePerso' => $request->type,
-                    'pays_bouteillePerso' => $request->pays,
-//                    'format_bouteillePerso' => $request->format,
-                    'prix_bouteillePerso' => $request->prix_saq,
-                    'quantite_bouteillePerso' => $request->quantite,
-                ]);
+        if ($request->id == '') {
+            $mon_id = mesBouteilles::create([
+                'nom_bouteillePerso' => $request->nom,
+                'type_bouteillePerso' => $request->type,
+                'pays_bouteillePerso' => $request->pays,
+                'format_bouteillePerso' => $request->format,
+                'prix_bouteillePerso' => $request->prix_saq,
+                'quantite_bouteillePerso' => $request->quantite,
+            ]);
 
-                $res = Bouteille::create([
-                    'celliers_id' => $request->celliers_id,
-                    // 'id_bouteille' => $request->id,
-                    'id_mes_bouteilles' => $mon_id->id_bouteillePerso,
-                    'quantite' => $request->quantite,
-                ]);
-            } else {
-                // Handle the case where the ID is not empty
-                $res = Bouteille::create([
-                    'celliers_id' => $request->celliers_id,
-                    'id_bouteille' => $request->id,
-                    'quantite' => $request->quantite,
-                ]);
-            }
+            $res = Bouteille::create([
+                'celliers_id' => $request->celliers_id,
+                // 'id_bouteille' => $request->id,
+                'id_mes_bouteilles' => $mon_id->id_bouteillePerso,
+                'quantite' => $request->quantite,
+            ]);
+        } else {
+            // Handle the case where the ID is not empty
+            $res = Bouteille::create([
+                'celliers_id' => $request->celliers_id,
+                'id_bouteille' => $request->id,
+                'quantite' => $request->quantite,
+            ]);
+        }
 
         return ['data' => $res];
     }
@@ -117,19 +117,18 @@ class BouteilleController extends Controller
     public function show(Bouteille $bouteille)
     {
 
-// faut faire comme cellier et donner des alias au ranger jai besoin de id_supreme
+        // faut faire comme cellier et donner des alias au ranger jai besoin de id_supreme
 
-    $id = $bouteille->id_bouteillePerso;
-
-
-    $res = Bouteille::leftJoin('mes_bouteilles', 'bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
-    ->leftjoin('vino__type', 'vino__type.id', '=', 'mes_bouteilles.type_bouteillePerso')
-    ->where('bouteilles.id', $bouteille->id)
-    ->first();
+        $id = $bouteille->id_bouteillePerso;
 
 
-    return ['data' => $res];
+        $res = Bouteille::leftJoin('mes_bouteilles', 'bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
+            ->leftjoin('vino__type', 'vino__type.id', '=', 'mes_bouteilles.type_bouteillePerso')
+            ->where('bouteilles.id', $bouteille->id)
+            ->first();
 
+
+        return ['data' => $res];
     }
 
 
@@ -141,7 +140,7 @@ class BouteilleController extends Controller
      */
     public function edit(Bouteille $bouteille)
     {
-        return ['data'=>$bouteille];
+        return ['data' => $bouteille];
     }
 
     /**
@@ -153,25 +152,37 @@ class BouteilleController extends Controller
      */
     public function update(Request $request, mesBouteilles $maBouteille, bouteille $bouteille)
     {
-
-        // if ($request->id == '') {
-        $maBouteille->update([
-            'quantite_bouteillePerso' => $request->quantite_bouteillePerso,
-            'nom_bouteillePerso' => $request->nom_bouteillePerso,
-            'type_bouteillePerso' => $request->type_bouteillePerso,
-            'pays_bouteillePerso' => $request->pays_bouteillePerso,
-            'format_bouteillePerso' => $request->format_bouteillePerso
-        ]);
-    // }else{
-        $bouteille->update([
-            'quantite' => $request->quantite,
-
-        ]);
-    // }
+        // var_dump($request);
+        // var_dump($maBouteille);
 
 
+        if ($request->id_bouteillePerso) {
 
 
+            $maBouteille = mesBouteilles::find($request->id_bouteillePerso);
+            $maBouteille->update([
+                // 'quantite_bouteillePerso' => $request->quantite_bouteillePerso,
+                'nom_bouteillePerso' => $request->nom_bouteillePerso,
+                'type_bouteillePerso' => $request->type_bouteillePerso,
+                'pays_bouteillePerso' => $request->pays_bouteillePerso,
+                'format_bouteillePerso' => $request->format_bouteillePerso,
+                'prix_bouteillePerso' => $request->prix_bouteillePerso,
+            ]);
+            if ($request->id == '') {
+                $bouteille->update([
+                    'quantite' => $request->quantite_bouteillePerso,
+                ]);
+            } else {
+                $bouteille->update([
+                    'quantite' => $request->quantite,
+                ]);
+            }
+        } else {
+            // $bouteille = bouteille::find($request->id);
+            $bouteille->update([
+                'quantite' => $request->quantite,
+            ]);
+        }
     }
 
     /**

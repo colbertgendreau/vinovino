@@ -8,8 +8,6 @@ import {ICatalogue} from "./icatalogue";
 import {Imesbouteilles} from "../../../../src/app/imesbouteilles";
 import {IDate} from "./idate";
 
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -26,10 +24,6 @@ export class AdminService {
   getUtilisateur():Observable<IlisteUser> {
     return this.http.get<IlisteUser>(this.urlUtilisateur);
   }
-
-  // ajouterUtilisateur(data:IUser):Observable<IUser> {
-  //   return this.http.post<IUser>(this.urlUtilisateur, data);
-  // }
 
   effacerUtilisateur(id:number):Observable<IUser> {
     console.log(this.urlUtilisateur+"/"+id);
@@ -48,3 +42,4 @@ export class AdminService {
   //   return this.http.post<Imesbouteilles>(this.urlExecute, bouteille);
   // }
 }
+
