@@ -31,12 +31,20 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            flex-wrap: wrap;
 
             label {
                 margin-top: var(--biggest);
                 margin-bottom: var(--big);
                 color: var(--black);
+                position: relative;
+                align-self: stretch;
             }
+
+            input::placeholder{
+                opacity:0;
+            }
+            
 
             input {
                 height: var(--biggest);
@@ -45,6 +53,27 @@
                 width: calc(100% - (var(--biggest) + var(--bigger)));
                 padding-left: var(--small);
             }
+
+            .floating {
+                padding: 5px;
+                position:absolute;
+                top:-14px;
+                left:25px;
+                transform:translateY(20px);
+                font-size:0.825em;
+                transition-duration:300ms;
+                color: gray;
+                background: white;
+            }
+            
+            label:focus-within > span,
+            input:not(:placeholder-shown) + span{
+                color:var(--secondaire);
+                transform:translateY(0px);
+                border-radius: 5px;
+                padding-bottom: 0;
+            }
+
 
             input:focus {
                 border: var(--smallest) solid var(--secondaire);
