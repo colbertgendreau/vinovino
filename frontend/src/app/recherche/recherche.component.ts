@@ -10,6 +10,8 @@ import { ICellier } from '../icellier';
 // import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
 import { Ilistemesbouteilles } from '../ilistemesbouteilles';
 import { Imesbouteilles } from '../imesbouteilles';
+import { environment } from '../../environments/environment';
+
 
 @Component({
   selector: 'app-recherche',
@@ -32,6 +34,9 @@ export class RechercheComponent {
   selectedWinePays = '';
   minPrice = '';
   maxPrice = '';
+
+  imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
+
 
   isSelected(type: string): boolean {
     return this.selectedWineTypes.has(type);
