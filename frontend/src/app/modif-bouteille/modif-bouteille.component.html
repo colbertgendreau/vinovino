@@ -21,13 +21,16 @@
             </div>
         </div>
 
-
         <div>
-
-            <label for="name">Type:</label>
-            <input type="text" id="type" name="type_bouteillePerso" formControlName="type_bouteillePerso"
-                [value]="bouteille?.type" placeholder="Type">
+            <label for="type">Type:</label>
+            <select name="type_bouteillePerso" id="type" formControlName="type_bouteillePerso">
+                <option value="" disabled selected>Type de vin</option>
+                <option value="1">vin rouge</option>
+                <option value="2">vin blanc</option>
+                <option value="3">vin rosé</option>
+            </select>
         </div>
+
 
         <div>
 
@@ -48,6 +51,13 @@
             <label for="prix_saq">Prix:</label>
             <input type="text" id="prix_saq" name="prix_bouteillePerso" formControlName="prix_bouteillePerso"
                 [value]="bouteille?.prix_bouteillePerso" placeholder="Prix">
+
+            <div *ngIf="formSubmitted && modifBouteilleForm.controls['prix_bouteillePerso'].invalid"
+                class="message-erreur">
+                <div *ngIf="modifBouteilleForm.controls['prix_bouteillePerso']?.errors?.['pattern']">
+                    Doit être de format "22.22"
+                </div>
+            </div>
         </div>
 
         <div>
@@ -56,10 +66,14 @@
             <input type="number" id="quantite" name="quantite_bouteillePerso" formControlName="quantite_bouteillePerso"
                 [value]="bouteille?.quantite" placeholder="Quantité">
 
-                <div *ngIf="formSubmitted && modifBouteilleForm.controls['quantite_bouteillePerso'].invalid"
+            <div *ngIf="formSubmitted && modifBouteilleForm.controls['quantite_bouteillePerso'].invalid"
                 class="message-erreur">
-                <div *ngIf="modifBouteilleForm.controls['quantite_bouteillePerso']?.errors?.['required']">Ce champs est
+                <div *ngIf="modifBouteilleForm.controls['quantite_bouteillePerso']?.errors?.['required']">Ce
+                    champs est
                     requis
+                </div>
+                <div *ngIf="modifBouteilleForm.controls['quantite_bouteillePerso']?.errors?.['pattern']">
+                    Doit être un entier positif
                 </div>
             </div>
         </div>
