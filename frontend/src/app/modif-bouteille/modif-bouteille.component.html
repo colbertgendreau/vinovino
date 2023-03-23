@@ -10,9 +10,12 @@
         </div>
         <div>
 
-            <label for="name">Name:</label>
+            <label for="name">
             <input type="text" id="name" name="nom_bouteillePerso" formControlName="nom_bouteillePerso"
                 [value]="bouteille?.nom_bouteillePerso" placeholder="Nom">
+                <span class="floating">Nom</span>
+
+            </label>
             <div *ngIf="formSubmitted && modifBouteilleForm.controls['nom_bouteillePerso'].invalid"
                 class="message-erreur">
                 <div *ngIf="modifBouteilleForm.controls['nom_bouteillePerso']?.errors?.['required']">Ce champs est
@@ -22,35 +25,46 @@
         </div>
 
         <div>
-            <label for="type">Type:</label>
+            <label for="type">
             <select name="type_bouteillePerso" id="type" formControlName="type_bouteillePerso">
                 <option value="" disabled selected>Type de vin</option>
                 <option value="1">vin rouge</option>
                 <option value="2">vin blanc</option>
                 <option value="3">vin rosé</option>
             </select>
+            <div class="stay">Type</div>
+            </label>    
         </div>
 
 
         <div>
 
-            <label for="pays">Pays:</label>
+            <label for="pays">
             <input type="text" id="pays" name="pays_bouteillePerso" formControlName="pays_bouteillePerso"
                 [value]="bouteille?.pays_bouteillePerso" placeholder="Pays">
+                <span class="floating">Pays</span>
+
+            </label>
         </div>
 
         <div>
 
-            <label for="format">Format:</label>
+            <label for="format">
             <input type="text" id="format" name="format_bouteillePerso" formControlName="format_bouteillePerso"
                 [value]="bouteille?.format_bouteillePerso" placeholder="Format">
+                <span class="floating">Format</span>
+
+            </label>
         </div>
 
         <div>
 
-            <label for="prix_saq">Prix:</label>
+            <label for="prix_saq">
             <input type="text" id="prix_saq" name="prix_bouteillePerso" formControlName="prix_bouteillePerso"
                 [value]="bouteille?.prix_bouteillePerso" placeholder="Prix">
+                <span class="floating">Prix</span>
+
+            </label>
 
             <div *ngIf="formSubmitted && modifBouteilleForm.controls['prix_bouteillePerso'].invalid"
                 class="message-erreur">
@@ -62,10 +76,11 @@
 
         <div>
 
-            <label for="quantite">Quantité:</label>
+            <label for="quantite">
             <input type="number" id="quantite" name="quantite_bouteillePerso" formControlName="quantite_bouteillePerso"
                 [value]="bouteille?.quantite" placeholder="Quantité">
-
+                <span class="floating">Quantité</span>
+            </label>
             <div *ngIf="formSubmitted && modifBouteilleForm.controls['quantite_bouteillePerso'].invalid"
                 class="message-erreur">
                 <div *ngIf="modifBouteilleForm.controls['quantite_bouteillePerso']?.errors?.['required']">Ce
