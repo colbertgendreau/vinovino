@@ -8,41 +8,47 @@
             placeholder="Recherche dans vos celliers"
         />
 
-        <details open>
-            <summary>Filtres</summary>
-            <div class="modal-type">
-                <h3>Types</h3>
-                <div class="types">
-                    <div *ngFor="let type of choixTypes">
-                        <input type="checkbox" #checkedType [checked]="isSelected(type)" (change)="updateSelectedWineTypes(checkedType.checked, type)">
-                        {{ type }}
-                    </div>
+
+     <div class="or-line">
+        <span>Ou</span>
+    </div>
+
+        <details>
+            <summary>Filtre</summary>
+            <div class="type">
+                <h3>Type</h3>
+                <div *ngFor="let type of choixTypes">
+                    <input type="checkbox" #checkedType [checked]="isSelected(type)" (change)="updateSelectedWineTypes(checkedType.checked, type)">
+                    {{ type }}
                 </div>
-            </div>
+          </div>
+          
     
-            <div class="input-pays">
+
+
+    
+            <div class="pays">
                 <h3>Pays</h3>
                 <select #selected (change)="updateSelectedWinePays(selected.value)">
-                    <option value="" disabled selected>Choisissez un pays</option>
+                    <option value="" selected>Tout les pays</option>
                     <option *ngFor="let pays of choixPays" [value]="pays" [selected]="isSelectedPays(pays)">
                         {{ pays }}
                     </option>
                 </select>
             </div>
-
-            <div class="modal-prix">
-                <h3>Prix</h3>            
+            
+            <div class="prix">
+                <h3>Prix</h3>
                 <form (ngSubmit)="filterByPrice(minPrice, maxPrice)" #myForm="ngForm">
-                    <div class="formPrix">
-                        <label for="minPrice">Minimum:<span> {{ minPrice }}</span></label>
-                        <input type="range" [(ngModel)]="minPrice" name="minPrice" min="0" max="100" step="1">
-                        
-                        <label for="maxPrice">Maximum: <span> {{ maxPrice }}</span></label>
-                        <input type="range" [(ngModel)]="maxPrice" name="maxPrice" min="0" max="1000" step="1">
-                    </div>
-                    <button type="submit">Filter</button>
+                  <div class="formPrix">
+                    <label for="minPrice">Minimum:</label>
+                    <input class="minPrice" type="text" [(ngModel)]="minPrice" name="minPrice">
+                    <label for="maxPrice">Maximum:</label>
+                    <input class="maxPrice" type="text" [(ngModel)]="maxPrice" name="maxPrice">
+                  </div>
+                  <button type="submit">Filtrer</button>
                 </form>
-            </div>
+              </div>
         </details>
     </div>
 
