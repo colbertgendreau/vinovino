@@ -21,32 +21,6 @@ class UserController extends Controller
         return ['data' => $users];
     }
 
-    // /**
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  \Illuminate\Http\Request  $request
-    //  * @return \Illuminate\Http\Response
-    //  */
-    // public function store(Request $request)
-    // {
-
-    //     // $validator = Validator::make($request->all(), [
-    //     //     'name' => 'required|string|between:2,100',
-    //     //     'email' => 'required|string|email|max:100|unique:users',
-    //     //     'password' => 'required|string|confirmed|min:6',
-    //     // ]);
-
-    //     $res = User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => $request->password,
-    //         'type' => $request->type,
-    //     ]);
-
-    //     return ['data' => $res];
-
-    // }
-
     /**
      * Remove the specified resource from storage.
      *
