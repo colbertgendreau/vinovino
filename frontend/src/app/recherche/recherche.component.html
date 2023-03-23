@@ -9,7 +9,7 @@
         />
 
 
-     <div class="or-line">
+     <div class="ligne">
         <span>Ou</span>
     </div>
 
@@ -52,6 +52,16 @@
     </div>
 
     <div class="resultat">
+        <span *ngIf="numberOfResult !== null && numberOfResult !== undefined">
+            <ng-container *ngIf="numberOfResult === 0">
+              Aucun résultat trouvé
+            </ng-container>
+            <ng-container *ngIf="numberOfResult > 0">
+              {{numberOfResult}} résultat(s) trouvé(s)
+            </ng-container>
+          </span>
+          
+
         <article class="bouteille" *ngFor="let uneBouteille of filteredData">
             <div class="card-bouteille-haut">
                 <picture>

@@ -296,13 +296,13 @@
 }
 
 
-.or-line {
+.ligne {
   position: relative;
   text-align: center;
 }
 
-.or-line::before,
-.or-line::after {
+.ligne::before,
+.ligne::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -311,15 +311,15 @@
   background-color: black;
 }
 
-.or-line::before {
+.ligne::before {
   left: 0;
 }
 
-.or-line::after {
+.ligne::after {
   right: 0;
 }
 
-.or-line span {
+.ligne span {
   position: relative;
   display: inline-block;
   padding: 0 10px;
