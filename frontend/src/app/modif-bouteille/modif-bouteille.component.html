@@ -13,8 +13,8 @@
             <label for="name">
             <input type="text" id="name" name="nom_bouteillePerso" formControlName="nom_bouteillePerso"
                 [value]="bouteille?.nom_bouteillePerso" placeholder="Nom">
-                <span class="floating">Nom</span>
-
+                <span class="floating" *ngIf="!formSubmitted || modifBouteilleForm.controls['nom_bouteillePerso'].valid || !modifBouteilleForm.controls['nom_bouteillePerso']?.errors?.['required']">Nom</span>
+                <span class="floating floatingError" *ngIf="formSubmitted && modifBouteilleForm.controls['nom_bouteillePerso'].invalid && modifBouteilleForm.controls['nom_bouteillePerso']?.errors?.['required']">Nom</span>
             </label>
             <div *ngIf="formSubmitted && modifBouteilleForm.controls['nom_bouteillePerso'].invalid"
                 class="message-erreur">
@@ -79,7 +79,8 @@
             <label for="quantite">
             <input type="number" id="quantite" name="quantite_bouteillePerso" formControlName="quantite_bouteillePerso"
                 [value]="bouteille?.quantite" placeholder="Quantité">
-                <span class="floating">Quantité</span>
+                <span class="floating" *ngIf="!formSubmitted || modifBouteilleForm.controls['quantite_bouteillePerso'].valid || !modifBouteilleForm.controls['quantite_bouteillePerso']?.errors?.['required']">Quantité</span>
+                <span class="floating floatingError" *ngIf="formSubmitted && modifBouteilleForm.controls['quantite_bouteillePerso'].invalid && modifBouteilleForm.controls['quantite_bouteillePerso']?.errors?.['required']">Quantité</span>
             </label>
             <div *ngIf="formSubmitted && modifBouteilleForm.controls['quantite_bouteillePerso'].invalid"
                 class="message-erreur">

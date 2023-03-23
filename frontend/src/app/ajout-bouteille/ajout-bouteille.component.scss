@@ -203,6 +203,11 @@ input:not(:placeholder-shown) + span{
     padding-bottom: 0;
 }
 
+label:focus-within > .floatingError,
+input:not(:placeholder-shown) + .floatingError{
+    color:var(--primaire);
+}
+
 .disabled {
     background-color: rgb(172, 172, 172);
     opacity: 1;

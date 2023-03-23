@@ -71,7 +71,8 @@
           placeholder="Nom"
             [class.disabled]="isDataSelected"
       />
-      <span class="floating">Nom</span>
+        <span class="floating" *ngIf="!formSubmitted || ajouterBouteilleForm.controls['nom'].valid || !ajouterBouteilleForm.controls['nom'].errors?.['required']">Nom</span>
+        <span class="floating floatingError" *ngIf="formSubmitted && ajouterBouteilleForm.controls['nom'].invalid && ajouterBouteilleForm.controls['nom'].errors?.['required']">Nom</span>
     </label>
       <div
         *ngIf="formSubmitted && ajouterBouteilleForm.controls['nom'].invalid"
@@ -148,7 +149,8 @@
           formControlName="quantite"
           placeholder="Quantité"
       />
-      <span class="floating">Quantité</span>
+      <span class="floating" *ngIf="!formSubmitted || ajouterBouteilleForm.controls['quantite'].valid || !ajouterBouteilleForm.controls['quantite'].errors?.['required']">Quantité</span>
+      <span class="floating floatingError" *ngIf="formSubmitted && ajouterBouteilleForm.controls['quantite'].invalid && ajouterBouteilleForm.controls['quantite'].errors?.['required']">Quantité</span>
     </label>
       <div
         *ngIf="
