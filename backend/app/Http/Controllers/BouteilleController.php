@@ -155,7 +155,9 @@ class BouteilleController extends Controller
         // var_dump($request);
         // var_dump($maBouteille);
 
+
         if ($request->id_bouteillePerso) {
+
 
             $maBouteille = mesBouteilles::find($request->id_bouteillePerso);
             $maBouteille->update([
@@ -163,7 +165,8 @@ class BouteilleController extends Controller
                 'nom_bouteillePerso' => $request->nom_bouteillePerso,
                 'type_bouteillePerso' => $request->type_bouteillePerso,
                 'pays_bouteillePerso' => $request->pays_bouteillePerso,
-                'format_bouteillePerso' => $request->format_bouteillePerso
+                'format_bouteillePerso' => $request->format_bouteillePerso,
+                'prix_bouteillePerso' => $request->prix_bouteillePerso,
             ]);
             if ($request->id == '') {
                 $bouteille->update([

@@ -31,6 +31,7 @@ export class ModifBouteilleComponent implements OnInit {
   bouteille: Imesbouteilles;
 
   formSubmitted = false;
+  isDataSelected: boolean;
 
   constructor(
     private auth: AuthStateService,
@@ -87,7 +88,7 @@ export class ModifBouteilleComponent implements OnInit {
       type_bouteillePerso: [''],
       pays_bouteillePerso: [''],
       format_bouteillePerso: [''],
-      prix_bouteillePerso: [''],
+      prix_bouteillePerso: ['', [Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       quantite_bouteillePerso: ['', [Validators.required, Validators.pattern('[0-9]+')]],
       description_bouteillePerso: ['']
     });
@@ -122,7 +123,13 @@ export class ModifBouteilleComponent implements OnInit {
 
     const controls = this.modifBouteilleForm.controls;
     Object.keys(controls).forEach(controlName => {
-      controls[controlName].setValue('');
+      console.log(this.bouteille[controlName]);
+      console.log(controlName);
+      let nom = controlName;
+      if(controlName == 'quantite_bouteillePerso'){
+         nom = 'quantite';
+      }
+      controls[controlName].setValue(this.bouteille[nom]);
     });
 
 

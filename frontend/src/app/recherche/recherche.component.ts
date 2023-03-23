@@ -33,7 +33,7 @@ export class RechercheComponent {
   id: number;
   isVisible = false;
   choixTypes: string[] = ['Vin rouge', 'Vin blanc', 'Vin rosé'];
-  choixPays: string[] = ['Canada', 'Etat-unis', 'France', 'Australie', 'Italie'];
+  choixPays: string[] = ['Tout les pays','Canada', 'États-Unis', 'France', 'Australie', 'Italie', 'Espagne', 'Chili', 'Portugal', 'Argentine', 'Afrique du Sud', 'Allemagne', 'Autriche', 'Grèce', 'Nouvelle-Zélande', 'Israël', 'Liban', 'Hongrie', 'Roumanie', 'Uruguay', 'Arménie', 'Géorgie', 'Slovénie', 'Moldavie', 'Suisse', 'Bulgarie', 'Chine', 'Luxembourg', 'Mexique', 'Brésil', 'Croatie', 'Maroc', 'République Tchèque'];
   selectedWineTypes: string[] = [];
   selectedWinePays: string[] = [];
 
@@ -138,35 +138,25 @@ filterByCountry(pays: any) {
       
 }
 
-
 filter() {
-  if (this.selectedWineTypes.length && this.selectedWinePays.length) {
-    this.filteredData = this.listeMesBouteilles.filter(bouteille =>
-      this.selectedWineTypes.includes(bouteille.type_vino_name) &&
-      this.selectedWinePays.includes(bouteille.pays)
-    );
-  } else if (this.selectedWineTypes.length) {
-    this.filteredData = this.listeMesBouteilles.filter(bouteille =>
-      this.selectedWineTypes.includes(bouteille.type_vino_name)
-    );
-  } else if (this.selectedWinePays.length) {
-    this.filteredData = this.listeMesBouteilles.filter(bouteille =>
-      this.selectedWinePays.includes(bouteille.pays)
-    );
-  } else {
+  if (this.selectedWineTypes.length === 0 && this.selectedWinePays.length === 0) {
     this.filteredData = [];
+    return;
   }
+
+  this.filteredData = this.listeMesBouteilles.filter(bouteille => {
+    const typeMatch = this.selectedWineTypes.length === 0 || this.selectedWineTypes.includes(bouteille.type_vino_name);
+    const paysMatch = this.selectedWinePays.length === 0 || this.selectedWinePays.includes(bouteille.pays) || this.selectedWinePays[0] === 'Tout les pays';
+    return typeMatch && paysMatch;
+  });
 }
 
-
-    
-  
 
 
   filterData(searchTerm: string) {
     console.log(searchTerm);
     
-    if (searchTerm.length < 3) {
+    if (searchTerm.length < 1) {
       this.filteredData = [];
     } else {
       this.filteredData = this.listeMesBouteilles.filter(item =>
@@ -177,12 +167,6 @@ filter() {
   
   filterByPrice(minPrice: number, maxPrice: number) {
     console.log(minPrice, maxPrice);
-  
-    // this.filteredData = this.listeMesBouteilles.filter(bouteille => 
-    //   bouteille.prix >= minPrice && bouteille.prix <= maxPrice);
-  
-    // this.isVisibleM = false;
-  
     console.log(this.filteredData);
     if (this.selectedWineTypes.length && this.selectedWinePays.length){
       this.filteredData = this.filteredData.filter(bouteille => 
