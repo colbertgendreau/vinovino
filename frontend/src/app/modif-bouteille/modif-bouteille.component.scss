@@ -1,6 +1,6 @@
 .modif-bouteille {
     height: 100%;
-    padding: 63px var(--big) calc(100vh - 122px);
+    padding: 63px var(--big) 115px;
     display: flex;
     flex-direction: column;
     // gap: var(--big);
@@ -95,5 +95,11 @@
     background-color: var(--white-transparent80);
     color: red;
     border: none;
+}
+
+.disabled {
+  background-color: rgb(172, 172, 172);
+  // color: linen;
+  opacity: 1;
 }
 }

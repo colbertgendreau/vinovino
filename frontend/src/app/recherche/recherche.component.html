@@ -1,5 +1,6 @@
 
 <section class="recherche">
+    <h3>Recherche</h3>
     <div class="recherche_filter">
         <input class="recherche-input"
             type="text"
@@ -9,25 +10,25 @@
         />
 
 
-     <div class="ligne">
+     <div class="or-line">
         <span>Ou</span>
     </div>
 
         <details>
-            <summary>Filtre</summary>
+            <summary>Types</summary>
             <div class="type">
-                <h3>Types</h3>
                 <div class="types">
-                    <div *ngFor="let type of choixTypes">
+                    <div *ngFor="let type of choixTypes" class="input-checbox">
                         <input type="checkbox" #checkedType [checked]="isSelected(type)" (change)="updateSelectedWineTypes(checkedType.checked, type)">
                         {{ type }}
                     </div>
                 </div>
-          </div>
-          
-    
+            </div>
+        </details>
+        
+        <details>
+            <summary>Pays</summary>
             <div class="pays">
-                <h3>Pays</h3>
                 <select #selected (change)="updateSelectedWinePays(selected.value)">
                     <!-- <option value="" selected></option> -->
                     <option *ngFor="let pays of choixPays" [value]="pays" [selected]="isSelectedPays(pays)">
@@ -35,19 +36,25 @@
                     </option>
                 </select>
             </div>
+        </details>
 
+        <details>
+            <summary>Prix</summary>
             <div class="prix">
-                <h3>Prix</h3>
                 <form (ngSubmit)="filterByPrice(minPrice, maxPrice)" #myForm="ngForm">
-                  <div class="formPrix">
-                    <label for="minPrice">Minimum:</label>
-                    <input class="minPrice" type="text" [(ngModel)]="minPrice" name="minPrice">
-                    <label for="maxPrice">Maximum:</label>
-                    <input class="maxPrice" type="text" [(ngModel)]="maxPrice" name="maxPrice">
-                  </div>
-                  <button type="submit">Filtrer</button>
+                    <div class="formPrix">
+                        <div class="prixMin">
+                            <label for="minPrice">Minimum:</label>
+                            <input class="minPrice" type="text" [(ngModel)]="minPrice" name="minPrice">
+                        </div>
+                        <div class="prixMax">
+                            <label for="maxPrice">Maximum:</label>
+                            <input class="maxPrice" type="text" [(ngModel)]="maxPrice" name="maxPrice">
+                        </div>
+                    </div>
+                    <button type="submit">Filtrer</button>
                 </form>
-              </div>
+                </div>
         </details>
     </div>
 
@@ -81,33 +88,25 @@
                     <div>
                         <span class="icone icone-location"></span>
                         <p>
-                            {{ uneBouteille.pays ? uneBouteille.pays : uneBouteille.pays_bouteillePerso }}
-                        </p>
+                            {{ uneBouteille.pays ? uneBouteille.pays : uneBouteille.pays_bouteillePerso }}</p>
                     </div>
 
                     <div>
                         <span class="icone icone-dollar"></span>
-                        <p>
-                            {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }}
-                        </p>
+                        <p>{{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }}</p>
                     </div>
-
                 </div>
 
                 <div class="quantite">
-
                     <a *ngIf="!uneBouteille.id_bouteille" class="modifier" routerLink="/modifier-bouteille/{{ uneBouteille.id_supreme }}"></a>
-
                     <!-- <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)"></button> -->
-
                     <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
-                    
                     <!-- <button class="moins" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)"></button> -->
-
                 </div>
-                
             </div>
             <span class="cellier_nom">cellier : <a routerLink="/profil/cellier/{{ uneBouteille.celliers_id }}">{{ uneBouteille.celliers_nom }}</a></span>
         </article>
     </div>
 </section>
+
+<app-footer></app-footer>
