@@ -23,7 +23,7 @@
     details {
       text-decoration: none;
       
-      .modal-type, .input-pays, .modal-prix {
+      .type, .pays, .prix {
         padding-block: var(--small);
         
         h3 {
@@ -296,39 +296,6 @@
 }
 
 
-.pays, .prix, .type{
-  margin-top: 20px;
-}
-
-.formPrix {
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    width: 200px;
-    
-  
-}
-
-.recherche-input{
-    margin-top: 20px;
-    border-radius: 5px;
-    border: 1px solid red;
-    width: 200px;
-    height: 30px;
-}
-
-details {
-    text-decoration: none;
-}
-
-.minPrice, .maxPrice {
-  width: 30px;
-
-}
-
-
-/********************************************* line********/
-
 .or-line {
   position: relative;
   text-align: center;
@@ -359,4 +326,3 @@ details {
   line-height: 1.5em;
   z-index: 1;
 }
-

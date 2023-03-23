@@ -16,27 +16,26 @@
         <details>
             <summary>Filtre</summary>
             <div class="type">
-                <h3>Type</h3>
-                <div *ngFor="let type of choixTypes">
-                    <input type="checkbox" #checkedType [checked]="isSelected(type)" (change)="updateSelectedWineTypes(checkedType.checked, type)">
-                    {{ type }}
+                <h3>Types</h3>
+                <div class="types">
+                    <div *ngFor="let type of choixTypes">
+                        <input type="checkbox" #checkedType [checked]="isSelected(type)" (change)="updateSelectedWineTypes(checkedType.checked, type)">
+                        {{ type }}
+                    </div>
                 </div>
           </div>
           
     
-
-
-    
             <div class="pays">
                 <h3>Pays</h3>
                 <select #selected (change)="updateSelectedWinePays(selected.value)">
-                    <option value="" selected>Tout les pays</option>
+                    <!-- <option value="" selected></option> -->
                     <option *ngFor="let pays of choixPays" [value]="pays" [selected]="isSelectedPays(pays)">
                         {{ pays }}
                     </option>
                 </select>
             </div>
-            
+
             <div class="prix">
                 <h3>Prix</h3>
                 <form (ngSubmit)="filterByPrice(minPrice, maxPrice)" #myForm="ngForm">
