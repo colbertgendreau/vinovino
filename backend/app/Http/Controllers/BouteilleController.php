@@ -155,7 +155,9 @@ class BouteilleController extends Controller
         // var_dump($request);
         // var_dump($maBouteille);
 
+
         if ($request->id_bouteillePerso) {
+
 
             $maBouteille = mesBouteilles::find($request->id_bouteillePerso);
             $maBouteille->update([

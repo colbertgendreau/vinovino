@@ -9,6 +9,7 @@ import { IlisteCellier } from '../iliste-cellier';
 import { ICellier } from '../icellier';
 
 
+
 import { Ilistemesbouteilles } from '../ilistemesbouteilles';
 import { Imesbouteilles } from '../imesbouteilles';
 
@@ -145,6 +146,15 @@ export class ListeCellierComponent implements OnInit {
   }
 
 
+  openCellier(idCellier:number) {
+
+    
+
+    console.log('ouvre le cellier'+idCellier);
+    this.router.navigateByUrl('profil/cellier/'+idCellier);
+
+    
+  }
 
 
 

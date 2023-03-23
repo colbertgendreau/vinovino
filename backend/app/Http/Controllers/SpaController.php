@@ -14,7 +14,7 @@ class SpaController extends Controller
         return view('admin');
     }
 
-    public function nonexisting(){
-        throw new Exception('Cette page n\'existe pas ');
-    }
+    // public function nonexisting(){
+    //     throw new Exception('Cette page n\'existe pas ');
+    // }
 }

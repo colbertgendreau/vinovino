@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
 import { AuthService } from '../shared/auth.service';
 import { ICellier } from '../icellier';
 import { FetchService } from '../fetch.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Ibouteillecellier } from '../ibouteille-cellier';
 import { Imesbouteilles } from '../imesbouteilles';
 import { EffacerBouteilleModalComponent } from '../effacer-bouteille-modal/effacer-bouteille-modal.component';
@@ -96,14 +95,20 @@ export class CellierComponent implements OnInit {
         .subscribe((data: any) => {
           this.bouteilles = data.data;
 
-          
-          this.cellierNom = this.bouteilles[0].cellier_nom;
+          console.log(this.bouteilles);
+  
+          if(this.bouteilles[0]) {
 
+              
+              this.cellierNom = this.bouteilles[0].cellier_nom;
+            }
+          
+          
           console.log('les bouteilles du cellier');
           console.log(this.bouteilles);
           this.spin = false;
           this.hide = false;
-
+          
         });
     });
   }
