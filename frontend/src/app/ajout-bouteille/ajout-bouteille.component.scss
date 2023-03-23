@@ -36,7 +36,7 @@ select {
     width: 100%;
     height: 50px;
     position: absolute;
-    top: 0;
+    top: -10px;
     left: 0;
     background: transparent;
     margin: 0 auto;
@@ -158,6 +158,50 @@ form {
 
 /////////////////////// FORM /////////////////////////
 
+label{
+    position:relative;
+}
+
+input::placeholder{
+    opacity:0;
+}
+.floating {
+    padding: 5px;
+    position:absolute;
+    top:-21px;
+    left:20px;
+    transform:translateY(20px);
+    font-size:0.825em;
+    transition-duration:300ms;
+    color: gray;
+    background: white;
+}
+
+.stay {
+    padding: 5px;
+    position:absolute;
+    top:-40px;
+    left:20px;
+    transform:translateY(20px);
+    font-size:0.825em;
+    transition-duration:300ms;
+    color: var(--secondaire);
+    background: white;
+    border-radius: 5px;
+    padding-bottom: 0;
+
+}
+
+label:focus-within > span,
+input:not(:placeholder-shown) + span{
+    color:var(--secondaire);
+    transform:translateY(0px);
+    border-radius: 5px;
+    padding-bottom: 0;
+}
+
+
+
 .disabled {
     background-color: rgb(172, 172, 172);
     opacity: 1;
@@ -193,9 +237,9 @@ form {
     min-width: 100%;
     padding-inline: var(--big);
   }
-  label {
-    display: var(--display-none);
-  }
+//   label {
+//     display: var(--display-none);
+//   }
 
   button {
     margin: var(--small);
@@ -235,3 +279,4 @@ form {
     .nohide {
         display: flex;
     }
+
