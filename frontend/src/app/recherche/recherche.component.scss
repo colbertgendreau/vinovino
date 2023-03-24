@@ -50,8 +50,7 @@
     }
     
     h3 {
-      margin-top: var(--big);
-      margin-bottom: var(--small);
+      margin-block: var(--med);
     }
     
     details {
@@ -64,15 +63,15 @@
       .type, .pays, .prix {
         padding-block: var(--med);
         
-        h3 {
-          padding-bottom: var(--smaller);
+        h4 {
+          margin-bottom: var(--med);
         }
 
         .types {
           display: flex;
           justify-content: space-between;
 
-          .input-checbox {
+          .input-checkbox {
             display: flex;
             align-items: center;
 
