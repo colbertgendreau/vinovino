@@ -12,9 +12,9 @@
         <details>
             <summary>Types</summary>
             <div class="type">
-                <h3>Types</h3>
+                <h4>Types</h4>
                 <div class="types">
-                    <div *ngFor="let type of choixTypes">
+                    <div *ngFor="let type of choixTypes" class="input-checkbox">
                         <input type="checkbox" #checkedType [checked]="isSelected(type)"
                             (change)="updateSelectedWineTypes(checkedType.checked, type)">
                         {{ type }}
@@ -25,7 +25,7 @@
         <details>
             <summary>Pays</summary>
             <div class="pays">
-                <h3>Pays</h3>
+                <h4>Pays</h4>
                 <select #selected (change)="updateSelectedWinePays(selected.value)">
                     <!-- <option value="" selected></option> -->
                     <option *ngFor="let pays of choixPays" [value]="pays" [selected]="isSelectedPays(pays)">
@@ -39,7 +39,7 @@
 
             <summary>Prix</summary>
             <div class="prix">
-                <h3>Prix</h3>
+                <h4>Prix</h4>
                 <form (ngSubmit)="filterByPrice(minPrice, maxPrice)" #myForm="ngForm">
 
                     <div class="formPrix">
