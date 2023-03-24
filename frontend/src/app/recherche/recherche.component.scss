@@ -1,7 +1,7 @@
 .recherche {
   background-attachment: fixed;
   height: 100%;
-  padding: 85px var(--small) calc(100vh - 122px);
+  padding: 85px var(--small);
   display: flex;
   flex-direction: column;
   gap: var(--big);
@@ -63,9 +63,7 @@
       .type, .pays, .prix {
         padding-block: var(--med);
         
-        h4 {
-          margin-bottom: var(--med);
-        }
+        
 
         .types {
           display: flex;
@@ -81,7 +79,10 @@
               width: var(--big);
               height: var(--big);
               margin-right: var(--smaller4);
+              accent-color: var(--secondaire);
+              
             }
+            
           }
         }
 
@@ -91,11 +92,12 @@
           border: 1px solid var(--secondaire);
           height: 30px;
           padding-inline: var(--small);
+          background: white;
         }
         
         .formPrix {
           display: flex;
-          justify-content: space-around;
+          justify-content: space-between;
 
           .prixMin, .prixMax {
             display: flex;
