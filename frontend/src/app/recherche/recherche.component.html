@@ -62,33 +62,29 @@
                     <h3>
                         {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
                     </h3>
-
-                    <div>
-                        <span class="icone icone-vin"></span>
-                        <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name : uneBouteille.type_mes_name }} | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso }}</p>
-                    </div>
-
-                    <div>
-                        <span class="icone icone-location"></span>
-                        <p>
-                            {{ uneBouteille.pays ? uneBouteille.pays : uneBouteille.pays_bouteillePerso }}
-                        </p>
-                    </div>
-
-                    <div>
-                        <span class="icone icone-dollar"></span>
-                        <p>
-                            {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }}
-                        </p>
-                    </div>
-                    <div class="cellierQuantite">
-                        <span class="icone icone-cellier"></span>
-                        <a routerLink="/profil/cellier/{{ uneBouteille.celliers_id }}">{{ uneBouteille.celliers_nom }}</a>
+                        <div class="info-ligne">
+                            <span class="icone icone-vin"></span>
+                            <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name : uneBouteille.type_mes_name }} | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso }}</p>
+                        </div>
+                        <div class="info-ligne">
+                            <span class="icone icone-location"></span>
+                            <p>
+                                {{ uneBouteille.pays ? uneBouteille.pays : uneBouteille.pays_bouteillePerso }}
+                            </p>
+                        </div>
+                        <div class="info-ligne">
+                            <span class="icone icone-dollar"></span>
+                            <p>
+                                {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }}
+                            </p>
+                        </div>
+                        <div class="cellierQuantite info-ligne">
+                            <span class="icone icone-cellier"></span>
+                            <a routerLink="/profil/cellier/{{ uneBouteille.celliers_id }}">{{ uneBouteille.celliers_nom }}</a>
                             <span class="quantite">
-                                <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
+                                <span>Qte : {{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
                             </span>
-            
-                    </div>
+                        </div>
                 </div>
 
             </div>
