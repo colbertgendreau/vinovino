@@ -1,11 +1,15 @@
 <div class="ajouter-bouteille">
   <h1>Ajouter une bouteille</h1>
+  <label>
   <input class="recherche-input"
     type="text"
     [(ngModel)]="searchTerm"
     (keyup)="filterData(searchTerm)"
     placeholder="Recherche (entrez les 3 premiere lettres)"
   />
+  <span class="floating floating-recherche">Recherche (entrez les 3 premiere lettres)</span>
+
+</label>
 
   <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
@@ -48,6 +52,7 @@
     [formGroup]="ajouterBouteilleForm"
     (ngSubmit)="ajouter()"
   >
+
     <input
       type="hidden"
       id="id"
@@ -56,7 +61,7 @@
       [readonly]="isDataSelected"
     />
     <div>
-      <label for="name">Name</label>
+      <label for="name">
         <input
           type="text"
           id="name"
@@ -66,6 +71,9 @@
           placeholder="Nom"
             [class.disabled]="isDataSelected"
       />
+        <span class="floating" *ngIf="!formSubmitted || ajouterBouteilleForm.controls['nom'].valid || !ajouterBouteilleForm.controls['nom'].errors?.['required']">Nom</span>
+        <span class="floating floatingError" *ngIf="formSubmitted && ajouterBouteilleForm.controls['nom'].invalid && ajouterBouteilleForm.controls['nom'].errors?.['required']">Nom</span>
+    </label>
       <div
         *ngIf="formSubmitted && ajouterBouteilleForm.controls['nom'].invalid"
         class="error-message" 
@@ -78,21 +86,20 @@
 
 
 <div class="container-select">
-    <label for="type">Type</label>
+    <label for="type">
     <select [class.disabled]="isDataSelected" name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
-        <option value="" disabled selected>Type de vin</option>
+        <option value="" disabled selected>Choisir</option>
         <option value="1">vin rouge</option>
         <option value="2">vin blanc</option>
         <option value="3">vin rosé</option>
     </select>
     <div [class.voile]="isDataSelected"></div>
-    <!--
-        <div class="voile"></div>
-    -->
+    <div class="stay">Type</div>
+    </label>
 </div>
 
     <div>
-      <label for="pays">Pays</label>
+      <label for="pays">
         <input
           type="text"
           id="pays"
@@ -102,9 +109,11 @@
           placeholder="Pays"
           [class.disabled]="isDataSelected"
       />
+      <span class="floating">Pays</span>
+    </label>
     </div>
     <div>
-      <label for="format">Format</label>
+      <label for="format">
         <input
           type="text"
           id="format"
@@ -114,9 +123,11 @@
           placeholder="Format"
           [class.disabled]="isDataSelected"
       />
+      <span class="floating">Format</span>
+    </label>
     </div>
     <div>
-      <label for="prix_saq">Prix</label>
+      <label for="prix_saq">
         <input
           type="number"
           id="prix_saq"
@@ -126,9 +137,11 @@
           placeholder="Prix"
           [class.disabled]="isDataSelected"
       />
+      <span class="floating">Prix</span>
+    </label>
     </div>
     <div>
-      <label for="quantite">Quantité</label>
+      <label for="quantite">
         <input
           type="number"
           id="quantite"
@@ -136,6 +149,9 @@
           formControlName="quantite"
           placeholder="Quantité"
       />
+      <span class="floating" *ngIf="!formSubmitted || ajouterBouteilleForm.controls['quantite'].valid || !ajouterBouteilleForm.controls['quantite'].errors?.['required']">Quantité</span>
+      <span class="floating floatingError" *ngIf="formSubmitted && ajouterBouteilleForm.controls['quantite'].invalid && ajouterBouteilleForm.controls['quantite'].errors?.['required']">Quantité</span>
+    </label>
       <div
         *ngIf="
           formSubmitted && ajouterBouteilleForm.controls['quantite'].invalid

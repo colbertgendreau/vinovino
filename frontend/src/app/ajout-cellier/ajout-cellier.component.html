@@ -2,8 +2,11 @@
     <h1>Ajouter un cellier</h1>
     <form [formGroup]="cellierForm" (ngSubmit)="ajouter()">
         <div>
-            <label for="nom">Nom du cellier</label>
+            <label for="nom">
             <input type="text" formControlName="nom" placeholder="Mon Cellier">
+            <span class="floating">Nom du cellier</span>
+            <span class="floating floatingError" *ngIf="cellierForm.controls['nom'].invalid && (cellierForm.controls['nom'].dirty || cellierForm.controls['nom'].touched)">Nom du cellier</span>
+            </label>
             <div *ngIf="cellierForm.controls['nom'].invalid && (cellierForm.controls['nom'].dirty || cellierForm.controls['nom'].touched)"
                 class="message-erreur">
                 <div *ngIf="cellierForm.controls['nom']?.errors?.['required']">Le nom est requis.</div>
