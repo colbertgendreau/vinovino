@@ -26,7 +26,8 @@ export class ListeUsagerComponent implements OnInit {
   utilisateur : IUser;
   utilisateurs : Array<IUser>;
   dataSource : MatTableDataSource<IUser>;
-  colonnesAffichees : string[] = ['id', 'name', 'email', 'type', 'created_at', 'supprimer'];
+  // colonnesAffichees : string[] = ['id', 'name', 'email', 'type', 'created_at', 'supprimer'];
+  colonnesAffichees : string[] = ['id', 'name', 'email', 'type', 'created_at'];
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(

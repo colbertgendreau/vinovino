@@ -39,6 +39,10 @@
     border: solid var(--smallest) var(--black);
   }
 
+  select {
+    box-sizing: content-box;
+  }
+
   .h3 {
     margin-top: var(--biggest);
     margin-bottom: var(--big);
@@ -61,8 +65,52 @@
     padding-inline: var(--big);
   }
   label {
-    display: var(--display-none);
+    position: relative;
   }
+
+  input::placeholder{
+    opacity:0;
+}
+.floating {
+    padding: 5px;
+    position:absolute;
+    top:-21px;
+    left:20px;
+    transform:translateY(20px);
+    font-size:0.825em;
+    transition-duration:300ms;
+    color: gray;
+    background: white;
+}
+
+.stay {
+    padding: 5px;
+    position:absolute;
+    top:-40px;
+    left:20px;
+    transform:translateY(20px);
+    font-size:0.825em;
+    transition-duration:300ms;
+    color: var(--secondaire);
+    background: white;
+    border-radius: 5px;
+    padding-bottom: 0;
+
+}
+
+
+label:focus-within > span,
+input:not(:placeholder-shown) + span{
+    color:var(--secondaire);
+    transform:translateY(0px);
+    border-radius: 5px;
+    padding-bottom: 0;
+}
+
+label:focus-within > .floatingError,
+input:not(:placeholder-shown) + .floatingError{
+    color:var(--primaire);
+}
 
   button {
     margin: var(--small);

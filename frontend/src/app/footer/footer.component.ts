@@ -7,6 +7,7 @@ import { AjoutBouteilleComponent } from '../ajout-bouteille/ajout-bouteille.comp
 import { AjoutCellierComponent } from '../ajout-cellier/ajout-cellier.component';
 import { ModifCellierComponent } from '../modif-cellier/modif-cellier.component';
 import { ModifBouteilleComponent } from '../modif-bouteille/modif-bouteille.component';
+import { RechercheComponent } from '../recherche/recherche.component';
 
 @Component({
   selector: 'app-footer',
@@ -54,6 +55,9 @@ export class FooterComponent {
       case ModifBouteilleComponent:
         this.pageActuelle = 'modifBouteille';
         break;
+      case RechercheComponent:
+        this.pageActuelle = 'recherche';
+        break;
     default:
         this.pageActuelle = 'autrePage';
         break;
@@ -72,9 +76,9 @@ export class FooterComponent {
     } else if (this.pageActuelle == 'modifCellier') {
       this.router.navigateByUrl('profil/liste-cellier');
     } else if (this.pageActuelle == 'modifBouteille') {
-      this.router.navigateByUrl('profil/cellier/' + this.id);
-
-      // this.router.navigate(['liste-cellier']);
+        this.router.navigateByUrl('profil/cellier/' + this.id);
+    } else if (this.pageActuelle == 'recherche') {
+      this.router.navigateByUrl('profil/liste-cellier');
     }
 
     window.scroll({

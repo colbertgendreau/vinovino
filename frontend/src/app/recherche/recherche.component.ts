@@ -10,6 +10,8 @@ import { ICellier } from '../icellier';
 // import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
 import { Ilistemesbouteilles } from '../ilistemesbouteilles';
 import { Imesbouteilles } from '../imesbouteilles';
+import { environment } from '../../environments/environment';
+
 
 @Component({
   selector: 'app-recherche',
@@ -18,26 +20,31 @@ import { Imesbouteilles } from '../imesbouteilles';
 })
 export class RechercheComponent {
 
-  
-
-  // title:string='Liste des celliers';
-  // UserProfile!: User;
   listeMesBouteilles: Array<Imesbouteilles>;
   unCellier: ICellier;
   @Input() isVisibleM = false;
   @Output() closed = new EventEmitter<void>();
   filteredData:any = [];
   searchTerm:any = '';
-  minPrice:number;
-  maxPrice:number;
   id: number;
   isVisible = false;
   choixTypes: string[] = ['Vin rouge', 'Vin blanc', 'Vin rosé'];
   choixPays: string[] = ['Tout les pays','Canada', 'États-Unis', 'France', 'Australie', 'Italie', 'Espagne', 'Chili', 'Portugal', 'Argentine', 'Afrique du Sud', 'Allemagne', 'Autriche', 'Grèce', 'Nouvelle-Zélande', 'Israël', 'Liban', 'Hongrie', 'Roumanie', 'Uruguay', 'Arménie', 'Géorgie', 'Slovénie', 'Moldavie', 'Suisse', 'Bulgarie', 'Chine', 'Luxembourg', 'Mexique', 'Brésil', 'Croatie', 'Maroc', 'République Tchèque'];
-  selectedWineTypes: string[] = [];
-  selectedWinePays: string[] = [];
+  selectedWineTypes = new Set<string>();
+  selectedWinePays = '';
+  minPrice = '';
+  maxPrice = '';
+  nombreDeResultat: number;
+  
+  imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
-  // isVisibleM: boolean = false;
+  isSelected(type: string): boolean {
+    return this.selectedWineTypes.has(type);
+  }
+
+  isSelectedPays(pays: string): boolean {
+    return this.selectedWinePays === pays;
+  }
 
   iconeTrash = '../assets/icones/trash-347.png';
   iconeModif = '../assets/icones/edit-black.png';
@@ -50,8 +57,6 @@ export class RechercheComponent {
     public fetchService: FetchService,
     private route: ActivatedRoute,
   ) {
-
-    // this.listeCelliers = [];
 
   }
 
@@ -79,79 +84,10 @@ export class RechercheComponent {
     console.log(this.listeMesBouteilles);
   });
 
-}
 
-isSelected(wineType: string) {
-  return this.selectedWineTypes.includes(wineType);
-}
-
-isSelectedPays(winePays: string) {
-  return this.selectedWinePays.includes(winePays);
-}
-
-updateSelectedWineTypes(checked: boolean, wineType: string) {
-  if (checked) {
-    this.selectedWineTypes.push(wineType);
-  } else {
-    this.selectedWineTypes = this.selectedWineTypes.filter(type => type !== wineType);
-  }
-
-  this.filter();
-}
-
-
-// updateSelectedWinePays(checked: boolean, winePays: string) {
-//   if (checked) {
-//     this.selectedWinePays.push(winePays);
-//   } else {
-//     this.selectedWinePays = this.selectedWinePays.filter(pays => pays !== winePays);
-//   }
-
-//   this.filter();
-// }
-
-updateSelectedWinePays(selectedPays: string) {
-  this.selectedWinePays = [selectedPays];
-  this.filter();
-}
-
-
-
-filterByType(types:any) {
-  console.log(types);
-      this.filteredData = this.listeMesBouteilles.filter(bouteille =>
-        this.selectedWineTypes.includes(bouteille.type_vino_name));
-      console.log(this.filteredData);
-}
-
-filterByCountry(pays: any) {
-  console.log(pays);
   
-      
-      this.filteredData = this.listeMesBouteilles.filter(bouteille => 
-        this.selectedWinePays.includes(bouteille.pays)
-      );
-    
-    // this.isVisibleM = false;
-    
-  console.log(this.filteredData);
-      
+
 }
-
-filter() {
-  if (this.selectedWineTypes.length === 0 && this.selectedWinePays.length === 0) {
-    this.filteredData = [];
-    return;
-  }
-
-  this.filteredData = this.listeMesBouteilles.filter(bouteille => {
-    const typeMatch = this.selectedWineTypes.length === 0 || this.selectedWineTypes.includes(bouteille.type_vino_name);
-    const paysMatch = this.selectedWinePays.length === 0 || this.selectedWinePays.includes(bouteille.pays) || this.selectedWinePays[0] === 'Tout les pays';
-    return typeMatch && paysMatch;
-  });
-}
-
-
 
   filterData(searchTerm: string) {
     console.log(searchTerm);
@@ -164,69 +100,44 @@ filter() {
       );
     }
   }
-  
-  filterByPrice(minPrice: number, maxPrice: number) {
-    console.log(minPrice, maxPrice);
-    console.log(this.filteredData);
-    if (this.selectedWineTypes.length && this.selectedWinePays.length){
-      this.filteredData = this.filteredData.filter(bouteille => 
-        bouteille.prix >= minPrice && bouteille.prix <= maxPrice);
-    }else{
-      this.filteredData = this.listeMesBouteilles.filter(bouteille => 
-        bouteille.prix >= minPrice && bouteille.prix <= maxPrice);
+
+
+  updateSelectedWineTypes(checked: boolean, type: string) {
+    if (checked) {
+      this.selectedWineTypes.add(type);
+    } else {
+      this.selectedWineTypes.delete(type);
     }
+    this.filtreUltime();
   }
-
-  // closeModalFilter() {
-  //   this.isVisibleM = false;
-  //   this.closed.emit();
-  // }
   
+  updateSelectedWinePays(value: string) {
+    this.selectedWinePays = value;
+    this.filtreUltime();
+  }
   
-
-
-
+  filterByPrice(minPrice: string, maxPrice: string) {
+    this.minPrice = minPrice;
+    this.maxPrice = maxPrice;
+    this.filtreUltime();
+  }
+  
+  filtreUltime() {
+    if (this.selectedWineTypes.size === 0 && this.selectedWinePays.length === 0) {
+      this.filteredData = [];
+      this.nombreDeResultat = null;
+      return;
+    }
+    this.filteredData = this.listeMesBouteilles.filter((item: any) => {
+      return (
+        (this.selectedWineTypes.size === 0 || this.selectedWineTypes.has(item.type_vino_name)) &&
+        (this.selectedWinePays === '' || this.selectedWinePays === 'Tout les pays' || item.pays === this.selectedWinePays) &&
+        (this.minPrice === '' || item.prix >= parseInt(this.minPrice)) &&
+        (this.maxPrice === '' || item.prix <= parseInt(this.maxPrice)) &&
+        (item.nom.toLowerCase().includes(this.searchTerm.toLowerCase()))
+        
+      );
+    });
+    this.nombreDeResultat = this.filteredData.length;
+  }
 }
-
-
-
-
-
-// filterByCountry(pays: any) {
-//   console.log(pays);
-//   if (!this.selectedWinePays && !this.selectedWineTypes) {
-//       this.filteredData = this.listeMesBouteilles;
-//   }
-//   if (this.filteredData.length) {
-//       this.filteredData = this.filteredData.filter(bouteille => 
-//       this.selectedWinePays.includes(bouteille.pays));
-//     } else {
-//       this.filteredData = this.listeMesBouteilles.filter(bouteille => 
-//         this.selectedWinePays.includes(bouteille.pays)
-//       )};
-//     console.log(pays);
-//     // this.isVisibleM = false;
-    
-//   console.log(this.filteredData);
-      
-// }
-
-
-// filterByType(types:any) {
-//   console.log(types);
-//     // if (types.length === 0) {
-//     //   this.filteredData = this.filteredData;
-//     // } 
-//   //   if (!this.selectedWinePays && !this.selectedWineTypes) {
-//   //     this.filteredData = this.listeMesBouteilles;
-//   // }
-//     if (this.filteredData.length) {
-//       this.filteredData = this.filteredData.filter(bouteille => 
-//         this.selectedWineTypes.includes(bouteille.type_vino_name)
-//         )}else {
-//       this.filteredData = this.listeMesBouteilles.filter(bouteille =>
-//         this.selectedWineTypes.includes(bouteille.type_vino_name)
-//         );
-//       }
-//       console.log(this.filteredData);
-// }

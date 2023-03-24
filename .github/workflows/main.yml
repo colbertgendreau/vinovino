@@ -2,6 +2,8 @@ on:
   push:
     branches:
       - master
+  schedule:
+    - cron: '0 0 * * *'
 name: 🚀 Deployer Vinovino on push
 jobs:
   web-deploy:
@@ -37,7 +39,7 @@ jobs:
           npm run build:prod
           npm run build-admin:prod
 
-      - name: 📂 Sync files
+      - name: 📂 Sync files to site.vinovino.ca
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
           server: ftp.vinovino.ca
@@ -45,11 +47,13 @@ jobs:
           password: ${{ secrets.ftp_password }}
           server-dir: site.vinovino.ca/public_html/
           local-dir: ./backend/
-      - name: 📂 Sync files
-          uses: SamKirkland/FTP-Deploy-Action@4.3.3
-          with:
-            server: ftp.vinovino.ca
-            username: ${{secrets.ftp_username}}
-            password: ${{ secrets.ftp_password }}
-            server-dir: vinovino.ca/public_html/
-            local-dir: ./backend/
+
+      - name: 📂 Sync files to vinovino.ca
+        if: ${{ github.event_name == 'schedule'}}
+        uses: SamKirkland/FTP-Deploy-Action@4.3.3
+        with:
+          server: ftp.vinovino.ca
+          username: ${{secrets.ftp_username}}
+          password: ${{ secrets.ftp_password }}
+          server-dir: vinovino.ca/public_html/
+          local-dir: ./backend/
