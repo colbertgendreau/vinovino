@@ -9,6 +9,7 @@ import {IUser} from "../iuser";
 import {ICatalogue} from "../icatalogue";
 import {IDate} from "../idate";
 
+
 @Component({
   selector: 'app-liste-catalogue',
   templateUrl: './liste-catalogue.component.html',
@@ -16,9 +17,12 @@ import {IDate} from "../idate";
 })
 export class ListeCatalogueComponent implements OnInit {
 
+  //Variable pour la barre de progression
+  value: number = 0;
+  loading: boolean = false;
+  //fin variable pour la barre de progression
   isSignedIn! : boolean;
   isOpen : boolean = true;
-
   utilisateurs : Array<IUser>;
   catalogueData: Array<ICatalogue>;
   heure_debut: string;
@@ -34,8 +38,10 @@ export class ListeCatalogueComponent implements OnInit {
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
     });
+    // Initialisation des variables loading et value pour la barre de progression à partir de l'observable
+    this.adminServ.loading$.subscribe((val) => {  this.loading = val; });
+    this.adminServ.progressValue$.subscribe((val) => {  this.value = val; });
   }
 
   // https://stackoverflow.com/questions/28646139/how-to-pass-javascript-date-to-laravel-4-api-timestamp
@@ -52,12 +58,11 @@ export class ListeCatalogueComponent implements OnInit {
 
 
   executerSaq(message:string, action:string) {
+
     let heure= {
       temps_debut: this.generateDateToday()
     };
-    this.adminServ.executeSaq(heure).subscribe((catalogue)=>{
-      console.log(catalogue)
-    });
+    this.adminServ.executeSaq(heure);
 
     // this.adminServ.getDonnesSaq().subscribe((catalogue)=>{
     //   console.log(catalogue.data)

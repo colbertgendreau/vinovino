@@ -93,14 +93,6 @@ class SAQ extends Model
 		ini_set('max_execution_time', 0);
 		$s = curl_init();
 		$url = "https://www.saq.com/fr/produits/vin?p=" . $page . "&product_list_limit=" . $nombre . "&product_list_order=name_asc";
-		//curl_setopt($s, CURLOPT_URL, "http://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?searchType=&orderBy=&categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=".$debut."&tri=&metaData=YWRpX2YxOjA8TVRAU1A%2BYWRpX2Y5OjE%3D&pageSize=". $nombre ."&catalogId=50000&searchTerm=*&sensTri=&pageView=&facet=&categoryId=39919&storeId=20002");
-		//curl_setopt($s, CURLOPT_URL, "https://www.saq.com/webapp/wcs/stores/servlet/SearchDisplay?categoryIdentifier=06&showOnly=product&langId=-2&beginIndex=" . $debut . "&pageSize=" . $nombre . "&catalogId=50000&searchTerm=*&categoryId=39919&storeId=20002");
-		//curl_setopt($s, CURLOPT_URL, $url);
-		//curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
-		//curl_setopt($s, CURLOPT_CUSTOMREQUEST, 'GET');
-		//curl_setopt($s, CURLOPT_NOBODY, false);
-		//curl_setopt($s, CURLOPT_FOLLOWLOCATION, 1);
-
 		// Se prendre pour un navigateur pour berner le serveur de la saq...
 		curl_setopt_array($s, array(
 			CURLOPT_URL => $url,
@@ -115,7 +107,6 @@ class SAQ extends Model
 				'Upgrade-Insecure-Requests: 1',
 			),
 		));
-
 		self::$_webpage = curl_exec($s);
 		self::$_status = curl_getinfo($s, CURLINFO_HTTP_CODE);
 		curl_close($s);
@@ -127,35 +118,27 @@ class SAQ extends Model
 		$elements = $doc->getElementsByTagName("li");
 		$i = 0;
 		foreach ($elements as $key => $noeud) {
-			//var_dump($noeud -> getAttribute('class')) ;
-			//if ("resultats_product" == str$noeud -> getAttribute('class')) {
 			if (strpos($noeud->getAttribute('class'), "product-item") !== false) {
-
-				//echo $this->get_inner_html($noeud);
 				$info = self::recupereInfo($noeud);
-				echo "<p>" . $info->nom;
 				$retour = $this->ajouteProduit($info);
-				echo "<br>Code de retour : " . $retour->raison . "<br>";
 				if ($retour->succes == false) {
-					echo "<pre>";
-					//var_dump($info);
-					echo "</pre>";
-					echo "<br>";
 				} else {
 					$i++;
 				}
-				echo "</p>";
 			}
 		}
 
-        // Mettre à jour la table progrès de l'éxecution du script SAQ.php
+        // Mettre à jour la table progres__crawler pour indiquer le nombre de pages complétées
         // à chaque page insérée dans la base de données
-
+        // Exemple de parametres de getProduits
         //public function getProduits($nombre = 96, $page, $numero_de_page, $temps_debut)
+        $resultat = DB::table('progres__crawler')
+            ->where('temps_debut', $temps_debut)
+            ->update(['nb_pages_completees' => $numero_de_page]);
 
-        DB::update(DB::raw('UPDATE progres__crawler SET nb_pages_completees='.$numero_de_page.' WHERE temps_debut='.$temps_debut));
-        $user = DB::table('progres__crawler')->find($temps_debut);
-        print_r($user);
+//        $resultat = DB::table('progres__crawler')
+//            ->where('temps_debut', '2023-03-24 08:48:21')
+//            ->update(['nb_pages_completees' => $numero_de_page]);
 
 		return $i;
 	}
@@ -238,70 +221,34 @@ class SAQ extends Model
 
 	private function ajouteProduit($bte)
 	{
-
 		$retour = new stdClass();
 		$retour->succes = false;
 		$retour->raison = '';
-
-		//var_dump($bte);
-		// Récupère le type
-
-
         $rows = DB::select( "SELECT id FROM vino__type WHERE type = :type", array(
             'type' => $bte->desc->type,
         ));
-
-		//$rows = $this->_db->query("select id from vino__type where type = '" . $bte->desc->type . "'");
-		if (count($rows) == 1) {
-            //ddd($rows[0]->id);
+        if (count($rows) == 1) {
 			$type = $rows[0]->id;
-
-
-            $rows = DB::select( DB::raw("SELECT id FROM vino__bouteille WHERE code_saq = :code_SAQ"), array(
-                'code_SAQ' => $bte->desc->code_SAQ,
+            $code_saq = (string) $bte->desc->code_SAQ; // cast to string
+            $bte->desc->code_SAQ = $code_saq;
+            $rows = DB::select( DB::raw("SELECT id FROM vino__bouteille WHERE code_saq = :code_saq"), array(
+                'code_saq' => $bte->desc->code_SAQ,
             ));
-
-			//$rows = $this->_db->query("select id from vino__bouteille where code_saq = '" . $bte->desc->code_SAQ .
-            // "'");
-            if (count($rows) == 1) {
-
-				//format le prix en
-				// $prixF = str_replace("$", "", $bte->prix);
-				// $prixF = explode(",", $prixF);
-				// $prixF = $prixF[0] . "." . $prixF[1];
-				// $prixF = floatval($prixF);
-
+            if (count($rows) < 1) {
 				$prixF = str_replace("$", "", $bte->prix);
 				$prixF = explode(",", $prixF);
 				$prixF = $prixF[0] . "." . $prixF[1];
 				$prixF = floatval($prixF);
 				$prixF = number_format($prixF, 2, '.', ''); // format the float value with 2 decimal places
 				$prixF = (float)$prixF; // convert the formatted string back to float
-
-
-
-				// Source: https://www.php.net/manual/en/mysqli-stmt.bind-param.php
-				//Damn you sissssdssssssssss
-
-                $reponse = DB::insert( DB::raw("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays,
+                $response = DB::insert( DB::raw("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays,
                             description, prix_saq, url_saq, url_img, format) VALUES (:nom, :type, :img, :code_SAQ, :pays, :description,
                                                                                      :prix_saq, :url_saq, :url_img, :format)"), array(
                     'nom' => $bte->nom,'type' => $type,'img' => $bte->img,'code_SAQ' => $bte->desc->code_SAQ,
                     'pays'=>$bte->desc->pays,'description'=> $bte->desc->texte,'prix_saq' => $prixF,'url_saq' =>
                         $bte->url,'url_img' => $bte->img,'format' => $bte->desc->format
                 ));
-//
-//                if (!($this->stmt = $this->_db->prepare("INSERT INTO vino__bouteille(nom, type, image, code_saq, pays,
-//                            description, prix_saq, url_saq, url_img, format) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"))) {
-//                    echo "Echec de la préparation : (" . $this->_db->errno . ") " . $this->_db->error;
-//                }
-//
-//				$this->stmt->bind_param("sissssdsss", $bte->nom, $type, $bte->img, $bte->desc->code_SAQ, $bte->desc->pays,
-//                    $bte->desc->texte, $prixF, $bte->url, $bte->img, $bte->desc->format);
-//				$retour->succes = $this->stmt->execute();
 				$retour->raison = self::INSERE;
-				//var_dump($retour->raison);
-				//var_dump($this->stmt);
 			} else {
 				$retour->succes = false;
 				$retour->raison = self::DUPLICATION;

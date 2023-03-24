@@ -25,7 +25,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
 import { ModalComponent } from './modal/modal.component';
 import { ConnexionAdminComponent } from './connexion-admin/connexion-admin.component';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,8 @@ import { ConnexionAdminComponent } from './connexion-admin/connexion-admin.compo
     MatDialogModule,
     MatSortModule,
     MatSidenavModule,
-    MatDividerModule,    
+    MatDividerModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
