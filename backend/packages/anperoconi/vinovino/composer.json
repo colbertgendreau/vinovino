@@ -1,0 +1,19 @@
+{
+    "name": "anperoconi/vinovino",
+    "description": "Recuperer les bouteilles de vin du site de la \tsaq",
+    "autoload": {
+        "psr-4": {
+            "Anperoconi\\Vinovino\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Pedro Contreras Avendano",
+            "email": "pedro.contreras.avendano@gmail.com",
+            "name": "Jonathan Martel"
+        }
+    ],
+    "require": {
+        "guzzlehttp/guzzle": "^7.0.1"
+    }
+}

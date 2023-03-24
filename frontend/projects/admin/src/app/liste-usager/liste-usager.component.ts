@@ -43,7 +43,6 @@ export class ListeUsagerComponent implements OnInit {
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
     });
     this.afficherListeUtilisateur();
   }

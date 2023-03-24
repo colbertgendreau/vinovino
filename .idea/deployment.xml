@@ -19,7 +19,7 @@
       <paths name="XAMPP INPLACE SERVER">
         <serverdata>
           <mappings>
-            <mapping local="$PROJECT_DIR$" web="/" />
+            <mapping deploy="public\assets\admin" local="$PROJECT_DIR$" web="/admin" />
           </mappings>
         </serverdata>
       </paths>

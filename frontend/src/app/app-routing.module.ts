@@ -39,8 +39,8 @@ const routes: Routes = [
   { path: environment.profilPrefix+'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] },
   { path: environment.profilPrefix+'recherche', component: RechercheComponent, canActivate:[GardienLoginGuard] },
   { path: 'connexion', component: SigninComponent , title: 'Connection' },
-  
-  
+
+
 
 ];
 
