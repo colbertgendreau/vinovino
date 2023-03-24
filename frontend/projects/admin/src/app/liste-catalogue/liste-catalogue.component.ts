@@ -62,7 +62,12 @@ export class ListeCatalogueComponent implements OnInit {
     let heure= {
       temps_debut: this.generateDateToday()
     };
-    this.adminServ.executeSaq(heure);
+    this.adminServ.executeSaq(heure).subscribe((catalogue)=>{
+        console.log(catalogue.resultat)
+        console.log(catalogue.message)
+      });
+
+
 
     // this.adminServ.getDonnesSaq().subscribe((catalogue)=>{
     //   console.log(catalogue.data)

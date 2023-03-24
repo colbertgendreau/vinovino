@@ -46,11 +46,13 @@ class VinovinoController
         // pour que la requete soit de type POST
 
         // Aussi, il faut remplacer $request->temps_debut par '2023-03-23 23:13:21
-//        return response()->json([
-//            'message' => 'Vinovino crawler',
-//            'resultat' => $request->heure,
-//
-//        ]);
+        $x = $request->heure;
+        $y = $request->input('heure')->heure_debut;
+        return response()->json([
+            'message' => 'Vinovino crawler',
+            'resultat' => $y
+
+        ]);
         //ddd($request->temps_debut);
         $saq = new SAQ();
         $nombreDePages = $saq->getMaxPages();
