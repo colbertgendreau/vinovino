@@ -172,7 +172,7 @@
       display: flex;
       width: 100%;
 
-      div {
+      .info-ligne {
         text-align: start;
         display: flex;
         flex-direction: column;
@@ -181,20 +181,23 @@
       picture img {
         max-width: 80px;
         margin-inline: -24px;
-        margin-top: 30px;
+        position: relative;
 
       }
 
       .info-bouteille {
         min-width: 4ch;
-        margin-right: var(--big);
         margin-left: var(--small);
+        justify-self: stretch;
+        display: flex;
+        flex-direction: column;
+        gap: var(--smallest);
+        width: 100%;
 
         div {
           display: flex;
           flex-direction: row;
-          align-items: center;
-          padding-block: var(--smallest);
+          align-items: end;
         }
 
         .icone {
@@ -244,7 +247,8 @@
         }
 
         h3 {
-          margin-bottom: var(--small);
+          margin-bottom: auto;
+          text-align: left;
           word-break: break-all;
           margin-left: var(--smaller);
           font-size: clamp(
@@ -260,28 +264,6 @@
       }
     }
 
-    .card-bouteille-bas {
-      align-self: flex-start;
-      width: 100%;
-
-      a {
-        text-decoration: none;
-      }
-
-      div {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-      }
-
-      .icone-etoile {
-        background-image: url(../../assets/img/staricon.png);
-        height: var(--biggest);
-        width: var(--biggest);
-        background-size: cover;
-        object-position: center;
-      }
-    }
   }
 }
 
