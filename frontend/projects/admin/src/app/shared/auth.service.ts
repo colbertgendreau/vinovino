@@ -19,7 +19,7 @@ export class User {
 export class AuthService {
 
   constructor(private http: HttpClient) {}
-  
+
   // User registration
   register(user: User): Observable<any> {
     if (isDevMode()) {

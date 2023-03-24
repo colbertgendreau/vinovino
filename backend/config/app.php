@@ -182,6 +182,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Anperoconi\Vinovino\Providers\VinovinoProvider::class,
         /*
          * Package Service Providers...
          */
