@@ -34,6 +34,7 @@ export class RechercheComponent {
   selectedWinePays = '';
   minPrice = '';
   maxPrice = '';
+  nombreDeResultat: number;
   
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
@@ -122,6 +123,11 @@ export class RechercheComponent {
   }
   
   filtreUltime() {
+    if (this.selectedWineTypes.size === 0 && this.selectedWinePays.length === 0) {
+      this.filteredData = [];
+      this.nombreDeResultat = null;
+      return;
+    }
     this.filteredData = this.listeMesBouteilles.filter((item: any) => {
       return (
         (this.selectedWineTypes.size === 0 || this.selectedWineTypes.has(item.type_vino_name)) &&
@@ -129,7 +135,9 @@ export class RechercheComponent {
         (this.minPrice === '' || item.prix >= parseInt(this.minPrice)) &&
         (this.maxPrice === '' || item.prix <= parseInt(this.maxPrice)) &&
         (item.nom.toLowerCase().includes(this.searchTerm.toLowerCase()))
+        
       );
     });
+    this.nombreDeResultat = this.filteredData.length;
   }
 }
