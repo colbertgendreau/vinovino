@@ -59,18 +59,14 @@ export class ListeCatalogueComponent implements OnInit {
 
   executerSaq(message:string, action:string) {
 
-    let heure= {
-      temps_debut: this.generateDateToday()
-    };
-    this.adminServ.executeSaq(heure);
-
-    // this.adminServ.getDonnesSaq().subscribe((catalogue)=>{
-    //   console.log(catalogue.data)
-    //   console.log(catalogue.message)
-    //   this.utilisateurs = listeUtilisateur.data;
-    //   this.utilisateurs.forEach(utilisateur => {
-    //     utilisateur.created_at=utilisateur.created_at?.split("T")[0];
+    let heure= this.generateDateToday();
+    // this.adminServ.executeSaq(heure).subscribe((catalogue)=>{
+    //     console.log(catalogue.resultat)
+    //     console.log(catalogue.message)
     //   });
-    // });
+
+    this.adminServ.executeSaq(heure).subscribe((catalogue)=>{
+      console.log(catalogue)
+    });
   }
 }
