@@ -359,33 +359,4 @@
 }
 
 
-.or-line {
-  position: relative;
-  text-align: center;
-}
 
-.or-line::before,
-.or-line::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  width: 40%;
-  height: 1px;
-  background-color: black;
-}
-
-.or-line::before {
-  left: 0;
-}
-
-.or-line::after {
-  right: 0;
-}
-
-.or-line span {
-  position: relative;
-  display: inline-block;
-  padding: 0 10px;
-  line-height: 1.5em;
-  z-index: 1;
-}
