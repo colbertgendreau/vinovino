@@ -40,8 +40,11 @@
   }
 
   select {
-    box-sizing: content-box;
+    box-sizing: content-box;    
+    background: white;
+
   }
+
 
   .h3 {
     margin-top: var(--biggest);
