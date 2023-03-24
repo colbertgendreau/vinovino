@@ -41,19 +41,8 @@ class VinovinoController
     }
 
     public function execute(Request $request){
-
         // Ne pas oublier de changer la methode de la route dans le fichier api.php
         // pour que la requete soit de type POST
-
-        // Aussi, il faut remplacer $request->temps_debut par '2023-03-23 23:13:21
-        $x = $request->heure;
-        $y = $request->input('heure')->heure_debut;
-        return response()->json([
-            'message' => 'Vinovino crawler',
-            'resultat' => $y
-
-        ]);
-        //ddd($request->temps_debut);
         $saq = new SAQ();
         $nombreDePages = $saq->getMaxPages();
         $nombreDePages = intval($nombreDePages);
@@ -63,30 +52,17 @@ class VinovinoController
             ( DB::raw
             ("INSERT INTO progres__crawler(temps_debut, nb_pages_completees, nb_pages_totales)
                 VALUES (:temps_debut, :nb_pages_completees, :nb_pages_totales)"), array('temps_debut' =>
-                $request->temps_debut,'nb_pages_completees' => 0,
+                $request->heure,'nb_pages_completees' => 0,
                 'nb_pages_totales' => self::$nombreDePages
             ));
-
-//        for ($i = 0; $i < (self::$nombreDePages+1); $i++)	//permet d'importer séquentiellement plusieurs pages.
-//        {
-//            $produits = $saq->getProduits(self::$nombreProduit, self::$page + $i, $i, '2023-03-24 08:48:21
-//');
-//        }
-
-        for ($i = 0; $i < 2; $i++)	//permet d'importer séquentiellement plusieurs pages.
-        {
-            $produits = $saq->getProduits(self::$nombreProduit, self::$page + $i, $i, $request->temps_debut);
-        }
-
-
         for ($i = 0; $i < (self::$nombreDePages+1); $i++)	//permet d'importer séquentiellement plusieurs pages.
         {
-            $produits = $saq->getProduits(self::$nombreProduit, self::$page + $i, $i, $request->temps_debut);
+            $produits = $saq->getProduits(self::$nombreProduit, self::$page + $i, $i, $request->heure);
         }
         return response()->json([
             'message' => 'Vinovino crawler',
             'nb_pages' => self::$nombreDePages,
-            'temps_debut' => $request->temps_debut,
+            'temps_debut' => $request->heure,
             'resultat' => $resultat,
 
         ]);

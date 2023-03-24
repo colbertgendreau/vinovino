@@ -12,5 +12,5 @@
 <link rel="stylesheet" href="/assets/admin/styles.37f9abf3eee9d72f.css"></head>
 <body class="mat-typography">
   <app-root></app-root>
-<script src="/assets/admin/runtime.c90fa6915af5f1a8.js" type="module"></script><script src="/assets/admin/polyfills.cf31124f1f3fa6ac.js" type="module"></script><script src="/assets/admin/vendor.dfe876a642ef5958.js" type="module"></script><script src="/assets/admin/main.ec4f237b52c489bb.js" type="module"></script></body>
+<script src="/assets/admin/runtime.c90fa6915af5f1a8.js" type="module"></script><script src="/assets/admin/polyfills.cf31124f1f3fa6ac.js" type="module"></script><script src="/assets/admin/vendor.45b434205c88c4c2.js" type="module"></script><script src="/assets/admin/main.04317e68a6586430.js" type="module"></script></body>
 </html>
