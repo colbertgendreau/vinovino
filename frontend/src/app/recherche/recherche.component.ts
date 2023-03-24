@@ -97,7 +97,8 @@ export class RechercheComponent {
     } else {
       this.filteredData = this.listeMesBouteilles.filter(item =>
         item.nom.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+        );
+        this.nombreDeResultat = null;
     }
   }
 
@@ -123,6 +124,11 @@ export class RechercheComponent {
   }
   
   filtreUltime() {
+    if ((this.minPrice && this.maxPrice) && this.selectedWinePays.length === 0 && this.selectedWineTypes.size === 0){
+      this.filteredData = this.listeMesBouteilles.filter((bouteille: any) => bouteille.prix >= this.minPrice && bouteille.prix <= this.maxPrice)
+      console.log(this.filteredData);
+      return this.filteredData;
+    }
     if (this.selectedWineTypes.size === 0 && this.selectedWinePays.length === 0) {
       this.filteredData = [];
       this.nombreDeResultat = null;

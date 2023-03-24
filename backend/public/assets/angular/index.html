@@ -17,9 +17,9 @@
   <link rel="apple-touch-icon-precomposed" href="assets/icones/drunk.png"/>
 
   <meta name="theme-color" content="#1976d2">
-<link rel="stylesheet" href="/assets/angular/styles.f504c208e0ac88ae.css"></head>
+<link rel="stylesheet" href="/assets/angular/styles.760f071b86b7bed0.css"></head>
 <body>
   <app-root>
   </app-root>
-<script src="/assets/angular/runtime.a2c1910bd63fda3c.js" type="module"></script><script src="/assets/angular/polyfills.12520353619540ef.js" type="module"></script><script src="/assets/angular/vendor.5c3de61a30453fe0.js" type="module"></script><script src="/assets/angular/main.89d15ff27be3e84d.js" type="module"></script></body>
+<script src="/assets/angular/runtime.a2c1910bd63fda3c.js" type="module"></script><script src="/assets/angular/polyfills.12520353619540ef.js" type="module"></script><script src="/assets/angular/vendor.67d06ca36cede643.js" type="module"></script><script src="/assets/angular/main.d0aa5f1753aeadf0.js" type="module"></script></body>
 </html>

@@ -38,12 +38,12 @@ export class AdminService {
     return this.http.get<any>(this.urlExecute);
   }
 
-    executeSaq(heure) {
+    executeSaq(heure):Observable<IDate>{
       this.loading$.next(true);
       console.log(heure)
       //const execute$ = this.http.post<IDate>(this.urlExecute, heure);
 
-    this.http.post<IDate>(this.urlExecute, heure);
+    return this.http.post<IDate>(this.urlExecute, heure);
     // const progres$ = interval(2000).pipe(
     //   switchMap(() => {
     //     return this.http.get<IDate>(this.urlExecutePourcentage).pipe(
