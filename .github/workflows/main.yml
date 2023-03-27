@@ -49,6 +49,7 @@ jobs:
           local-dir: ./backend/
 
       - name: 📂 Sync files to vinovino.ca
+        if: ${{ github.event_name == 'schedule'}}
         uses: SamKirkland/FTP-Deploy-Action@4.3.3
         with:
           server: ftp.vinovino.ca
