@@ -103,19 +103,19 @@ export class AdminService {
     executeAndProgress$.subscribe(
       {
         next: ([execute, progress]) => {
-
+          this.loading$.next(false);
+          this.buttonClicked$.next(false);
+          this.hidden$.next(true);
+          this.snack$.next(true);
           console.log("executeAndProgress$");
           console.log(execute);
         },
         error: (error) => {
           console.error(error);
-          this.progressValue$.next(-1);
-          this.loading$.next(false);
+          //this.progressValue$.next(-1);
+          //this.loading$.next(false);
         },
         complete: () => {
-          this.loading$.next(false);
-          this.buttonClicked$.next(false);
-          this.hidden$.next(true);
           this.snack$.next(true);
           console.log("executeAndProgress$ complete");
         }
