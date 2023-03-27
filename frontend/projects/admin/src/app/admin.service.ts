@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from "../environments/environment";
 import { IUser } from './iuser';
 import { IlisteUser } from './iliste-user';
@@ -71,7 +71,16 @@ export class AdminService {
   executeSaq2(timeString): Observable<IDate> {
     this.snack$.next(false);
     const data = { time: timeString };
-    const execute$ = this.http.post<any>(this.urlExecute, data).pipe(
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      }),
+      timeout: 1800000 // 30 minutes in milliseconds
+    };
+
+
+    const execute$ = this.http.post<any>(this.urlExecute, data, httpOptions).pipe(
       tap(data => {
         this.snack$.next(true);
       })
