@@ -7,7 +7,7 @@ mat-sidenav {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        
+
         a {
             text-decoration: none;
 
@@ -30,6 +30,25 @@ mat-sidenav {
 mat-sidenav-container {
     margin: 16px;
     height: calc(100vh - 128px);
+}
+
+.loadin_bar{
+    margin: 16px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.success-button {
+  position: relative;
+}
+
+.success-icon {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  color: green;
 }
 
 @media(min-width: 945px) {
