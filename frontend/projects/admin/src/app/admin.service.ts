@@ -116,6 +116,9 @@ export class AdminService {
           //this.loading$.next(false);
         },
         complete: () => {
+          this.loading$.next(false);
+          this.buttonClicked$.next(false);
+          this.hidden$.next(true);
           this.snack$.next(true);
           console.log("executeAndProgress$ complete");
         }
