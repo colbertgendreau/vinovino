@@ -7,7 +7,7 @@ import {ICatalogue} from "./icatalogue";
 import {Imesbouteilles} from "../../../../src/app/imesbouteilles";
 import {IDate} from "./idate";
 import {Observable, forkJoin, interval, Subject, tap} from 'rxjs';
-import { switchMap, takeUntil} from 'rxjs/operators';
+import { switchMap, takeUntil, timeout} from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
@@ -72,16 +72,9 @@ export class AdminService {
     this.snack$.next(false);
     const data = { time: timeString };
 
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type':  'application/json',
-      }),
-      timeout: 1800000 // 30 minutes in milliseconds
-    };
-
-
-    const execute$ = this.http.post<any>(this.urlExecute, data, httpOptions).pipe(
+    const execute$ = this.http.post<any>(this.urlExecute, data).pipe(
       tap(data => {
+        timeout(1800000);
         this.snack$.next(true);
       })
     );
