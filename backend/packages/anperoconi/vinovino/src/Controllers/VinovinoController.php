@@ -85,8 +85,7 @@ class VinovinoController
     public function pourcentage(){
         $resultat = DB::select
         ("SELECT id,temps_debut, nb_pages_completees, nb_pages_totales  FROM progres__crawler ORDER BY id DESC LIMIT 1");
-        $count = DB::select('SELECT COUNT(id) as count
-FROM vino__bouteille');
+        $count = DB::select('SELECT COUNT(id) as count FROM vino__bouteille');
         return response()->json([
             'message' => 'Vinovino pourcentage crawlert',
             'nb_pages_totales' =>$resultat[0]->nb_pages_totales,
