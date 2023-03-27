@@ -72,11 +72,12 @@ export class AdminService {
     this.snack$.next(false);
     const data = { time: timeString };
 
+
     const execute$ = this.http.post<any>(this.urlExecute, data).pipe(
       tap(data => {
-        timeout(1800000);
         this.snack$.next(true);
-      })
+      }),
+    timeout(2400000)
     );
 
     const stop$ = new Subject();
