@@ -12,10 +12,21 @@
                 <h1>Mise à jour du catalogue</h1>
             </div>
           <div class="boutons">
-            <button mat-stroked-button color="primary"
-                    (click)="executerSaq('Administrateur ajouté!', '👨‍💼')">Récupérer les données de la SAQ</button>
+<!--            <button mat-stroked-button color="primary"-->
+<!--                    (click)="executerSaq('Administrateur ajouté!', '👨‍💼')">Récupérer les données de la SAQ-->
+<!--            </button>-->
+            <div>
+              <button mat-flat-button color="primary" class="success-button"
+                      [disabled]="buttonClicked"
+                      (click)="executerSaq('Administrateur ajouté!', '👨‍💼'); hidden">
+                <span>Récupérer les données de la SAQ</span>
+                <mat-icon class="success-icon" *ngIf="hidden">check_circle</mat-icon>
+              </button>
+            </div>
+
+
           </div>
-            <section>
+            <section class="loadin_bar">
               <mat-progress-bar *ngIf="loading" mode="determinate" [value]="value"></mat-progress-bar>
             </section>
 

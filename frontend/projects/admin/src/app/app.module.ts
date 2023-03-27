@@ -26,6 +26,9 @@ import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
 import { ModalComponent } from './modal/modal.component';
 import { ConnexionAdminComponent } from './connexion-admin/connexion-admin.component';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
+
 
 @NgModule({
   declarations: [
@@ -55,9 +58,12 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatSortModule,
     MatSidenavModule,
     MatDividerModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatBadgeModule,
   ],
-  providers: [],
+  providers: [
+    MatSnackBarModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

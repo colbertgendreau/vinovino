@@ -135,11 +135,6 @@ class SAQ extends Model
         $resultat = DB::table('progres__crawler')
             ->where('temps_debut', $temps_debut)
             ->update(['nb_pages_completees' => $numero_de_page]);
-
-//        $resultat = DB::table('progres__crawler')
-//            ->where('temps_debut', '2023-03-24 08:48:21')
-//            ->update(['nb_pages_completees' => $numero_de_page]);
-
 		return $i;
 	}
 	private function get_inner_html($node)
