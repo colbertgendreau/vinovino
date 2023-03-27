@@ -29,7 +29,7 @@ export class RechercheComponent {
   id: number;
   isVisible = false;
   choixTypes: string[] = ['Vin rouge', 'Vin blanc', 'Vin rosé'];
-  choixPays: string[] = ['Tout les pays','Canada', 'États-Unis', 'France', 'Australie', 'Italie', 'Espagne', 'Chili', 'Portugal', 'Argentine', 'Afrique du Sud', 'Allemagne', 'Autriche', 'Grèce', 'Nouvelle-Zélande', 'Israël', 'Liban', 'Hongrie', 'Roumanie', 'Uruguay', 'Arménie', 'Géorgie', 'Slovénie', 'Moldavie', 'Suisse', 'Bulgarie', 'Chine', 'Luxembourg', 'Mexique', 'Brésil', 'Croatie', 'Maroc', 'République Tchèque'];
+  choixPays: string[] = ['Tout les pays', 'Afrique du Sud', 'Allemagne', 'Argentine', 'Arménie', 'Australie', 'Autriche', 'Bulgarie', 'Brésil', 'Canada', 'Chili', 'Chine', 'Croatie', 'Espagne', 'États-Unis', 'France', 'Géorgie', 'Grèce', 'Hongrie', 'Israël', 'Italie', 'Liban', 'Luxembourg', 'Maroc', 'Mexique', 'Moldavie', 'Nouvelle-Zélande', 'Portugal', 'République Tchèque', 'Roumanie', 'Slovénie', 'Suisse', 'Uruguay'];
   selectedWineTypes = new Set<string>();
   selectedWinePays = '';
   minPrice = '';
@@ -97,7 +97,8 @@ export class RechercheComponent {
     } else {
       this.filteredData = this.listeMesBouteilles.filter(item =>
         item.nom.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+        );
+        this.nombreDeResultat = null;
     }
   }
 
@@ -123,6 +124,11 @@ export class RechercheComponent {
   }
   
   filtreUltime() {
+    if ((this.minPrice && this.maxPrice) && this.selectedWinePays.length === 0 && this.selectedWineTypes.size === 0){
+      this.filteredData = this.listeMesBouteilles.filter((bouteille: any) => bouteille.prix >= this.minPrice && bouteille.prix <= this.maxPrice)
+      console.log(this.filteredData);
+      return this.filteredData;
+    }
     if (this.selectedWineTypes.size === 0 && this.selectedWinePays.length === 0) {
       this.filteredData = [];
       this.nombreDeResultat = null;
