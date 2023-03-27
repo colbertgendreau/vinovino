@@ -57,7 +57,7 @@ class VinovinoController
         $nombreDePages = $saq->getMaxPages();
         $nombreDePages = intval($nombreDePages);
         self::$nombreDePages = $nombreDePages;
-        //self::$nombreDePages = 4;
+        self::$nombreDePages = 4;
         $resultat =
             DB::insert
             ( DB::raw
