@@ -1,17 +1,29 @@
+name: 🚀 Deployer Vinovino
+
 on:
   push:
     branches:
       - master
   schedule:
     - cron: '0 0 * * *'
-name: 🚀 Deployer Vinovino on push
+
 jobs:
   web-deploy:
     name: 🎉 Deploy
     runs-on: ubuntu-latest
+
     steps:
       - name: 🚚 Get latest code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
+
+      - name: 📥 Cache Composer Dependencies
+        uses: actions/cache@v2
+        id: composer-cache
+        with:
+          path: ~/.composer/cache/files
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
 
       - name: Install composer dependencies
         uses: php-actions/composer@v6
@@ -19,6 +31,15 @@ jobs:
           php_version: "8.1"
           version: 2.x
           working_dir: ./backend/
+
+      - name: 📥 Cache Node.js Dependencies
+        uses: actions/cache@v2
+        id: node-cache
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Use Node.js 16
         uses: actions/setup-node@v2
