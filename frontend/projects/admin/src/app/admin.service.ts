@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from "../environments/environment";
 import { IUser } from './iuser';
 import { IlisteUser } from './iliste-user';
 import {ICatalogue} from "./icatalogue";
 import {Imesbouteilles} from "../../../../src/app/imesbouteilles";
 import {IDate} from "./idate";
-import {Observable, forkJoin, interval, Subject, tap} from 'rxjs';
-import { switchMap, takeUntil, timeout} from 'rxjs/operators';
+import {Observable, forkJoin, interval, Subject, tap, timeout} from 'rxjs';
+import { switchMap, takeUntil} from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
@@ -71,19 +71,14 @@ export class AdminService {
   executeSaq2(timeString): Observable<IDate> {
     this.snack$.next(false);
     const data = { time: timeString };
-
-
     const execute$ = this.http.post<any>(this.urlExecute, data).pipe(
-      tap(data => {
-        this.snack$.next(true);
-      }),
-    timeout(2400000)
+      timeout(2400000)
     );
 
     const stop$ = new Subject();
 
     const progress$ = interval(4000).pipe(
-      switchMap(() => this.http.get<IDate>(this.urlExecutePourcentage)),
+      switchMap(() => this.http.get<IDate>(this.urlExecutePourcentage8001)),
       tap(data => {
         const nb_pages_completees_egalise_sur_100 = (data.nb_pages_completees * 100) / data.nb_pages_totales;
         this.progressValue$.next(nb_pages_completees_egalise_sur_100);
