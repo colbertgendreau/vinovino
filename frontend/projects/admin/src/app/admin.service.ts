@@ -89,6 +89,14 @@ export class AdminService {
               +data.nb_bouteilles +
               ' bouteilles dans votre catalogue. ',
               'Close', { duration: 6000 });
+
+          this.loading$.next(false);
+          console.log("loading complete");
+          this.buttonClicked$.next(false);
+          console.log("button clicked complete");
+          this.hidden$.next(true);
+
+
           this.snack$.next(true);
           this.progressValue$.next(100);
           this.loading$.next(false);
