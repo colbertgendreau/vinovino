@@ -57,7 +57,7 @@ class VinovinoController
         $nombreDePages = $saq->getMaxPages();
         $nombreDePages = intval($nombreDePages);
         self::$nombreDePages = $nombreDePages;
-        //self::$nombreDePages = 4;
+        self::$nombreDePages = 3;
         DB::table('progres__crawler')
             ->where('temps_debut', $request->input('time'))
             ->update(['nb_pages_completees' => self::$nombreDePages]);
@@ -71,7 +71,7 @@ class VinovinoController
                 'nb_pages_totales' => self::$nombreDePages
             ));
 
-
+        dispatch(new \App\Jobs\Crawler());
 
         for ($i = 0; $i < (self::$nombreDePages+1); $i++)	//permet d'importer séquentiellement plusieurs pages.
         {

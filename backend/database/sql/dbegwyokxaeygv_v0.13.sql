@@ -372,3 +372,11 @@ COMMIT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+CREATE TABLE `vino__bouteille__description` (
+                                                `id` int(11) NOT NULL,
+                                                `cepages` JSON DEFAULT NULL,
+                                                `cup_code` varchar(50) DEFAULT NULL,
+                                                PRIMARY KEY (`id`),
+                                                CONSTRAINT `fk_vino__bouteille__description_id` FOREIGN KEY (`id`) REFERENCES `vino__bouteille` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

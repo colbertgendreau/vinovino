@@ -122,6 +122,13 @@
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravel/framework" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravel/pint" />
       <excludeFolder url="file://$MODULE_DIR$/backend/vendor/laravel/sail" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/http-client" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/http-client-contracts" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/dom-crawler" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/symfony/browser-kit" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/fabpot/goutte" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/masterminds/html5" />
+      <excludeFolder url="file://$MODULE_DIR$/backend/vendor/weidner/goutte" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
