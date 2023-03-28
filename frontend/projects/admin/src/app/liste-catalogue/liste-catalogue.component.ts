@@ -73,7 +73,7 @@ export class ListeCatalogueComponent implements OnInit {
       .open(
         'La mise à jour a commencée, cette action peut prendre entre 20 et 30 minutes.',
         'Close', { duration: 6000 });
-    this.adminServ.executeSaq2(dateString).subscribe((resultat)=>{
+    this.adminServ.executeSaq(dateString).subscribe((resultat)=>{
       console.log("se acabo el executeSAsQ")
       console.log(resultat.resultat);
 
