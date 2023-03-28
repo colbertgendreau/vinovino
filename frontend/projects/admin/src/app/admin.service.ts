@@ -38,37 +38,12 @@ export class AdminService {
   effacerUtilisateur(id:number):Observable<IUser> {
     return this.http.delete<IUser>(this.urlUtilisateur+"/"+id);
   }
+
   getDonnesSaq():Observable<ICatalogue> {
     return this.http.get<any>(this.urlExecute);
   }
 
-    executeSaq(timeString):Observable<IDate>{
-      this.loading$.next(true);
-      const data = { time: timeString };
-      const execute$ = this.http.post<any>(this.urlExecute, data);
-      const progres$ = interval(2000).pipe(switchMap(() => {
-        return this.http.get<IDate>(this.urlExecutePourcentage8001).pipe(
-          tap(data => {
-            //C'est ici qu'on veut mettre la valeur de la barre de progression
-            let nb_pages_completees_egalise_sur_100 = (data.nb_pages_completees*100)/data.nb_pages_totales
-            // Il faut égaliser sur 100 la valeur de data.resultat
-            //Ex: 50 * 100 / 84 = 50= 59%
-            this.progressValue$.next(nb_pages_completees_egalise_sur_100);
-          })
-        );
-      })
-    );
-    forkJoin([execute$, progres$]).subscribe(([execute, progres]) => {
-      this.loading$.next(false);
-      }, (error) => {
-      console.error(error);
-      this.progressValue$.next(-1);
-      this.loading$.next(false);
-    });
-    return progres$;
-  }
-
-  executeSaq2(timeString): Observable<IDate> {
+  executeSaq(timeString): Observable<IDate> {
     this.snack$.next(false);
     const data = { time: timeString };
     const execute$ = this.http.post<any>(this.urlExecute, data).pipe(
@@ -91,12 +66,8 @@ export class AdminService {
               'Close', { duration: 6000 });
 
           this.loading$.next(false);
-          console.log("loading complete");
           this.buttonClicked$.next(false);
-          console.log("button clicked complete");
           this.hidden$.next(true);
-
-
           this.snack$.next(true);
           this.progressValue$.next(100);
           this.loading$.next(false);
@@ -115,8 +86,6 @@ export class AdminService {
           this.buttonClicked$.next(false);
           this.hidden$.next(true);
           this.snack$.next(true);
-          console.log("executeAndProgress$");
-          console.log(execute);
         },
         error: (error) => {
           console.error(error);
@@ -124,14 +93,11 @@ export class AdminService {
           //this.loading$.next(false);
         },
         complete: () => {
+          // Cette section ne semble pas fonctionner a cause de lerreur 504
           this.loading$.next(false);
-          console.log("loading complete");
           this.buttonClicked$.next(false);
-          console.log("button clicked complete");
           this.hidden$.next(true);
-          console.log("hidden complete");
           this.snack$.next(true);
-          console.log("snack complete");
         }
       }
     );
@@ -139,8 +105,5 @@ export class AdminService {
     return progress$;
   }
 
-  // ajoutBouteille(bouteille:Imesbouteilles):Observable<Imesbouteilles>{
-  //   return this.http.post<Imesbouteilles>(this.urlExecute, bouteille);
-  // }
 }
 
