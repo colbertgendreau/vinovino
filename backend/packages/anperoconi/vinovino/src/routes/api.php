@@ -24,6 +24,7 @@ Route::group([
     });
 
     Route::get('executedetails', [VinovinoController::class, 'executehard']);
+    Route::get('executedetailstest', [VinovinoController::class, 'executehardtest']);
 
     Route::post('execute', [VinovinoController::class, 'execute']);
     Route::get('/vinovino', VinovinoController::class);
