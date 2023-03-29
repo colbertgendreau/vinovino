@@ -58,6 +58,7 @@ class Crawler implements ShouldQueue
 
         $cupCode = $this->extractCupCode($crawler);
         $cepage = $this->extractCepage($crawler);
+        $imageUrl = $this->exctractImages($crawler);
 
 //        $code_saq = DB::table('vino__bouteille')->where('code_saq', $code)->first();
 //        DB::table('vino__bouteille__description')->insert([
@@ -73,6 +74,7 @@ class Crawler implements ShouldQueue
             [
                 'cup_code' => $cupCode,
                 'cepages' => json_encode($cepage),
+                'image_url' => $imageUrl,
             ]
         );
 
@@ -80,6 +82,7 @@ class Crawler implements ShouldQueue
         return response()->json([
             'cup_code' => $cupCode,
             'cepage' => $cepage,
+            'image_url' => $imageUrl,
         ]);
     }
 
@@ -127,18 +130,10 @@ class Crawler implements ShouldQueue
         return $grapes;
     }
 
-//    public function aromes($crawler)
-//    {
-//        $li = $crawler->filter('li:contains("Arômes")');
-//        $text = $li->filter('strong')->text();
-//
-//        $keywords = ['cacao', 'épices douces', 'fruits noirs', 'pruneau'];
-//        $found = [];
-//        foreach ($keywords as $keyword) {
-//            if (strpos($text, $keyword) !== false) {
-//                $found[] = $keyword;
-//            }
-//        }
-//        return $found;
-//    }
+
+    public function exctractImages($crawler)
+    {
+        $imageUrl = $crawler->filter('.mz-figure img')->attr('src');
+        return $imageUrl;
+    }
 }

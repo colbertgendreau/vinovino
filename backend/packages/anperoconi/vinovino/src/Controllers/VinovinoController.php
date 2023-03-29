@@ -100,4 +100,5 @@ class VinovinoController
             'nb_bouteilles'=>$count[0]->count,
         ]);
     }
+
 }
