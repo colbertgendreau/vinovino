@@ -31,6 +31,9 @@ jobs:
           php_version: "8.1"
           version: 2.x
           working_dir: ./backend/
+      - name: Run migration
+        run: |
+          php artisan migrate --path=database/migrations/2023_03_28_022650_create_jobs_table.php
 
       - name: 📥 Cache Node.js Dependencies
         uses: actions/cache@v2
