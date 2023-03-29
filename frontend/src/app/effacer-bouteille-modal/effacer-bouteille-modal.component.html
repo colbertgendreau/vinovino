@@ -1,10 +1,11 @@
 <dialog *ngIf="isVisible" class="modal">
     <form class="modal-interieur">
-      <h2>Confirmer la suppression</h2>
-      <p>Voulez-vous supprimer cette bouteille?</p>
+      <h2>Confirmer l'archivage</h2>
+      <p>Voulez-vous archiver cette bouteille?</p>
       <div class="btn-modal">
-        <button (click)="confirmer()">Confirmer</button>
-        <button class="btn-annuler" (click)="annuler()">Annuler</button>
+        <button (click)="archiver()">Archiver</button>
+        <!-- <button class="btn-annuler" (click)="annuler()">Annuler</button> -->
+        <button class="btn-annuler" (click)="confirmer()">Supprimer</button>
       </div>
     </form>
   </dialog>

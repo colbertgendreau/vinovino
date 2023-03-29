@@ -88,6 +88,7 @@ class BouteilleController extends Controller
                 'format_bouteillePerso' => $request->format,
                 'prix_bouteillePerso' => $request->prix_saq,
                 'quantite_bouteillePerso' => $request->quantite,
+                'id_cellier' => $request->id_cellier,
             ]);
 
             $res = Bouteille::create([
@@ -99,7 +100,8 @@ class BouteilleController extends Controller
         } else {
             // Handle the case where the ID is not empty
             $res = Bouteille::create([
-                'celliers_id' => $request->celliers_id,
+                'celliers_id' => $request->id_cellier,
+                // 'celliers_id' => $request->celliers_id,
                 'id_bouteille' => $request->id,
                 'quantite' => $request->quantite,
             ]);
@@ -229,5 +231,23 @@ class BouteilleController extends Controller
             ->first();
 
         return ['data' => $res];
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $bouteille
+     * @return \Illuminate\Http\Response 
+     */
+    public function ajoutNote(Request $request, Bouteille $bouteille)
+    {
+        $notes = $request->input('notes');
+    
+        $bouteille->update([
+            'notes' => $notes,
+        ]);
+    
+        return ['data' => $bouteille];
     }
 }

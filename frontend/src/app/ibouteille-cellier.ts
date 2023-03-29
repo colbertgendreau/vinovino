@@ -24,6 +24,7 @@ export interface Ibouteillecellier {
     type_mes_name:string;
     id_bouteillePerso:number;
     cellier_nom:string;
+    celliers_nom:string;
     nom_bouteillePerso: string;
     type_bouteillePerso: string;
     pays_bouteillePerso: string;

@@ -96,10 +96,14 @@ export class FetchService {
     return this.http.delete<Imesbouteilles>(this.urlBouteille+"/"+id);
   }
 
-
   showDetail(id:number):Observable<Imesbouteilles>{
     return this.http.get<Imesbouteilles>(environment.apiUrl+"/api/showDetail/"+id);
   }
+
+  ajoutNote(id:number, bouteille: Imesbouteilles):Observable<Imesbouteilles>{
+    return this.http.put<Imesbouteilles>(environment.apiUrl+"/api/ajoutNote/"+id, bouteille);
+  }
+
 }
 
 

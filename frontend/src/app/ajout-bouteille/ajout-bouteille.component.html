@@ -87,7 +87,7 @@
 
 <div class="container-select">
     <label for="type">
-    <select [class.disabled]="isDataSelected" name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
+    <select name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
         <option value="" disabled selected>Choisir</option>
         <option value="1">vin rouge</option>
         <option value="2">vin blanc</option>
@@ -168,6 +168,24 @@
         >
       </div>
     </div>
+    <div class="container-select">
+        <label for="id_cellier">
+        <select name="id_cellier" id="id_cellier" formControlName="id_cellier">
+
+            
+            <option *ngIf="idCellierUrl=='n'" [value]="" disabled selected>Choisir</option>
+            <ng-container *ngFor="let cellier of listeCelliers">
+                <option *ngIf="idCellierUrl == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
+            </ng-container>
+            <ng-container *ngFor="let cellier of listeCelliers">
+                <option *ngIf="idCellierUrl != cellier.id"  [value]="cellier.id" >{{cellier.nom}}</option>
+            </ng-container>
+
+        </select>
+        <div class="stay">Cellier</div>
+        </label>
+    </div>
+    
     
     <button class="btn-submit grosPlus" type="submit" >Confirmer</button>
     <button class="btn-effacer" *ngIf="isDataSelected" type="button" (click)="clearForm()">
