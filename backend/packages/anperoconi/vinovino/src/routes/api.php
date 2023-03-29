@@ -19,8 +19,6 @@ Route::group([
     });
 
     Route::post('execute', [VinovinoController::class, 'execute']);
-
-    dispatch(new App\Jobs\Crawler("13966470"));
     Route::post('execute', [VinovinoController::class, 'execute']);
     Route::get('/vinovino', VinovinoController::class);
 });
