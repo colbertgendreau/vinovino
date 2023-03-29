@@ -381,7 +381,7 @@ CREATE TABLE `vino__bouteille__description` (
                                                 CONSTRAINT `fk_vino__bouteille__description_id` FOREIGN KEY (`id`) REFERENCES `vino__bouteille` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE `vino__bouteille__description` ADD COLUMN `image_url` VARCHAR(255) DEFAULT NULL;
+ALTER TABLE `vino__bouteille__description` ADD COLUMN `image_url` VARCHAR(510) DEFAULT NULL;
 
 
 -- --------------------------------------------------------

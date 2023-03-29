@@ -115,4 +115,16 @@ class VinovinoController
             'completed' => true
         ]);
     }
+
+    public function executehardtest(Request $request){
+
+        //$tableRows = App\Models\Table::all();
+            dispatch(new \App\Jobs\Crawler("13966470"));
+
+        return response()->json([
+            'message' => 'Vinovino execution crawlerhard',
+            'nb_pages_completees' => 96,
+            'completed' => true
+        ]);
+    }
 }
