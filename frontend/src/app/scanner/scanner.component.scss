@@ -1,0 +1,30 @@
+.scanner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 85px var(--small);
+}
+
+video, canvas {
+  width: 100%;
+  height: auto;
+  max-width: 250px;
+  max-height: 250px;
+  object-fit: cover;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+button {
+  margin-top: 1em;
+}
+
+

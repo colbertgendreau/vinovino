@@ -85,33 +85,31 @@
 </div>
 
 
-<div class="container-select">
-    <label for="type">
-    <select [class.disabled]="isDataSelected" name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
-        <option value="" disabled selected>Choisir</option>
-        <option value="1">vin rouge</option>
-        <option value="2">vin blanc</option>
-        <option value="3">vin rosé</option>
-    </select>
-    <div [class.voile]="isDataSelected"></div>
-    <div class="stay">Type</div>
-    </label>
-</div>
+  <div class="container-select">
+      <label for="type">
+      <select [class.disabled]="isDataSelected" name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
+          <option value="" disabled selected>Choisir</option>
+          <option value="1">vin rouge</option>
+          <option value="2">vin blanc</option>
+          <option value="3">vin rosé</option>
+      </select>
+      <div [class.voile]="isDataSelected"></div>
+      <div class="stay">Type</div>
+      </label>
+  </div>
 
-    <div>
+    <div class="container-select">
       <label for="pays">
-        <input
-          type="text"
-          id="pays"
-          name="pays"
-          formControlName="pays"
-          [readonly]="isDataSelected"
-          placeholder="Pays"
-          [class.disabled]="isDataSelected"
-      />
-      <span class="floating">Pays</span>
-    </label>
+        <select [class.disabled]="isDataSelected" id="pays" name="pays" formControlName="pays" [disabled]="isDataSelected">
+          <option value="" disabled selected>Sélectionner un pays</option>
+          <option *ngFor="let pays of choixPays" [value]="pays">{{ pays }}</option>
+        </select>
+        <div [class.voile]="isDataSelected"></div>
+        <div class="stay">Pays</div>
+      </label>
     </div>
+    
+    
     <div>
       <label for="format">
         <input
@@ -126,6 +124,8 @@
       <span class="floating">Format</span>
     </label>
     </div>
+
+    
     <div>
       <label for="prix_saq">
         <input

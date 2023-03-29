@@ -25,11 +25,15 @@ import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-m
 import { SpinnerComponent } from './spinner/spinner.component';
 import { FooterComponent } from './footer/footer.component';
 
+import Quagga from 'quagga';
+
+
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
+import { ScannerComponent } from './scanner/scanner.component';
 
 
 
@@ -60,6 +64,7 @@ import { environment } from '../environments/environment';
     SpinnerComponent,
 
     FooterComponent,
+    ScannerComponent,
 
 
 
@@ -84,8 +89,8 @@ import { environment } from '../environments/environment';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-      
     },
+    { provide: Quagga, useValue: Quagga },
   ],
   bootstrap: [AppComponent],
 })

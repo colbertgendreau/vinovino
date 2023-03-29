@@ -1,0 +1,6 @@
+<section class="scanner">
+  <video #video></video>
+  <canvas #canvas class="overlay" style="display:none;"></canvas>
+  <button (click)="startScan()" *ngIf="!isScanning">Start Scan</button>
+  <button (click)="stopScan()" *ngIf="isScanning">Stop Scan</button>
+</section>
