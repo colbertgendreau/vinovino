@@ -53,7 +53,7 @@ export class AdminService {
     const stop$ = new Subject();
 
     const progress$ = interval(4000).pipe(
-      switchMap(() => this.http.get<IDate>(this.urlExecutePourcentage8001)),
+      switchMap(() => this.http.get<IDate>(this.urlExecutePourcentage)),
       tap(data => {
         const nb_pages_completees_egalise_sur_100 = (data.nb_pages_completees * 100) / data.nb_pages_totales;
         this.progressValue$.next(nb_pages_completees_egalise_sur_100);
