@@ -54,6 +54,17 @@ export class EnteteComponent implements OnInit {
     this.isOpen = !this.isOpen;
   }
 
+  pageArchive() {
+    // window.scroll({ // pour scroll up quand on clique sur une bouteille
+    //     top: 0,
+    //     left: 0,
+    //     behavior: 'smooth'
+    // });
+
+    this.router.navigate(['/profil/archive']);
+    this.isOpen = !this.isOpen;
+  }
+
   pageConnexion() {
     this.router.navigate(['connexion']);
     this.isOpen = !this.isOpen;
