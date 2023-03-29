@@ -118,6 +118,7 @@ export class AjoutBouteilleComponent implements OnInit {
       pays: bouteille.pays,
       description: bouteille.description,
       quantite: 1,
+      id_cellier: bouteille.id_cellier,
     });
     this.filteredData = [];
     this.isDataSelected = true; // set the flag to true when data is selected
@@ -134,14 +135,17 @@ export class AjoutBouteilleComponent implements OnInit {
     if (this.ajouterBouteilleForm.valid) {
       this.route.params.subscribe((params) => {
         let nouvelleBouteille: Imesbouteilles = this.ajouterBouteilleForm.value;
-        nouvelleBouteille.type = Number(nouvelleBouteille.type)
+        nouvelleBouteille.type = Number(nouvelleBouteille.type);
+        // nouvelleBouteille.cellier = Number(nouvelleBouteille.cellier);
         console.log(nouvelleBouteille.id);
+        console.log(nouvelleBouteille.id_cellier);
 
 
         console.log(params);
         this.present = false;
         this.fetchService
-          .getBouteillesCellier(params['id'])
+        //   .getBouteillesCellier(params['id'])
+          .getBouteillesCellier(nouvelleBouteille.id_cellier)
           .subscribe((data: any) => {
             this.bouteilles = data.data;
 
@@ -154,10 +158,11 @@ export class AjoutBouteilleComponent implements OnInit {
                 if(nouvelleBouteille.id == element.id){
                   this.present = true;
                   element.quantite = element.quantite + 1;
-                  element.celliers_id = params['id'];
+                  element.celliers_id = nouvelleBouteille.id_cellier;
                   this.fetchService.modifBouteille(element.id_supreme, element).subscribe((retour) => {
                     this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
-                    this.router.navigateByUrl('profil/cellier/' + element.celliers_id);
+                    // this.router.navigateByUrl('profil/cellier/' + 2);
+                    this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.id_cellier);
                   });
                   
                 }
@@ -165,10 +170,10 @@ export class AjoutBouteilleComponent implements OnInit {
               });
             }
             if (this.present == false){
-              nouvelleBouteille.celliers_id = params['id'];
+              nouvelleBouteille.celliers_id = nouvelleBouteille.id_cellier;
               this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
                 this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
-                this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.celliers_id);
+                this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.id_cellier);
               });
             }
           });
@@ -221,6 +226,7 @@ export class AjoutBouteilleComponent implements OnInit {
       prix_saq: [''],
       quantite: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
+      id_cellier: ['', [Validators.required]],
     });
   }
 
