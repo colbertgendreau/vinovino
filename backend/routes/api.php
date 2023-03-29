@@ -34,6 +34,7 @@ Route::resource('utilisateurs', UserController::class);
 
 Route::get('/show/{celliers}', [CellierController::class, 'showCellier']);
 
+Route::get('/showDetail/{bouteille}', [BouteilleController::class, 'showDetail']);
 
 Route::group([
     'middleware' => 'api',
