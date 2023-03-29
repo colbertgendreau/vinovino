@@ -171,7 +171,7 @@
     <div class="container-select">
         <label for="id_cellier">
         <select name="id_cellier" id="id_cellier" formControlName="id_cellier">
-            <option value="n" disabled selected>Choisir</option>
+            <option value="" disabled selected>Choisir</option>
             <option *ngFor="let cellier of listeCelliers; first as firstElement" value="{{ cellier.id }}">{{ cellier.nom }}</option>
         </select>
         <div class="stay">Cellier</div>

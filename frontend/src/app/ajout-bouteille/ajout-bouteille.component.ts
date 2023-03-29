@@ -123,7 +123,7 @@ export class AjoutBouteilleComponent implements OnInit {
       pays: bouteille.pays,
       description: bouteille.description,
       quantite: 1,
-      id_cellier: bouteille.id_cellier,
+    //   id_cellier: bouteille.id_cellier,
     });
     this.filteredData = [];
     this.isDataSelected = true; // set the flag to true when data is selected
@@ -236,7 +236,7 @@ export class AjoutBouteilleComponent implements OnInit {
       prix_saq: [''],
       quantite: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
-      id_cellier: ['n', [Validators.required]],
+      id_cellier: ['', [Validators.required]],
     });
   }
 
