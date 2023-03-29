@@ -76,7 +76,6 @@ export class ListeCatalogueComponent implements OnInit {
     this.adminServ.executeSaq(dateString).subscribe((resultat)=>{
       console.log("se acabo el executeSAsQ")
       console.log(resultat.resultat);
-
       console.log(resultat);
     });
   }

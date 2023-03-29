@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ScrapperDetailsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,14 @@ use App\Http\Controllers\UserController;
 Route::resource('utilisateurs', UserController::class);
 
 Route::get('/show/{celliers}', [CellierController::class, 'showCellier']);
+
+
+Route::get('/crawler', function () {
+    dispatch(new App\Jobs\Crawler());
+    return 'Crawler job dispatched';
+});
+
+Route::get('/scrapper', [ScrapperDetailsController::class, 'index'])->name('scrapper');
 
 
 Route::group([
