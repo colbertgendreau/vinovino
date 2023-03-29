@@ -20,8 +20,9 @@ export class AdminService {
 
   private urlUtilisateur:string = environment.apiUrl+"/api/utilisateurs";
   private urlExecute:string = environment.apiUrl+"/api/execute";
-  private urlExecutePourcentage:string = environment.apiUrl+"/api/progres";
-  private urlExecutePourcentage8001:string = "http://127.0.0.1:8001/api/progres";
+  //private urlExecutePourcentage:string = environment.apiUrl+"/api/progres";
+  //private urlExecutePourcentage8001:string = "http://127.0.0.1:8001/api/progres";
+  private urlExecutePourcentage:string = environment.apiUrlCrawler+"/api/progres";
 
   loading$= new Subject<boolean>();
   buttonClicked$= new Subject<boolean>();

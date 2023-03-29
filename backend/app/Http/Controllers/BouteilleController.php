@@ -232,4 +232,22 @@ class BouteilleController extends Controller
 
         return ['data' => $res];
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $bouteille
+     * @return \Illuminate\Http\Response 
+     */
+    public function ajoutNote(Request $request, Bouteille $bouteille)
+    {
+        $notes = $request->input('notes');
+    
+        $bouteille->update([
+            'notes' => $notes,
+        ]);
+    
+        return ['data' => $bouteille];
+    }
 }
