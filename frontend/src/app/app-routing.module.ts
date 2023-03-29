@@ -16,6 +16,7 @@ import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
 import { ArchiveComponent } from './archive/archive.component';
 import { MesBouteillesComponent } from './mes-bouteilles/mes-bouteilles.component';
 import { RechercheComponent } from './recherche/recherche.component';
+import { DetailBouteilleComponent } from './detail-bouteille/detail-bouteille.component';
 
 
 import {environment} from "../environments/environment";
@@ -41,6 +42,8 @@ const routes: Routes = [
   { path: environment.profilPrefix+'archive', component: ArchiveComponent, canActivate:[GardienLoginGuard] },
   { path: 'connexion', component: SigninComponent , title: 'Connection' },
 
+
+  { path: environment.profilPrefix+'bouteille/:id', component: DetailBouteilleComponent, canActivate:[GardienLoginGuard] },
 
 
 ];

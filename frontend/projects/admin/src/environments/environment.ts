@@ -9,4 +9,5 @@
 export const environment = {
   production: true,
   apiUrl: 'https://site.vinovino.ca',
+  apiUrlCrawler: 'https://site.vinovino.ca',
 };

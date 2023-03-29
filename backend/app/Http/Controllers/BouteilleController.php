@@ -6,7 +6,7 @@ use App\Models\Bouteille;
 use App\Models\mesBouteilles;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Schema;
 
 class BouteilleController extends Controller
 {
@@ -88,6 +88,7 @@ class BouteilleController extends Controller
                 'format_bouteillePerso' => $request->format,
                 'prix_bouteillePerso' => $request->prix_saq,
                 'quantite_bouteillePerso' => $request->quantite,
+                'id_cellier' => $request->id_cellier,
             ]);
 
             $res = Bouteille::create([
@@ -99,7 +100,8 @@ class BouteilleController extends Controller
         } else {
             // Handle the case where the ID is not empty
             $res = Bouteille::create([
-                'celliers_id' => $request->celliers_id,
+                'celliers_id' => $request->id_cellier,
+                // 'celliers_id' => $request->celliers_id,
                 'id_bouteille' => $request->id,
                 'quantite' => $request->quantite,
             ]);
@@ -194,5 +196,58 @@ class BouteilleController extends Controller
     public function destroy(Bouteille $bouteille)
     {
         $bouteille->delete();
+    }
+
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\Bouteille  $bouteille
+     * @return \Illuminate\Http\Response
+     */
+    public function showDetail(Bouteille $bouteille)
+    {
+
+        // faut faire comme cellier et donner des alias au ranger jai besoin de id_supreme
+
+        // $id = $bouteille->id_bouteillePerso;
+
+        // $res = Bouteille::leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')
+        //     ->leftJoin('mes_bouteilles', 'bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
+        //     ->leftjoin('vino__type', 'vino__type.id', '=', 'mes_bouteilles.type_bouteillePerso')
+        //     ->leftjoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
+        //     ->where('bouteilles.id', $bouteille->id)
+        //     ->first();
+
+        $res = Bouteille::leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')
+            ->leftJoin('mes_bouteilles', 'bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
+            ->leftJoin('vino__type', function ($join) {
+                $join->on('vino__type.id', '=', 'vino__bouteille.type');
+                if (Schema::hasColumn('vino__bouteille', 'type')) {
+                    $join->on('vino__type.id', '=', 'vino__bouteille.type');
+                }
+            })
+            ->where('bouteilles.id', $bouteille->id)
+            ->first();
+
+        return ['data' => $res];
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $bouteille
+     * @return \Illuminate\Http\Response 
+     */
+    public function ajoutNote(Request $request, Bouteille $bouteille)
+    {
+        $notes = $request->input('notes');
+    
+        $bouteille->update([
+            'notes' => $notes,
+        ]);
+    
+        return ['data' => $bouteille];
     }
 }
