@@ -30,6 +30,7 @@ import { FooterComponent } from './footer/footer.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
+import { ArchiveComponent } from './archive/archive.component';
 import { DetailBouteilleComponent } from './detail-bouteille/detail-bouteille.component';
 import { NotesComponent } from './notes/notes.component';
 
@@ -62,6 +63,7 @@ import { NotesComponent } from './notes/notes.component';
     SpinnerComponent,
 
     FooterComponent,
+      ArchiveComponent,
       DetailBouteilleComponent,
       NotesComponent,
 
