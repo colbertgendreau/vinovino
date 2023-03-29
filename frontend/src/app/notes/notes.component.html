@@ -1,0 +1,10 @@
+<span *ngFor="let etoile of lesEtoiles" class="etoile" [attr.data-note]="etoile" (click)="RecupererNote(etoile)"
+    [ngClass]="{ 'etoile-selected': etoile <= noteSelectionnee, 'etoile-vide': etoile > noteSelectionnee }">
+    <ng-container *ngIf="etoile <= noteSelectionnee">&#11088;</ng-container>
+    <ng-container *ngIf="etoile > noteSelectionnee">&#9734;</ng-container>
+</span>
+
+
+
+
+

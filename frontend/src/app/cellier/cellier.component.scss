@@ -11,6 +11,11 @@ h1 {
     flex-direction: column;
     gap: var(--big);
     text-align: center;
+
+    .lien-detail{
+      text-decoration: none;
+      color: var(--black);
+    }
     
   .cellierVide {
     
@@ -45,7 +50,7 @@ h1 {
     background-color: var(--white);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     // background-color: var(--black-transparent50);
-    align-items: center;
+    align-items: stretch;
     padding: var(--small);
     border-radius: var(--border-radius15);
 

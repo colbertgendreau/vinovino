@@ -1,0 +1,24 @@
+<section class="uneBouteille">
+
+    <h1 class="titreBouteille">{{ uneBouteille?.nom }}{{ uneBouteille?.nom_bouteillePerso }}</h1>
+
+    <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
+
+    <picture>
+        <img [src]="uneBouteille?.url_img ? uneBouteille?.url_img : imgBouteilleNonDisponible" alt="Bouteille" />
+    </picture>
+
+    <p *ngIf="uneBouteille?.description"> {{ uneBouteille?.description }} </p>
+    <p *ngIf="uneBouteille?.description == null" [ngSwitch]="uneBouteille?.type_bouteillePerso"> <span
+            *ngSwitchCase="1">Vin Rouge |</span><span *ngSwitchCase="2">Vin Blanc |</span><span *ngSwitchCase="3">Vin
+            Rosé |</span> {{uneBouteille?.format_bouteillePerso + '|' }}{{uneBouteille?.pays_bouteillePerso }} </p>
+    <p *ngIf="uneBouteille?.prix_saq"> Prix: {{ uneBouteille?.prix_saq }}$</p>
+    <p *ngIf="uneBouteille?.prix_bouteillePerso"> Prix: {{ uneBouteille?.prix_bouteillePerso }}$</p>
+    <a href="{{ uneBouteille?.url_saq }}">Fiche SAQ</a>
+
+    <app-notes [uneBouteille]="uneBouteille"></app-notes>
+
+
+
+</section>
+<app-footer class="footerUneBouteille"></app-footer>
