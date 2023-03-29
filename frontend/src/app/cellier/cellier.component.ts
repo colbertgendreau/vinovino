@@ -134,7 +134,10 @@ export class CellierComponent implements OnInit {
 
       this.fetchService.modifBouteille(id, updateBouteille).subscribe((retour) => {
 
-        this.openSnackBar('La quantité fut modifiée avec succès', 'Fermer');
+        if (this.bouteille.quantite > 0) {
+          this.openSnackBar('La quantité fut modifiée avec succès', 'Fermer');
+
+        }
 
         this.route.params.subscribe((params) => {
 
@@ -173,10 +176,12 @@ export class CellierComponent implements OnInit {
 
   closeModal() {
     this.isVisible = false;
+    // this.openSnackBar('La bouteille est maintenant archivée', 'Fermer');
   }
 
   onModalClosed() {
     this.isVisible = false;
+    this.openSnackBar('La bouteille est maintenant archivée', 'Fermer');
   }
 
   rafraichirListe() {
