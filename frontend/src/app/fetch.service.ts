@@ -95,6 +95,11 @@ export class FetchService {
   supprimerBouteille(id:number):Observable<Imesbouteilles>{
     return this.http.delete<Imesbouteilles>(this.urlBouteille+"/"+id);
   }
+
+
+  showDetail(id:number):Observable<Imesbouteilles>{
+    return this.http.get<Imesbouteilles>(environment.apiUrl+"/api/showDetail/"+id);
+  }
 }
 
 

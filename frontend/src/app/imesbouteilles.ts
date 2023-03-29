@@ -14,6 +14,9 @@ export interface Imesbouteilles {
     quantite: number;
     description: string;
     id_mes_bouteilles:number;
+    url_img: string;
+    url_saq: string;
+    notes: number;
 
     id_bouteillePerso: number;
     nom_bouteillePerso: string;
