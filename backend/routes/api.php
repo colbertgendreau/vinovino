@@ -37,7 +37,7 @@ Route::get('/show/{celliers}', [CellierController::class, 'showCellier']);
 
 
 Route::get('/crawler', function () {
-    dispatch(new App\Jobs\Crawler());
+    dispatch(new App\Jobs\Crawler("13966470"));
     return 'Crawler job dispatched';
 });
 
