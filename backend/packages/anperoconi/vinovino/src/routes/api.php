@@ -12,13 +12,19 @@ Route::group([
     Route::get('test', [VinovinoController::class, 'donnees']);
    // Route::get('execute', [VinovinoController::class, 'execute']);
 
+    Route::get('executetest', function ( ) {
+        dispatch(new App\Jobs\Crawler('13584455'));
+
+        return 'Crawler job dispatched tests';
+    });
 
     Route::post('execute', function ( ) {
         dispatch(new App\Jobs\VinovinoJob());
         return 'Crawler job dispatched test';
     });
 
-    Route::post('execute', [VinovinoController::class, 'execute']);
+    Route::get('executedetails', [VinovinoController::class, 'executehard']);
+
     Route::post('execute', [VinovinoController::class, 'execute']);
     Route::get('/vinovino', VinovinoController::class);
 });

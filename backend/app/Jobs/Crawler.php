@@ -25,6 +25,11 @@ class Crawler implements ShouldQueue
      */
     public function __construct($code_saq)
     {
+        $client = new Client();
+
+//        $crawler = $client->request('GET', 'https://www.saq.com/fr/' . $code_saq);
+//        $imgSrc = $crawler->filter('.MagicToolboxContainer img')->attr('src');
+//        ddd($imgSrc);
         $this->code_saq = $code_saq;
     }
 
@@ -36,7 +41,7 @@ class Crawler implements ShouldQueue
     public function handle()
     {
         set_time_limit(0);
-        $s = $this->scrapper($this->code_saq);
+        $this->scrapper($this->code_saq);
 
 //        $codes = DB::table('vino__bouteille')->pluck('code_saq');
 //        $i = 0;
@@ -56,9 +61,9 @@ class Crawler implements ShouldQueue
 
         $crawler = $client->request('GET', 'https://www.saq.com/fr/' . $code);
 
+        $imageUrl = $this->exctractImages($crawler);
         $cupCode = $this->extractCupCode($crawler);
         $cepage = $this->extractCepage($crawler);
-        $imageUrl = $this->exctractImages($crawler);
 
 //        $code_saq = DB::table('vino__bouteille')->where('code_saq', $code)->first();
 //        DB::table('vino__bouteille__description')->insert([
@@ -133,7 +138,6 @@ class Crawler implements ShouldQueue
 
     public function exctractImages($crawler)
     {
-        $imageUrl = $crawler->filter('.mz-figure img')->attr('src');
-        return $imageUrl;
+        return $crawler->filter('.MagicToolboxContainer img')->attr('src');
     }
 }
