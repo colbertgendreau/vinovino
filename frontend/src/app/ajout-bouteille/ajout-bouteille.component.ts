@@ -45,6 +45,7 @@ export class AjoutBouteilleComponent implements OnInit {
   bouteilles: Array<Ibouteillecellier>;
   bouteillePlusUn: Imesbouteilles;
   listeCelliers: Array<ICellier>;
+  idCellierUrl: any = 'n';
 
 
   spin: boolean;
@@ -68,6 +69,7 @@ export class AjoutBouteilleComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {
     this.listeCelliers = [];
+    this.idCellierUrl = 'n';
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
       console.log(this.UserProfile);
@@ -141,10 +143,6 @@ export class AjoutBouteilleComponent implements OnInit {
       this.route.params.subscribe((params) => {
         let nouvelleBouteille: Imesbouteilles = this.ajouterBouteilleForm.value;
         nouvelleBouteille.type = Number(nouvelleBouteille.type);
-        // nouvelleBouteille.cellier = Number(nouvelleBouteille.cellier);
-        console.log(nouvelleBouteille.id);
-        console.log(nouvelleBouteille.id_cellier);
-
 
         console.log(params);
         this.present = false;
@@ -215,6 +213,13 @@ export class AjoutBouteilleComponent implements OnInit {
       console.log(this.isSignedIn);
     });
 
+    this.route.params.subscribe((params) => {
+        this.idCellierUrl = params['id'];
+    })
+    
+    console.log('le id du cellier preselect');
+    console.log(this.idCellierUrl);
+
     this.fetchService.getBouteilleSAQ().subscribe((response) => {
       this.arrayBouteille = response.data;
       console.log(this.arrayBouteille);
@@ -223,9 +228,10 @@ export class AjoutBouteilleComponent implements OnInit {
     this.fetchService.getCelliers().subscribe((data: any) => {
         this.listeCelliers = data.data;
         console.log('les celliers');
-        
         console.log(this.listeCelliers);
-      });  
+        
+    });
+        
 
     this.ajouterBouteilleForm = this.formBuilder.group({
       id: [''],
@@ -236,7 +242,7 @@ export class AjoutBouteilleComponent implements OnInit {
       prix_saq: [''],
       quantite: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
-      id_cellier: ['', [Validators.required]],
+      id_cellier: [this.idCellierUrl, [Validators.required]],
     });
   }
 
