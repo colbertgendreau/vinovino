@@ -102,10 +102,17 @@ h1 {
       .info-bouteille {
         min-width: 4ch;
         margin-inline: var(--small);
-        justify-self: stretch;
-        display: flex;
-        flex-direction: column;
-        gap: var(--smallest);
+        // justify-self: stretch;
+        // display: flex;
+        // flex-direction: column;
+        // gap: var(--smallest);
+
+        a{
+          display: flex;
+          flex-direction: column;
+          gap: var(--small);
+
+        }
 
         div {
           display: flex;
@@ -138,7 +145,7 @@ h1 {
         h3 {
         //   margin-bottom: var(--small);
           margin-bottom: auto;
-          word-break: break-all;
+          word-break: keep-all;
           margin-left: var(--smaller);
         //   width: 10ch;
           font-size: clamp(
