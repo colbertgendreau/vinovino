@@ -127,18 +127,18 @@ class Crawler implements ShouldQueue
         return $grapes;
     }
 
-    public function aromes($crawler)
-    {
-        $li = $crawler->filter('li:contains("Arômes")');
-        $text = $li->filter('strong')->text();
-
-        $keywords = ['cacao', 'épices douces', 'fruits noirs', 'pruneau'];
-        $found = [];
-        foreach ($keywords as $keyword) {
-            if (strpos($text, $keyword) !== false) {
-                $found[] = $keyword;
-            }
-        }
-        return $found;
-    }
+//    public function aromes($crawler)
+//    {
+//        $li = $crawler->filter('li:contains("Arômes")');
+//        $text = $li->filter('strong')->text();
+//
+//        $keywords = ['cacao', 'épices douces', 'fruits noirs', 'pruneau'];
+//        $found = [];
+//        foreach ($keywords as $keyword) {
+//            if (strpos($text, $keyword) !== false) {
+//                $found[] = $keyword;
+//            }
+//        }
+//        return $found;
+//    }
 }
