@@ -63,7 +63,7 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         },
-        "platform-check": {
+        "platform": {
             "php": "8.0.2"
         }
     },
