@@ -101,4 +101,18 @@ class VinovinoController
         ]);
     }
 
+    public function executehard(Request $request){
+
+        //$tableRows = App\Models\Table::all();
+        $tableRows = DB::table('vino__bouteille')->get();
+        $tableRows->each(function ($tableRow) {
+            dispatch(new \App\Jobs\Crawler($tableRow->code_saq));
+        });
+
+        return response()->json([
+            'message' => 'Vinovino execution crawlerhard',
+            'nb_pages_completees' => 96,
+            'completed' => true
+        ]);
+    }
 }
