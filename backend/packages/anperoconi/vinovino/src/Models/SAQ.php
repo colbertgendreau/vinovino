@@ -243,6 +243,8 @@ class SAQ extends Model
                     'pays'=>$bte->desc->pays,'description'=> $bte->desc->texte,'prix_saq' => $prixF,'url_saq' =>
                         $bte->url,'url_img' => $bte->img,'format' => $bte->desc->format
                 ));
+
+                dispatch(new \App\Jobs\Crawler($code_saq));
 				$retour->raison = self::INSERE;
 			} else {
 				$retour->succes = false;

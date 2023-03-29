@@ -116,6 +116,13 @@
       <path value="$PROJECT_DIR$/backend/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/backend/vendor/laravel/pint" />
       <path value="$PROJECT_DIR$/backend/vendor/laravel/sail" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/http-client" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/http-client-contracts" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/dom-crawler" />
+      <path value="$PROJECT_DIR$/backend/vendor/symfony/browser-kit" />
+      <path value="$PROJECT_DIR$/backend/vendor/fabpot/goutte" />
+      <path value="$PROJECT_DIR$/backend/vendor/masterminds/html5" />
+      <path value="$PROJECT_DIR$/backend/vendor/weidner/goutte" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

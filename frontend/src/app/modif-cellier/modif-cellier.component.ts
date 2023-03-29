@@ -59,6 +59,7 @@ export class ModifCellierComponent implements OnInit {
       console.log(params);
 
       this.fetchService.showCellier(params['id']).subscribe((data: any) => {
+        console.log("data showCellier")
         this.unCellier = data.data;
         console.log(this.unCellier);
       });

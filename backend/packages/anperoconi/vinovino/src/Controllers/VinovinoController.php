@@ -57,7 +57,7 @@ class VinovinoController
         $nombreDePages = $saq->getMaxPages();
         $nombreDePages = intval($nombreDePages);
         self::$nombreDePages = $nombreDePages;
-        //self::$nombreDePages = 4;
+        //self::$nombreDePages = 2;
         DB::table('progres__crawler')
             ->where('temps_debut', $request->input('time'))
             ->update(['nb_pages_completees' => self::$nombreDePages]);
