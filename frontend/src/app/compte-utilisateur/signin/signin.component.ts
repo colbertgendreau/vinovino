@@ -39,7 +39,6 @@ export class SigninComponent implements OnInit {
         this.authState.setAuthState(true);
         this.loginForm.reset();
         // this.router.navigate(['profile']);
-        console.log(environment.profilPrefix + ' aqui/liste-cellier');
         this.router.navigateByUrl("/"+environment.profilPrefix+'liste-cellier')
           .then(nav => {
             console.log(nav); // true if navigation is successful

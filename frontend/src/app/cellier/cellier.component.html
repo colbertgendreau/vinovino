@@ -10,12 +10,14 @@ class="monCellier">
     <span> &#8681;</span>
  </div>
 
- <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngFor="let uneBouteille of bouteilles">
+<div *ngFor="let uneBouteille of bouteilles">
+    <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngIf="uneBouteille.quantite !== 0">
         <div class="card-bouteille-haut">
             <picture>
                 <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible" alt="Bouteille"/>
             </picture>
             <div class="info-bouteille">
+                <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">   
                 <h3>
                     {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
                 </h3>
@@ -35,6 +37,7 @@ class="monCellier">
                         {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }}
                     </p>
                 </div>
+            </a>
             </div>
             <div class="quantite">
 
@@ -55,7 +58,9 @@ class="monCellier">
                 <button class="btn-effacer icones" (click)="openModal(uneBouteille.id_supreme)"></button>
             </div>
         </div>
+   
     </article>
+</div>
 
 </section>
     <app-footer class="footerCellier"></app-footer>

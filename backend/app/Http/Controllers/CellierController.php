@@ -164,7 +164,11 @@ class CellierController extends Controller
 
     public function showCellier(Cellier $celliers)
     {
-        //
-        return ['data' => $celliers];
+        return response()->json([
+            'data' => $celliers,
+            'user' => auth()->user(),
+        ]);
+
+        //return ['data' => $celliers];
     }
 }

@@ -1,0 +1,22 @@
+Tutoriel pour la création d'une queue en laravel
+
+https://www.youtube.com/watch?v=m-hNL87-lFo
+
+Documentation de Laravel pour les database drivers
+
+https://laravel.com/docs/9.x/queues#driver-prerequisites
+Pour créer une job, il faut utiliser la commande suivante :
+
+php artisan make:job VinovinoJob
+
+Pour créer une queue, il faut utiliser la commande suivante :
+
+php artisan queue:table
+
+php artisan migrate --path=database/migrations/2023_03_28_022650_create_jobs_table.php
+
+Apres il faut changer le driver de la queue dans le fichier .env
+
+QUEUE_CONNECTION=database
+
+php artisan queue:work

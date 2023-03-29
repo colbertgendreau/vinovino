@@ -1,0 +1,17 @@
+Installer
+
+composer require weidner/goutte
+
+
+Creez un nouveau controller avec la commande suivante :
+
+php artisan make:controller ScrapperDetailsController
+
+
+Create api route for scrapper details
+
+Route::get('/crawler', [CrawlerController::class, 'index']);
+
+then the function
+
+public function index(Request $request) { $url = $request->input('url'); $crawler = Goutte::request('GET', $url); $crawler->filter('div')->each(function ($node) { echo $node->text(); }); }

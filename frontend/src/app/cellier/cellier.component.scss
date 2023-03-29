@@ -11,6 +11,11 @@ h1 {
     flex-direction: column;
     gap: var(--big);
     text-align: center;
+
+    .lien-detail{
+      text-decoration: none;
+      color: var(--black);
+    }
     
   .cellierVide {
     
@@ -45,7 +50,7 @@ h1 {
     background-color: var(--white);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     // background-color: var(--black-transparent50);
-    align-items: center;
+    align-items: stretch;
     padding: var(--small);
     border-radius: var(--border-radius15);
 
@@ -97,10 +102,17 @@ h1 {
       .info-bouteille {
         min-width: 4ch;
         margin-inline: var(--small);
-        justify-self: stretch;
-        display: flex;
-        flex-direction: column;
-        gap: var(--smallest);
+        // justify-self: stretch;
+        // display: flex;
+        // flex-direction: column;
+        // gap: var(--smallest);
+
+        a{
+          display: flex;
+          flex-direction: column;
+          gap: var(--small);
+
+        }
 
         div {
           display: flex;
@@ -133,7 +145,7 @@ h1 {
         h3 {
         //   margin-bottom: var(--small);
           margin-bottom: auto;
-          word-break: break-all;
+          word-break: keep-all;
           margin-left: var(--smaller);
         //   width: 10ch;
           font-size: clamp(

@@ -85,7 +85,7 @@
 </div>
 
 
-  <div class="container-select">
+  <!-- <div class="container-select">
       <label for="type">
       <select [class.disabled]="isDataSelected" name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
           <option value="" disabled selected>Choisir</option>
@@ -96,7 +96,21 @@
       <div [class.voile]="isDataSelected"></div>
       <div class="stay">Type</div>
       </label>
-  </div>
+  </div> -->
+
+<div class="container-select">
+    <label for="type">
+    <select name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
+        <option value="" disabled selected>Choisir</option>
+        <option value="1">vin rouge</option>
+        <option value="2">vin blanc</option>
+        <option value="3">vin rosé</option>
+    </select>
+    <div [class.voile]="isDataSelected"></div>
+    <div class="stay">Type</div>
+    </label>
+</div>
+
 
     <div class="container-select">
       <label for="pays">
@@ -168,6 +182,16 @@
         >
       </div>
     </div>
+    <div class="container-select">
+        <label for="id_cellier">
+        <select name="id_cellier" id="id_cellier" formControlName="id_cellier">
+            <option value="" disabled selected>Choisir</option>
+            <option *ngFor="let cellier of listeCelliers; first as firstElement" value="{{ cellier.id }}">{{ cellier.nom }}</option>
+        </select>
+        <div class="stay">Cellier</div>
+        </label>
+    </div>
+    
     
     <button class="btn-submit grosPlus" type="submit" >Confirmer</button>
     <button class="btn-effacer" *ngIf="isDataSelected" type="button" (click)="clearForm()">

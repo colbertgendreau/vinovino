@@ -12,6 +12,8 @@ import { Imesbouteilles } from '../imesbouteilles';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Ibouteillecellier } from '../ibouteille-cellier';
+import { ICellier } from '../icellier';
+
 
 
 
@@ -42,7 +44,12 @@ export class AjoutBouteilleComponent implements OnInit {
   isDataSelected: boolean;
   bouteilles: Array<Ibouteillecellier>;
   bouteillePlusUn: Imesbouteilles;
+
   choixPays: string[] = ['Autre', 'Afrique du Sud', 'Allemagne', 'Argentine', 'Arménie', 'Australie', 'Autriche', 'Bulgarie', 'Brésil', 'Canada', 'Chili', 'Chine', 'Croatie', 'Espagne', 'États-Unis', 'France', 'Géorgie', 'Grèce', 'Hongrie', 'Israël', 'Italie', 'Liban', 'Luxembourg', 'Maroc', 'Mexique', 'Moldavie', 'Nouvelle-Zélande', 'Portugal', 'République Tchèque', 'Roumanie', 'Slovénie', 'Suisse', 'Uruguay'];
+
+  listeCelliers: Array<ICellier>;
+
+
 
   spin: boolean;
   hide: boolean;
@@ -64,6 +71,7 @@ export class AjoutBouteilleComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
   ) {
+    this.listeCelliers = [];
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
       console.log(this.UserProfile);
@@ -119,6 +127,7 @@ export class AjoutBouteilleComponent implements OnInit {
       pays: bouteille.pays,
       description: bouteille.description,
       quantite: 1,
+    //   id_cellier: bouteille.id_cellier,
     });
     this.filteredData = [];
     this.isDataSelected = true; // set the flag to true when data is selected
@@ -135,14 +144,17 @@ export class AjoutBouteilleComponent implements OnInit {
     if (this.ajouterBouteilleForm.valid) {
       this.route.params.subscribe((params) => {
         let nouvelleBouteille: Imesbouteilles = this.ajouterBouteilleForm.value;
-        nouvelleBouteille.type = Number(nouvelleBouteille.type)
+        nouvelleBouteille.type = Number(nouvelleBouteille.type);
+        // nouvelleBouteille.cellier = Number(nouvelleBouteille.cellier);
         console.log(nouvelleBouteille.id);
+        console.log(nouvelleBouteille.id_cellier);
 
 
         console.log(params);
         this.present = false;
         this.fetchService
-          .getBouteillesCellier(params['id'])
+        //   .getBouteillesCellier(params['id'])
+          .getBouteillesCellier(nouvelleBouteille.id_cellier)
           .subscribe((data: any) => {
             this.bouteilles = data.data;
 
@@ -155,10 +167,10 @@ export class AjoutBouteilleComponent implements OnInit {
                 if(nouvelleBouteille.id == element.id){
                   this.present = true;
                   element.quantite = element.quantite + 1;
-                  element.celliers_id = params['id'];
                   this.fetchService.modifBouteille(element.id_supreme, element).subscribe((retour) => {
                     this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
-                    this.router.navigateByUrl('profil/cellier/' + element.celliers_id);
+                    // this.router.navigateByUrl('profil/cellier/' + 2);
+                    this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.id_cellier);
                   });
                   
                 }
@@ -166,10 +178,9 @@ export class AjoutBouteilleComponent implements OnInit {
               });
             }
             if (this.present == false){
-              nouvelleBouteille.celliers_id = params['id'];
               this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
                 this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
-                this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.celliers_id);
+                this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.id_cellier);
               });
             }
           });
@@ -213,6 +224,13 @@ export class AjoutBouteilleComponent implements OnInit {
       console.log(this.arrayBouteille);
     });
 
+    this.fetchService.getCelliers().subscribe((data: any) => {
+        this.listeCelliers = data.data;
+        console.log('les celliers');
+        
+        console.log(this.listeCelliers);
+      });  
+
     this.ajouterBouteilleForm = this.formBuilder.group({
       id: [''],
       nom: ['', [Validators.required]],
@@ -222,6 +240,7 @@ export class AjoutBouteilleComponent implements OnInit {
       prix_saq: [''],
       quantite: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
+      id_cellier: ['', [Validators.required]],
     });
   }
 

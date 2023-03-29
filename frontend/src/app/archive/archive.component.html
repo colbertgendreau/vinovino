@@ -1,0 +1,63 @@
+<section
+class="monCellier">
+<h1 class="titreCellier">Bouteilles archivées</h1>
+
+ <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
+
+ <div class="cellierVide" *ngIf="!bouteilles[0] && !spin">
+    <h2>Vous n'avez aucune bouteille archivée</h2>
+ </div>
+
+ <div *ngFor="let uneBouteille of bouteilles">
+ <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngIf="uneBouteille.quantite === 0">
+        <div class="card-bouteille-haut">
+            <picture>
+                <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible" alt="Bouteille"/>
+            </picture>
+            <div class="info-bouteille">
+                <h3>
+                    {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
+                </h3>
+                <div>
+                    <span class="icone icone-vin"></span>
+                    <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name : uneBouteille.type_mes_name }} | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso }}</p>
+                </div>
+                <div>
+                    <span class="icone icone-location"></span>
+                    <p>
+                        {{ uneBouteille.pays ? uneBouteille.pays : uneBouteille.pays_bouteillePerso }}
+                    </p>
+                </div>
+                <div>
+                    <span class="icone icone-dollar"></span>
+                    <p>
+                        {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }}
+                    </p>
+                </div>
+            </div>
+            <div class="quantite">
+
+                <a *ngIf="!uneBouteille.code_saq" class="modifier-gris" routerLink="/profil/modifier-bouteille/{{
+                uneBouteille.id_supreme }}"></a>
+
+                <a *ngIf="uneBouteille.code_saq" class="modifier"></a>
+                <div class="quantite">
+                    <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1, uneBouteille.celliers_nom)"></button>
+
+
+                    <span>{{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
+
+                    <button class="moins" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1, uneBouteille.celliers_nom)" [disabled]="uneBouteille.quantite == 0" ></button>
+
+                </div>
+                <!-- <a *ngIf="!uneBouteille.id_bouteille" class="" routerLink="/profil/modifier-bouteille/{{ uneBouteille.id_supreme }}">modification</a> -->
+                <button class="btn-effacer icones" (click)="openModal(uneBouteille.id_supreme)"></button>
+            </div>
+        </div>
+    </article>
+</div>
+
+</section>
+    <app-footer class="footerCellier"></app-footer>
+<!-- <app-effacer-bouteille-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()" (itemEfface)="rafraichirListe()"></app-effacer-bouteille-modal> -->
+<app-effacer-bouteille-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()" ></app-effacer-bouteille-modal>

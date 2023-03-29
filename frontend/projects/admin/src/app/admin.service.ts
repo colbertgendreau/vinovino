@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from "../environments/environment";
 import { IUser } from './iuser';
 import { IlisteUser } from './iliste-user';
 import {ICatalogue} from "./icatalogue";
 import {Imesbouteilles} from "../../../../src/app/imesbouteilles";
 import {IDate} from "./idate";
-import {Observable, forkJoin, interval, Subject, tap} from 'rxjs';
-import { switchMap, takeUntil, timeout} from 'rxjs/operators';
+import {Observable, forkJoin, interval, Subject, tap, timeout} from 'rxjs';
+import { switchMap, takeUntil} from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
@@ -20,8 +20,9 @@ export class AdminService {
 
   private urlUtilisateur:string = environment.apiUrl+"/api/utilisateurs";
   private urlExecute:string = environment.apiUrl+"/api/execute";
-  private urlExecutePourcentage:string = environment.apiUrl+"/api/progres";
-  private urlExecutePourcentage8001:string = "http://127.0.0.1:8001/api/progres";
+  //private urlExecutePourcentage:string = environment.apiUrl+"/api/progres";
+  //private urlExecutePourcentage8001:string = "http://127.0.0.1:8001/api/progres";
+  private urlExecutePourcentage:string = environment.apiUrlCrawler+"/api/progres";
 
   loading$= new Subject<boolean>();
   buttonClicked$= new Subject<boolean>();
@@ -38,45 +39,16 @@ export class AdminService {
   effacerUtilisateur(id:number):Observable<IUser> {
     return this.http.delete<IUser>(this.urlUtilisateur+"/"+id);
   }
+
   getDonnesSaq():Observable<ICatalogue> {
     return this.http.get<any>(this.urlExecute);
   }
 
-    executeSaq(timeString):Observable<IDate>{
-      this.loading$.next(true);
-      const data = { time: timeString };
-      const execute$ = this.http.post<any>(this.urlExecute, data);
-      const progres$ = interval(2000).pipe(switchMap(() => {
-        return this.http.get<IDate>(this.urlExecutePourcentage8001).pipe(
-          tap(data => {
-            //C'est ici qu'on veut mettre la valeur de la barre de progression
-            let nb_pages_completees_egalise_sur_100 = (data.nb_pages_completees*100)/data.nb_pages_totales
-            // Il faut égaliser sur 100 la valeur de data.resultat
-            //Ex: 50 * 100 / 84 = 50= 59%
-            this.progressValue$.next(nb_pages_completees_egalise_sur_100);
-          })
-        );
-      })
-    );
-    forkJoin([execute$, progres$]).subscribe(([execute, progres]) => {
-      this.loading$.next(false);
-      }, (error) => {
-      console.error(error);
-      this.progressValue$.next(-1);
-      this.loading$.next(false);
-    });
-    return progres$;
-  }
-
-  executeSaq2(timeString): Observable<IDate> {
+  executeSaq(timeString): Observable<IDate> {
     this.snack$.next(false);
     const data = { time: timeString };
-
     const execute$ = this.http.post<any>(this.urlExecute, data).pipe(
-      tap(data => {
-        timeout(1800000);
-        this.snack$.next(true);
-      })
+      timeout(2400000)
     );
 
     const stop$ = new Subject();
@@ -93,6 +65,10 @@ export class AdminService {
               +data.nb_bouteilles +
               ' bouteilles dans votre catalogue. ',
               'Close', { duration: 6000 });
+
+          this.loading$.next(false);
+          this.buttonClicked$.next(false);
+          this.hidden$.next(true);
           this.snack$.next(true);
           this.progressValue$.next(100);
           this.loading$.next(false);
@@ -111,17 +87,18 @@ export class AdminService {
           this.buttonClicked$.next(false);
           this.hidden$.next(true);
           this.snack$.next(true);
-          console.log("executeAndProgress$");
-          console.log(execute);
         },
         error: (error) => {
           console.error(error);
-          this.progressValue$.next(-1);
-          this.loading$.next(false);
+          //this.progressValue$.next(-1);
+          //this.loading$.next(false);
         },
         complete: () => {
+          // Cette section ne semble pas fonctionner a cause de lerreur 504
+          this.loading$.next(false);
+          this.buttonClicked$.next(false);
+          this.hidden$.next(true);
           this.snack$.next(true);
-          console.log("executeAndProgress$ complete");
         }
       }
     );
@@ -129,8 +106,5 @@ export class AdminService {
     return progress$;
   }
 
-  // ajoutBouteille(bouteille:Imesbouteilles):Observable<Imesbouteilles>{
-  //   return this.http.post<Imesbouteilles>(this.urlExecute, bouteille);
-  // }
 }
 

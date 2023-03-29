@@ -13,10 +13,14 @@ import { AjoutBouteilleComponent } from './ajout-bouteille/ajout-bouteille.compo
 import { ModifBouteilleComponent } from './modif-bouteille/modif-bouteille.component';
 import { ModifCellierComponent } from './modif-cellier/modif-cellier.component';
 import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
-
+import { ArchiveComponent } from './archive/archive.component';
 import { MesBouteillesComponent } from './mes-bouteilles/mes-bouteilles.component';
 import { RechercheComponent } from './recherche/recherche.component';
+
 import { ScannerComponent } from './scanner/scanner.component';
+
+import { DetailBouteilleComponent } from './detail-bouteille/detail-bouteille.component';
+
 
 
 import {environment} from "../environments/environment";
@@ -39,9 +43,15 @@ const routes: Routes = [
   { path: environment.profilPrefix+'ajouter-cellier', component: AjoutCellierComponent, canActivate:[GardienLoginGuard] },
   { path: environment.profilPrefix+'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] },
   { path: environment.profilPrefix+'recherche', component: RechercheComponent, canActivate:[GardienLoginGuard] },
+
   { path: 'scanner', component: ScannerComponent, canActivate:[GardienLoginGuard] },
+
+  { path: environment.profilPrefix+'archive', component: ArchiveComponent, canActivate:[GardienLoginGuard] },
+
   { path: 'connexion', component: SigninComponent , title: 'Connection' },
 
+
+  { path: environment.profilPrefix+'bouteille/:id', component: DetailBouteilleComponent, canActivate:[GardienLoginGuard] },
 
 
 ];
