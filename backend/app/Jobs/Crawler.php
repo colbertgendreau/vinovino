@@ -15,17 +15,18 @@ class Crawler implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    private $code_saq;
+    private $results = [];
+
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($code_saq)
     {
-        //
+        $this->code_saq = $code_saq;
     }
-
-    private $results = [];
 
     /**
      * Execute the job.
@@ -35,16 +36,18 @@ class Crawler implements ShouldQueue
     public function handle()
     {
         set_time_limit(0);
-        $codes = DB::table('vino__bouteille')->pluck('code_saq');
-        $i = 0;
-        foreach ($codes as $code) {
-            $s = $this->scrapper($code);
-            $i++;
-            if($i == 100){
-                dd($s);
-            }
+        $s = $this->scrapper($this->code_saq);
 
-        }
+//        $codes = DB::table('vino__bouteille')->pluck('code_saq');
+//        $i = 0;
+//        foreach ($codes as $code) {
+//            $s = $this->scrapper($code);
+//            $i++;
+//            if($i == 1){
+//                dd($s);
+//            }
+//
+//        }
     }
 
     public function scrapper($code)
@@ -56,12 +59,23 @@ class Crawler implements ShouldQueue
         $cupCode = $this->extractCupCode($crawler);
         $cepage = $this->extractCepage($crawler);
 
+//        $code_saq = DB::table('vino__bouteille')->where('code_saq', $code)->first();
+//        DB::table('vino__bouteille__description')->insert([
+//            'id' => $code_saq->id,
+//            'cup_code' => $cupCode,
+//            'cepages' => json_encode($cepage),
+//        ]);
+
         $code_saq = DB::table('vino__bouteille')->where('code_saq', $code)->first();
-        DB::table('vino__bouteille__description')->insert([
-            'id' => $code_saq->id,
-            'cup_code' => $cupCode,
-            'cepages' => json_encode($cepage),
-        ]);
+
+        DB::table('vino__bouteille__description')->updateOrInsert(
+            ['id' => $code_saq->id],
+            [
+                'cup_code' => $cupCode,
+                'cepages' => json_encode($cepage),
+            ]
+        );
+
 
         return response()->json([
             'cup_code' => $cupCode,
@@ -111,5 +125,20 @@ class Crawler implements ShouldQueue
 
         $grapes = explode(",", $text);
         return $grapes;
+    }
+
+    public function aromes($crawler)
+    {
+        $li = $crawler->filter('li:contains("Arômes")');
+        $text = $li->filter('strong')->text();
+
+        $keywords = ['cacao', 'épices douces', 'fruits noirs', 'pruneau'];
+        $found = [];
+        foreach ($keywords as $keyword) {
+            if (strpos($text, $keyword) !== false) {
+                $found[] = $keyword;
+            }
+        }
+        return $found;
     }
 }
