@@ -12,6 +12,8 @@ import { Imesbouteilles } from '../imesbouteilles';
 import { ActivatedRoute } from '@angular/router';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Ibouteillecellier } from '../ibouteille-cellier';
+import { ICellier } from '../icellier';
+
 
 
 
@@ -42,6 +44,8 @@ export class AjoutBouteilleComponent implements OnInit {
   isDataSelected: boolean;
   bouteilles: Array<Ibouteillecellier>;
   bouteillePlusUn: Imesbouteilles;
+  listeCelliers: Array<ICellier>;
+
 
   spin: boolean;
   hide: boolean;
@@ -63,6 +67,7 @@ export class AjoutBouteilleComponent implements OnInit {
     private route: ActivatedRoute,
     private snackBar: MatSnackBar
   ) {
+    this.listeCelliers = [];
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
       console.log(this.UserProfile);
@@ -158,7 +163,6 @@ export class AjoutBouteilleComponent implements OnInit {
                 if(nouvelleBouteille.id == element.id){
                   this.present = true;
                   element.quantite = element.quantite + 1;
-                  element.celliers_id = nouvelleBouteille.id_cellier;
                   this.fetchService.modifBouteille(element.id_supreme, element).subscribe((retour) => {
                     this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
                     // this.router.navigateByUrl('profil/cellier/' + 2);
@@ -170,7 +174,6 @@ export class AjoutBouteilleComponent implements OnInit {
               });
             }
             if (this.present == false){
-              nouvelleBouteille.celliers_id = nouvelleBouteille.id_cellier;
               this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
                 this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
                 this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.id_cellier);
@@ -217,6 +220,13 @@ export class AjoutBouteilleComponent implements OnInit {
       console.log(this.arrayBouteille);
     });
 
+    this.fetchService.getCelliers().subscribe((data: any) => {
+        this.listeCelliers = data.data;
+        console.log('les celliers');
+        
+        console.log(this.listeCelliers);
+      });  
+
     this.ajouterBouteilleForm = this.formBuilder.group({
       id: [''],
       nom: ['', [Validators.required]],
@@ -226,7 +236,7 @@ export class AjoutBouteilleComponent implements OnInit {
       prix_saq: [''],
       quantite: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
-      id_cellier: ['', [Validators.required]],
+      id_cellier: ['n', [Validators.required]],
     });
   }
 

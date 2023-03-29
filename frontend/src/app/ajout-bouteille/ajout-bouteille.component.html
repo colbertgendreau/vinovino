@@ -168,14 +168,11 @@
         >
       </div>
     </div>
-
     <div class="container-select">
         <label for="id_cellier">
         <select name="id_cellier" id="id_cellier" formControlName="id_cellier">
-            <option value="" disabled selected>Choisir</option>
-            <option value="2">maison</option>
-            <option value="9">chalet</option>
-            <option value="13">autre</option>
+            <option value="n" disabled selected>Choisir</option>
+            <option *ngFor="let cellier of listeCelliers; first as firstElement" value="{{ cellier.id }}">{{ cellier.nom }}</option>
         </select>
         <div class="stay">Cellier</div>
         </label>
