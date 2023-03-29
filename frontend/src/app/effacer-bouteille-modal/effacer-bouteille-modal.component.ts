@@ -40,7 +40,7 @@ export class EffacerBouteilleModalComponent {
     });
   }
 
-  annuler() {
+  archiver() {
 
     this.isVisible = false;
     this.closed.emit(); // emit the 'closed' event

@@ -21,19 +21,20 @@ export class User {
 }
 
 @Component({
-  selector: 'app-cellier',
-  templateUrl: './cellier.component.html',
-  styleUrls: ['./cellier.component.scss'],
+  selector: 'app-archive',
+  templateUrl: './archive.component.html',
+  styleUrls: ['./archive.component.scss']
 })
-export class CellierComponent implements OnInit {
+
+export class ArchiveComponent implements OnInit {
   @Input() cellier: ICellier;
 
   bouteilles: Array<Ibouteillecellier>;
   bouteille: Imesbouteilles;
-  cellierId: string;
+  // cellierId: string;
+  cellierId: number;
   cellierNom:string;
   isSignedIn!: boolean;
-  // title:string='Cellier';
   UserProfile!: User;
   unCellier: any;
   spin: boolean = true;
@@ -44,6 +45,7 @@ export class CellierComponent implements OnInit {
   counterValue: number = 0;
   quantite: number;
   id: number;
+  celliers_nom: string;
 
   isVisible = false;
 
@@ -84,24 +86,27 @@ export class CellierComponent implements OnInit {
     });
 
 
-    this.route.params.subscribe((params) => {
+    // this.route.params.subscribe((params) => {
 
-      this.cellierId = params['id'];
-      console.log(params['id']);
+    //   this.cellierId = params['id'];
+    //   console.log(params['id']);
 
+    
 
       this.fetchService
-        .getBouteillesCellier(params['id'])
+        // .getBouteillesCellier(params['id'])
+        .getMesBouteilles()
         .subscribe((data: any) => {
           this.bouteilles = data.data;
 
           console.log(this.bouteilles);
-  
-          if(this.bouteilles[0]) {
 
-              
-              this.cellierNom = this.bouteilles[0].cellier_nom;
-            }
+          this.bouteilles.forEach(uneBouteille => {
+            this.cellierId = uneBouteille.celliers_id;
+            // console.log(uneBouteille.celliers_id);
+          });
+  
+
           
           
           console.log('les bouteilles du cellier');
@@ -110,57 +115,42 @@ export class CellierComponent implements OnInit {
           this.hide = false;
           
         });
-    });
+    // });
   }
 
 
-  modifier(id: number, quantite: number) {
-
-
+  modifier(id: number, quantite: number, celliers_nom: string) {
 
     console.log(id + "id");
     console.log(quantite + "quantite");
-
+    console.log(celliers_nom + "cellier_nom");
 
     this.fetchService.showBouteille(id).subscribe((data: any) => {
       this.bouteille = data.data;
       // this.bouteille.id = id;
       this.bouteille.quantite = quantite;
 
+      console.log(this.bouteille.celliers_id);
+      this.openSnackBar('La bouteille a été déplacée dans le cellier '+celliers_nom, 'Fermer');
+
 
       let updateBouteille: Imesbouteilles = this.bouteille;
       console.log(updateBouteille);
       
-
       this.fetchService.modifBouteille(id, updateBouteille).subscribe((retour) => {
 
-        if (this.bouteille.quantite > 0) {
-          this.openSnackBar('La quantité fut modifiée avec succès', 'Fermer');
-
-        }
-
-        this.route.params.subscribe((params) => {
-
-          this.cellierId = params['id'];
-
-
-          this.fetchService
-            .getBouteillesCellier(params['id'])
-            .subscribe((data: any) => {
-              this.bouteilles = data.data;
-
-            });
+        this.bouteilles.forEach(uneBouteille => {
+          this.cellierId = uneBouteille.celliers_id;
+          console.log(uneBouteille.celliers_id);
         });
 
+        this.fetchService.getMesBouteilles().subscribe((data: any) => {
+          this.bouteilles = data.data;  
+          this.spin = false;
+          this.hide = false;            
+        });
       });
-      if (this.bouteille.quantite == 0) {
-        this.openModal(id);
-      }
     });
-
-
-
-
   }
 
 
@@ -171,39 +161,15 @@ export class CellierComponent implements OnInit {
     console.log(this.isVisible);
     this.id = id;
     this.isVisible = true;
-
   }
 
   closeModal() {
     this.isVisible = false;
-    // this.openSnackBar('La bouteille est maintenant archivée', 'Fermer');
   }
 
   onModalClosed() {
     this.isVisible = false;
-    this.openSnackBar('La bouteille est maintenant archivée', 'Fermer');
   }
-
-  rafraichirListe() {
-    this.route.params.subscribe((params) => {
-
-      this.cellierId = params['id'];
-      console.log(params['id']);
-
-
-      this.fetchService
-        .getBouteillesCellier(params['id'])
-        .subscribe((data: any) => {
-          this.bouteilles = data.data;
-
-          console.log('raffraichissement des bouteilles');
-          console.log(this.bouteilles);
-          this.isVisible = false;
-        });
-    });
-  }
-
-
 
   goUp() {
     console.log("par en haut");
@@ -213,29 +179,22 @@ export class CellierComponent implements OnInit {
       left: 0,
       behavior: 'smooth'
     });
-
   }
-
 
   pageCelliers() {
     window.scroll({ // pour scroll up
       top: 0,
       left: 0,
       behavior: 'smooth'
-
     });
-
-
     this.router.navigateByUrl('profil/liste-cellier');
   }
 
-
-
   /**
-* Cette fonction affiche un message de type snackbar.
-* @param message Le message à afficher.
-* @param action L'action à afficher sur le bouton de fermeture du snackbar.
-*/
+  * Cette fonction affiche un message de type snackbar.
+  * @param message Le message à afficher.
+  * @param action L'action à afficher sur le bouton de fermeture du snackbar.
+  */
   openSnackBar(message: string, action: string) {
     const config = new MatSnackBarConfig();
     config.duration = 3000; // Set the duration to 3 seconds
