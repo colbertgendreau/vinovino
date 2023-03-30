@@ -23,6 +23,7 @@ class mesBouteilles extends Model
         'format_bouteillePerso',
         'type_bouteillePerso',
         'id_bouteillePerso',
+        'celliers_id',
 
     ];
 }

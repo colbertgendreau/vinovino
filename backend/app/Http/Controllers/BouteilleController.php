@@ -92,7 +92,7 @@ class BouteilleController extends Controller
             ]);
 
             $res = Bouteille::create([
-                'celliers_id' => $request->celliers_id,
+                'id_cellier' => $request->id_cellier,
                 // 'id_bouteille' => $request->id,
                 'id_mes_bouteilles' => $mon_id->id_bouteillePerso,
                 'quantite' => $request->quantite,
