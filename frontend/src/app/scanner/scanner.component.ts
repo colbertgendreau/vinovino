@@ -1,4 +1,7 @@
 import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Imesbouteilles } from '../imesbouteilles';
+import { environment } from '../../environments/environment';
+import { FetchService } from '../fetch.service';
 import Quagga from 'quagga';
 
 @Component({
@@ -10,9 +13,13 @@ export class ScannerComponent implements OnDestroy {
   @ViewChild('video') video: ElementRef;
   @ViewChild('canvas') canvas: ElementRef;
   isScanning = false;
+  uneBouteille: Imesbouteilles;
   private stream: MediaStream | null = null;
+  iconeCamera =  environment.baseImg + 'icones/camera.png';
 
-  constructor() {}
+  constructor(
+    public fetchService: FetchService,
+    ) {}
 
   startScan(): void {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
@@ -79,16 +86,28 @@ export class ScannerComponent implements OnDestroy {
   }
 
   handleDecode(result: any): void {
-    const drawingCtx = this.canvas.nativeElement.getContext('2d');
-    let box = [];
-    if (result.codeResult.hasOwnProperty('box')) {
-      box = result.codeResult.box;
-      drawingCtx.strokeStyle = 'blue';
-      drawingCtx.lineWidth = 5;
-      drawingCtx.strokeRect(box[0], box[1], box[2] - box[0], box[3] - box[1]);
-    }
+    // const drawingCtx = this.canvas.nativeElement.getContext('2d');
+    // let box = [];
+    // if (result.codeResult.hasOwnProperty('box')) {
+    //   box = result.codeResult.box;
+    //   drawingCtx.strokeStyle = 'blue';
+    //   drawingCtx.lineWidth = 5;
+    //   drawingCtx.strokeRect(box[0], box[1], box[2] - box[0], box[3] - box[1]);
+    // }
     console.log(result.codeResult.code);
     // this.stopScan();
+
+
+    this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
+      this.uneBouteille = data.data;
+      console.log(this.uneBouteille);
+
+      // this.spin = false;
+      // this.hide = false;
+    });
+
+
+    
   }
 
   

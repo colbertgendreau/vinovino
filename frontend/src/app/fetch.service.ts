@@ -99,6 +99,9 @@ export class FetchService {
   showDetail(id:number):Observable<Imesbouteilles>{
     return this.http.get<Imesbouteilles>(environment.apiUrl+"/api/showDetail/"+id);
   }
+  scannerDetail(codeCup:number):Observable<Imesbouteilles>{
+    return this.http.get<Imesbouteilles>(environment.apiUrl+"/api/scannerDetail/"+codeCup);
+  }
 
   ajoutNote(id:number, bouteille: Imesbouteilles):Observable<Imesbouteilles>{
     return this.http.put<Imesbouteilles>(environment.apiUrl+"/api/ajoutNote/"+id, bouteille);

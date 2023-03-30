@@ -3,4 +3,6 @@
   <canvas #canvas class="overlay" style="display:none;"></canvas>
   <button (click)="startScan()" *ngIf="!isScanning">Start Scan</button>
   <button (click)="stopScan()" *ngIf="isScanning">Stop Scan</button>
+
+  <img class="iconeCamera" [src]="iconeCamera" alt="Icône d'ajout de bouteille">
 </section>
