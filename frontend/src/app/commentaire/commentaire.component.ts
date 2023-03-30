@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
@@ -27,8 +27,11 @@ export class CommentaireComponent  implements OnInit{
 
   commentaireForm: FormGroup;
   bouteille: Imesbouteilles;
+  commentaires: string;
 
   formSubmitted = false;
+
+  @Input() uneBouteille: Imesbouteilles;
 
   constructor(
     private auth: AuthStateService,
@@ -56,14 +59,45 @@ export class CommentaireComponent  implements OnInit{
     this.commentaireForm = this.formBuilder.group({
       commentaires: ['', Validators.maxLength(500)],
     });
+
+    this.route.params.subscribe(params => {
+      console.log(params);
+
+      this.fetchService.showDetail(params['id']).subscribe((data: any) => {
+        this.uneBouteille = data.data;
+        // this.commentaires = this.uneBouteille.commentaires;
+
+        // console.log(this.commentaires);
+
+        console.log(this.uneBouteille);
+      });
+
+      // const id = params['id'];
+      // if (id) {
+      //   this.fetchBottleData(id);
+      // }
+    });
   }
 
   ajouterCommentaire(){
     this.formSubmitted = true;
     if(this.commentaireForm.valid){
-      let commentaire = this.commentaireForm.value;
-      console.log(commentaire);
+      const commentaires = this.commentaireForm.value.commentaires;
       
+      this.uneBouteille.commentaires = commentaires;
+
+
+      this.route.params.subscribe(params => {
+
+        const bouteille = { ...this.uneBouteille, commentaires };
+        this.fetchService.ajoutCommentaire(params['id'], bouteille).subscribe((data: any) => {
+          let retour = data.data;
+  
+          console.log(retour);
+        });
+  
+  
+      })
     }
   }
 
