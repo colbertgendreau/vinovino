@@ -20,9 +20,11 @@ export class AdminService {
 
   private urlUtilisateur:string = environment.apiUrl+"/api/utilisateurs";
   private urlExecute:string = environment.apiUrl+"/api/execute";
+  private urlExecuteDetails:string = environment.apiUrl+"/api/details";
   //private urlExecutePourcentage:string = environment.apiUrl+"/api/progres";
   //private urlExecutePourcentage8001:string = "http://127.0.0.1:8001/api/progres";
   private urlExecutePourcentage:string = environment.apiUrlCrawler+"/api/progres";
+  private urlExecutePourcentageDetails:string = environment.apiUrlCrawler+"/api/description";
 
   loading$= new Subject<boolean>();
   buttonClicked$= new Subject<boolean>();
@@ -44,17 +46,31 @@ export class AdminService {
     return this.http.get<any>(this.urlExecute);
   }
 
-  executeSaq(timeString): Observable<IDate> {
+  executeSaq(timeString, details): Observable<IDate> {
     this.snack$.next(false);
     const data = { time: timeString };
-    const execute$ = this.http.post<any>(this.urlExecute, data).pipe(
+    let adresse;
+    if (details==1) {
+      adresse = this.urlExecuteDetails;
+    }else {
+      adresse = this.urlExecute;
+    }
+
+    const execute$ = this.http.post<any>(adresse, data).pipe(
       timeout(2400000)
     );
-
     const stop$ = new Subject();
 
+    let adressePourcentage;
+    if (details==1) {
+      adressePourcentage = this.urlExecutePourcentageDetails;
+    }else {
+      adressePourcentage = this.urlExecutePourcentage;
+    }
+
     const progress$ = interval(4000).pipe(
-      switchMap(() => this.http.get<IDate>(this.urlExecutePourcentage)),
+
+      switchMap(() => this.http.get<IDate>(adressePourcentage)),
       tap(data => {
         const nb_pages_completees_egalise_sur_100 = (data.nb_pages_completees * 100) / data.nb_pages_totales;
         this.progressValue$.next(nb_pages_completees_egalise_sur_100);

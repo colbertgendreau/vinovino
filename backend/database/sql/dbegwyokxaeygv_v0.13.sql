@@ -399,3 +399,11 @@ CREATE TABLE `jobs` (
                         `available_at` int(10) UNSIGNED NOT NULL,
                         `created_at` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `progres__details` (
+                                    `id` int(11) NOT NULL AUTO_INCREMENT,
+                                    `temps_debut` varchar(200) DEFAULT NULL,
+                                    `nb_pages_completees` int(11) DEFAULT NULL,
+                                    `nb_pages_totales` int(11) DEFAULT NULL,
+                                    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
