@@ -25,6 +25,7 @@ class Bouteille extends Model
         'id_bouteille',
         'id_mes_bouteilles',
         'id',
+        'commentaires'
 
     ];
 
