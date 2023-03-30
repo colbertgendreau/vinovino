@@ -9,6 +9,7 @@ Route::group([
 ], function ($router) {
     Route::get('pages', [VinovinoController::class, 'getMaxPages']);
     Route::get('progres', [VinovinoController::class, 'pourcentage']);
+    Route::get('description', [VinovinoController::class, 'pourcentagedetails']);
     Route::get('test', [VinovinoController::class, 'donnees']);
    // Route::get('execute', [VinovinoController::class, 'execute']);
 
@@ -23,7 +24,7 @@ Route::group([
         return 'Crawler job dispatched test';
     });
 
-    Route::get('executedetails', [VinovinoController::class, 'executehard']);
+    Route::post('details', [VinovinoController::class, 'executehard']);
     Route::get('executedetailstest', [VinovinoController::class, 'executehardtest']);
 
     Route::post('execute', [VinovinoController::class, 'execute']);
