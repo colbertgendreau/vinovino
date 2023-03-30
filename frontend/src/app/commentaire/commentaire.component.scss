@@ -1,0 +1,38 @@
+.formulaire{
+    display: flex;
+    flex-direction: column;
+    gap: var(--small);
+
+    label{
+        font-size: var(--big);
+    }
+
+    textarea{
+        // margin-block: var(--small);
+        // margin-inline: var(--small);
+        border-radius: var(--border-radius5);
+        border-style: none;
+        // border: solid var(--smallest) var(--white);
+        border: solid var(--smallest) var(--black);
+        width: calc(100% - var(--biggest));
+        padding: var(--small);
+    }
+
+    button {
+        margin-block: var(--small);
+        margin-inline: var(--small);
+        height: var(--biggest);
+        border-radius: var(--border-radius);
+        border-style: none;
+        border: solid var(--smallest) var(--secondaire);
+        width: calc(100% - var(--biggest));
+        font-size: var(--med);
+        font-weight: var(--bold);
+        background-color: var(--secondaire-transparent80);
+        color: var(--black);
+    }
+
+    .error-message {
+        color: red;
+      }
+}
