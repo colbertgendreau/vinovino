@@ -32,6 +32,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
 import { DetailBouteilleComponent } from './detail-bouteille/detail-bouteille.component';
 import { NotesComponent } from './notes/notes.component';
+import { CommentaireComponent } from './commentaire/commentaire.component';
 
 
 
@@ -64,6 +65,7 @@ import { NotesComponent } from './notes/notes.component';
     FooterComponent,
       DetailBouteilleComponent,
       NotesComponent,
+      CommentaireComponent,
 
 
 
