@@ -172,12 +172,11 @@
         <label for="id_cellier">
         <select name="id_cellier" id="id_cellier" formControlName="id_cellier">
 
-            
-            <option *ngIf="idCellierUrl=='n'" [value]="" disabled selected>Choisir</option>
-            <ng-container *ngFor="let cellier of listeCelliers">
-                <option *ngIf="idCellierUrl == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
+            <ng-container>
+                <option *ngIf="idCellierUrl=='n'" [value]="" disabled selected>Choisir</option>
             </ng-container>
             <ng-container *ngFor="let cellier of listeCelliers">
+                <option *ngIf="idCellierUrl == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
                 <option *ngIf="idCellierUrl != cellier.id"  [value]="cellier.id" >{{cellier.nom}}</option>
             </ng-container>
 
