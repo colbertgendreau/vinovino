@@ -41,7 +41,7 @@ Route::get('/scannerDetail/{codeCup}', [BouteilleController::class, 'scannerDeta
 Route::put('/ajoutNote/{bouteille}', [BouteilleController::class, 'ajoutNote']);
 
 Route::get('/crawler', function () {
-    dispatch(new App\Jobs\Crawler("13966470"));
+    dispatch(new App\Jobs\Crawler("14070579"));
     return 'Crawler job dispatched';
 });
 

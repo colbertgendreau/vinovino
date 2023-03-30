@@ -381,7 +381,7 @@ CREATE TABLE `vino__bouteille__description` (
                                                 CONSTRAINT `fk_vino__bouteille__description_id` FOREIGN KEY (`id`) REFERENCES `vino__bouteille` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-ALTER TABLE `vino__bouteille__description` ADD COLUMN `image_url` VARCHAR(255) DEFAULT NULL;
+ALTER TABLE `vino__bouteille__description` ADD COLUMN `image_url` VARCHAR(510) DEFAULT NULL;
 
 
 -- --------------------------------------------------------
@@ -399,3 +399,11 @@ CREATE TABLE `jobs` (
                         `available_at` int(10) UNSIGNED NOT NULL,
                         `created_at` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `progres__details` (
+                                    `id` int(11) NOT NULL AUTO_INCREMENT,
+                                    `temps_debut` varchar(200) DEFAULT NULL,
+                                    `nb_pages_completees` int(11) DEFAULT NULL,
+                                    `nb_pages_totales` int(11) DEFAULT NULL,
+                                    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;

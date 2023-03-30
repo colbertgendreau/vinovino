@@ -185,8 +185,16 @@
     <div class="container-select">
         <label for="id_cellier">
         <select name="id_cellier" id="id_cellier" formControlName="id_cellier">
-            <option value="" disabled selected>Choisir</option>
-            <option *ngFor="let cellier of listeCelliers; first as firstElement" value="{{ cellier.id }}">{{ cellier.nom }}</option>
+
+            
+            <option *ngIf="idCellierUrl=='n'" [value]="" disabled selected>Choisir</option>
+            <ng-container *ngFor="let cellier of listeCelliers">
+                <option *ngIf="idCellierUrl == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
+            </ng-container>
+            <ng-container *ngFor="let cellier of listeCelliers">
+                <option *ngIf="idCellierUrl != cellier.id"  [value]="cellier.id" >{{cellier.nom}}</option>
+            </ng-container>
+
         </select>
         <div class="stay">Cellier</div>
         </label>

@@ -101,4 +101,73 @@ class VinovinoController
         ]);
     }
 
+    public function pourcentagedetails(){
+        $resultat = DB::select
+        ("SELECT id,temps_debut, nb_pages_completees, nb_pages_totales  FROM progres__details ORDER BY id DESC LIMIT 1");
+        $count = DB::select('SELECT COUNT(id) as count FROM vino__bouteille__description');
+        return response()->json([
+            'message' => 'Vinovino pourcentage details',
+            'nb_pages_totales' =>$resultat[0]->nb_pages_totales,
+            'nb_pages_completees' =>$resultat[0]->nb_pages_completees,
+            'temps_debut' =>$resultat[0]->temps_debut,
+            'nb_bouteilles'=>$count[0]->count,
+        ]);
+    }
+
+    public function executehard(Request $request){
+
+
+        $tableRows = DB::table('vino__bouteille')->get();
+        $tableRowsCount = $tableRows->count();
+        $resultat =
+            DB::insert
+            ( DB::raw
+            ("INSERT INTO progres__details(temps_debut, nb_pages_completees, nb_pages_totales)
+                VALUES (:temps_debut, :nb_pages_completees, :nb_pages_totales)"), array('temps_debut' =>
+                $request->input('time'),'nb_pages_completees' => 0,
+                'nb_pages_totales' => $tableRowsCount
+            ));
+
+        //$tableRows = App\Models\Table::all();
+        //$tableRows = DB::table('vino__bouteille')->limit(1000)->get();
+//        $tableRows = DB::table('vino__bouteille')->get();
+//        $tableRowsCount = $tableRows->count();
+//
+//        // Get the ID of the inserted row
+//        if ($resultat) {
+//            $last_temps_debut = DB::table('progres__details')
+//                ->select('temps_debut')
+//                ->orderByDesc('temps_debut')
+//                ->limit(1)
+//                ->value('temps_debut');
+//
+//
+//            DB::table('progres__details')
+//                ->where('temps_debut', $last_temps_debut)
+//                ->update(['nb_pages_completees' =>0 , 'nb_pages_totales' => $tableRowsCount]);
+//        }
+
+
+        $tableRows->each(function ($tableRow) use ($request) {
+            dispatch(new \App\Jobs\Crawler($tableRow->code_saq, $request->input('time')));
+        });
+
+        return response()->json([
+            'message' => 'Vinovino execution crawlerhard',
+            'nb_pages_completees' => 96,
+            'completed' => true
+        ]);
+    }
+
+    public function executehardtest(Request $request){
+
+        //$tableRows = App\Models\Table::all();
+            dispatch(new \App\Jobs\Crawler("12705631"));
+
+        return response()->json([
+            'message' => 'Vinovino execution crawlerhard',
+            'nb_pages_completees' => 96,
+            'completed' => true
+        ]);
+    }
 }
