@@ -36,6 +36,7 @@ Route::resource('utilisateurs', UserController::class);
 Route::get('/show/{celliers}', [CellierController::class, 'showCellier']);
 
 Route::get('/showDetail/{bouteille}', [BouteilleController::class, 'showDetail']);
+Route::get('/scannerDetail/{codeCup}', [BouteilleController::class, 'scannerDetail']);
 
 Route::put('/ajoutNote/{bouteille}', [BouteilleController::class, 'ajoutNote']);
 
