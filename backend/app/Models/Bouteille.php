@@ -27,6 +27,7 @@ class Bouteille extends Model
         'id',
         'id_cellier',
 
+
     ];
 
     // public function bouteilleHasType(){ 

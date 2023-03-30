@@ -2,6 +2,7 @@ import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import { Imesbouteilles } from '../imesbouteilles';
 import { environment } from '../../environments/environment';
 import { FetchService } from '../fetch.service';
+import { Router } from '@angular/router';
 import Quagga from 'quagga';
 
 @Component({
@@ -19,6 +20,7 @@ export class ScannerComponent implements OnDestroy {
 
   constructor(
     public fetchService: FetchService,
+    private router: Router
     ) {}
 
   startScan(): void {
@@ -95,12 +97,19 @@ export class ScannerComponent implements OnDestroy {
     //   drawingCtx.strokeRect(box[0], box[1], box[2] - box[0], box[3] - box[1]);
     // }
     console.log(result.codeResult.code);
-    // this.stopScan();
-
+    this.stopScan();
+    
+   
 
     this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
       this.uneBouteille = data.data;
       console.log(this.uneBouteille);
+
+      if (this.uneBouteille && this.uneBouteille.vino__bouteille_id) {
+        this.router.navigate(['/profil/bouteille', this.uneBouteille.vino__bouteille_id]);
+      }
+
+
 
       // this.spin = false;
       // this.hide = false;
