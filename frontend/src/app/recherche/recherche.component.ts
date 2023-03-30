@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, ViewChild  } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef   } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
@@ -37,6 +37,9 @@ export class RechercheComponent {
   maxPrice = '';
   nombreDeResultat: number;
   
+
+  
+  
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
   isSelected(type: string): boolean {
@@ -60,6 +63,7 @@ export class RechercheComponent {
   ) {}
 
   ngOnInit() {
+    
     this.fetchService.getMesBouteilles().subscribe((data: any) => {
       this.listeMesBouteilles = data.data;
       for (let i = 0; i < this.listeMesBouteilles.length; i++) {
@@ -90,13 +94,10 @@ export class RechercheComponent {
 
 
 
-
-
-
-
-
-
-
+  resetData() {
+    this.filteredData = [];
+    this.searchTerm="";
+  }
 
 
 
@@ -135,6 +136,9 @@ export class RechercheComponent {
   }
   
   filtreUltime() {
+    
+    
+    
     if ((this.minPrice && this.maxPrice) && this.selectedWinePays.length === 0 && this.selectedWineTypes.size === 0){
       this.filteredData = this.listeMesBouteilles.filter((bouteille: any) => bouteille.prix >= this.minPrice && bouteille.prix <= this.maxPrice)
       console.log(this.filteredData);
