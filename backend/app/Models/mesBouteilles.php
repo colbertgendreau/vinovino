@@ -24,6 +24,7 @@ class mesBouteilles extends Model
         'type_bouteillePerso',
         'id_bouteillePerso',
         'celliers_id',
+        'id_cellier',
 
     ];
 }
