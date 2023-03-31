@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IBouteille } from './ibouteille';
 import { IlisteBouteille } from './iliste-bouteille';
-import {environment} from "../environments/environment";
+import { environment } from "../environments/environment";
 import { ICellier } from './icellier';
 import { IlisteCellier } from './iliste-cellier';
 import { Ilistemesbouteilles } from './ilistemesbouteilles';
@@ -21,28 +21,28 @@ export class FetchService {
   private urlCellier:string = environment.apiUrl+"/api/celliers";
   private urlScanner:string = environment.apiUrl+"/api/scannerDetail";
 
-  constructor(private http:HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  getBouteilleSAQ():Observable<IlisteBouteille>{
+  getBouteilleSAQ(): Observable<IlisteBouteille> {
     return this.http.get<IlisteBouteille>(this.url);
   }
 
-  ajoutBouteille(bouteille    : Imesbouteilles):Observable<Imesbouteilles>{
-    console.log(bouteille + "test ajout bouteille custom" );
+  ajoutBouteille(bouteille: Imesbouteilles): Observable<Imesbouteilles> {
+    console.log(bouteille + "test ajout bouteille custom");
     console.log(bouteille);
 
     return this.http.post<Imesbouteilles>(this.urlBouteille, bouteille);
   }
 
-  modifBouteille(id:number, bouteille: any):Observable<Imesbouteilles>{
+  modifBouteille(id: number, bouteille: any): Observable<Imesbouteilles> {
     console.log(bouteille);
     console.log(id);
-    return this.http.put<Imesbouteilles>(this.urlBouteille+"/"+id, bouteille);
+    return this.http.put<Imesbouteilles>(this.urlBouteille + "/" + id, bouteille);
   }
 
-  showBouteille(id:number):Observable<Imesbouteilles>{
+  showBouteille(id: number): Observable<Imesbouteilles> {
     console.log(id);
-    return this.http.get<Imesbouteilles>(this.urlBouteille+"/"+id);
+    return this.http.get<Imesbouteilles>(this.urlBouteille + "/" + id);
   }
   // getBouteilleSAQ():Observable<IlisteBouteille>{
   //   return this.http.get<IlisteBouteille>(environment.production+"/api/bouteilles");
@@ -62,52 +62,55 @@ export class FetchService {
     console.log(this.urlCellier+"/"+id + ' bouteilles du celier');
     return this.http.get<Ilistemesbouteilles>(this.urlCellier+"/"+id);
   }
-  getMesBouteilles():Observable<Ilistemesbouteilles>{
+  getMesBouteilles(): Observable<Ilistemesbouteilles> {
     return this.http.get<Ilistemesbouteilles>(this.urlBouteille);
   }
 
-  getCelliers():Observable<IlisteCellier>{
+  getCelliers(): Observable<IlisteCellier> {
     console.log(this.urlCellier + ' celier');
     return this.http.get<IlisteCellier>(this.urlCellier);
   }
-  ajoutCellier(cellier: ICellier):Observable<ICellier>{
-    console.log(this.urlCellier+ " l'url cellier");
-    console.log(cellier+ " cellier");
+  ajoutCellier(cellier: ICellier): Observable<ICellier> {
+    console.log(this.urlCellier + " l'url cellier");
+    console.log(cellier + " cellier");
     return this.http.post<ICellier>(this.urlCellier, cellier);
   }
 
-  getUnCellier(id:number):Observable<ICellier>{
+  getUnCellier(id: number): Observable<ICellier> {
     console.log(id);
-    return this.http.get<ICellier>(this.urlCellier+"/"+id);
+    return this.http.get<ICellier>(this.urlCellier + "/" + id);
   }
-  modifCellier(id:number, cellier: ICellier):Observable<ICellier>{
-    console.log(this.urlCellier+"/"+id +" modifier le cellier url");
-    return this.http.put<ICellier>(this.urlCellier+"/"+id, cellier);
-  }
-
-  showCellier(id:number):Observable<ICellier>{
-    return this.http.get<ICellier>(environment.apiUrl+"/api/show/"+id);
+  modifCellier(id: number, cellier: ICellier): Observable<ICellier> {
+    console.log(this.urlCellier + "/" + id + " modifier le cellier url");
+    return this.http.put<ICellier>(this.urlCellier + "/" + id, cellier);
   }
 
-  supprimerCellier(id:number):Observable<ICellier>{
-    return this.http.delete<ICellier>(this.urlCellier+"/"+id);
+  showCellier(id: number): Observable<ICellier> {
+    return this.http.get<ICellier>(environment.apiUrl + "/api/show/" + id);
   }
 
-  supprimerBouteille(id:number):Observable<Imesbouteilles>{
-    return this.http.delete<Imesbouteilles>(this.urlBouteille+"/"+id);
+  supprimerCellier(id: number): Observable<ICellier> {
+    return this.http.delete<ICellier>(this.urlCellier + "/" + id);
   }
 
-  showDetail(id:number):Observable<Imesbouteilles>{
-    return this.http.get<Imesbouteilles>(environment.apiUrl+"/api/showDetail/"+id);
+  supprimerBouteille(id: number): Observable<Imesbouteilles> {
+    return this.http.delete<Imesbouteilles>(this.urlBouteille + "/" + id);
+  }
+
+  showDetail(id: number): Observable<Imesbouteilles> {
+    return this.http.get<Imesbouteilles>(environment.apiUrl + "/api/showDetail/" + id);
   }
   scannerDetail(codeCup:any):Observable<IBouteille>{
     return this.http.get<IBouteille>(this.urlScanner+'/'+codeCup);
   }
 
-  ajoutNote(id:number, bouteille: Imesbouteilles):Observable<Imesbouteilles>{
-    return this.http.put<Imesbouteilles>(environment.apiUrl+"/api/ajoutNote/"+id, bouteille);
+  ajoutNote(id: number, bouteille: Imesbouteilles): Observable<Imesbouteilles> {
+    return this.http.put<Imesbouteilles>(environment.apiUrl + "/api/ajoutNote/" + id, bouteille);
   }
 
+  ajoutCommentaire(id: number, bouteille: Imesbouteilles): Observable<Imesbouteilles> {
+    return this.http.put<Imesbouteilles>(environment.apiUrl + "/api/ajoutCommentaire/" + id, bouteille);
+  }
 }
 
 

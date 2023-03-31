@@ -146,17 +146,20 @@ export class AjoutBouteilleComponent implements OnInit {
   handleScan(scannedBouteille: string) {
     this.scannedBouteille = scannedBouteille;
     console.log(this.scannedBouteille);
-    this.ajouterBouteilleForm.patchValue({
-      id: this.scannedBouteille.id,
-      nom: this.scannedBouteille.nom,
-      type: this.scannedBouteille.type,
-      format: this.scannedBouteille.format,
-      prix_saq: this.scannedBouteille.prix_saq,
-      pays: this.scannedBouteille.pays,
-      description: this.scannedBouteille.description,
-      quantite: 1,
-    //   id_cellier: bouteille.id_cellier,
-    });
+    if(this.scannedBouteille){
+      this.ajouterBouteilleForm.patchValue({
+        id: this.scannedBouteille.id,
+        nom: this.scannedBouteille.nom,
+        type: this.scannedBouteille.type,
+        format: this.scannedBouteille.format,
+        prix_saq: this.scannedBouteille.prix_saq,
+        pays: this.scannedBouteille.pays,
+        description: this.scannedBouteille.description,
+        quantite: 1,
+      //   id_cellier: bouteille.id_cellier,
+      });
+    }
+   
 
   }
 

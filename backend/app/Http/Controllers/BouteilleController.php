@@ -254,5 +254,22 @@ class BouteilleController extends Controller
 
 
 
+      /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $bouteille
+     * @return \Illuminate\Http\Response 
+     */
+    public function ajoutCommentaire(Request $request, Bouteille $bouteille)
+    {
+        $commentaires = $request->input('commentaires');
+    
+        $bouteille->update([
+            'commentaires' => $commentaires,
+        ]);
+    
+        return ['data' => $bouteille];
+    }
 }
 
