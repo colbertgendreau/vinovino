@@ -8,6 +8,7 @@ import { AjoutCellierComponent } from '../ajout-cellier/ajout-cellier.component'
 import { ModifCellierComponent } from '../modif-cellier/modif-cellier.component';
 import { ModifBouteilleComponent } from '../modif-bouteille/modif-bouteille.component';
 import { RechercheComponent } from '../recherche/recherche.component';
+import { DetailBouteilleComponent } from '../detail-bouteille/detail-bouteille.component';
 
 @Component({
   selector: 'app-footer',
@@ -25,8 +26,7 @@ export class FooterComponent {
   constructor(
     public router: Router,
     private route: ActivatedRoute
-  ) 
-  {}
+  ) { }
 
   ngOnInit() {
     this.classeActuelle = this.route.component;
@@ -58,7 +58,10 @@ export class FooterComponent {
       case RechercheComponent:
         this.pageActuelle = 'recherche';
         break;
-    default:
+      case DetailBouteilleComponent:
+        this.pageActuelle = 'detailBouteille';
+        break;
+      default:
         this.pageActuelle = 'autrePage';
         break;
     }
@@ -76,9 +79,11 @@ export class FooterComponent {
     } else if (this.pageActuelle == 'modifCellier') {
       this.router.navigateByUrl('profil/liste-cellier');
     } else if (this.pageActuelle == 'modifBouteille') {
-        this.router.navigateByUrl('profil/cellier/' + this.id);
+      this.router.navigateByUrl('profil/cellier/' + this.id);
     } else if (this.pageActuelle == 'recherche') {
       this.router.navigateByUrl('profil/liste-cellier');
+    } else if (this.pageActuelle == 'detailBouteille') {
+      this.router.navigateByUrl('profil/cellier/' + this.id);
     }
 
     window.scroll({
@@ -97,7 +102,7 @@ export class FooterComponent {
       this.btnAjouter = 'ajoutBouteille';
       this.router.navigateByUrl('profil/ajouter-cellier');
     } else {
-        console.log("different bouton ajouter");
+      console.log("different bouton ajouter");
     }
 
     window.scroll({
