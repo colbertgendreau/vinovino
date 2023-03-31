@@ -18,6 +18,7 @@ export interface Imesbouteilles {
     url_saq: string;
     id_cellier: any;
     notes?: number;
+    commentaires?: string;
 
     id_bouteillePerso: number;
     nom_bouteillePerso: string;

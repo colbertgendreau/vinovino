@@ -33,6 +33,7 @@ import { environment } from '../environments/environment';
 import { ArchiveComponent } from './archive/archive.component';
 import { DetailBouteilleComponent } from './detail-bouteille/detail-bouteille.component';
 import { NotesComponent } from './notes/notes.component';
+import { CommentaireComponent } from './commentaire/commentaire.component';
 
 
 
@@ -66,6 +67,7 @@ import { NotesComponent } from './notes/notes.component';
       ArchiveComponent,
       DetailBouteilleComponent,
       NotesComponent,
+      CommentaireComponent,
 
 
 

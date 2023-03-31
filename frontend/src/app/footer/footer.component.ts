@@ -26,8 +26,7 @@ export class FooterComponent {
   constructor(
     public router: Router,
     private route: ActivatedRoute
-  ) 
-  {}
+  ) { }
 
   ngOnInit() {
     this.classeActuelle = this.route.component;
@@ -62,7 +61,7 @@ export class FooterComponent {
       case DetailBouteilleComponent:
         this.pageActuelle = 'detailBouteille';
         break;
-    default:
+      default:
         this.pageActuelle = 'autrePage';
         break;
     }
@@ -87,8 +86,11 @@ export class FooterComponent {
     // } else if (this.pageActuelle == 'recherche') {
     //   this.router.navigateByUrl('profil/liste-cellier');
     // } else if (this.pageActuelle == 'detailBouteille') {
-    //   this.router.navigateByUrl('profil/liste-cellier');
-    // }
+        //   this.router.navigateByUrl('profil/liste-cellier');
+    // } else if (this.pageActuelle == 'detailBouteille') {
+    //     this.router.navigateByUrl('profil/cellier/' + this.id);
+        // }
+  
 
     window.scroll({
       // pour scroll up
@@ -109,7 +111,7 @@ export class FooterComponent {
       this.btnAjouter = 'ajoutBouteille';
       this.router.navigateByUrl('profil/ajouter-bouteille/n');
     } else {
-        console.log("different bouton ajouter");
+      console.log("different bouton ajouter");
     }
 
     window.scroll({
