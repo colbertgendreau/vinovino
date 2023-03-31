@@ -105,6 +105,14 @@ class VinovinoController
         $resultat = DB::select
         ("SELECT id,temps_debut, nb_pages_completees, nb_pages_totales  FROM progres__details ORDER BY id DESC LIMIT 1");
         $count = DB::select('SELECT COUNT(id) as count FROM vino__bouteille__description');
+
+
+        $count = DB::select('SELECT COUNT(id) as count FROM jobs');
+        if($count == 0){
+            DB::table('progres__details')
+                ->where('temps_debut', $resultat[0]->temps_debut)
+                ->updateOrInsert(['nb_pages_completees' => $resultat[0]->nb_pages_completees]);
+        }
         return response()->json([
             'message' => 'Vinovino pourcentage details',
             'nb_pages_totales' =>$resultat[0]->nb_pages_totales,
