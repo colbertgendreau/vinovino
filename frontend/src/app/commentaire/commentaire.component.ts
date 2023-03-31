@@ -80,7 +80,7 @@ export class CommentaireComponent implements OnInit {
     });
 
     this.commentaireForm.get('commentaires').valueChanges.pipe(
-      debounceTime(500), // wait for 500ms before executing
+      debounceTime(1000), 
     ).subscribe(() => {
       this.ajouterCommentaire();
     });
