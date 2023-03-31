@@ -2,16 +2,21 @@
 class="monCellier">
 <h1 class="titreCellier">{{ cellierNom }}</h1>
 
- <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
+<app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
- <div class="cellierVide" *ngIf="!bouteilles[0] && !spin">
+<div class="cellierVide" *ngIf="!bouteilles[0] && !spin">
     <h2>Vous n'avez aucune bouteille dans ce cellier</h2>
     <p>Pour ajouter une bouteille appuyez sur le bouton</p>
     <span> &#8681;</span>
- </div>
+</div>
+
+<div class="toggle-archive" [className]="hide ? 'hide' : 'nohide'">
+    <input type="checkbox" id="archive" name="archive">
+    <label for="archive">Inclure les bouteilles archivées</label></div>
 
 <div *ngFor="let uneBouteille of bouteilles">
-    <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngIf="uneBouteille.quantite !== 0">
+    <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" >
+    <!-- <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngIf="uneBouteille.quantite !== 0"> -->
         <div class="card-bouteille-haut">
             <picture>
                 <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible" alt="Bouteille"/>
