@@ -1,11 +1,14 @@
 <div>
-    <form class="formulaire" [formGroup]="commentaireForm" (ngSubmit)="ajouterCommentaire()">
+    <form class="formulaire" [formGroup]="commentaireForm">
         <label for="commentaires">Mes notes de dégustations</label>
         <div *ngIf="formSubmitted && commentaireForm.controls['commentaires'].invalid" class="error-message">
-            <span *ngIf="commentaireForm.controls['commentaires'].errors?.['maxlength']">Doit comporter un maximum de 500
+            <span *ngIf="commentaireForm.controls['commentaires'].errors?.['maxlength']">Doit comporter un maximum de
+                50
                 caractères.</span>
         </div>
-        <textarea type="text" formControlName="commentaires" id="commentaires" cols="30" rows="10"></textarea>
-        <button type="submit">Soumettre</button>
+        <textarea maxlength="500" type="text" formControlName="commentaires" id="commentaires" cols="30" rows="5"
+        [value]="uneBouteille?.commentaires || ''" placeholder="Inscrivez vos notes ici"
+        ></textarea>
+
     </form>
 </div>

@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Imesbouteilles } from '../imesbouteilles';
 import { FetchService } from '../fetch.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { debounceTime } from 'rxjs/operators';
 
 export class User {
   name: any;
@@ -19,7 +20,7 @@ export class User {
   templateUrl: './commentaire.component.html',
   styleUrls: ['./commentaire.component.scss']
 })
-export class CommentaireComponent  implements OnInit{
+export class CommentaireComponent implements OnInit {
 
   isSignedIn!: boolean;
   // title:string='Modifier la bouteille #';
@@ -77,31 +78,33 @@ export class CommentaireComponent  implements OnInit{
       //   this.fetchBottleData(id);
       // }
     });
+
+    this.commentaireForm.get('commentaires').valueChanges.pipe(
+      debounceTime(500), // wait for 500ms before executing
+    ).subscribe(() => {
+      this.ajouterCommentaire();
+    });
+  
   }
 
-  ajouterCommentaire(){
-    this.formSubmitted = true;
-    if(this.commentaireForm.valid){
-      const commentaires = this.commentaireForm.value.commentaires;
-      
+  ajouterCommentaire() {
+    if (this.commentaireForm.valid) {
+      const commentaires = this.commentaireForm.get('commentaires').value;
       this.uneBouteille.commentaires = commentaires;
 
-
       this.route.params.subscribe(params => {
-
         const bouteille = { ...this.uneBouteille, commentaires };
         this.fetchService.ajoutCommentaire(params['id'], bouteille).subscribe((data: any) => {
           let retour = data.data;
-  
           console.log(retour);
         });
-  
-  
-      })
+      });
     }
+
+
+
+
   }
-
-
 
 
 }
