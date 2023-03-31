@@ -373,8 +373,17 @@
 
 }
 
+
 app-scanner {
   width: fit-content;
 }
 
+.app_scanner {
+  margin-top: var(--big);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
 
+}
