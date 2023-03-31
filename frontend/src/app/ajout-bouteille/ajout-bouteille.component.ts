@@ -130,7 +130,9 @@ export class AjoutBouteilleComponent implements OnInit {
       pays: bouteille.pays,
       description: bouteille.description,
       quantite: 1,
-    //   id_cellier: bouteille.id_cellier,
+      celliers_id: this.idCellierUrl,
+
+    //   celliers_id: bouteille.celliers_id,
     });
     this.filteredData = [];
     this.isDataSelected = true; // set the flag to true when data is selected
@@ -171,10 +173,11 @@ export class AjoutBouteilleComponent implements OnInit {
         nouvelleBouteille.type = Number(nouvelleBouteille.type);
 
         console.log(params);
+        console.log(nouvelleBouteille.celliers_id);
         this.present = false;
         this.fetchService
         //   .getBouteillesCellier(params['id'])
-          .getBouteillesCellier(nouvelleBouteille.id_cellier)
+          .getBouteillesCellier(nouvelleBouteille.celliers_id)
           .subscribe((data: any) => {
             this.bouteilles = data.data;
 
@@ -190,7 +193,7 @@ export class AjoutBouteilleComponent implements OnInit {
                   this.fetchService.modifBouteille(element.id_supreme, element).subscribe((retour) => {
                     this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
                     // this.router.navigateByUrl('profil/cellier/' + 2);
-                    this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.id_cellier);
+                    this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.celliers_id);
                   });
                   
                 }
@@ -200,7 +203,7 @@ export class AjoutBouteilleComponent implements OnInit {
             if (this.present == false){
               this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
                 this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
-                this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.id_cellier);
+                this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.celliers_id);
               });
             }
           });
@@ -268,7 +271,7 @@ export class AjoutBouteilleComponent implements OnInit {
       prix_saq: [''],
       quantite: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
-      id_cellier: [this.idCellierUrl, [Validators.required]],
+      celliers_id: [this.idCellierUrl, [Validators.required]],
     });
   }
 

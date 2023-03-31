@@ -184,15 +184,14 @@
       </div>
     </div>
     <div class="container-select">
-        <label for="id_cellier">
-        <select name="id_cellier" id="id_cellier" formControlName="id_cellier">
+        <label for="celliers_id">
+        <select name="celliers_id" id="celliers_id" formControlName="celliers_id">
 
-            
-            <option *ngIf="idCellierUrl=='n'" [value]="" disabled selected>Choisir</option>
-            <ng-container *ngFor="let cellier of listeCelliers">
-                <option *ngIf="idCellierUrl == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
+            <ng-container>
+                <option *ngIf="idCellierUrl=='n'" [value]="" disabled selected>Choisir</option>
             </ng-container>
             <ng-container *ngFor="let cellier of listeCelliers">
+                <option *ngIf="idCellierUrl == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
                 <option *ngIf="idCellierUrl != cellier.id"  [value]="cellier.id" >{{cellier.nom}}</option>
             </ng-container>
 
