@@ -21,6 +21,14 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        max-width: var(--bigger);
+        text-decoration: none;
+        
+        span {
+            font-size: 10px;
+            color: black;
+        }
+
     }
     
     .hidden {
@@ -74,8 +82,8 @@
     .icone {
         position: relative;
         z-index: 3;
-        height: var(--biggest);
-        width: var(--biggest);
+        height: var(--bigger);
+        width: var(--bigger);
         background-size: cover;
         object-position: center;
         
@@ -84,12 +92,16 @@
         position: relative;
         // top: -1px;
         // left: 21px;
-        bottom: -20px;
-        right: -20px;
+        bottom: -13px;
+        right: -16px;
         background: url(../../assets/icones/plusWithBack.png);
         height: var(--small);
         width: var(--small);
         background-size: cover;
+
+
     }
+
+
 
   }
