@@ -172,6 +172,7 @@ class BouteilleController extends Controller
             if ($request->id == '') {
                 $bouteille->update([
                     'quantite' => $request->quantite_bouteillePerso,
+                    'celliers_id' => $request->celliers_id,
                 ]);
             } else {
                 $bouteille->update([
