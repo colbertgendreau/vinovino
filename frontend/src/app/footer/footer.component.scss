@@ -3,13 +3,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    //   margin-inline: var(--big);
     position: fixed;
     bottom: 0;
     right: 0;
     left: 0;
     z-index: 2;
-    //   height: var(--biggest);
     padding-block: var(--smaller);
     padding-inline: var(--small);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
