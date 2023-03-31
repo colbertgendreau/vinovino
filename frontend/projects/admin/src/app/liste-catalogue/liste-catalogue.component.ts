@@ -73,7 +73,34 @@ export class ListeCatalogueComponent implements OnInit {
       .open(
         'La mise à jour a commencée, cette action peut prendre entre 20 et 30 minutes.',
         'Close', { duration: 6000 });
-    this.adminServ.executeSaq(dateString).subscribe((resultat)=>{
+    this.adminServ.executeSaq(dateString,0).subscribe((resultat)=>{
+      console.log("se acabo el executeSAsQ")
+      console.log(resultat.resultat);
+      console.log(resultat);
+    });
+  }
+
+  executerSaqDetails(message:string, action:string) {
+    this.value= 0;
+    this.buttonClicked = true;
+    this.isExcuted=true;
+    this.loading = true;
+    if(this.hidden == true){
+      this.hidden = false;
+    }
+    this.isExcuted = true;
+
+    const now = new Date();
+    const timezoneOffset = now.getTimezoneOffset() * 60000; // Convert minutes to milliseconds
+    const localTime = now.getTime() - timezoneOffset;
+    const localDate = new Date(localTime);
+    const dateString = localDate.toISOString().slice(0, 19).replace('T', ' ');
+
+    this._snackBar
+      .open(
+        'La mise à jour des details à commencée, cela peut prendre entre 20 et 30 minutes.',
+        'Close', { duration: 6000 });
+    this.adminServ.executeSaq(dateString,1).subscribe((resultat)=>{
       console.log("se acabo el executeSAsQ")
       console.log(resultat.resultat);
       console.log(resultat);

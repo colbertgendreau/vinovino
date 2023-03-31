@@ -18,7 +18,7 @@ export interface Ibouteillecellier {
     notes:number;
     prix:number;
     quantite:number;
-    celliers_id:number;
+    celliers_id:any;
     id_bouteille:number;
     type_vino_name:string;
     type_mes_name:string;

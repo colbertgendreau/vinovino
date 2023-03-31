@@ -17,15 +17,24 @@ class Crawler implements ShouldQueue
 
     private $code_saq;
     private $results = [];
+    public $tries = 5;
+    public $timeout = 300;
+    public $time = null;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct($code_saq)
+    public function __construct($code_saq, $time = null)
     {
+        $client = new Client();
+
+//        $crawler = $client->request('GET', 'https://www.saq.com/fr/' . $code_saq);
+//        $imgSrc = $crawler->filter('.MagicToolboxContainer img')->attr('src');
+//        ddd($imgSrc);
         $this->code_saq = $code_saq;
+        $this->time = $time;
     }
 
     /**
@@ -35,9 +44,8 @@ class Crawler implements ShouldQueue
      */
     public function handle()
     {
-        set_time_limit(0);
-        $s = $this->scrapper($this->code_saq);
-
+                set_time_limit(0);
+            $this->scrapper($this->code_saq);
 //        $codes = DB::table('vino__bouteille')->pluck('code_saq');
 //        $i = 0;
 //        foreach ($codes as $code) {
@@ -56,9 +64,9 @@ class Crawler implements ShouldQueue
 
         $crawler = $client->request('GET', 'https://www.saq.com/fr/' . $code);
 
+        $imageUrl = $this->exctractImages($crawler);
         $cupCode = $this->extractCupCode($crawler);
         $cepage = $this->extractCepage($crawler);
-        $imageUrl = $this->exctractImages($crawler);
 
 //        $code_saq = DB::table('vino__bouteille')->where('code_saq', $code)->first();
 //        DB::table('vino__bouteille__description')->insert([
@@ -77,6 +85,10 @@ class Crawler implements ShouldQueue
                 'image_url' => $imageUrl,
             ]
         );
+
+        DB::table('progres__details')
+            ->where('temps_debut', $this->time)
+            ->increment('nb_pages_completees');
 
 
         return response()->json([
@@ -130,10 +142,9 @@ class Crawler implements ShouldQueue
         return $grapes;
     }
 
-
     public function exctractImages($crawler)
     {
-        $imageUrl = $crawler->filter('.mz-figure img')->attr('src');
-        return $imageUrl;
+        sleep(.5);
+        return $crawler->filter('.MagicToolboxContainer img')->attr('src');
     }
 }

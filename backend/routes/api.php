@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ScrapperDetailsController;
+use App\Http\Controllers\BouteilleSAQController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('test/{code_cup}', [BouteilleSAQController::class, 'scannerDetail']);
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 
-use App\Http\Controllers\BouteilleSAQController;
 Route::resource('bouteillesSAQ', BouteilleSAQController::class);
 
 use App\Http\Controllers\CellierController;
@@ -37,10 +39,14 @@ Route::get('/show/{celliers}', [CellierController::class, 'showCellier']);
 
 Route::get('/showDetail/{bouteille}', [BouteilleController::class, 'showDetail']);
 
+Route::get('/scannerDetail/{code_cup}', [BouteilleSAQController::class, 'scannerDetail']);
+
 Route::put('/ajoutNote/{bouteille}', [BouteilleController::class, 'ajoutNote']);
 
+Route::put('/ajoutCommentaire/{bouteille}', [BouteilleController::class, 'ajoutCommentaire']);
+
 Route::get('/crawler', function () {
-    dispatch(new App\Jobs\Crawler("13966470"));
+    dispatch(new App\Jobs\Crawler("14070579"));
     return 'Crawler job dispatched';
 });
 
