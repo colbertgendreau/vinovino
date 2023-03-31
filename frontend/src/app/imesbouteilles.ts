@@ -29,5 +29,7 @@ export interface Imesbouteilles {
     quantite_bouteillePerso: number;
     description_bouteillePerso: string;
     cellier_nom:string;
+    code_cup:string;
+    vino__bouteille_id:any;
 
 }

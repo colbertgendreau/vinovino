@@ -251,6 +251,9 @@ class BouteilleController extends Controller
         return ['data' => $bouteille];
     }
 
+
+
+
       /**
      * Update the specified resource in storage.
      *
@@ -269,3 +272,4 @@ class BouteilleController extends Controller
         return ['data' => $bouteille];
     }
 }
+

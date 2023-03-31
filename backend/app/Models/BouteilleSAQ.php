@@ -23,6 +23,11 @@ class BouteilleSAQ extends Model
         'url_img',
         'format',
         'type',
+        'cup_code',
+        // 'image_url',
+        // 'cepages',
+        // 'id',
+        
 
     ];
 }

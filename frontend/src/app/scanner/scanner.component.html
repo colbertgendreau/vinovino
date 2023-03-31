@@ -1,0 +1,10 @@
+<section class="scanner">
+  <div class="video-container" *ngIf="showVideo">
+    <video #video></video>
+
+    <canvas #canvas class="overlay" style="display:none;"></canvas>
+    <button class="close-button" (click)="stopScan()">X</button>
+  </div>
+  <img class="button" [src]="iconeCamera" alt="Icône d'ajout de bouteille" (click)="startScan()" *ngIf="!showVideo">
+  <!-- <img class="button" [src]="iconeCamera" alt="Icône d'ajout de bouteille" (click)="stopScan()" *ngIf="showVideo"> -->
+</section>
