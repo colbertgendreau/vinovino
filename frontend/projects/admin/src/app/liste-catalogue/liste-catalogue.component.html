@@ -29,6 +29,25 @@
             <section class="loadin_bar">
               <mat-progress-bar *ngIf="loading" mode="determinate" [value]="value"></mat-progress-bar>
             </section>
+          <div class="boutons">
+            <!--            <button mat-stroked-button color="primary"-->
+            <!--                    (click)="executerSaq('Administrateur ajouté!', '👨‍💼')">Récupérer les données de la SAQ-->
+            <!--            </button>-->
+            <div>
+              <button mat-flat-button color="primary" class="success-button"
+                      [disabled]="buttonClicked"
+                      (click)="executerSaqDetails('Détails à jour!', '👨‍💼'); hidden">
+                <span>Mettre à jour les details des bouteilles</span>
+                <mat-icon class="success-icon" *ngIf="hidden">check_circle</mat-icon>
+              </button>
+            </div>
+
+
+          </div>
+          <section class="loadin_bar">
+            <mat-progress-bar *ngIf="loading" mode="determinate" [value]="value"></mat-progress-bar>
+          </section>
+
 
         </div>
     </mat-sidenav-content>
