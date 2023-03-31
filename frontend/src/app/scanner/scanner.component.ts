@@ -17,6 +17,7 @@ export class ScannerComponent implements OnDestroy {
   uneBouteille: Imesbouteilles;
   private stream: MediaStream | null = null;
   iconeCamera =  environment.baseImg + 'icones/barcode-scan.png';
+
   @Output() scanned = new EventEmitter<any>();
   showVideo = false;
 
