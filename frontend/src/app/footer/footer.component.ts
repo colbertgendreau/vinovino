@@ -69,25 +69,26 @@ export class FooterComponent {
   }
 
   back() {
-    if (this.pageActuelle == 'cellier') {
-      this.router.navigateByUrl('profil/liste-cellier');
-    } else if (this.pageActuelle == 'listeCellier') {
-      console.log('doit etre grisé');
-    } else if (this.pageActuelle == 'ajoutBouteille') {
-        if(this.idCellier == 'n') {
-            this.router.navigateByUrl('profil/liste-cellier');
-        } else { this.router.navigateByUrl('profil/cellier/' + this.idCellier); }
-    } else if (this.pageActuelle == 'ajoutCellier') {
-      this.router.navigateByUrl('profil/liste-cellier');
-    } else if (this.pageActuelle == 'modifCellier') {
-      this.router.navigateByUrl('profil/liste-cellier');
-    } else if (this.pageActuelle == 'modifBouteille') {
-        this.router.navigateByUrl('profil/cellier/' + this.id);
-    } else if (this.pageActuelle == 'recherche') {
-      this.router.navigateByUrl('profil/liste-cellier');
-    } else if (this.pageActuelle == 'detailBouteille') {
-      this.router.navigateByUrl('profil/liste-cellier');
-    }
+    this.router.navigateByUrl('profil/liste-cellier');
+    // if (this.pageActuelle == 'cellier') {
+    //   this.router.navigateByUrl('profil/liste-cellier');
+    // } else if (this.pageActuelle == 'listeCellier') {
+    //   console.log('doit etre grisé');
+    // } else if (this.pageActuelle == 'ajoutBouteille') {
+    //     if(this.idCellier == 'n') {
+    //         this.router.navigateByUrl('profil/liste-cellier');
+    //     } else { this.router.navigateByUrl('profil/cellier/' + this.idCellier); }
+    // } else if (this.pageActuelle == 'ajoutCellier') {
+    //   this.router.navigateByUrl('profil/liste-cellier');
+    // } else if (this.pageActuelle == 'modifCellier') {
+    //   this.router.navigateByUrl('profil/liste-cellier');
+    // } else if (this.pageActuelle == 'modifBouteille') {
+    //     this.router.navigateByUrl('profil/cellier/' + this.id);
+    // } else if (this.pageActuelle == 'recherche') {
+    //   this.router.navigateByUrl('profil/liste-cellier');
+    // } else if (this.pageActuelle == 'detailBouteille') {
+    //   this.router.navigateByUrl('profil/liste-cellier');
+    // }
 
     window.scroll({
       // pour scroll up
