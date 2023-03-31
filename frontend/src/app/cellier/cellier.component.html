@@ -49,7 +49,7 @@ class="monCellier">
                 <a *ngIf="!uneBouteille.code_saq" class="modifier-gris" routerLink="/profil/modifier-bouteille/{{
                 uneBouteille.id_supreme }}"></a>
 
-                <a *ngIf="uneBouteille.code_saq" class="modifier"></a>
+                <a *ngIf="uneBouteille.code_saq" class="saq" href="{{uneBouteille.url_saq}}"></a>
                 <div class="quantite">
                     <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)"></button>
 
