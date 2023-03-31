@@ -33,19 +33,19 @@ export class CellierComponent implements OnInit {
   cellierId: string;
   cellierNom:string;
   isSignedIn!: boolean;
-  // title:string='Cellier';
   UserProfile!: User;
   unCellier: any;
   spin: boolean = true;
   hide: boolean = true;
   pageCellier: boolean = true;
 
-  //   counter:number = 1;
   counterValue: number = 0;
   quantite: number;
   id: number;
 
   isVisible = false;
+
+  inputArchive: any;
 
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
@@ -63,11 +63,7 @@ export class CellierComponent implements OnInit {
       console.log(this.UserProfile);
     });
     this.bouteilles = [];
-
-
   }
-
-
 
   ngOnInit() {
 
@@ -77,79 +73,115 @@ export class CellierComponent implements OnInit {
       behavior: 'smooth'
     });
 
-
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
     });
-
 
     this.route.params.subscribe((params) => {
 
       this.cellierId = params['id'];
       console.log(params['id']);
 
-
-      this.fetchService
-        .getBouteillesCellier(params['id'])
-        .subscribe((data: any) => {
-          this.bouteilles = data.data;
-
-          console.log(this.bouteilles);
-  
-          if(this.bouteilles[0]) {
-
-              
-              this.cellierNom = this.bouteilles[0].cellier_nom;
-            }
-          
-          
-          console.log('les bouteilles du cellier');
-          console.log(this.bouteilles);
-          this.spin = false;
-          this.hide = false;
-          
+      this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+        this.bouteilles = data.data;
+        this.bouteilles.forEach(uneBouteilleArchivee => {
+          if (uneBouteilleArchivee.quantite === 0) {
+            this.bouteilles.pop();
+          }
         });
+
+        this.inputArchive = document.getElementById('archive');
+
+        this.inputArchive.addEventListener('change', e => {
+          if(e.target.checked === true) {
+            this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+              this.bouteilles = data.data;
+            });
+          }
+          if(e.target.checked === false) {
+            this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+              this.bouteilles = data.data;
+              this.bouteilles.forEach(uneBouteilleArchivee => {
+                if (uneBouteilleArchivee.quantite === 0) {
+                  this.bouteilles.pop();
+                }
+              });
+            });
+          }
+        });
+  
+        if(this.bouteilles[0]) {
+          this.cellierNom = this.bouteilles[0].cellier_nom;
+        }
+
+        this.spin = false;
+        this.hide = false;
+      });
     });
   }
 
 
   modifier(id: number, quantite: number) {
 
-
-
-    console.log(id + "id");
-    console.log(quantite + "quantite");
-
-
     this.fetchService.showBouteille(id).subscribe((data: any) => {
       this.bouteille = data.data;
-      // this.bouteille.id = id;
       this.bouteille.quantite = quantite;
-
 
       let updateBouteille: Imesbouteilles = this.bouteille;
       console.log(updateBouteille);
       
-
       this.fetchService.modifBouteille(id, updateBouteille).subscribe((retour) => {
 
         if (this.bouteille.quantite > 0) {
           this.openSnackBar('La quantité fut modifiée avec succès', 'Fermer');
-
         }
 
         this.route.params.subscribe((params) => {
 
           this.cellierId = params['id'];
 
+          
+          this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+            this.bouteilles = data.data;
+            this.bouteilles.forEach(uneBouteilleArchivee => {
+              if (uneBouteilleArchivee.quantite === 0) {
+                this.bouteilles.pop();
+                // this.inputArchive = document.getElementById('archive');
+                // this.inputArchive.addEventListener('change', e => {
+                //   if(e.target.checked === true) {
+                //     this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+                //       this.bouteilles = data.data;
+                //     });
+                //   }
 
-          this.fetchService
-            .getBouteillesCellier(params['id'])
-            .subscribe((data: any) => {
-              this.bouteilles = data.data;
-
+                  // e.target.checked === false;
+                // });
+              }
             });
+                
+                
+              // this.inputArchive.addEventListener('change', e => {
+              //   if(e.target.checked === true) {
+              //     this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+              //       this.bouteilles = data.data;
+              //     });
+              //   }
+              //   if(e.target.checked === false) {
+              //     this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+              //       this.bouteilles = data.data;
+              //       this.bouteilles.forEach(uneBouteilleArchivee => {
+              //         if (uneBouteilleArchivee.quantite === 0) {
+              //           this.bouteilles.pop();
+              //         }
+              //       });
+              //     });
+              //   }
+              // });
+
+          });
+
+
         });
 
       });
@@ -157,10 +189,6 @@ export class CellierComponent implements OnInit {
         this.openModal(id);
       }
     });
-
-
-
-
   }
 
 
@@ -171,12 +199,10 @@ export class CellierComponent implements OnInit {
     console.log(this.isVisible);
     this.id = id;
     this.isVisible = true;
-
   }
 
   closeModal() {
     this.isVisible = false;
-    // this.openSnackBar('La bouteille est maintenant archivée', 'Fermer');
   }
 
   onModalClosed() {
@@ -189,7 +215,6 @@ export class CellierComponent implements OnInit {
 
       this.cellierId = params['id'];
       console.log(params['id']);
-
 
       this.fetchService
         .getBouteillesCellier(params['id'])
@@ -213,7 +238,6 @@ export class CellierComponent implements OnInit {
       left: 0,
       behavior: 'smooth'
     });
-
   }
 
 
@@ -222,13 +246,10 @@ export class CellierComponent implements OnInit {
       top: 0,
       left: 0,
       behavior: 'smooth'
-
     });
-
 
     this.router.navigateByUrl('profil/liste-cellier');
   }
-
 
 
   /**
