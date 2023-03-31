@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, OnInit, ViewChild  } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild, ElementRef   } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
@@ -12,6 +12,7 @@ import { Ilistemesbouteilles } from '../ilistemesbouteilles';
 import { Imesbouteilles } from '../imesbouteilles';
 import { environment } from '../../environments/environment';
 
+import { ScannerComponent } from '../scanner/scanner.component';
 
 @Component({
   selector: 'app-recherche',
@@ -35,8 +36,29 @@ export class RechercheComponent {
   minPrice = '';
   maxPrice = '';
   nombreDeResultat: number;
+  scannedBouteille: any;
+
   
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
+
+  handleScan(scannedBouteille: string) {
+    this.scannedBouteille = scannedBouteille;
+  
+    console.log(this.scannedBouteille);
+  
+    const matchingBouteille = this.listeMesBouteilles.find(
+      item => item.id === this.scannedBouteille.id
+    );
+  
+    if (matchingBouteille) {
+      console.log(matchingBouteille);
+      
+      this.router.navigate(['/profil/bouteille', matchingBouteille.id_supreme]);
+    } else {
+      console.error('Bouteille not found in listeMesBouteilles');
+      // Show an error message to the user here
+    }
+  }
 
   isSelected(type: string): boolean {
     return this.selectedWineTypes.has(type);
@@ -56,38 +78,45 @@ export class RechercheComponent {
     public authService: AuthService,
     public fetchService: FetchService,
     private route: ActivatedRoute,
-  ) {
+  ) {}
+
+  ngOnInit() {
+    
+    this.fetchService.getMesBouteilles().subscribe((data: any) => {
+      this.listeMesBouteilles = data.data;
+      for (let i = 0; i < this.listeMesBouteilles.length; i++) {
+        if (this.listeMesBouteilles[i].nom == null) {
+          this.listeMesBouteilles[i].nom = this.listeMesBouteilles[i].nom_bouteillePerso
+        }
+        if (this.listeMesBouteilles[i].type_vino_name == null) {
+          this.listeMesBouteilles[i].type_vino_name = this.listeMesBouteilles[i].type_mes_name
+        }
+        if (this.listeMesBouteilles[i].pays == null) {
+          this.listeMesBouteilles[i].pays = this.listeMesBouteilles[i].pays_bouteillePerso
+        }
+        if (this.listeMesBouteilles[i].prix_saq == null) {
+          this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_bouteillePerso
+        }else{
+          if (this.listeMesBouteilles[i].prix_bouteillePerso == null) {
+            this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_saq;
+          }
+        }
+      }
+      console.log(this.listeMesBouteilles);
+    });
+
+
+    
 
   }
 
-  ngOnInit() {
-  this.fetchService.getMesBouteilles().subscribe((data: any) => {
-    this.listeMesBouteilles = data.data;
-    for (let i = 0; i < this.listeMesBouteilles.length; i++) {
-      if (this.listeMesBouteilles[i].nom == null) {
-        this.listeMesBouteilles[i].nom = this.listeMesBouteilles[i].nom_bouteillePerso
-      }
-      if (this.listeMesBouteilles[i].type_vino_name == null) {
-        this.listeMesBouteilles[i].type_vino_name = this.listeMesBouteilles[i].type_mes_name
-      }
-      if (this.listeMesBouteilles[i].pays == null) {
-        this.listeMesBouteilles[i].pays = this.listeMesBouteilles[i].pays_bouteillePerso
-      }
-      if (this.listeMesBouteilles[i].prix_saq == null) {
-        this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_bouteillePerso
-      }else{
-        if (this.listeMesBouteilles[i].prix_bouteillePerso == null) {
-          this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_saq;
-        }
-      }
-    }
-    console.log(this.listeMesBouteilles);
-  });
 
 
-  
+  resetData() {
+    this.filteredData = [];
+    this.searchTerm="";
+  }
 
-}
 
   filterData(searchTerm: string) {
     console.log(searchTerm);
@@ -124,6 +153,7 @@ export class RechercheComponent {
   }
   
   filtreUltime() {
+    
     if ((this.minPrice && this.maxPrice) && this.selectedWinePays.length === 0 && this.selectedWineTypes.size === 0){
       this.filteredData = this.listeMesBouteilles.filter((bouteille: any) => bouteille.prix >= this.minPrice && bouteille.prix <= this.maxPrice)
       console.log(this.filteredData);

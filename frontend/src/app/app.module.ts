@@ -25,15 +25,22 @@ import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-m
 import { SpinnerComponent } from './spinner/spinner.component';
 import { FooterComponent } from './footer/footer.component';
 
+import Quagga from 'quagga';
+
+
 // import { ServiceWorkerModule } from '@angular/service-worker';
 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { environment } from '../environments/environment';
+
+import { ScannerComponent } from './scanner/scanner.component';
+
 import { ArchiveComponent } from './archive/archive.component';
 import { DetailBouteilleComponent } from './detail-bouteille/detail-bouteille.component';
 import { NotesComponent } from './notes/notes.component';
 import { CommentaireComponent } from './commentaire/commentaire.component';
+
 
 
 
@@ -64,10 +71,14 @@ import { CommentaireComponent } from './commentaire/commentaire.component';
     SpinnerComponent,
 
     FooterComponent,
+
+    ScannerComponent,
+
       ArchiveComponent,
       DetailBouteilleComponent,
       NotesComponent,
       CommentaireComponent,
+
 
 
 
@@ -92,8 +103,8 @@ import { CommentaireComponent } from './commentaire/commentaire.component';
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptor,
       multi: true,
-      
     },
+    { provide: Quagga, useValue: Quagga },
   ],
   bootstrap: [AppComponent],
 })
