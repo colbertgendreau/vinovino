@@ -14,7 +14,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Ibouteillecellier } from '../ibouteille-cellier';
 import { ICellier } from '../icellier';
 
-
+import { ScannerComponent } from '../scanner/scanner.component';
 
 
 // User interface
@@ -44,6 +44,7 @@ export class AjoutBouteilleComponent implements OnInit {
   isDataSelected: boolean;
   bouteilles: Array<Ibouteillecellier>;
   bouteillePlusUn: Imesbouteilles;
+  scannedBouteille: any;
 
   choixPays: string[] = ['Autre', 'Afrique du Sud', 'Allemagne', 'Argentine', 'Arménie', 'Australie', 'Autriche', 'Bulgarie', 'Brésil', 'Canada', 'Chili', 'Chine', 'Croatie', 'Espagne', 'États-Unis', 'France', 'Géorgie', 'Grèce', 'Hongrie', 'Israël', 'Italie', 'Liban', 'Luxembourg', 'Maroc', 'Mexique', 'Moldavie', 'Nouvelle-Zélande', 'Portugal', 'République Tchèque', 'Roumanie', 'Slovénie', 'Suisse', 'Uruguay'];
 
@@ -138,6 +139,24 @@ export class AjoutBouteilleComponent implements OnInit {
 
   onInputChange() {
     this.isDataSelected = false;
+
+  }
+
+
+  handleScan(scannedBouteille: string) {
+    this.scannedBouteille = scannedBouteille;
+    console.log(this.scannedBouteille);
+    this.ajouterBouteilleForm.patchValue({
+      id: this.scannedBouteille.id,
+      nom: this.scannedBouteille.nom,
+      type: this.scannedBouteille.type,
+      format: this.scannedBouteille.format,
+      prix_saq: this.scannedBouteille.prix_saq,
+      pays: this.scannedBouteille.pays,
+      description: this.scannedBouteille.description,
+      quantite: 1,
+    //   id_cellier: bouteille.id_cellier,
+    });
 
   }
 

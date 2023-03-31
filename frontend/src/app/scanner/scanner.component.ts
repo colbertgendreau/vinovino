@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnDestroy, ViewChild, Output, EventEmitter } from '@angular/core';
 import { Imesbouteilles } from '../imesbouteilles';
 import { environment } from '../../environments/environment';
 import { FetchService } from '../fetch.service';
@@ -16,7 +16,9 @@ export class ScannerComponent implements OnDestroy {
   isScanning = false;
   uneBouteille: Imesbouteilles;
   private stream: MediaStream | null = null;
-  iconeCamera =  environment.baseImg + 'icones/camera.png';
+  iconeCamera =  environment.baseImg + 'icones/barcode-scan.png';
+  @Output() scanned = new EventEmitter<any>();
+  showVideo = false;
 
   constructor(
     public fetchService: FetchService,
@@ -24,6 +26,7 @@ export class ScannerComponent implements OnDestroy {
     ) {}
 
   startScan(): void {
+    this.showVideo = true;
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ video: true })
         .then((stream) => {
@@ -73,7 +76,9 @@ export class ScannerComponent implements OnDestroy {
   }
 
   stopScan(): void {
+    
     if (this.isScanning) {
+      this.showVideo = false;
       Quagga.stop();
       this.isScanning = false;
       if (this.stream) {
@@ -103,11 +108,16 @@ export class ScannerComponent implements OnDestroy {
 
     this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
       this.uneBouteille = data.data;
-      console.log(this.uneBouteille);
-
-      if (this.uneBouteille && this.uneBouteille.vino__bouteille_id) {
-        this.router.navigate(['/profil/bouteille', this.uneBouteille.vino__bouteille_id]);
+      if(!this.uneBouteille){
+        this.startScan();
       }
+      console.log(this.uneBouteille);
+      
+      this.scanned.emit(this.uneBouteille);
+
+      // if (this.uneBouteille && this.uneBouteille.vino__bouteille_id) {
+      //   this.router.navigate(['/profil/bouteille', this.uneBouteille.vino__bouteille_id]);
+      // }
 
 
 

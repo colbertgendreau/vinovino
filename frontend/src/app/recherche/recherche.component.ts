@@ -12,7 +12,7 @@ import { Ilistemesbouteilles } from '../ilistemesbouteilles';
 import { Imesbouteilles } from '../imesbouteilles';
 import { environment } from '../../environments/environment';
 
-
+import { ScannerComponent } from '../scanner/scanner.component';
 
 @Component({
   selector: 'app-recherche',
@@ -36,11 +36,29 @@ export class RechercheComponent {
   minPrice = '';
   maxPrice = '';
   nombreDeResultat: number;
-  
+  scannedBouteille: any;
 
   
-  
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
+
+  handleScan(scannedBouteille: string) {
+    this.scannedBouteille = scannedBouteille;
+  
+    console.log(this.scannedBouteille);
+  
+    const matchingBouteille = this.listeMesBouteilles.find(
+      item => item.id === this.scannedBouteille.id
+    );
+  
+    if (matchingBouteille) {
+      console.log(matchingBouteille);
+      
+      this.router.navigate(['/profil/bouteille', matchingBouteille.id_supreme]);
+    } else {
+      console.error('Bouteille not found in listeMesBouteilles');
+      // Show an error message to the user here
+    }
+  }
 
   isSelected(type: string): boolean {
     return this.selectedWineTypes.has(type);
@@ -100,7 +118,6 @@ export class RechercheComponent {
   }
 
 
-
   filterData(searchTerm: string) {
     console.log(searchTerm);
     
@@ -136,8 +153,6 @@ export class RechercheComponent {
   }
   
   filtreUltime() {
-    
-    
     
     if ((this.minPrice && this.maxPrice) && this.selectedWinePays.length === 0 && this.selectedWineTypes.size === 0){
       this.filteredData = this.listeMesBouteilles.filter((bouteille: any) => bouteille.prix >= this.minPrice && bouteille.prix <= this.maxPrice)

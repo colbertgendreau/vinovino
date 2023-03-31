@@ -1,11 +1,14 @@
 <section class="recherche">
     <h3>Rechercher dans vos celliers</h3>
+    
     <div class="recherche_filter">
         <div class="filter_data">
             <input class="recherche-input" type="search" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)"
                 placeholder="Recherche dans vos celliers" />
             <input class="reset_btn" type="reset" value="X" alt="Clear the search form" (click)="resetData()">
+            <app-scanner (scanned)="handleScan($event)"></app-scanner>
         </div>
+        
 
     <div *ngIf="!searchTerm" class="div_filtre">
         <div class="or-line">
@@ -122,7 +125,6 @@
         </article>
     </div>
 
-   
 
 </section>
 <app-footer></app-footer>
