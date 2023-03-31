@@ -111,7 +111,7 @@ class VinovinoController
         if($count == 0){
             DB::table('progres__details')
                 ->where('temps_debut', $resultat[0]->temps_debut)
-                ->updateOrInsert(['nb_pages_completees' => $resultat[0]->nb_pages_completees]);
+                ->updateOrInsert(['nb_pages_completees' => $resultat[0]->nb_pages_totales]);
         }
         return response()->json([
             'message' => 'Vinovino pourcentage details',
