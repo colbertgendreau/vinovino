@@ -64,7 +64,7 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     MatDividerModule,
     MatProgressBarModule,
     MatBadgeModule,
-    ChartModule
+    ChartModule,
   ],
   providers: [
     MatSnackBarModule,
