@@ -99,7 +99,8 @@ class CellierController extends Controller
             'type_vino.type AS type_vino_name',
             'type_mes.id AS type_mes_id',
             'type_mes.type AS type_mes_name',
-            'celliers.nom AS cellier_nom'
+            'celliers.nom AS cellier_nom',
+            
         )
 
         ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')

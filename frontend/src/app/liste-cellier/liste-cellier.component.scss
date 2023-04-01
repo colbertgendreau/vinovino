@@ -109,7 +109,9 @@
         justify-content: space-between;
         align-items: center;
         padding: var(--small);
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        border: 3px rgb(235, 235, 235) solid;
+
+        // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     .unCellier {
       text-decoration: none;

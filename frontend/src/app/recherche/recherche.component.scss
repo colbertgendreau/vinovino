@@ -16,6 +16,7 @@
       border: 1px solid var(--secondaire);
       height: 30px;
       padding-inline: var(--small);
+      width: 100%;
     }
 
     .or-line {
@@ -341,5 +342,48 @@
   margin-top: 5px;
 }
 
+.reset_btn {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid var(--secondaire);
+  background: none;
+  // color: var(--secondaire)
+  width: 25px;
+  
+}
+
+// .reset_btn:hover {
+//   height: 30px;
+//   border-radius: 5px;
+//   border: 1px solid var(--secondaire);
+//   background: none;
+//   // color: var(--secondaire)
+//   width: 25px;
+  
+// }
+
+.filter_data{
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  gap: 10px;
+}
+
+.div_filtre{
+
+}
 
 
+app-scanner {
+  width: fit-content;
+}
+
+.app_scanner {
+  margin-top: var(--big);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+
+}

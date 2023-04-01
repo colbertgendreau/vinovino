@@ -17,8 +17,9 @@
     <a href="{{ uneBouteille?.url_saq }}">Fiche SAQ</a>
 
     <app-notes [uneBouteille]="uneBouteille"></app-notes>
+    <app-commentaire></app-commentaire>
 
 
 
 </section>
-<app-footer class="footerUneBouteille"></app-footer>
+<app-footer [id]="uneBouteille?.celliers_id"></app-footer>

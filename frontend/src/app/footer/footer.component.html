@@ -1,18 +1,25 @@
 <section class="footer">
-
-    <div class="back" (click)="back()"></div>
+    <!--
+        <div class="back" (click)="back()"></div>
+    -->
+    <a class="boutton_footer" routerLink="/profil/liste-cellier"><div class="icone_house icone"></div><span>Accueil</span></a>
     
-    <div *ngIf="pageActuelle == 'cellier'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"><div class="icone-plus"></div></div></div>
-    <div *ngIf="pageActuelle == 'recherche'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"><div class="icone-plus"></div></div></div>
-    <div *ngIf="pageActuelle == 'listeCellier'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"><div class="icone-plus"></div></div></div>
+    <a class="boutton_footer" routerLink="#"><div class="icone-scan icone"></div><span>Scan?</span></a>
+    
+    <div class="ajouter boutton_footer" (click)="ajouter()"><div class="icone-bouteille_footer icone"><div class="icone-plus"></div></div><span>Ajout</span></div>
+
     <!-- 
+    <div *ngIf="pageActuelle == 'cellier'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille icone"><div class="icone-plus"></div></div><div>Ajout</div></div>
+    <div *ngIf="pageActuelle == 'recherche'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille icone"><div class="icone-plus"></div></div><div>Ajout</div></div>
+    <div *ngIf="pageActuelle == 'listeCellier'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille icone"><div class="icone-plus"></div></div><div>Ajout</div></div>
     <div *ngIf="pageActuelle == 'ajoutBouteille'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"><div class="icone-plus"></div></div></div>
     <div *ngIf="pageActuelle == 'modifBouteille'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"></div></div>
     <div *ngIf="pageActuelle == 'recherche'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille"></div></div>
     <div *ngIf="pageActuelle == 'ajoutCellier'" class="ajouter" (click)="ajouter()"><div class="icone-cellier"></div></div>
     <div *ngIf="pageActuelle == 'modifCellier'" class="ajouter" (click)="ajouter()"><div class="icone-cellier"></div></div>
     -->
-        
+
+    <a class="boutton_footer" routerLink="#"><div class="icone icone-bouteilles"></div><span>Bouteilles?</span></a>
     
-    <div class="goUp" (click)="goUp()"></div>
+    <div class="boutton_footer" (click)="goUp()"><div class="goUp icone"></div><span>Haut</span></div>
 </section>

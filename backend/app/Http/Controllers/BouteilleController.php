@@ -88,7 +88,6 @@ class BouteilleController extends Controller
                 'format_bouteillePerso' => $request->format,
                 'prix_bouteillePerso' => $request->prix_saq,
                 'quantite_bouteillePerso' => $request->quantite,
-                'id_cellier' => $request->id_cellier,
             ]);
 
             $res = Bouteille::create([
@@ -100,7 +99,7 @@ class BouteilleController extends Controller
         } else {
             // Handle the case where the ID is not empty
             $res = Bouteille::create([
-                'celliers_id' => $request->id_cellier,
+                'celliers_id' => $request->celliers_id,
                 // 'celliers_id' => $request->celliers_id,
                 'id_bouteille' => $request->id,
                 'quantite' => $request->quantite,
@@ -173,6 +172,7 @@ class BouteilleController extends Controller
             if ($request->id == '') {
                 $bouteille->update([
                     'quantite' => $request->quantite_bouteillePerso,
+                    'celliers_id' => $request->celliers_id,
                 ]);
             } else {
                 $bouteille->update([
@@ -250,4 +250,26 @@ class BouteilleController extends Controller
     
         return ['data' => $bouteille];
     }
+
+
+
+
+      /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request  $bouteille
+     * @return \Illuminate\Http\Response 
+     */
+    public function ajoutCommentaire(Request $request, Bouteille $bouteille)
+    {
+        $commentaires = $request->input('commentaires');
+    
+        $bouteille->update([
+            'commentaires' => $commentaires,
+        ]);
+    
+        return ['data' => $bouteille];
+    }
 }
+
