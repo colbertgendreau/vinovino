@@ -57,6 +57,7 @@ export class ScannerComponent implements OnDestroy {
               constraints: {
                 width: 640,
                 height: 480,
+                facingMode: 'environment',
                 deviceId: backCameraList[backCameraList.length - 1]['deviceId']
               },
               area: {
@@ -151,9 +152,9 @@ export class ScannerComponent implements OnDestroy {
     navigator.mediaDevices.enumerateDevices()
       .then(function(devices) {
         devices.forEach(function(device) {
-//alert('device - ' + JSON.stringify(device));
+alert('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
-//alert('Back found! - ' + device.label);
+alert('Back found! - ' + device.label);
             backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }
         });
