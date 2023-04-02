@@ -12,5 +12,9 @@
 <link rel="stylesheet" href="/assets/admin/styles.8722c34d6973d365.css"></head>
 <body class="mat-typography">
   <app-root></app-root>
+<<<<<<< Updated upstream
 <script src="/assets/admin/runtime.c90fa6915af5f1a8.js" type="module"></script><script src="/assets/admin/polyfills.cf31124f1f3fa6ac.js" type="module"></script><script src="/assets/admin/scripts.e27f5a0a1881fa6c.js" defer></script><script src="/assets/admin/vendor.ed83dd5bb495621d.js" type="module"></script><script src="/assets/admin/main.c75bdf78f973c3c3.js" type="module"></script></body>
+=======
+<script src="/assets/admin/runtime.67a21befb7c53c7b.js" type="module"></script><script src="/assets/admin/polyfills.cf31124f1f3fa6ac.js" type="module"></script><script src="/assets/admin/vendor.228dc94bb6ce92bb.js" type="module"></script><script src="/assets/admin/main.0d6a2220aaae2092.js" type="module"></script></body>
+>>>>>>> Stashed changes
 </html>

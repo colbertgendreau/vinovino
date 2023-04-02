@@ -1,0 +1,21 @@
+Create a new Layout
+
+1. Create the first layout
+To create a new layout in Angular:
+ng b c layouts/sidebar
+This will create a folder called layouts
+
+We then need to create its module
+ng g m layout/sidebar
+
+We then create the very first component
+ng g c modules/dashboard
+
+Create a component for the dashboards page
+
+3.- Use the first layout as a parent route component in
+app-routing.module.ts and the dashboard as a child component
+
+
+On va afficher le top 100
+Les cepages les plus aimes des gens
