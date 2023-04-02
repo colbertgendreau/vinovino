@@ -26,7 +26,7 @@ export class ScannerComponent implements OnDestroy {
     private router: Router
     ) {}
 
-  startScan(): void {
+  startScanTest(): void {
     this.showVideo = true;
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ video: true })
@@ -77,7 +77,7 @@ export class ScannerComponent implements OnDestroy {
   }
 
   stopScan(): void {
-    
+
     if (this.isScanning) {
       this.showVideo = false;
       Quagga.stop();
@@ -104,8 +104,8 @@ export class ScannerComponent implements OnDestroy {
     // }
     console.log(result.codeResult.code);
     this.stopScan();
-    
-   
+
+
 
     this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
       this.uneBouteille = data.data;
@@ -113,7 +113,7 @@ export class ScannerComponent implements OnDestroy {
         this.startScan();
       }
       console.log(this.uneBouteille);
-      
+
       this.scanned.emit(this.uneBouteille);
 
       // if (this.uneBouteille && this.uneBouteille.vino__bouteille_id) {
@@ -127,10 +127,82 @@ export class ScannerComponent implements OnDestroy {
     });
 
 
-    
+
   }
 
-  
+  startScan(): void {
+    let backCameraList = [];
+    navigator.mediaDevices.enumerateDevices()
+      .then(function(devices) {
+        devices.forEach(function(device) {
+// alert('device - ' + JSON.stringify(device));
+          if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
+// alert('Back found! - ' + device.label);
+            backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+          }
+        });
+
+        // alert('backCameraList: ' + JSON.stringify(backCameraList));
+        // alert('arrayLength: ' + backCameraList.length);
+        // alert('finalBackCamera: ' + JSON.stringify(backCameraList[backCameraList.length - 1], null, 2));
+        // alert('finalBackCameraId' + backCameraList[backCameraList.length - 1]['deviceId']);
+
+        if (backCameraList.length > 0 && backCameraList[backCameraList.length - 1]['deviceId'] !== undefined) {
+          Quagga.init({
+            locator: {
+              patchSize: 'medium',
+              halfSample: false,
+            },
+            numOfWorkers: 1,
+            locate: true,
+            inputStream: {
+              type: 'LiveStream',
+              constraints: {
+                width: 640,
+                height:  480,
+                deviceId: backCameraList[backCameraList.length - 1]['deviceId']
+              },
+              frequency: 10,
+              singleChannel: true
+            }
+          }, (err: any) => {
+            if (err) {
+              return console.error(err);
+            }
+            Quagga.start();
+          });
+        } else {
+          Quagga.init({
+            locator: {
+              patchSize: 'medium',
+              halfSample: false,
+            },
+            numOfWorkers: 1,
+            locate: true,
+            inputStream: {
+              type: 'LiveStream',
+              constraints: {
+                width: 640,
+                height:  480,
+                facingMode: 'environment'
+              },
+              frequency: 10,
+              singleChannel: true
+            }
+          }, (err: any) => {
+            // if (err) {
+            //   return console.error(err);
+            // }
+            Quagga.start();
+          });
+        }
+
+      })
+      .catch(function(err) {
+        console.log(err.name + ': ' + err.message);
+      });
+  }
+
 
   ngAfterViewInit(): void {
     Quagga.onDetected(this.handleDecode.bind(this));
