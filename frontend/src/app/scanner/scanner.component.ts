@@ -132,6 +132,7 @@ export class ScannerComponent implements OnDestroy {
 
   startScan(): void {
     this.showVideo = true;
+
     let backCameraList = [];
     navigator.mediaDevices.enumerateDevices()
       .then(function(devices) {
@@ -171,6 +172,7 @@ export class ScannerComponent implements OnDestroy {
               return console.error(err);
             }
             Quagga.start();
+            this.isScanning = true;
           });
         } else {
           Quagga.init({
@@ -195,6 +197,7 @@ export class ScannerComponent implements OnDestroy {
             //   return console.error(err);
             // }
             Quagga.start();
+            this.isScanning = true;
           });
         }
 
