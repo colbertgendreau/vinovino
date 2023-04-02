@@ -40,7 +40,6 @@ import { ArchiveComponent } from './archive/archive.component';
 import { DetailBouteilleComponent } from './detail-bouteille/detail-bouteille.component';
 import { NotesComponent } from './notes/notes.component';
 import { CommentaireComponent } from './commentaire/commentaire.component';
-import { IonicModule } from '@ionic/angular';
 
 
 
@@ -92,7 +91,6 @@ import { IonicModule } from '@ionic/angular';
     FormsModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
-    IonicModule.forRoot(),
     // ServiceWorkerModule.register('ngsw-worker.js', {
     //   enabled: environment.production,
     //   // Register the ServiceWorker as soon as the application is stable

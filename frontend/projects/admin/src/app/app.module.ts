@@ -32,6 +32,10 @@ import { StatistiquesComponent } from './components/statistiques/statistiques.co
 import { ChartModule } from 'angular-highcharts';
 import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
+
+import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
+//import { SafePipe } from './liste-catalogue/safe.pipe';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -65,6 +69,8 @@ import { SidebarComponent } from './layouts/sidebar/sidebar.component';
     MatProgressBarModule,
     MatBadgeModule,
     ChartModule,
+    BrowserModule,
+    NgxScannerQrcodeModule
   ],
   providers: [
     MatSnackBarModule,
