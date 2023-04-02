@@ -151,30 +151,76 @@ alert('Back found! - ' + device.label);
 
         console.log(backCameraList);
         if (backCameraList.length > 0 && backCameraList[backCameraList.length - 1]['deviceId'] !== undefined) {
-          Quagga.init({
-            locator: {
-              patchSize: 'medium',
-              halfSample: false,
-            },
-            numOfWorkers: 1,
-            locate: true,
-            inputStream: {
-              type: 'LiveStream',
-              constraints: {
-                width: 640,
-                height:  480,
-                deviceId: backCameraList[backCameraList.length - 1]['deviceId']
-              },
-              frequency: 10,
-              singleChannel: true
-            }
-          }, (err: any) => {
-            if (err) {
-              return console.error(err);
-            }
-            Quagga.start();
+          navigator.mediaDevices.getUserMedia({ video: true })
+        .then((stream) => {
+            this.stream = stream;
+            this.video.nativeElement.srcObject = stream;
+            this.video.nativeElement.play();
             this.isScanning = true;
-          });
+            Quagga.init({
+              numOfWorkers: 1,
+              inputStream: {
+                type: 'LiveStream',
+                target: this.video.nativeElement,
+                constraints: {
+                  width: 640,
+                  height:  480,
+                  deviceId: backCameraList[backCameraList.length - 1]['deviceId']
+                },
+                frequency: 10,
+                area: {
+                  top: "25%",
+                  right: "10%",
+                  left: "10%",
+                  bottom: "25%"
+                },
+                singleChannel: false
+              },
+              decoder: {
+                readers : ["code_128_reader"]
+              },
+              locate: true,
+              locator: {
+                halfSample: true,
+                patchSize: "large"
+              }
+            }, (err) => {
+              if (err) {
+                console.error(err);
+                return;
+              }
+              Quagga.start();
+              this.isScanning = true;
+            });
+          })
+
+          //
+          //
+          //
+          // Quagga.init({
+          //   locator: {
+          //     patchSize: 'medium',
+          //     halfSample: false,
+          //   },
+          //   numOfWorkers: 1,
+          //   locate: true,
+          //   inputStream: {
+          //     type: 'LiveStream',
+          //     constraints: {
+          //       width: 640,
+          //       height:  480,
+          //       deviceId: backCameraList[backCameraList.length - 1]['deviceId']
+          //     },
+          //     frequency: 10,
+          //     singleChannel: true
+          //   }
+          // }, (err: any) => {
+          //   if (err) {
+          //     return console.error(err);
+          //   }
+          //   Quagga.start();
+          //   this.isScanning = true;
+          // });
         } else {
           Quagga.init({
             locator: {
