@@ -28,12 +28,13 @@ export class ScannerComponent implements OnDestroy {
 
   startScan(): void {
     this.showVideo = true;
-
+    console.log('startScan()');
     let backCameraList = [];
     navigator.mediaDevices.enumerateDevices()
       .then(function(devices) {
         devices.forEach(function(device) {
           alert('device - ' + JSON.stringify(device));
+          console.log('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
             alert('Back found! - ' + device.label);
             backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
