@@ -28,74 +28,76 @@ export class ScannerComponent implements OnDestroy {
 
   startScan(): void {
     this.showVideo = true;
-    console.log('startScan()');
+
     let backCameraList = [];
     navigator.mediaDevices.enumerateDevices()
       .then(function(devices) {
         devices.forEach(function(device) {
-          alert('device - ' + JSON.stringify(device));
           console.log('device - ' + JSON.stringify(device));
+          alert('device - ' + JSON.stringify(device));alert('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
+            console.log('Back found! - ' + device.label);
             alert('Back found! - ' + device.label);
             backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
-
-            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-              console.log('backCameraList: ' + JSON.stringify(backCameraList));
-              navigator.mediaDevices.getUserMedia({video: {
-                  deviceId: { exact: backCameraList[backCameraList.length - 1]['deviceId'] },
-                  facingMode: { exact: "environment" }
-                } })
-                .then((stream) => {
-                  this.stream = stream;
-                  this.video.nativeElement.srcObject = stream;
-                  this.video.nativeElement.play();
-                  this.isScanning = true;
-                  Quagga.init({
-                    inputStream: {
-                      name: "Live",
-                      type: "LiveStream",
-                      target: this.video.nativeElement,
-                      constraints: {
-                        width: 640,
-                        height: 480,
-                        facingMode: 'environment',
-                        deviceId: backCameraList[backCameraList.length - 1]['deviceId']
-                      },
-                      area: {
-                        top: "25%",
-                        right: "10%",
-                        left: "10%",
-                        bottom: "25%"
-                      },
-                      singleChannel: false // true: only the red color-channel is read
-                    },
-                    decoder: {
-                      readers : ["code_128_reader"]
-                    },
-                    locate: true,
-                    locator: {
-                      halfSample: true,
-                      patchSize: "large"
-                    }
-                  }, (err) => {
-                    if (err) {
-                      console.error(err);
-                      return;
-                    }
-                    Quagga.start();
-                    this.isScanning = true;
-                  });
-                })
-                .catch((err) => {
-                  console.error(err);
-                });
-            }
-
           }
         });
-      });
-
-
+      }).then(
+        () => {
+          console.log('backCameraList: ' + JSON.stringify(backCameraList));
+          console.log('aqui');
+          if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            console.log('backCameraList: ' + JSON.stringify(backCameraList));
+            navigator.mediaDevices.getUserMedia({video: {
+                deviceId: { exact: backCameraList[backCameraList.length - 1]['deviceId'] },
+                facingMode: { exact: "environment" }
+              } })
+              .then((stream) => {
+                this.stream = stream;
+                this.video.nativeElement.srcObject = stream;
+                this.video.nativeElement.play();
+                this.isScanning = true;
+                Quagga.init({
+                  inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: this.video.nativeElement,
+                    constraints: {
+                      width: 640,
+                      height: 480,
+                      facingMode: 'environment',
+                      deviceId: backCameraList[backCameraList.length - 1]['deviceId']
+                    },
+                    area: {
+                      top: "25%",
+                      right: "10%",
+                      left: "10%",
+                      bottom: "25%"
+                    },
+                    singleChannel: false // true: only the red color-channel is read
+                  },
+                  decoder: {
+                    readers : ["code_128_reader"]
+                  },
+                  locate: true,
+                  locator: {
+                    halfSample: true,
+                    patchSize: "large"
+                  }
+                }, (err) => {
+                  if (err) {
+                    console.error(err);
+                    return;
+                  }
+                  Quagga.start();
+                  this.isScanning = true;
+                });
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          }
+        }
+    );
 
   }
 
@@ -157,10 +159,6 @@ export class ScannerComponent implements OnDestroy {
     this.showVideo = true;
 
     let backCameraList = [];
-    console.log(
-
-      navigator.mediaDevices.enumerateDevices()
-    )
     navigator.mediaDevices.enumerateDevices()
       .then(function(devices) {
         devices.forEach(function(device) {
