@@ -84,7 +84,7 @@ export class ScannerComponent implements OnDestroy {
             locate: true,
             locator: {
               halfSample: true,
-              patchSize: "large"
+              patchSize: "medium"
             }
           }, (err) => {
             if (err) {
