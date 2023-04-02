@@ -28,7 +28,7 @@ export class ScannerComponent implements OnDestroy {
 
   startScan(): void {
     this.showVideo = true;
-
+    con
     let backCameraList = [];
     navigator.mediaDevices.enumerateDevices()
       .then(function(devices) {
