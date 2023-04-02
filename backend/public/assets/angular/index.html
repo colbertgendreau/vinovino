@@ -21,5 +21,5 @@
 <body>
   <app-root>
   </app-root>
-<script src="/assets/angular/runtime.da6785960a1c21e7.js" type="module"></script><script src="/assets/angular/polyfills.12520353619540ef.js" type="module"></script><script src="/assets/angular/scripts.e27f5a0a1881fa6c.js" defer></script><script src="/assets/angular/vendor.f351b10fecd38553.js" type="module"></script><script src="/assets/angular/main.46a4ec6e377f69d6.js" type="module"></script></body>
+<script src="/assets/angular/runtime.da6785960a1c21e7.js" type="module"></script><script src="/assets/angular/polyfills.12520353619540ef.js" type="module"></script><script src="/assets/angular/scripts.e27f5a0a1881fa6c.js" defer></script><script src="/assets/angular/vendor.f351b10fecd38553.js" type="module"></script><script src="/assets/angular/main.9adfeb4480c1959d.js" type="module"></script></body>
 </html>
