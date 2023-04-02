@@ -137,18 +137,19 @@ export class ScannerComponent implements OnDestroy {
     navigator.mediaDevices.enumerateDevices()
       .then(function(devices) {
         devices.forEach(function(device) {
-// alert('device - ' + JSON.stringify(device));
+alert('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
-// alert('Back found! - ' + device.label);
+alert('Back found! - ' + device.label);
             backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }
         });
 
-        // alert('backCameraList: ' + JSON.stringify(backCameraList));
-        // alert('arrayLength: ' + backCameraList.length);
-        // alert('finalBackCamera: ' + JSON.stringify(backCameraList[backCameraList.length - 1], null, 2));
-        // alert('finalBackCameraId' + backCameraList[backCameraList.length - 1]['deviceId']);
+         alert('backCameraList: ' + JSON.stringify(backCameraList));
+         alert('arrayLength: ' + backCameraList.length);
+         alert('finalBackCamera: ' + JSON.stringify(backCameraList[backCameraList.length - 1], null, 2));
+         alert('finalBackCameraId' + backCameraList[backCameraList.length - 1]['deviceId']);
 
+        console.log(backCameraList);
         if (backCameraList.length > 0 && backCameraList[backCameraList.length - 1]['deviceId'] !== undefined) {
           Quagga.init({
             locator: {
