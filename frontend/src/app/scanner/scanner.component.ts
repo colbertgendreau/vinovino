@@ -28,6 +28,7 @@ export class ScannerComponent implements OnDestroy {
 
   startScan(): void {
     this.showVideo = true;
+
     console.log('apenas');
     let backCameraList = [];
     navigator.mediaDevices.enumerateDevices()
@@ -148,85 +149,6 @@ export class ScannerComponent implements OnDestroy {
 
 
   }
-
-  startScanTest(): void {
-    this.showVideo = true;
-
-    let backCameraList = [];
-    navigator.mediaDevices.enumerateDevices()
-      .then(function(devices) {
-        devices.forEach(function(device) {
-alert('device - ' + JSON.stringify(device));
-          if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
-alert('Back found! - ' + device.label);
-            backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
-          }
-        });
-
-         alert('backCameraList: ' + JSON.stringify(backCameraList));
-         alert('arrayLength: ' + backCameraList.length);
-         alert('finalBackCamera: ' + JSON.stringify(backCameraList[backCameraList.length - 1], null, 2));
-         alert('finalBackCameraId' + backCameraList[backCameraList.length - 1]['deviceId']);
-
-        console.log(backCameraList);
-        if (backCameraList.length > 0 && backCameraList[backCameraList.length - 1]['deviceId'] !== undefined) {
-          Quagga.init({
-            locator: {
-              patchSize: 'medium',
-              halfSample: false,
-            },
-            numOfWorkers: 1,
-            locate: true,
-            inputStream: {
-              type: 'LiveStream',
-              constraints: {
-                width: 640,
-                height:  480,
-                deviceId: backCameraList[backCameraList.length - 1]['deviceId']
-              },
-              frequency: 10,
-              singleChannel: true
-            }
-          }, (err: any) => {
-            if (err) {
-              return console.error(err);
-            }
-            Quagga.start();
-            this.isScanning = true;
-          });
-        } else {
-          Quagga.init({
-            locator: {
-              patchSize: 'medium',
-              halfSample: false,
-            },
-            numOfWorkers: 1,
-            locate: true,
-            inputStream: {
-              type: 'LiveStream',
-              constraints: {
-                width: 640,
-                height:  480,
-                facingMode: 'environment'
-              },
-              frequency: 10,
-              singleChannel: true
-            }
-          }, (err: any) => {
-            // if (err) {
-            //   return console.error(err);
-            // }
-            Quagga.start();
-            this.isScanning = true;
-          });
-        }
-
-      })
-      .catch(function(err) {
-        console.log(err.name + ': ' + err.message);
-      });
-  }
-
 
   ngAfterViewInit(): void {
     Quagga.onDetected(this.handleDecode.bind(this));
