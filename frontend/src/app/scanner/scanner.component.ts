@@ -43,7 +43,9 @@ export class ScannerComponent implements OnDestroy {
 
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      navigator.mediaDevices.getUserMedia({ video: { facingMode: { exact: "environment" },
+      navigator.mediaDevices.getUserMedia({video: {
+          deviceId: { exact: backCameraList[backCameraList.length - 1]['deviceId'] },
+          facingMode: { exact: "environment" }
         } })
         .then((stream) => {
           this.stream = stream;
