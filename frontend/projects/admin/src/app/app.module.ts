@@ -30,10 +30,11 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
 import { StatistiquesComponent } from './components/statistiques/statistiques.component';
 import { ChartModule } from 'angular-highcharts';
-import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
 
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
+import { DefaultComponent } from './layouts/default/default.component';
+import { DashboardComponent } from './modules/dashboard/dashboard.component';
 //import { SafePipe } from './liste-catalogue/safe.pipe';
 
 @NgModule({
@@ -46,7 +47,8 @@ import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
     ModalComponent,
     ConnexionAdminComponent,
     StatistiquesComponent,
-    SidebarComponent,
+    DefaultComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
