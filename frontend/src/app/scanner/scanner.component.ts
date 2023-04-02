@@ -26,8 +26,22 @@ export class ScannerComponent implements OnDestroy {
     private router: Router
     ) {}
 
-  startScanTest(): void {
+  startScan(): void {
     this.showVideo = true;
+
+    let backCameraList = [];
+    navigator.mediaDevices.enumerateDevices()
+      .then(function(devices) {
+        devices.forEach(function(device) {
+          alert('device - ' + JSON.stringify(device));
+          if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
+            alert('Back found! - ' + device.label);
+            backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+          }
+        });
+      });
+
+
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({ video: true })
         .then((stream) => {
@@ -43,7 +57,7 @@ export class ScannerComponent implements OnDestroy {
               constraints: {
                 width: 640,
                 height: 480,
-                facingMode: "environment"
+                deviceId: backCameraList[backCameraList.length - 1]['deviceId']
               },
               area: {
                 top: "25%",
@@ -130,16 +144,16 @@ export class ScannerComponent implements OnDestroy {
 
   }
 
-  startScan(): void {
+  startScanTest(): void {
     this.showVideo = true;
 
     let backCameraList = [];
     navigator.mediaDevices.enumerateDevices()
       .then(function(devices) {
         devices.forEach(function(device) {
-alert('device - ' + JSON.stringify(device));
+//alert('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
-alert('Back found! - ' + device.label);
+//alert('Back found! - ' + device.label);
             backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }
         });
@@ -151,76 +165,30 @@ alert('Back found! - ' + device.label);
 
         console.log(backCameraList);
         if (backCameraList.length > 0 && backCameraList[backCameraList.length - 1]['deviceId'] !== undefined) {
-          navigator.mediaDevices.getUserMedia({ video: true })
-        .then((stream) => {
-            this.stream = stream;
-            this.video.nativeElement.srcObject = stream;
-            this.video.nativeElement.play();
+          Quagga.init({
+            locator: {
+              patchSize: 'medium',
+              halfSample: false,
+            },
+            numOfWorkers: 1,
+            locate: true,
+            inputStream: {
+              type: 'LiveStream',
+              constraints: {
+                width: 640,
+                height:  480,
+                deviceId: backCameraList[backCameraList.length - 1]['deviceId']
+              },
+              frequency: 10,
+              singleChannel: true
+            }
+          }, (err: any) => {
+            if (err) {
+              return console.error(err);
+            }
+            Quagga.start();
             this.isScanning = true;
-            Quagga.init({
-              numOfWorkers: 1,
-              inputStream: {
-                type: 'LiveStream',
-                target: this.video.nativeElement,
-                constraints: {
-                  width: 640,
-                  height:  480,
-                  deviceId: backCameraList[backCameraList.length - 1]['deviceId']
-                },
-                frequency: 10,
-                area: {
-                  top: "25%",
-                  right: "10%",
-                  left: "10%",
-                  bottom: "25%"
-                },
-                singleChannel: false
-              },
-              decoder: {
-                readers : ["code_128_reader"]
-              },
-              locate: true,
-              locator: {
-                halfSample: true,
-                patchSize: "large"
-              }
-            }, (err) => {
-              if (err) {
-                console.error(err);
-                return;
-              }
-              Quagga.start();
-              this.isScanning = true;
-            });
-          })
-
-          //
-          //
-          //
-          // Quagga.init({
-          //   locator: {
-          //     patchSize: 'medium',
-          //     halfSample: false,
-          //   },
-          //   numOfWorkers: 1,
-          //   locate: true,
-          //   inputStream: {
-          //     type: 'LiveStream',
-          //     constraints: {
-          //       width: 640,
-          //       height:  480,
-          //       deviceId: backCameraList[backCameraList.length - 1]['deviceId']
-          //     },
-          //     frequency: 10,
-          //     singleChannel: true
-          //   }
-          // }, (err: any) => {
-          //   if (err) {
-          //     return console.error(err);
-          //   }
-          //   Quagga.start();
-          //   this.isScanning = true;
-          // });
+          });
         } else {
           Quagga.init({
             locator: {
