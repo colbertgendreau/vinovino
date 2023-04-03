@@ -1,16 +1,23 @@
+
 <section
 class="monCellier">
-<h1 class="titreCellier">{{ cellierNom }}</h1>
 
-<!--
-    grid list toggle de : www.syncfusion.com
--->
-<div id="view" class="e-btn-group">
-    <input type="radio" id="left" name="align" value="1" (click)="changeDisplay(1)"/>
-    <label class="e-btn" for="left">Grid View</label>
-    <input type="radio" id="right" name="align" value="2" (click)="changeDisplay(2)"/>
-    <label class="e-btn" for="right">List View</label>
-</div>
+<h1 class="titreCellier">{{ cellierNom }}
+    
+    <!--
+        grid list toggle de : www.syncfusion.com
+    -->
+    <div id="view" class="e-btn-group">
+        <label class="e-btn" for="right">
+            <input type="radio" id="right" name="align" value="2" (click)="changeDisplay(2)"/>
+            <div class="icone-list"></div>    
+        </label>
+        <label class="e-btn" for="left">
+            <input type="radio" id="left" name="align" value="1" checked (click)="changeDisplay(1)"/>
+            <div class="icone-grid"></div>    
+        </label>
+    </div>
+</h1>
 
 <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 

@@ -9,6 +9,7 @@ import { ModifCellierComponent } from '../modif-cellier/modif-cellier.component'
 import { ModifBouteilleComponent } from '../modif-bouteille/modif-bouteille.component';
 import { RechercheComponent } from '../recherche/recherche.component';
 import { DetailBouteilleComponent } from '../detail-bouteille/detail-bouteille.component';
+import { ArchiveComponent } from '../archive/archive.component';
 
 @Component({
   selector: 'app-footer',
@@ -61,6 +62,9 @@ export class FooterComponent {
       case DetailBouteilleComponent:
         this.pageActuelle = 'detailBouteille';
         break;
+      case ArchiveComponent:
+        this.pageActuelle = 'archive';
+        break;
       default:
         this.pageActuelle = 'autrePage';
         break;
@@ -69,28 +73,6 @@ export class FooterComponent {
 
   back() {
     this.router.navigateByUrl('profil/liste-cellier');
-    // if (this.pageActuelle == 'cellier') {
-    //   this.router.navigateByUrl('profil/liste-cellier');
-    // } else if (this.pageActuelle == 'listeCellier') {
-    //   console.log('doit etre grisé');
-    // } else if (this.pageActuelle == 'ajoutBouteille') {
-    //     if(this.idCellier == 'n') {
-    //         this.router.navigateByUrl('profil/liste-cellier');
-    //     } else { this.router.navigateByUrl('profil/cellier/' + this.idCellier); }
-    // } else if (this.pageActuelle == 'ajoutCellier') {
-    //   this.router.navigateByUrl('profil/liste-cellier');
-    // } else if (this.pageActuelle == 'modifCellier') {
-    //   this.router.navigateByUrl('profil/liste-cellier');
-    // } else if (this.pageActuelle == 'modifBouteille') {
-    //     this.router.navigateByUrl('profil/cellier/' + this.id);
-    // } else if (this.pageActuelle == 'recherche') {
-    //   this.router.navigateByUrl('profil/liste-cellier');
-    // } else if (this.pageActuelle == 'detailBouteille') {
-        //   this.router.navigateByUrl('profil/liste-cellier');
-    // } else if (this.pageActuelle == 'detailBouteille') {
-    //     this.router.navigateByUrl('profil/cellier/' + this.id);
-        // }
-  
 
     window.scroll({
       // pour scroll up
@@ -108,6 +90,9 @@ export class FooterComponent {
       this.btnAjouter = 'ajoutBouteille';
       this.router.navigateByUrl('profil/ajouter-bouteille/n');
     } else if (this.pageActuelle == 'recherche') {
+      this.btnAjouter = 'ajoutBouteille';
+      this.router.navigateByUrl('profil/ajouter-bouteille/n');
+    } else if (this.pageActuelle == 'archive') {
       this.btnAjouter = 'ajoutBouteille';
       this.router.navigateByUrl('profil/ajouter-bouteille/n');
     } else {
