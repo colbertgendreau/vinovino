@@ -64,7 +64,6 @@
     
 
   .cellierVide {
-    
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -83,7 +82,16 @@
     span {
         font-size: 80px;
     }
-}
+  }
+
+  input[type="checkbox"] {
+    border-radius: 5px;
+    border: 1px solid var(--secondaire);
+    width: var(--big);
+    height: var(--big);
+    margin-right: var(--smaller4);
+    accent-color: var(--secondaire);
+  }
 
 
   .bouteille {
