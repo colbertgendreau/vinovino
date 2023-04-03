@@ -15,7 +15,7 @@ const routes: Routes = [
   { path : "admin/ajout-admin", component : AjoutAdminComponent, canActivate:[GardienLoginAdminGuard]},
   { path : "admin/statistiques", component : StatistiquesComponent, canActivate:[GardienLoginAdminGuard]},
   {
-    path: 'dashboard',
+    path: 'admin/dashboard',
     component: DefaultComponent,
     canActivate:[GardienLoginAdminGuard]
   }
