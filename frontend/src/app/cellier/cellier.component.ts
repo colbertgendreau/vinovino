@@ -38,7 +38,7 @@ export class CellierComponent implements OnInit {
   spin: boolean = true;
   hide: boolean = true;
   pageCellier: boolean = true;
-  display: number = 2;
+  display: number = 1;
 
   counterValue: number = 0;
   quantite: number;
