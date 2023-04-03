@@ -103,7 +103,7 @@
                     <a *ngIf="uneBouteille.code_saq" href="{{uneBouteille.url_saq}}" target="_blank"><div class="saq-liste"></div></a>
                     <a href="#" class="saq-liste"></a>
                 </td>
-                <td><button class="btn-effacer-liste" (click)="openModal(uneBouteille.id_supreme)"></button></td>
+                <td><button class="btn-effacer-liste" (click)="openModalSupprimer(uneBouteille.id_supreme)"></button></td>
             </tr>
         </tbody>
     </table></ng-template>
