@@ -18,6 +18,8 @@ export class ScannerComponent implements OnDestroy {
   uneBouteille: Imesbouteilles;
   private stream: MediaStream | null = null;
   iconeCamera =  environment.baseImg + 'icones/barcode-scan.png';
+  iconeX =  environment.baseImg + 'icones/x.png';
+  
   // errorMessage: string = '';
 
   @Output() scanned = new EventEmitter<any>();
@@ -202,9 +204,9 @@ export class ScannerComponent implements OnDestroy {
     
     this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
       this.uneBouteille = data.data;
-      if(!this.uneBouteille){
-        this.startScan();
-      }
+      // if(!this.uneBouteille){
+      //   this.startScan();
+      // }
       console.log(this.uneBouteille);
 
       this.scanned.emit(this.uneBouteille);

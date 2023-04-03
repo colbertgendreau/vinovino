@@ -3,12 +3,13 @@
         <h3>Rechercher dans vos celliers</h3>
         <app-scanner (scanned)="handleScan($event)"></app-scanner>
     </div>
+    <span class="error">{{messageErreur}}</span>
     
     <div class="recherche_filter">
         <div class="filter_data">
             <input class="recherche-input" type="search" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)"
                 placeholder="Recherche dans vos celliers" />
-            <input class="reset_btn" type="reset" value="X" alt="Clear the search form" (click)="resetData()">
+            <img class="reset_btn" *ngIf="searchTerm" [src]="iconeXb" alt="Efface la recherche" (click)="resetData()">
         </div>
         
 
@@ -33,7 +34,6 @@
             <summary>Pays</summary>
             <div class="pays">
                 <select #selected (change)="updateSelectedWinePays(selected.value)">
-                    <!-- <option value="" selected></option> -->
                     <option *ngFor="let pays of choixPays" [value]="pays" [selected]="isSelectedPays(pays)">
                         {{ pays }}
                     </option>

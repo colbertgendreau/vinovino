@@ -106,10 +106,10 @@ export class FooterComponent {
       this.router.navigateByUrl('profil/ajouter-bouteille/' + this.idCellier);
     } else if (this.pageActuelle == 'listeCellier') {
       this.btnAjouter = 'ajoutBouteille';
-      this.router.navigateByUrl('profil/ajouter-bouteille/n');
+      this.router.navigateByUrl('profil/ajouter-bouteille/');
     } else if (this.pageActuelle == 'recherche') {
       this.btnAjouter = 'ajoutBouteille';
-      this.router.navigateByUrl('profil/ajouter-bouteille/n');
+      this.router.navigateByUrl('profil/ajouter-bouteille/');
     } else {
       console.log("different bouton ajouter");
     }

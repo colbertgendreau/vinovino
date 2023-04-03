@@ -300,3 +300,8 @@ input:not(:placeholder-shown) + .floatingError{
       gap: 20px;
 
     }
+
+    .error{
+      color: red;
+      font-size: 12px;
+    }
