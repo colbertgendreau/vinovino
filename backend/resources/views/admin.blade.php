@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="/assets/admin/styles.37f9abf3eee9d72f.css"></head>
+<link rel="stylesheet" href="/assets/admin/styles.db333842861d91bc.css"></head>
 <body class="mat-typography">
   <app-root></app-root>
-<script src="/assets/admin/runtime.c90fa6915af5f1a8.js" type="module"></script><script src="/assets/admin/polyfills.cf31124f1f3fa6ac.js" type="module"></script><script src="/assets/admin/vendor.d35bb02e85ef6a81.js" type="module"></script><script src="/assets/admin/main.12d77220d752b203.js" type="module"></script></body>
+<script src="/assets/admin/runtime.c90fa6915af5f1a8.js" type="module"></script><script src="/assets/admin/polyfills.cf31124f1f3fa6ac.js" type="module"></script><script src="/assets/admin/vendor.84c3a05243510bdc.js" type="module"></script><script src="/assets/admin/main.b1f3c3f354774b4f.js" type="module"></script></body>
 </html>
