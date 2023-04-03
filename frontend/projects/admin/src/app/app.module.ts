@@ -29,6 +29,7 @@ import { StatistiquesComponent } from './components/statistiques/statistiques.co
 import { ChartModule } from 'angular-highcharts';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { DefaultModule } from './layouts/default/default.module';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { DefaultModule } from './layouts/default/default.module';
     AjoutAdminComponent,
     ModalComponent,
     ConnexionAdminComponent,
-    StatistiquesComponent
+    StatistiquesComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
