@@ -158,7 +158,7 @@ export class AjoutBouteilleComponent implements OnInit {
         pays: this.scannedBouteille.pays,
         description: this.scannedBouteille.description,
         quantite: 1,
-      //   id_cellier: bouteille.id_cellier,
+        id_celliers: this.idCellierUrl,
       });
     }
    
@@ -252,12 +252,14 @@ export class AjoutBouteilleComponent implements OnInit {
     this.fetchService.getBouteilleSAQ().subscribe((response) => {
       this.arrayBouteille = response.data;
       console.log(this.arrayBouteille);
+      console.log(this.idCellierUrl);
     });
 
     this.fetchService.getCelliers().subscribe((data: any) => {
         this.listeCelliers = data.data;
         console.log('les celliers');
         console.log(this.listeCelliers);
+        console.log(this.idCellierUrl);
         
     });
         
@@ -271,15 +273,16 @@ export class AjoutBouteilleComponent implements OnInit {
       prix_saq: [''],
       quantite: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
-      celliers_id: [this.idCellierUrl, [Validators.required]],
+      celliers_id: [this.idCellierUrl],
     });
+    
   }
-
+  
   /**
-* Cette fonction affiche un message de type snackbar.
-* @param message Le message à afficher.
-* @param action L'action à afficher sur le bouton de fermeture du snackbar.
-*/
+   * Cette fonction affiche un message de type snackbar.
+   * @param message Le message à afficher.
+   * @param action L'action à afficher sur le bouton de fermeture du snackbar.
+   */
   openSnackBar(message: string, action: string) {
     const config = new MatSnackBarConfig();
     config.duration = 3000; // Set the duration to 3 seconds
