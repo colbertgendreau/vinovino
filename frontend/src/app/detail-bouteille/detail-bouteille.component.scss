@@ -14,7 +14,7 @@ h1 {
 }
 
 .zoom-image-popup {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -24,6 +24,7 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow-y: auto;
 }
 
 .zoom-image-popup img {
