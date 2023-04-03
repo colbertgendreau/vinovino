@@ -221,6 +221,7 @@ class BouteilleController extends Controller
 
         $res = Bouteille::leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')
             ->leftJoin('mes_bouteilles', 'bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
+            ->leftJoin('vino__bouteille__description', 'vino__bouteille__description.id', '=', 'vino__bouteille.id')
             ->leftJoin('vino__type', function ($join) {
                 $join->on('vino__type.id', '=', 'vino__bouteille.type');
                 if (Schema::hasColumn('vino__bouteille', 'type')) {
