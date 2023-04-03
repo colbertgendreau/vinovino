@@ -31,6 +31,7 @@ import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { DefaultModule } from './layouts/default/default.module';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FooterComponent } from './shared/components/footer/footer.component';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { FooterComponent } from './shared/components/footer/footer.component';
     ConnexionAdminComponent,
     StatistiquesComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,
