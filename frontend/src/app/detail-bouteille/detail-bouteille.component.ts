@@ -33,6 +33,8 @@ export class DetailBouteilleComponent {
   fullImage1 = false;
   showImage = false;
 
+  cepage_lisible: string;
+
 
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
@@ -67,6 +69,14 @@ export class DetailBouteilleComponent {
       this.fetchService.showDetail(params['id']).subscribe((data: any) => {
         this.uneBouteille = data.data;
         console.log(this.uneBouteille);
+
+        if (this.uneBouteille.cepages) {
+          let chaine =  this.uneBouteille.cepages;
+          let objet = JSON.parse(chaine);
+          let listeCepages = Array.from(objet);
+          let cepage: string = listeCepages.join(" ");
+          this.cepage_lisible = cepage.replace(/\u00a0/g, " ");
+        }
 
         this.spin = false;
         this.hide = false;
