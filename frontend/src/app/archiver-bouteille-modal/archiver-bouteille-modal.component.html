@@ -1,0 +1,10 @@
+<dialog *ngIf="isVisible" class="modal">
+    <form class="modal-interieur">
+      <h2>Confirmer l'archivage</h2>
+      <p>Voulez-vous archiver cette bouteille?</p>
+      <div class="btn-modal">
+        <button (click)="archiver()">Archiver</button>
+        <button class="btn-annuler" (click)="annuler()">Annuler</button>
+      </div>
+    </form>
+  </dialog>
