@@ -1,30 +1,36 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FetchService } from '../fetch.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarConfig  } from '@angular/material/snack-bar';
-
+import { Imesbouteilles } from '../imesbouteilles';
+import { Ibouteillecellier } from '../ibouteille-cellier';
 
 @Component({
-  selector: 'app-effacer-bouteille-modal',
-  templateUrl: './effacer-bouteille-modal.component.html',
-  styleUrls: ['./effacer-bouteille-modal.component.scss']
+  selector: 'app-archiver-bouteille-modal',
+  templateUrl: './archiver-bouteille-modal.component.html',
+  styleUrls: ['./archiver-bouteille-modal.component.scss']
 })
-export class EffacerBouteilleModalComponent {
+export class ArchiverBouteilleModalComponent {
 
   @Input() id!: number;
+  @Input() quantite!: number;
   @Input() isVisible = false;
-  @Output() itemEfface: EventEmitter<void> = new EventEmitter<void>();
+  @Output() itemArchive: EventEmitter<void> = new EventEmitter<void>();
   @Output() closed = new EventEmitter<void>();
 
+  bouteille: Imesbouteilles;
+  bouteilles: Array<Ibouteillecellier>;
+  cellierId: string;
 
   constructor(
     public fetchService: FetchService,
     public router: Router,
     private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
   ) { }
 
 
-  supprimer() {
+  annuler() {
     window.scroll({ // pour scroll up quand on arrive sur la page
         top: 0, 
         left: 0, 
@@ -33,15 +39,25 @@ export class EffacerBouteilleModalComponent {
 
     this.isVisible = false;
     console.log(this.id);
-    
-    this.fetchService.supprimerBouteille(this.id).subscribe((retour) => {
-      console.log(retour);
-      this.openSnackBar('Bouteille effacée avec succès', 'Fermer')
-      this.itemEfface.emit();
+    console.log(this.quantite);
+
+    this.fetchService.showBouteille(this.id).subscribe((data:any)=>{
+      this.bouteille = data.data;
+      this.bouteille.quantite = this.quantite;
+      this.bouteille.quantite = 1;
+
+      let updateBouteille: Imesbouteilles = this.bouteille;
+      console.log(updateBouteille);
+
+      this.fetchService.modifBouteille(this.id, updateBouteille).subscribe((retour) => {
+        console.log(this.bouteille.quantite);
+        this.itemArchive.emit();
+      });
     });
   }
 
-  annuler() {
+  archiver() {
+    this.openSnackBar('Bouteille archivée avec succès', 'Fermer')
     this.isVisible = false;
     this.closed.emit(); // emit the 'closed' event
   }
