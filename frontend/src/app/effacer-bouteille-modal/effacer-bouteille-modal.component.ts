@@ -16,6 +16,7 @@ export class EffacerBouteilleModalComponent {
   @Output() itemEfface: EventEmitter<void> = new EventEmitter<void>();
   @Output() closed = new EventEmitter<void>();
 
+
   constructor(
     public fetchService: FetchService,
     public router: Router,
@@ -23,7 +24,7 @@ export class EffacerBouteilleModalComponent {
   ) { }
 
 
-  confirmer() {
+  supprimer() {
     window.scroll({ // pour scroll up quand on arrive sur la page
         top: 0, 
         left: 0, 
@@ -40,21 +41,20 @@ export class EffacerBouteilleModalComponent {
     });
   }
 
-  archiver() {
-
+  annuler() {
     this.isVisible = false;
     this.closed.emit(); // emit the 'closed' event
   }
 
-        /**
- * Cette fonction affiche un message de type snackbar.
- * @param message Le message à afficher.
- * @param action L'action à afficher sur le bouton de fermeture du snackbar.
- */
-        openSnackBar(message: string, action: string) {
-          const config = new MatSnackBarConfig();
-          config.duration = 3000; // Set the duration to 3 seconds
-          config.panelClass = ['mon-snackbar']; // Add a custom CSS class
-          this.snackBar.open(message, action, config);
-        }
+  /**
+   * Cette fonction affiche un message de type snackbar.
+   * @param message Le message à afficher.
+   * @param action L'action à afficher sur le bouton de fermeture du snackbar.
+   */
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 3000; // Set the duration to 3 seconds
+    config.panelClass = ['mon-snackbar']; // Add a custom CSS class
+    this.snackBar.open(message, action, config);
+  }
 }
