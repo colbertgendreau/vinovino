@@ -1,0 +1,12 @@
+To install a package that is going to be used only inside one specific project like admin we need to run every add
+command with the name of the project
+
+Ex:
+
+ng add @angular/material --project=admin
+
+or with ioninc
+
+ng add @ionic/angular --project=admin
+
+Since we are unsing ioninc in the frontend and the admin project we can install the package in the root folder
