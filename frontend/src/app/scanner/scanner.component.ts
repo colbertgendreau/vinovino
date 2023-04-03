@@ -18,6 +18,8 @@ export class ScannerComponent implements OnDestroy {
   uneBouteille: Imesbouteilles;
   private stream: MediaStream | null = null;
   iconeCamera =  environment.baseImg + 'icones/barcode-scan.png';
+  iconeX =  environment.baseImg + 'icones/x.png';
+  
   // errorMessage: string = '';
 
   @Output() scanned = new EventEmitter<any>();
@@ -46,76 +48,23 @@ export class ScannerComponent implements OnDestroy {
     //console.log('fin')
   }
 
-  startScan(): void {
-    this.showVideo = true;
-
-
-    if (this.backCameraList.length === 0) {
-      this.stopScan();
-      // this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
-      this.showVideo = false;
-      return;
-    }
-    //console.log('aqui ya casi')
-    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      //console.log('backCameraList: ' + JSON.stringify(this.backCameraList));
-      navigator.mediaDevices.getUserMedia({video: {
-          deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
-          facingMode: { exact: "environment" }
-        } })
-        .then((stream) => {
-          this.stream = stream;
-          this.video.nativeElement.srcObject = stream;
-          this.video.nativeElement.play();
-          this.isScanning = true;
-          Quagga.init({
-            inputStream: {
-              name: "Live",
-              type: "LiveStream",
-              target: this.video.nativeElement,
-              constraints: {
-                width: 640,
-                height: 480,
-                facingMode: 'environment',
-                deviceId: this.backCameraList[this.backCameraList.length - 1]['deviceId']
-              },
-              area: {
-                top: "25%",
-                right: "10%",
-                left: "10%",
-                bottom: "25%"
-              },
-              singleChannel: false // true: only the red color-channel is read
-            },
-            decoder: {
-              readers: ["ean_reader", "upc_reader","code_128_reader"]
-            },
-            locate: true,
-            locator: {
-              halfSample: false,
-              patchSize: "large"
-            },
-            debug:true
-          }, (err) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            Quagga.start();
-            this.isScanning = true;
-          });
-        })
-        .catch((err) => {
-          console.error(err);
-        });
-    }
-  }
-
   // startScan(): void {
   //   this.showVideo = true;
-  
+
+
+  //   if (this.backCameraList.length === 0) {
+  //     this.stopScan();
+  //     // this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
+  //     this.showVideo = false;
+  //     return;
+  //   }
+  //   //console.log('aqui ya casi')
   //   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-  //     navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+  //     //console.log('backCameraList: ' + JSON.stringify(this.backCameraList));
+  //     navigator.mediaDevices.getUserMedia({video: {
+  //         deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
+  //         facingMode: { exact: "environment" }
+  //       } })
   //       .then((stream) => {
   //         this.stream = stream;
   //         this.video.nativeElement.srcObject = stream;
@@ -126,6 +75,19 @@ export class ScannerComponent implements OnDestroy {
   //             name: "Live",
   //             type: "LiveStream",
   //             target: this.video.nativeElement,
+  //             constraints: {
+  //               width: 640,
+  //               height: 480,
+  //               facingMode: 'environment',
+  //               deviceId: this.backCameraList[this.backCameraList.length - 1]['deviceId']
+  //             },
+  //             area: {
+  //               top: "25%",
+  //               right: "10%",
+  //               left: "10%",
+  //               bottom: "25%"
+  //             },
+  //             singleChannel: false // true: only the red color-channel is read
   //           },
   //           decoder: {
   //             readers: ["ean_reader", "upc_reader","code_128_reader"]
@@ -150,6 +112,46 @@ export class ScannerComponent implements OnDestroy {
   //       });
   //   }
   // }
+
+  startScan(): void {
+    this.showVideo = true;
+  
+    if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+        .then((stream) => {
+          this.stream = stream;
+          this.video.nativeElement.srcObject = stream;
+          this.video.nativeElement.play();
+          this.isScanning = true;
+          Quagga.init({
+            inputStream: {
+              name: "Live",
+              type: "LiveStream",
+              target: this.video.nativeElement,
+            },
+            decoder: {
+              readers: ["ean_reader", "upc_reader","code_128_reader"]
+            },
+            locate: true,
+            locator: {
+              halfSample: false,
+              patchSize: "large"
+            },
+            debug:true
+          }, (err) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            Quagga.start();
+            this.isScanning = true;
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  }
   
 
   stopScan(): void {
@@ -202,9 +204,9 @@ export class ScannerComponent implements OnDestroy {
     
     this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
       this.uneBouteille = data.data;
-      if(!this.uneBouteille){
-        this.startScan();
-      }
+      // if(!this.uneBouteille){
+      //   this.startScan();
+      // }
       console.log(this.uneBouteille);
 
       this.scanned.emit(this.uneBouteille);

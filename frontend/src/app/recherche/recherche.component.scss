@@ -343,12 +343,9 @@
 }
 
 .reset_btn {
-  height: 30px;
-  border-radius: 5px;
-  border: 1px solid var(--secondaire);
-  background: none;
-  // color: var(--secondaire)
-  width: 25px;
+  width: 15px;
+  height: 15px;
+  padding: 5px;
   
 }
 
@@ -371,6 +368,11 @@
 
 .div_filtre{
 
+}
+
+.error{
+  font-size: 12px;
+  color: red;
 }
 
 

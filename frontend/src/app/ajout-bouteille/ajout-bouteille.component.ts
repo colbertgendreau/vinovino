@@ -45,7 +45,7 @@ export class AjoutBouteilleComponent implements OnInit {
   bouteilles: Array<Ibouteillecellier>;
   bouteillePlusUn: Imesbouteilles;
   scannedBouteille: any;
-
+  messageErreur: string = '';
   choixPays: string[] = ['Autre', 'Afrique du Sud', 'Allemagne', 'Argentine', 'Arménie', 'Australie', 'Autriche', 'Bulgarie', 'Brésil', 'Canada', 'Chili', 'Chine', 'Croatie', 'Espagne', 'États-Unis', 'France', 'Géorgie', 'Grèce', 'Hongrie', 'Israël', 'Italie', 'Liban', 'Luxembourg', 'Maroc', 'Mexique', 'Moldavie', 'Nouvelle-Zélande', 'Portugal', 'République Tchèque', 'Roumanie', 'Slovénie', 'Suisse', 'Uruguay'];
 
   listeCelliers: Array<ICellier>;
@@ -160,6 +160,8 @@ export class AjoutBouteilleComponent implements OnInit {
         quantite: 1,
         id_celliers: this.idCellierUrl,
       });
+    }else{
+      this.messageErreur = "Le scan n'a pas fonctionné, veuillez vous assurer que le code est bien visible."
     }
    
 

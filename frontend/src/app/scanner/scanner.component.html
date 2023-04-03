@@ -3,7 +3,8 @@
     <video #video></video>
 
     <canvas #canvas class="overlay" style="display:none;"></canvas>
-    <button class="close-button" (click)="stopScan()">X</button>
+    <!-- <button class="close-button" (click)="stopScan()">X</button> -->
+    <img class="close-button" [src]="iconeX" alt="Icône de fermeture" (click)="stopScan()">
   </div>
   <img class="button" [src]="iconeCamera" alt="Icône d'ajout de bouteille" (click)="startScan()" *ngIf="!showVideo">
   <!-- <img class="button" [src]="iconeCamera" alt="Icône d'ajout de bouteille" (click)="stopScan()" *ngIf="showVideo"> -->

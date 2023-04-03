@@ -60,9 +60,11 @@ video {
 }
 
 .close-button {
-  position: absolute;
-  top: -60px;
-  right: -100px;
+  width: 20px;
+  height: auto;
+  position: fixed;
+  top: 79px;
+  right: 18px;
   z-index: 11;
   background: none;
   font-size: 30px;
