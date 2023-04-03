@@ -79,12 +79,12 @@ export class ScannerComponent implements OnDestroy {
               singleChannel: false // true: only the red color-channel is read
             },
             decoder: {
-              readers : ["code_128_reader"]
+              readers : ["code_128_reader", "upc_reader"]
             },
             locate: true,
             locator: {
               halfSample: true,
-              patchSize: "medium"
+              patchSize: "large"
             }
           }, (err) => {
             if (err) {
@@ -141,14 +141,7 @@ export class ScannerComponent implements OnDestroy {
 
       this.scanned.emit(this.uneBouteille);
 
-      // if (this.uneBouteille && this.uneBouteille.vino__bouteille_id) {
-      //   this.router.navigate(['/profil/bouteille', this.uneBouteille.vino__bouteille_id]);
-      // }
-
-
-
-      // this.spin = false;
-      // this.hide = false;
+     
     });
 
 
