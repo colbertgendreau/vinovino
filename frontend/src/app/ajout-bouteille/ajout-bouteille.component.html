@@ -1,15 +1,21 @@
 <div class="ajouter-bouteille">
-  <h1>Ajouter une bouteille</h1>
-  <label>
-  <input class="recherche-input"
-    type="text"
-    [(ngModel)]="searchTerm"
-    (keyup)="filterData(searchTerm)"
-    placeholder="Recherche (entrez les 3 premiere lettres)"
-  />
-  <span class="floating floating-recherche">Recherche (entrez les 3 premiere lettres)</span>
+  <div class="app_scanner">
+    <h1>Ajouter une bouteille</h1>
+    <app-scanner (scanned)="handleScan($event)"></app-scanner>
+  </div>
 
-</label>
+      <label>
+      <input class="recherche-input"
+        type="text"
+        [(ngModel)]="searchTerm"
+        (keyup)="filterData(searchTerm)"
+        placeholder="Recherche (entrez les 3 premiere lettres)"
+      />
+      <span class="floating floating-recherche">Recherche (entrez les 3 premiere lettres)</span>
+
+    </label>
+
+  
 
   <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
@@ -85,6 +91,19 @@
 </div>
 
 
+  <!-- <div class="container-select">
+      <label for="type">
+      <select [class.disabled]="isDataSelected" name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
+          <option value="" disabled selected>Choisir</option>
+          <option value="1">vin rouge</option>
+          <option value="2">vin blanc</option>
+          <option value="3">vin rosé</option>
+      </select>
+      <div [class.voile]="isDataSelected"></div>
+      <div class="stay">Type</div>
+      </label>
+  </div> -->
+
 <div class="container-select">
     <label for="type">
     <select name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
@@ -98,20 +117,19 @@
     </label>
 </div>
 
-    <div>
+
+    <div class="container-select">
       <label for="pays">
-        <input
-          type="text"
-          id="pays"
-          name="pays"
-          formControlName="pays"
-          [readonly]="isDataSelected"
-          placeholder="Pays"
-          [class.disabled]="isDataSelected"
-      />
-      <span class="floating">Pays</span>
-    </label>
+        <select [class.disabled]="isDataSelected" id="pays" name="pays" formControlName="pays" [disabled]="isDataSelected">
+          <option value="" disabled selected>Sélectionner un pays</option>
+          <option *ngFor="let pays of choixPays" [value]="pays">{{ pays }}</option>
+        </select>
+        <div [class.voile]="isDataSelected"></div>
+        <div class="stay">Pays</div>
+      </label>
     </div>
+    
+    
     <div>
       <label for="format">
         <input
@@ -126,6 +144,8 @@
       <span class="floating">Format</span>
     </label>
     </div>
+
+    
     <div>
       <label for="prix_saq">
         <input
@@ -169,15 +189,14 @@
       </div>
     </div>
     <div class="container-select">
-        <label for="id_cellier">
-        <select name="id_cellier" id="id_cellier" formControlName="id_cellier">
+        <label for="celliers_id">
+        <select name="celliers_id" id="celliers_id" formControlName="celliers_id">
 
-            
-            <option *ngIf="idCellierUrl=='n'" [value]="" disabled selected>Choisir</option>
-            <ng-container *ngFor="let cellier of listeCelliers">
-                <option *ngIf="idCellierUrl == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
+            <ng-container>
+                <option *ngIf="idCellierUrl=='n'" [value]="" disabled selected>Choisir</option>
             </ng-container>
             <ng-container *ngFor="let cellier of listeCelliers">
+                <option *ngIf="idCellierUrl == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
                 <option *ngIf="idCellierUrl != cellier.id"  [value]="cellier.id" >{{cellier.nom}}</option>
             </ng-container>
 

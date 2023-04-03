@@ -32,6 +32,7 @@ export class ModifBouteilleComponent implements OnInit {
 
   formSubmitted = false;
   isDataSelected: boolean;
+  listeCelliers: any;
 
   constructor(
     private auth: AuthStateService,
@@ -62,6 +63,13 @@ export class ModifBouteilleComponent implements OnInit {
       console.log(this.isSignedIn);
     });
 
+    this.fetchService.getCelliers().subscribe((data: any) => {
+        this.listeCelliers = data.data;
+        console.log('les celliers');
+        console.log(this.listeCelliers);
+        
+    });
+
 
     this.route.params.subscribe((params) => {
       console.log(params);
@@ -77,7 +85,8 @@ export class ModifBouteilleComponent implements OnInit {
           format_bouteillePerso: this.bouteille.format_bouteillePerso,
           prix_bouteillePerso: this.bouteille.prix_bouteillePerso,
           quantite_bouteillePerso: this.bouteille.quantite,
-          description_bouteillePerso: this.bouteille.description_bouteillePerso
+          description_bouteillePerso: this.bouteille.description_bouteillePerso,
+          celliers_id: this.bouteille.celliers_id
         });
       });
     });
@@ -90,7 +99,9 @@ export class ModifBouteilleComponent implements OnInit {
       format_bouteillePerso: [''],
       prix_bouteillePerso: ['', [Validators.pattern(/^\d+(\.\d{1,2})?$/)]],
       quantite_bouteillePerso: ['', [Validators.required, Validators.pattern('[0-9]+')]],
-      description_bouteillePerso: ['']
+      description_bouteillePerso: [''],
+      celliers_id: ['', [Validators.required]],
+
     });
   }
 
@@ -106,7 +117,6 @@ export class ModifBouteilleComponent implements OnInit {
         this.fetchService.modifBouteille(params['id'], updateBouteille).subscribe((retour) => {
           console.log(retour);
           this.openSnackBar('Modification effectuée avec succès', 'Fermer');
-
           this.router.navigateByUrl('profil/cellier/' + this.bouteille.celliers_id);
         });
       });

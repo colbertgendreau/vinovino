@@ -2,7 +2,7 @@ export interface Imesbouteilles {
     id?:number;
     id_supreme?:number;
     prix?:number;
-    celliers_id:number;
+    celliers_id:any;
     id_bouteille:number;
     nom: string;
     type: number;
@@ -31,5 +31,7 @@ export interface Imesbouteilles {
     quantite_bouteillePerso: number;
     description_bouteillePerso: string;
     cellier_nom:string;
+    code_cup:string;
+    vino__bouteille_id:any;
 
 }

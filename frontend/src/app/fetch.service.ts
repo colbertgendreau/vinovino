@@ -16,9 +16,10 @@ export class FetchService {
   // Important: Ne pas utilsier http://127.0.0.1:800, à la place utiliser
   // private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
   //
-  private urlBouteille: string = environment.apiUrl + "/api/bouteilles";
-  private url: string = environment.apiUrl + "/api/bouteillesSAQ";
-  private urlCellier: string = environment.apiUrl + "/api/celliers";
+  private urlBouteille:string = environment.apiUrl+"/api/bouteilles";
+  private url:string = environment.apiUrl+"/api/bouteillesSAQ";
+  private urlCellier:string = environment.apiUrl+"/api/celliers";
+  private urlScanner:string = environment.apiUrl+"/api/scannerDetail";
 
   constructor(private http: HttpClient) { }
 
@@ -57,9 +58,9 @@ export class FetchService {
 
   // }
 
-  getBouteillesCellier(id: number): Observable<Ilistemesbouteilles> {
-    console.log(this.urlCellier + "/" + id + ' bouteilles udu celier');
-    return this.http.get<Ilistemesbouteilles>(this.urlCellier + "/" + id);
+  getBouteillesCellier(id:number):Observable<Ilistemesbouteilles>{
+    console.log(this.urlCellier+"/"+id + ' bouteilles du celier');
+    return this.http.get<Ilistemesbouteilles>(this.urlCellier+"/"+id);
   }
   getMesBouteilles(): Observable<Ilistemesbouteilles> {
     return this.http.get<Ilistemesbouteilles>(this.urlBouteille);
@@ -98,6 +99,9 @@ export class FetchService {
 
   showDetail(id: number): Observable<Imesbouteilles> {
     return this.http.get<Imesbouteilles>(environment.apiUrl + "/api/showDetail/" + id);
+  }
+  scannerDetail(codeCup:any):Observable<IBouteille>{
+    return this.http.get<IBouteille>(this.urlScanner+'/'+codeCup);
   }
 
   ajoutNote(id: number, bouteille: Imesbouteilles): Observable<Imesbouteilles> {

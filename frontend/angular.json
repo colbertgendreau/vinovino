@@ -28,12 +28,17 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              {
+                "input": "src/theme/variables.css"
+              }
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/quagga/dist/quagga.min.js"
+            ]
           },
           "configurations": {
             "local": {
@@ -75,10 +80,10 @@
                 {
                   "type": "initial",
                   "maximumWarning": "700kb",
-                  "maximumError": "1mb"
+                  "maximumError": "5mb"
                 },
                 {
-                  "type" : "anyComponentStyle",
+                  "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "10kb"
                 }
@@ -91,7 +96,6 @@
               "outputHashing": "all",
               "serviceWorker": true,
               "ngswConfigPath": "ngsw-config.json"
-
             }
           },
           "defaultConfiguration": "production"
@@ -99,10 +103,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "local":{
+            "local": {
               "browserTarget": "frontend:build:local"
             },
-            "staging":{
+            "staging": {
               "browserTarget": "frontend:build:staging"
             },
             "production": {
@@ -129,14 +133,44 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              {
+                "glob": "**/*.svg",
+                "input": "node_modules/ionicons/dist/ionicons/svg",
+                "output": "./svg"
+              }
             ],
             "styles": [
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.scss"
             ],
-            "scripts": []
-
+            "scripts": [
+              "node_modules/quagga/dist/quagga.min.js"
+            ]
+          }
+        },
+        "ionic-cordova-serve": {
+          "builder": "@ionic/angular-toolkit:cordova-serve",
+          "options": {
+            "cordovaBuildTarget": "frontend:ionic-cordova-build",
+            "devServerTarget": "frontend:serve"
+          },
+          "configurations": {
+            "production": {
+              "cordovaBuildTarget": "frontend:ionic-cordova-build:production",
+              "devServerTarget": "frontend:serve:production"
+            }
+          }
+        },
+        "ionic-cordova-build": {
+          "builder": "@ionic/angular-toolkit:cordova-build",
+          "options": {
+            "browserTarget": "frontend:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "frontend:build:production"
+            }
           }
         }
       }
@@ -171,7 +205,9 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/admin/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/quagga/dist/quagga.min.js"
+            ]
           },
           "configurations": {
             "local": {
@@ -213,7 +249,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "700kb",
-                  "maximumError": "1mb"
+                  "maximumError": "5mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -226,8 +262,7 @@
               "outputPath": "../backend/public/assets/admin",
               "baseHref": "/",
               "deployUrl": "/assets/admin/",
-              "outputHashing": "all",
-              "sourceMap": true
+              "outputHashing": "all"
             },
             "development1": {
               "buildOptimizer": false,
@@ -249,10 +284,10 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
-            "local":{
+            "local": {
               "browserTarget": "admin:build:local"
             },
-            "staging":{
+            "staging": {
               "browserTarget": "admin:build:staging"
             },
             "production": {
@@ -284,7 +319,9 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "projects/admin/src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/quagga/dist/quagga.min.js"
+            ]
           }
         }
       }

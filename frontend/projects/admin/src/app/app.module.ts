@@ -28,7 +28,13 @@ import { ConnexionAdminComponent } from './connexion-admin/connexion-admin.compo
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
+import { StatistiquesComponent } from './components/statistiques/statistiques.component';
+import { ChartModule } from 'angular-highcharts';
+import { SidebarComponent } from './layouts/sidebar/sidebar.component';
 
+
+import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
+//import { SafePipe } from './liste-catalogue/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -38,7 +44,9 @@ import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
     ListeCatalogueComponent,
     AjoutAdminComponent,
     ModalComponent,
-    ConnexionAdminComponent
+    ConnexionAdminComponent,
+    StatistiquesComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,10 +68,15 @@ import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
     MatDividerModule,
     MatProgressBarModule,
     MatBadgeModule,
+    ChartModule,
+    BrowserModule,
+    NgxScannerQrcodeModule
   ],
   providers: [
     MatSnackBarModule,
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+}

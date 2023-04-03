@@ -14,7 +14,7 @@ import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Ibouteillecellier } from '../ibouteille-cellier';
 import { ICellier } from '../icellier';
 
-
+import { ScannerComponent } from '../scanner/scanner.component';
 
 
 // User interface
@@ -44,8 +44,13 @@ export class AjoutBouteilleComponent implements OnInit {
   isDataSelected: boolean;
   bouteilles: Array<Ibouteillecellier>;
   bouteillePlusUn: Imesbouteilles;
+  scannedBouteille: any;
+
+  choixPays: string[] = ['Autre', 'Afrique du Sud', 'Allemagne', 'Argentine', 'Arménie', 'Australie', 'Autriche', 'Bulgarie', 'Brésil', 'Canada', 'Chili', 'Chine', 'Croatie', 'Espagne', 'États-Unis', 'France', 'Géorgie', 'Grèce', 'Hongrie', 'Israël', 'Italie', 'Liban', 'Luxembourg', 'Maroc', 'Mexique', 'Moldavie', 'Nouvelle-Zélande', 'Portugal', 'République Tchèque', 'Roumanie', 'Slovénie', 'Suisse', 'Uruguay'];
+
   listeCelliers: Array<ICellier>;
   idCellierUrl: any = 'n';
+
 
 
   spin: boolean;
@@ -125,7 +130,9 @@ export class AjoutBouteilleComponent implements OnInit {
       pays: bouteille.pays,
       description: bouteille.description,
       quantite: 1,
-    //   id_cellier: bouteille.id_cellier,
+      celliers_id: this.idCellierUrl,
+
+    //   celliers_id: bouteille.celliers_id,
     });
     this.filteredData = [];
     this.isDataSelected = true; // set the flag to true when data is selected
@@ -137,6 +144,27 @@ export class AjoutBouteilleComponent implements OnInit {
 
   }
 
+
+  handleScan(scannedBouteille: string) {
+    this.scannedBouteille = scannedBouteille;
+    console.log(this.scannedBouteille);
+    if(this.scannedBouteille){
+      this.ajouterBouteilleForm.patchValue({
+        id: this.scannedBouteille.id,
+        nom: this.scannedBouteille.nom,
+        type: this.scannedBouteille.type,
+        format: this.scannedBouteille.format,
+        prix_saq: this.scannedBouteille.prix_saq,
+        pays: this.scannedBouteille.pays,
+        description: this.scannedBouteille.description,
+        quantite: 1,
+      //   id_cellier: bouteille.id_cellier,
+      });
+    }
+   
+
+  }
+
   ajouter() {
     this.formSubmitted = true;
     if (this.ajouterBouteilleForm.valid) {
@@ -145,10 +173,11 @@ export class AjoutBouteilleComponent implements OnInit {
         nouvelleBouteille.type = Number(nouvelleBouteille.type);
 
         console.log(params);
+        console.log(nouvelleBouteille.celliers_id);
         this.present = false;
         this.fetchService
         //   .getBouteillesCellier(params['id'])
-          .getBouteillesCellier(nouvelleBouteille.id_cellier)
+          .getBouteillesCellier(nouvelleBouteille.celliers_id)
           .subscribe((data: any) => {
             this.bouteilles = data.data;
 
@@ -164,7 +193,7 @@ export class AjoutBouteilleComponent implements OnInit {
                   this.fetchService.modifBouteille(element.id_supreme, element).subscribe((retour) => {
                     this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
                     // this.router.navigateByUrl('profil/cellier/' + 2);
-                    this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.id_cellier);
+                    this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.celliers_id);
                   });
                   
                 }
@@ -174,7 +203,7 @@ export class AjoutBouteilleComponent implements OnInit {
             if (this.present == false){
               this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
                 this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
-                this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.id_cellier);
+                this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.celliers_id);
               });
             }
           });
@@ -242,7 +271,7 @@ export class AjoutBouteilleComponent implements OnInit {
       prix_saq: [''],
       quantite: ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
-      id_cellier: [this.idCellierUrl, [Validators.required]],
+      celliers_id: [this.idCellierUrl, [Validators.required]],
     });
   }
 

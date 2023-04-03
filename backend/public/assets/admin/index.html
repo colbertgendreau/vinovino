@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="/assets/admin/styles.db333842861d91bc.css"></head>
 <body class="mat-typography">
+<script src="https://cdn.jsdelivr.net/npm/ngx-scanner-qrcode@latest/wasm/index.js" crossorigin="anonymous"></script>
   <app-root></app-root>
-<script src="/assets/admin/runtime.c90fa6915af5f1a8.js" type="module"></script><script src="/assets/admin/polyfills.cf31124f1f3fa6ac.js" type="module"></script><script src="/assets/admin/vendor.84c3a05243510bdc.js" type="module"></script><script src="/assets/admin/main.b1f3c3f354774b4f.js" type="module"></script></body>
+<script src="/assets/admin/runtime.67a21befb7c53c7b.js" type="module"></script><script src="/assets/admin/polyfills.cf31124f1f3fa6ac.js" type="module"></script><script src="/assets/admin/scripts.e27f5a0a1881fa6c.js" defer></script><script src="/assets/admin/vendor.c5e8a32d9e812f42.js" type="module"></script><script src="/assets/admin/main.f6c0181c51322622.js" type="module"></script></body>
 </html>

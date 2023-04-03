@@ -12,4 +12,5 @@ export interface IBouteille {
     type:any;
     id_mes_bouteilles:number;
     id_cellier:any;
+    celliers_id:any;
 }

@@ -30,8 +30,8 @@ export class ArchiveComponent implements OnInit {
   @Input() cellier: ICellier;
 
   bouteilles: Array<Ibouteillecellier>;
+  bouteillesArchivees: Array<Ibouteillecellier>;
   bouteille: Imesbouteilles;
-  // cellierId: string;
   cellierId: number;
   cellierNom:string;
   isSignedIn!: boolean;
@@ -41,7 +41,6 @@ export class ArchiveComponent implements OnInit {
   hide: boolean = true;
   pageCellier: boolean = true;
 
-  //   counter:number = 1;
   counterValue: number = 0;
   quantite: number;
   id: number;
@@ -65,11 +64,8 @@ export class ArchiveComponent implements OnInit {
       console.log(this.UserProfile);
     });
     this.bouteilles = [];
-
-
+    this.bouteillesArchivees = [];
   }
-
-
 
   ngOnInit() {
 
@@ -79,43 +75,32 @@ export class ArchiveComponent implements OnInit {
       behavior: 'smooth'
     });
 
-
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
       console.log(this.isSignedIn);
     });
 
-
-    // this.route.params.subscribe((params) => {
-
-    //   this.cellierId = params['id'];
-    //   console.log(params['id']);
-
-    
-
-      this.fetchService
-        // .getBouteillesCellier(params['id'])
-        .getMesBouteilles()
-        .subscribe((data: any) => {
+      this.fetchService.getMesBouteilles().subscribe((data: any) => {
           this.bouteilles = data.data;
 
-          console.log(this.bouteilles);
+          for (var i = 0; i < this.bouteilles.length; i++) {
+            if (this.bouteilles[i].quantite === 0) {
+              this.bouteillesArchivees.push(this.bouteilles[i]);
+            }
+          }
 
-          this.bouteilles.forEach(uneBouteille => {
+          console.log(this.bouteillesArchivees);
+
+          this.bouteillesArchivees.forEach(uneBouteille => {
             this.cellierId = uneBouteille.celliers_id;
-            // console.log(uneBouteille.celliers_id);
           });
-  
-
-          
           
           console.log('les bouteilles du cellier');
-          console.log(this.bouteilles);
+          console.log(this.bouteillesArchivees);
           this.spin = false;
           this.hide = false;
           
         });
-    // });
   }
 
 
@@ -127,28 +112,29 @@ export class ArchiveComponent implements OnInit {
 
     this.fetchService.showBouteille(id).subscribe((data: any) => {
       this.bouteille = data.data;
-      // this.bouteille.id = id;
       this.bouteille.quantite = quantite;
 
       console.log(this.bouteille.celliers_id);
       this.openSnackBar('La bouteille a été déplacée dans le cellier '+celliers_nom, 'Fermer');
 
-
       let updateBouteille: Imesbouteilles = this.bouteille;
-      console.log(updateBouteille);
+      // console.log(updateBouteille);
       
       this.fetchService.modifBouteille(id, updateBouteille).subscribe((retour) => {
-
-        this.bouteilles.forEach(uneBouteille => {
+  
+        this.bouteillesArchivees.forEach(uneBouteille => {
           this.cellierId = uneBouteille.celliers_id;
-          console.log(uneBouteille.celliers_id);
+          // console.log(uneBouteille.celliers_id);
         });
 
-        this.fetchService.getMesBouteilles().subscribe((data: any) => {
-          this.bouteilles = data.data;  
-          this.spin = false;
-          this.hide = false;            
+        this.bouteillesArchivees.forEach(uneBouteilleArchivee => {
+          if (uneBouteilleArchivee.quantite === 0) {
+            this.bouteillesArchivees.pop();
+          }
         });
+  
+        this.spin = false;
+        this.hide = false;            
       });
     });
   }

@@ -3,7 +3,7 @@
         'name' => 'anperoconi/vinovino',
         'pretty_version' => 'dev-master',
         'version' => 'dev-master',
-        'reference' => '8412679fce2f4165ca5cbbb1d9c110680834d2bd',
+        'reference' => '0eb5e801c7a9d8f0683ab28eb72106d4d2e71b50',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'anperoconi/vinovino' => array(
             'pretty_version' => 'dev-master',
             'version' => 'dev-master',
-            'reference' => '8412679fce2f4165ca5cbbb1d9c110680834d2bd',
+            'reference' => '0eb5e801c7a9d8f0683ab28eb72106d4d2e71b50',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
