@@ -1,18 +1,83 @@
 h1 {
-    margin-top: 73px;
-    font-size: 1.5rem;
-  }
+  margin-top: 73px;
+  font-size: 1.5rem;
+}
 
 .uneBouteille {
-    background-attachment: fixed;
-    height: 100%;
-    padding:   var(--small) var(--small) 115px;
-    display: flex;
-    flex-direction: column;
-    gap: var(--big);
-    text-align: center;
+  background-attachment: fixed;
+  height: 100%;
+  padding: var(--small) var(--small) 115px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--big);
+  text-align: center;
+}
 
-    img {
-        width: 50%;
-    }
+.zoom-image-popup {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.zoom-image-popup img {
+  max-height: 90%;
+  max-width: 90%;
+  object-fit: contain;
+}
+
+.bouteille {
+  width: 100px;
+}
+
+.zeX {
+  font-size: var(--biggest);
+  position: absolute;
+  top: 100px;
+  right: 80px;
+}
+
+.zoneSAQ {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.saq {
+  background-image: url(../../assets/icones/saqicone.png);
+  height: var(--biggest);
+  width: var(--biggest);
+  background-size: cover;
+  object-position: center;
+  display: block;
+}
+
+.saqFiche {
+  padding-left: var(--small);
+  text-decoration: none;
+}
+
+.nohide {
+  background-attachment: fixed;
+  height: 100%;
+  padding: var(--small) var(--small) 115px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--big);
+  text-align: center;
+}
+
+.cepage {
+  margin-bottom: var(--small);
+}
+
+.spin {
+  display: block;
+  padding-top: 100px;
 }

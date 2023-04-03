@@ -19,6 +19,9 @@ export interface Imesbouteilles {
     id_cellier: any;
     notes?: number;
     commentaires?: string;
+    image_url?: string;
+    image?: string;
+    cepages?: string;
 
     id_bouteillePerso: number;
     nom_bouteillePerso: string;
