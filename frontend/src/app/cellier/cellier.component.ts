@@ -29,6 +29,7 @@ export class CellierComponent implements OnInit {
   @Input() cellier: ICellier;
 
   bouteilles: Array<Ibouteillecellier>;
+  // bouteilles: Array<unknown>;
   bouteille: Imesbouteilles;
   cellierId: string;
   cellierNom:string;
@@ -43,7 +44,8 @@ export class CellierComponent implements OnInit {
   quantite: number;
   id: number;
 
-  isVisible = false;
+  isVisibleSupprimer = false;
+  isVisibleArchiver = false;
 
   inputArchive: any;
 
@@ -84,16 +86,12 @@ export class CellierComponent implements OnInit {
       console.log(params['id']);
 
       this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-        this.bouteilles = data.data;
-        this.bouteilles.forEach(uneBouteilleArchivee => {
-          if (uneBouteilleArchivee.quantite === 0) {
-            this.bouteilles.pop();
-          }
-        });
+        this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
 
         this.inputArchive = document.getElementById('archive');
 
         this.inputArchive.addEventListener('change', e => {
+          console.log(e.target.checked)
           if(e.target.checked === true) {
             this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
               this.bouteilles = data.data;
@@ -101,12 +99,7 @@ export class CellierComponent implements OnInit {
           }
           if(e.target.checked === false) {
             this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-              this.bouteilles = data.data;
-              this.bouteilles.forEach(uneBouteilleArchivee => {
-                if (uneBouteilleArchivee.quantite === 0) {
-                  this.bouteilles.pop();
-                }
-              });
+              this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
             });
           }
         });
@@ -138,77 +131,55 @@ export class CellierComponent implements OnInit {
         }
 
         this.route.params.subscribe((params) => {
-
           this.cellierId = params['id'];
-
           
           this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-            this.bouteilles = data.data;
-            this.bouteilles.forEach(uneBouteilleArchivee => {
-              if (uneBouteilleArchivee.quantite === 0) {
-                this.bouteilles.pop();
-                // this.inputArchive = document.getElementById('archive');
-                // this.inputArchive.addEventListener('change', e => {
-                //   if(e.target.checked === true) {
-                //     this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-                //       this.bouteilles = data.data;
-                //     });
-                //   }
-
-                  // e.target.checked === false;
-                // });
-              }
-            });
-                
-                
-              // this.inputArchive.addEventListener('change', e => {
-              //   if(e.target.checked === true) {
-              //     this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-              //       this.bouteilles = data.data;
-              //     });
-              //   }
-              //   if(e.target.checked === false) {
-              //     this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-              //       this.bouteilles = data.data;
-              //       this.bouteilles.forEach(uneBouteilleArchivee => {
-              //         if (uneBouteilleArchivee.quantite === 0) {
-              //           this.bouteilles.pop();
-              //         }
-              //       });
-              //     });
-              //   }
-              // });
-
+            this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+            // this.bouteilles = data.data;
           });
-
-
         });
 
       });
+
       if (this.bouteille.quantite == 0) {
-        this.openModal(id);
+        this.openModalArchiver(id, quantite);
       }
+
     });
+
   }
 
 
   // modal d'effacement
 
-  openModal(id: number) {
+  openModalSupprimer(id: number) {
     console.log(id);
-    console.log(this.isVisible);
+    console.log(this.isVisibleSupprimer);
     this.id = id;
-    this.isVisible = true;
+    this.isVisibleSupprimer = true;
+  }
+
+  openModalArchiver(id: number, quantite: number) {
+    console.log(id);
+    console.log(quantite);
+    console.log(this.isVisibleArchiver);
+    this.id = id;
+    this.quantite = quantite;
+    this.isVisibleArchiver = true;
   }
 
   closeModal() {
-    this.isVisible = false;
+    this.isVisibleSupprimer = false;
+    this.isVisibleArchiver = false;
   }
 
   onModalClosed() {
-    this.isVisible = false;
-    this.openSnackBar('La bouteille est maintenant archivée', 'Fermer');
+    this.isVisibleSupprimer = false;
+    this.isVisibleArchiver = false;
   }
+
+    // this.openSnackBar('La bouteille est maintenant archivée', 'Fermer');
+  
 
   rafraichirListe() {
     this.route.params.subscribe((params) => {
@@ -223,7 +194,8 @@ export class CellierComponent implements OnInit {
 
           console.log('raffraichissement des bouteilles');
           console.log(this.bouteilles);
-          this.isVisible = false;
+          this.isVisibleSupprimer = false;
+          this.isVisibleArchiver = false;
         });
     });
   }
