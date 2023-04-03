@@ -133,7 +133,8 @@ export class ScannerComponent implements OnDestroy {
             locator: {
               halfSample: false,
               patchSize: "large"
-            }
+            },
+            debug:true
           }, (err) => {
             if (err) {
               console.error(err);
@@ -181,17 +182,23 @@ export class ScannerComponent implements OnDestroy {
 
     if(result.codeResult.code.length === 11){
       result.codeResult.code = "000"+result.codeResult.code
+      console.log("ce code est 11");
+      console.log(result.codeResult.code);
     }
     if(result.codeResult.code.length === 12){
       result.codeResult.code = "00"+result.codeResult.code
+      console.log("ce code est 12");
+      console.log(result.codeResult.code);
     }
     if(result.codeResult.code.length === 13){
       result.codeResult.code = "0"+result.codeResult.code
+      console.log("ce code est 13");
+      console.log(result.codeResult.code);
     }
     this.stopScan();
 
 
-    console.log(result.codeResult.code);
+    
     this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
       this.uneBouteille = data.data;
       if(!this.uneBouteille){
