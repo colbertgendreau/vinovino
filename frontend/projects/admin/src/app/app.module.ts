@@ -1,16 +1,13 @@
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { EnteteComponent } from './entete/entete.component';
 import { ListeUsagerComponent } from './liste-usager/liste-usager.component';
 import { ListeCatalogueComponent } from './liste-catalogue/liste-catalogue.component';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -70,7 +67,6 @@ import { DefaultModule } from './layouts/default/default.module';
     DefaultModule
   ],
   providers: [
-    MatSnackBarModule,
   ],
   bootstrap: [AppComponent]
 })

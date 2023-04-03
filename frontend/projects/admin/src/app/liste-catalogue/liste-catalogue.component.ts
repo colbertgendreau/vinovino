@@ -149,30 +149,4 @@ export class ListeCatalogueComponent implements OnInit,AfterViewInit {
     });
   }
 
-  public onEvent(e: ScannerQRCodeResult[]): void {
-    console.log(e);
-  }
-
-  public handle(action: any, fn: string): void {
-    action[fn]().subscribe(console.log, alert);
-  }
-
-  public onDowload(action): void {
-    action.download().subscribe(console.log, alert);
-  }
-
-  public onSelects(files: any): void {
-    this.qrcode.loadFiles(files).subscribe((res: ScannerQRCodeSelectedFiles[]) => {
-      this.qrCodeResult = res;
-    });
-  }
-
-  public onSelects2(files: any): void {
-    this.qrcode.loadFilesToScan(files, this.config).subscribe((res: ScannerQRCodeSelectedFiles[]) => {
-      console.log(res);
-      this.qrCodeResult2 = res;
-    });
-  }
-
-
 }
