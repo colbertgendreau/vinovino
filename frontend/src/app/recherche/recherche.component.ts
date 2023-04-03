@@ -37,9 +37,11 @@ export class RechercheComponent {
   maxPrice = '';
   nombreDeResultat: number;
   scannedBouteille: any;
+  messageErreur: string = '';
 
   
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
+  iconeXb =  environment.baseImg + 'icones/xb.png';
 
   handleScan(scannedBouteille: string) {
     this.scannedBouteille = scannedBouteille;
@@ -57,6 +59,7 @@ export class RechercheComponent {
     } else {
       console.error('Bouteille not found in listeMesBouteilles');
       // Show an error message to the user here
+      this.messageErreur = "Il semble que cette bouteille ne soit pas stockée dans vos celliers. Veuillez vérifier à nouveau ou l'ajouter à vos celliers pour y accéder."
     }
   }
 

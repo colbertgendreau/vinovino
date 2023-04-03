@@ -88,7 +88,7 @@ export class FooterComponent {
       this.router.navigateByUrl('profil/ajouter-bouteille/' + this.idCellier);
     } else {
         this.btnAjouter = 'ajoutBouteille';
-        this.router.navigateByUrl('profil/ajouter-bouteille/n');
+        this.router.navigateByUrl('profil/ajouter-bouteille/');
     }
 
     window.scroll({
