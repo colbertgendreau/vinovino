@@ -13,7 +13,7 @@
     .recherche-input{
       margin-bottom: var(--big);
       border-radius: 5px;
-      border: 1px solid var(--secondaire);
+      border: solid var(--smallest) var(--gris-input);
       height: 30px;
       padding-inline: var(--small);
       width: 100%;

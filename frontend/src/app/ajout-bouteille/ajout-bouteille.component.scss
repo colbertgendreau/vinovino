@@ -8,7 +8,6 @@
 }
 
 h1 {
-  // margin-top: var(--big);
   font-size: 1.5rem;
 }
 
@@ -21,7 +20,7 @@ select {
   border-style: none;
   width: calc(100% - (var(--biggest) + var(--bigger)));
   padding-inline: var(--small);
-  border: solid var(--smallest) var(--black);
+  border: solid var(--smallest) var(--gris-input);
 }
 
 select {
@@ -45,8 +44,11 @@ select {
 }
 
 .recherche-input {
-  border: solid var(--smallest) var(--secondaire);
+  border: solid var(--smallest) var(--gris-input);
   margin-block: var(--big);
+  position: relative;
+  left: -12px;
+  padding-right: 38px;
 }
 
 .btn-effacer {
