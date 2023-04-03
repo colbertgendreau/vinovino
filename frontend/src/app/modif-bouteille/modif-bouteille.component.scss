@@ -35,7 +35,7 @@
     width: calc(100% - (var(--biggest) + var(--bigger)));
     padding-inline: var(--small);
     // border: solid var(--smallest) var(--white);
-    border: solid var(--smallest) var(--black);
+    border: solid var(--smallest) var(--gris-input);
   }
 
   select {

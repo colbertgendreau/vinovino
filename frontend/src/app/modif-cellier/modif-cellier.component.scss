@@ -58,7 +58,7 @@
             input {
                 height: var(--biggest);
                 border-radius: var(--border-radius5);
-                border: solid var(--smallest) var(--black);
+                border: solid var(--smallest) var(--gris-input);
                 width: calc(100% - (var(--biggest) + var(--bigger)));
                 padding-left: var(--small);
             }
