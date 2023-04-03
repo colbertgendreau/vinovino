@@ -1,6 +1,16 @@
 <section class="monCellier">
     <h1 class="titreCellier">{{ cellierNom }}</h1>
 
+<!--
+    grid list toggle de : www.syncfusion.com
+-->
+<div id="view" class="e-btn-group">
+    <input type="radio" id="left" name="align" value="1" (click)="changeDisplay(1)"/>
+    <label class="e-btn" for="left">Grid View</label>
+    <input type="radio" id="right" name="align" value="2" (click)="changeDisplay(2)"/>
+    <label class="e-btn" for="right">List View</label>
+</div>
+
     <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
     <div class="cellierVide" *ngIf="!bouteilles[0] && !spin">
@@ -14,12 +24,15 @@
         <label for="archive">Inclure les bouteilles archivées</label>
     </div>
 
+<ng-container *ngIf="display === 1;else list_content">
     <div *ngFor="let uneBouteille of bouteilles">
         <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" >
             <div class="card-bouteille-haut">
+            <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">   
                 <picture>
                     <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible" alt="Bouteille"/>
                 </picture>
+            </a>
                 <div class="info-bouteille">
                     <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">   
                     <h3>
@@ -47,7 +60,7 @@
                     <a *ngIf="!uneBouteille.code_saq" class="modifier-gris" routerLink="/profil/modifier-bouteille/{{
                     uneBouteille.id_supreme }}"></a>
 
-                    <a *ngIf="uneBouteille.code_saq" class="saq" href="{{uneBouteille.url_saq}}"></a>
+                    <a *ngIf="uneBouteille.code_saq" class="saq" href="{{uneBouteille.url_saq}}" target="_blank"></a>
                     <div class="quantite">
                         <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)"></button>
 
@@ -63,8 +76,34 @@
             </div>
         </article>
     </div>
+</ng-container>
 </section>
-
 <app-footer class="footerCellier"></app-footer>
 <app-effacer-bouteille-modal [id]="id" [isVisible]="isVisibleSupprimer" (closed)="onModalClosed()" (itemEfface)="rafraichirListe()"></app-effacer-bouteille-modal>
 <app-archiver-bouteille-modal [id]="id" [quantite]="quantite" [isVisible]="isVisibleArchiver" (closed)="onModalClosed()" (itemArchive)="rafraichirListe()"></app-archiver-bouteille-modal>
+
+
+<ng-template #list_contente class="list">
+    <div *ngFor="let uneBouteille of bouteilles">
+        {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
+        {{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}
+    </div>
+</ng-template>
+
+<ng-template #list_content class="list">
+    <table>
+        <tbody>
+            <tr *ngFor="let uneBouteille of bouteilles">
+                <td>{{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }} x</td>
+                <td class="td-nom">{{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}</td>
+                <td class="td-prix">{{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }} $</td>
+                <td>
+                    <a *ngIf="!uneBouteille.code_saq" routerLink="/profil/modifier-bouteille/{{
+                    uneBouteille.id_supreme }}"><div class="modifier-liste"></div></a>
+                    <a *ngIf="uneBouteille.code_saq" href="{{uneBouteille.url_saq}}" target="_blank"><div class="saq-liste"></div></a>
+                    <a href="#" class="saq-liste"></a>
+                </td>
+                <td><button class="btn-effacer-liste" (click)="openModal(uneBouteille.id_supreme)"></button></td>
+            </tr>
+        </tbody>
+    </table></ng-template>
