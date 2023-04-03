@@ -30,6 +30,7 @@ import { ChartModule } from 'angular-highcharts';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { DefaultModule } from './layouts/default/default.module';
 import { HeaderComponent } from './shared/components/header/header.component';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { HeaderComponent } from './shared/components/header/header.component';
     ModalComponent,
     ConnexionAdminComponent,
     StatistiquesComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
