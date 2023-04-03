@@ -10,7 +10,7 @@
             <input class="recherche-input" type="search" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)"
                 placeholder="Recherche dans vos celliers" />
             <!-- <input class="reset_btn" type="reset" value="X" alt="Clear the search form" (click)="resetData()"> -->
-            <img class="reset_btn" [src]="iconeXb" alt="Efface la recherche" (click)="resetData()">
+            <img class="reset_btn" *ngIf="searchTerm" [src]="iconeXb" alt="Efface la recherche" (click)="resetData()">
         </div>
         
 
