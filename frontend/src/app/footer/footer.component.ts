@@ -86,17 +86,9 @@ export class FooterComponent {
     if (this.pageActuelle == 'cellier') {
       this.btnAjouter = 'ajoutBouteille';
       this.router.navigateByUrl('profil/ajouter-bouteille/' + this.idCellier);
-    } else if (this.pageActuelle == 'listeCellier') {
-      this.btnAjouter = 'ajoutBouteille';
-      this.router.navigateByUrl('profil/ajouter-bouteille/n');
-    } else if (this.pageActuelle == 'recherche') {
-      this.btnAjouter = 'ajoutBouteille';
-      this.router.navigateByUrl('profil/ajouter-bouteille/n');
-    } else if (this.pageActuelle == 'archive') {
-      this.btnAjouter = 'ajoutBouteille';
-      this.router.navigateByUrl('profil/ajouter-bouteille/n');
     } else {
-      console.log("different bouton ajouter");
+        this.btnAjouter = 'ajoutBouteille';
+        this.router.navigateByUrl('profil/ajouter-bouteille/n');
     }
 
     window.scroll({
