@@ -29,9 +29,11 @@ class="monCellier">
     <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" >
     <!-- <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" *ngIf="uneBouteille.quantite !== 0"> -->
         <div class="card-bouteille-haut">
+            <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">   
             <picture>
                 <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible" alt="Bouteille"/>
             </picture>
+            </a>
             <div class="info-bouteille">
                 <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">   
                 <h3>
