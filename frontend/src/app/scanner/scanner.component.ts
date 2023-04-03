@@ -18,6 +18,7 @@ export class ScannerComponent implements OnDestroy {
   uneBouteille: Imesbouteilles;
   private stream: MediaStream | null = null;
   iconeCamera =  environment.baseImg + 'icones/barcode-scan.png';
+  // errorMessage: string = '';
 
   @Output() scanned = new EventEmitter<any>();
   showVideo = false;
@@ -45,15 +46,75 @@ export class ScannerComponent implements OnDestroy {
     //console.log('fin')
   }
 
+  // startScan(): void {
+  //   this.showVideo = true;
+
+
+  //   if (this.backCameraList.length === 0) {
+  //     this.stopScan();
+  //     this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
+  //     this.showVideo = false;
+  //     return;
+  //   }
+  //   //console.log('aqui ya casi')
+  //   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+  //     //console.log('backCameraList: ' + JSON.stringify(this.backCameraList));
+  //     navigator.mediaDevices.getUserMedia({video: {
+  //         deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
+  //         facingMode: { exact: "environment" }
+  //       } })
+  //       .then((stream) => {
+  //         this.stream = stream;
+  //         this.video.nativeElement.srcObject = stream;
+  //         this.video.nativeElement.play();
+  //         this.isScanning = true;
+  //         Quagga.init({
+  //           inputStream: {
+  //             name: "Live",
+  //             type: "LiveStream",
+  //             target: this.video.nativeElement,
+  //             constraints: {
+  //               width: 640,
+  //               height: 480,
+  //               facingMode: 'environment',
+  //               deviceId: this.backCameraList[this.backCameraList.length - 1]['deviceId']
+  //             },
+  //             area: {
+  //               top: "25%",
+  //               right: "10%",
+  //               left: "10%",
+  //               bottom: "25%"
+  //             },
+  //             singleChannel: false // true: only the red color-channel is read
+  //           },
+  //           decoder: {
+  //             readers: ["code_128_reader", "upc_reader", "ean_13_reader", "code_39_reader"]
+  //           },
+  //           locate: true,
+  //           locator: {
+  //             halfSample: true,
+  //             patchSize: "large"
+  //           }
+  //         }, (err) => {
+  //           if (err) {
+  //             console.error(err);
+  //             return;
+  //           }
+  //           Quagga.start();
+  //           this.isScanning = true;
+  //         });
+  //       })
+  //       .catch((err) => {
+  //         console.error(err);
+  //       });
+  //   }
+  // }
+
   startScan(): void {
     this.showVideo = true;
-    //console.log('aqui ya casi')
+  
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      //console.log('backCameraList: ' + JSON.stringify(this.backCameraList));
-      navigator.mediaDevices.getUserMedia({video: {
-          deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
-          facingMode: { exact: "environment" }
-        } })
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
         .then((stream) => {
           this.stream = stream;
           this.video.nativeElement.srcObject = stream;
@@ -64,26 +125,13 @@ export class ScannerComponent implements OnDestroy {
               name: "Live",
               type: "LiveStream",
               target: this.video.nativeElement,
-              constraints: {
-                width: 640,
-                height: 480,
-                facingMode: 'environment',
-                deviceId: this.backCameraList[this.backCameraList.length - 1]['deviceId']
-              },
-              area: {
-                top: "25%",
-                right: "10%",
-                left: "10%",
-                bottom: "25%"
-              },
-              singleChannel: false // true: only the red color-channel is read
             },
             decoder: {
-              readers: ["code_128_reader", "upc_reader", "ean_13_reader", "code_39_reader"]
+              readers: ["ean_reader", "upc_reader","code_128_reader"]
             },
             locate: true,
             locator: {
-              halfSample: true,
+              halfSample: false,
               patchSize: "large"
             }
           }, (err) => {
@@ -100,6 +148,7 @@ export class ScannerComponent implements OnDestroy {
         });
     }
   }
+  
 
   stopScan(): void {
 
@@ -130,6 +179,9 @@ export class ScannerComponent implements OnDestroy {
     console.log(result.codeResult.code);
 
 
+    if(result.codeResult.code.length === 11){
+      result.codeResult.code = "000"+result.codeResult.code
+    }
     if(result.codeResult.code.length === 12){
       result.codeResult.code = "00"+result.codeResult.code
     }
@@ -139,7 +191,7 @@ export class ScannerComponent implements OnDestroy {
     this.stopScan();
 
 
-
+    console.log(result.codeResult.code);
     this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
       this.uneBouteille = data.data;
       if(!this.uneBouteille){
@@ -159,4 +211,7 @@ export class ScannerComponent implements OnDestroy {
   ngAfterViewInit(): void {
     Quagga.onDetected(this.handleDecode.bind(this));
   }
+
+
+  
 }
