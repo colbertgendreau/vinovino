@@ -21,6 +21,7 @@ export interface Imesbouteilles {
     commentaires?: string;
     image_url?: string;
     image?: string;
+    cepages?: string;
 
     id_bouteillePerso: number;
     nom_bouteillePerso: string;
