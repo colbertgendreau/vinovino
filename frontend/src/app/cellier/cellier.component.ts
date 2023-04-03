@@ -38,6 +38,7 @@ export class CellierComponent implements OnInit {
   spin: boolean = true;
   hide: boolean = true;
   pageCellier: boolean = true;
+  display: number = 2;
 
   counterValue: number = 0;
   quantite: number;
@@ -249,6 +250,10 @@ export class CellierComponent implements OnInit {
     });
 
     this.router.navigateByUrl('profil/liste-cellier');
+  }
+
+  changeDisplay(mode: number): void {
+    this.display = mode;
   }
 
 
