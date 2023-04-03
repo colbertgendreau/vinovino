@@ -2,11 +2,18 @@
     <!--
         <div class="back" (click)="back()"></div>
     -->
-    <a class="boutton_footer" routerLink="/profil/liste-cellier"><div class="icone_house icone"></div><span>Accueil</span></a>
+    <a class="boutton_footer" routerLink="/profil/liste-cellier"><div class="icone_house icone"></div><span>Celliers</span></a>
     
-    <a class="boutton_footer" routerLink="#"><div class="icone-scan icone"></div><span>Scan?</span></a>
+    <a class="boutton_footer" routerLink="#"><div class="icone icone-bouteilles"></div><span>Bouteilles?</span></a>
     
     <div class="ajouter boutton_footer" (click)="ajouter()"><div class="icone-bouteille_footer icone"><div class="icone-plus"></div></div><span>Ajout</span></div>
+    
+    <a class="boutton_footer" routerLink="/profil/archive"><div class="icone-archives icone"></div><span>Archives</span></a>
+
+    <!--
+        <a class="boutton_footer" routerLink="#"><div class="icone-scan icone"></div><span>Scan?</span></a>
+    -->
+
 
     <!-- 
     <div *ngIf="pageActuelle == 'cellier'" class="ajouter" (click)="ajouter()"><div class="icone-bouteille icone"><div class="icone-plus"></div></div><div>Ajout</div></div>
@@ -19,7 +26,6 @@
     <div *ngIf="pageActuelle == 'modifCellier'" class="ajouter" (click)="ajouter()"><div class="icone-cellier"></div></div>
     -->
 
-    <a class="boutton_footer" routerLink="#"><div class="icone icone-bouteilles"></div><span>Bouteilles?</span></a>
     
     <div class="boutton_footer" (click)="goUp()"><div class="goUp icone"></div><span>Haut</span></div>
 </section>
