@@ -79,7 +79,7 @@ export class ScannerComponent implements OnDestroy {
               singleChannel: false // true: only the red color-channel is read
             },
             decoder: {
-              readers : ["code_128_reader", "upc_reader"]
+              readers: ["code_128_reader", "upc_reader", "ean_13_reader", "code_39_reader"]
             },
             locate: true,
             locator: {
@@ -128,6 +128,14 @@ export class ScannerComponent implements OnDestroy {
     //   drawingCtx.strokeRect(box[0], box[1], box[2] - box[0], box[3] - box[1]);
     // }
     console.log(result.codeResult.code);
+
+
+    if(result.codeResult.code.length === 12){
+      result.codeResult.code = "00"+result.codeResult.code
+    }
+    if(result.codeResult.code.length === 13){
+      result.codeResult.code = "0"+result.codeResult.code
+    }
     this.stopScan();
 
 
