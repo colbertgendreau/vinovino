@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&amp;display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="/assets/admin/styles.37f9abf3eee9d72f.css"></head>
+<link rel="stylesheet" href="/assets/admin/styles.db333842861d91bc.css"></head>
 <body class="mat-typography">
 <script src="https://cdn.jsdelivr.net/npm/ngx-scanner-qrcode@latest/wasm/index.js" crossorigin="anonymous"></script>
   <app-root></app-root>
