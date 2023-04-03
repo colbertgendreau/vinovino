@@ -4,9 +4,15 @@
 
     <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
-    <picture>
-        <img [src]="uneBouteille?.url_img ? uneBouteille?.url_img : imgBouteilleNonDisponible" alt="Bouteille" />
-    </picture>
+    <div class="zoom-image-container">
+        <div class="zoom-image-popup" *ngIf="showImage" (click)="showImage = false; ">
+          <img [src]="uneBouteille?.image_url ? uneBouteille?.image_url : imgBouteilleNonDisponible" alt="Bouteille" />
+        </div>
+      
+        <img class="bouteille" [src]="uneBouteille?.url_img ? uneBouteille?.url_img : imgBouteilleNonDisponible" alt="Bouteille"
+        (click)="showImage = true;" />
+      </div>
+    
 
     <p *ngIf="uneBouteille?.description"> {{ uneBouteille?.description }} </p>
     <p *ngIf="uneBouteille?.description == null" [ngSwitch]="uneBouteille?.type_bouteillePerso"> <span

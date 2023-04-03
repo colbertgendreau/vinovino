@@ -30,6 +30,9 @@ export class DetailBouteilleComponent {
   uneBouteille: Imesbouteilles;
   spin: boolean = true;
   hide: boolean = true;
+  fullImage1 = false;
+  showImage = false;
+
 
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
@@ -43,7 +46,7 @@ export class DetailBouteilleComponent {
     private route: ActivatedRoute,
     public fetchService: FetchService,
     private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
 
   ) {
     this.authService.profileUser().subscribe((data: any) => {
@@ -70,6 +73,8 @@ export class DetailBouteilleComponent {
       });
     })
   }
+
+ 
 
 
 
