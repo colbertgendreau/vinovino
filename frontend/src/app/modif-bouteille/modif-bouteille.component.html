@@ -98,8 +98,8 @@
             <label for="celliers_id">
                 <select name="celliers_id" id="celliers_id" formControlName="celliers_id">
                     <ng-container *ngFor="let cellier of listeCelliers">
-                        <option *ngIf="bouteille.celliers_id == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
-                        <option *ngIf="bouteille.celliers_id != cellier.id"  [value]="cellier.id" >{{cellier.nom}}</option>
+                        <option *ngIf="bouteille?.celliers_id == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
+                        <option *ngIf="bouteille?.celliers_id != cellier.id"  [value]="cellier.id" >{{cellier.nom}}</option>
                     </ng-container>
                 </select>
                 </label>

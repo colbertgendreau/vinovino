@@ -11,10 +11,13 @@ class="monCellier">
 <div *ngFor="let uneBouteille of bouteillesArchivees">
     <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'" >
         <div class="card-bouteille-haut">
+            <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">   
             <picture>
                 <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible" alt="Bouteille"/>
             </picture>
+            </a>
             <div class="info-bouteille">
+                <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">   
                 <h3>
                     {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
                 </h3>
@@ -34,12 +37,13 @@ class="monCellier">
                         {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }}
                     </p>
                 </div>
+                </a>
             </div>
             <div class="quantite">
                 <a *ngIf="!uneBouteille.code_saq" class="modifier-gris" routerLink="/profil/modifier-bouteille/{{
                     uneBouteille.id_supreme }}"></a>
 
-                <a *ngIf="uneBouteille.code_saq" class="modifier"></a>
+                    <a *ngIf="uneBouteille.code_saq" class="saq" href="{{uneBouteille.url_saq}}"></a>
                 <div class="quantite">
                     <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1, uneBouteille.celliers_nom)"></button>
                     <span>{{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
