@@ -158,7 +158,10 @@
   gap: var(--small);
   text-align: center;
 
-
+  .lien-detail{
+    text-decoration: none;
+    color: var(--black);
+  }
 
   .bouteille {
     display: flex;
@@ -190,17 +193,18 @@
 
       .info-bouteille {
         min-width: 4ch;
-        margin-left: var(--small);
-        justify-self: stretch;
-        display: flex;
-        flex-direction: column;
-        gap: var(--smallest);
         width: 100%;
+        margin-left: var(--small);
+      
+        a{
+          display: flex;
+          flex-direction: column;
+          gap: var(--small);
+        }
 
         div {
           display: flex;
           flex-direction: row;
-          align-items: end;
         }
 
         .icone {
@@ -326,6 +330,14 @@
   align-items: center;
   margin-left: auto;
   justify-self: flex-end;
+
+  .archive{
+    background-color: var(--primaire);
+    color: white;
+    padding-block: var(--smallest);
+    padding-inline: var(--small);
+    border-radius: var(--smallest);
+  }
 }
 
 .modifier {

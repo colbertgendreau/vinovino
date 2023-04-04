@@ -1,11 +1,12 @@
 .auth-wrapper {
     // padding-top: 31px;
-    padding-top: 63px;
-    // height: calc(100vh - 63px);
+    // padding-top: 63px;
+    height: calc(100vh - 63px);
     background-attachment: fixed;
     height: 100vh;
 
-    background-image: url(../../../assets/img/background-statique-mobile.png);
+    background-image: url(../../../assets/img/grapes-vin.jpg);
+    background-position: bottom;
     background-size: cover;
     object-position: right;
     display: flex;

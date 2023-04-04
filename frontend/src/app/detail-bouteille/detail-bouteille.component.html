@@ -1,33 +1,49 @@
 <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
-<section class="uneBouteille"  [className]="hide ? 'hide' : 'nohide'">
+<section class="uneBouteille" [className]="hide ? 'hide' : 'nohide'">
 
-    <h1 class="titreBouteille">{{ uneBouteille?.nom }}{{ uneBouteille?.nom_bouteillePerso }}</h1>
+  <h1 class="titreBouteille">{{ uneBouteille?.nom }}{{
+    uneBouteille?.nom_bouteillePerso }}</h1>
 
-
+  <div class="flexer">
     <div class="zoom-image-container">
-        <div class="zoom-image-popup" *ngIf="showImage" (click)="showImage = false; ">
-          <img [src]="uneBouteille?.image_url ? uneBouteille?.image_url : imgBouteilleNonDisponible" alt="Bouteille" />
-          <span class="zeX">X</span>
-        </div>
-      
-        <img class="bouteille" [src]="uneBouteille?.url_img ? uneBouteille?.url_img : imgBouteilleNonDisponible" alt="Bouteille"
-        (click)="showImage = true;" />
+      <div class="zoom-image-popup" *ngIf="showImage" (click)="showImage= false;
+        ">
+        <img [src]="uneBouteille?.image_url ? uneBouteille?.image_url :
+          imgBouteilleNonDisponible" alt="Bouteille" />
+        <span class="zeX">X</span>
       </div>
-    
 
-    <p *ngIf="uneBouteille?.description"> {{ uneBouteille?.description }} </p>
-    <p *ngIf="uneBouteille?.description == null" [ngSwitch]="uneBouteille?.type_bouteillePerso"> <span
-            *ngSwitchCase="1">Vin Rouge |</span><span *ngSwitchCase="2">Vin Blanc |</span><span *ngSwitchCase="3">Vin
-            Rosé |</span> {{uneBouteille?.format_bouteillePerso + ' | ' }}{{uneBouteille?.pays_bouteillePerso }} </p>
-            <p *ngIf="uneBouteille?.cepages">Cépages:<br> {{ cepage_lisible }} </p>
-    <p *ngIf="uneBouteille?.prix_saq"> Prix: {{ uneBouteille?.prix_saq }}$</p>
-    <p *ngIf="uneBouteille?.prix_bouteillePerso"> Prix: {{ uneBouteille?.prix_bouteillePerso }}$</p>
-    <div class="zoneSAQ" *ngIf="uneBouteille?.url_saq">
-      <a target="_blank" class="saq" href="{{ uneBouteille?.url_saq }}"></a><a target="_blank" class="saqFiche" href="{{ uneBouteille?.url_saq }}">Consulter la fiche SAQ</a>
+      <img class="bouteille" [src]="uneBouteille?.url_img ?
+        uneBouteille?.url_img
+        : imgBouteilleNonDisponible"
+        alt="Bouteille" (click)="showImage= true;" />
     </div>
+    <div class="detail-text">
+      <p *ngIf="uneBouteille?.description"> {{ uneBouteille?.description }} </p>
+      <p *ngIf="uneBouteille?.description == null"
+        [ngSwitch]="uneBouteille?.type_bouteillePerso"> <span
+          *ngSwitchCase="1">Vin Rouge |</span><span *ngSwitchCase="2">Vin Blanc
+          |</span><span
+          *ngSwitchCase="3">Vin
+          Rosé |</span> {{uneBouteille?.format_bouteillePerso + ' | '
+        }}{{uneBouteille?.pays_bouteillePerso }} </p>
+      <p *ngIf="uneBouteille?.cepages">{{ cepage_lisible }}</p>
+      <p *ngIf="uneBouteille?.cepages == 'Non disponible'|| uneBouteille?.cepages == null">Cépage non disponible</p>
+      <p *ngIf="uneBouteille?.prix_saq">{{ uneBouteille?.prix_saq }}$</p>
+      <p *ngIf="uneBouteille?.prix_bouteillePerso">{{
+        uneBouteille?.prix_bouteillePerso }}$</p>
+      <div class="zoneSAQ" *ngIf="uneBouteille?.url_saq">
+        <a target="_blank" class="saq" href="{{ uneBouteille?.url_saq }}"></a><a
+          target="_blank" class="saqFiche"
+          href="{{ uneBouteille?.url_saq }}"></a>
+      </div>
+    </div>
+  </div>
 
-    <app-notes [uneBouteille]="uneBouteille"></app-notes>
-    <app-commentaire></app-commentaire>
+
+
+  <app-notes [uneBouteille]="uneBouteille"></app-notes>
+  <app-commentaire></app-commentaire>
 
 
 
