@@ -11,7 +11,7 @@ class UserController extends Controller
 {
 
     /**
-     * Display a listing of the resource.
+     * Affiche la liste des usagers.
      *
      * @return \Illuminate\Http\Response
      */
@@ -21,14 +21,4 @@ class UserController extends Controller
         return ['data' => $users];
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(User $user)
-    {
-        $user->delete();
-    }
 }

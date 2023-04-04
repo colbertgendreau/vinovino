@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class CellierController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Affiche la liste de celliers
      *
      * @return \Illuminate\Http\Response
      */
@@ -19,26 +19,10 @@ class CellierController extends Controller
         $users_id = Auth::id();
         $celliers = Cellier::where('users_id', $users_id)->get();
         return ['data' => $celliers];
-
-
-        // $users_id = Auth::id();
-        // $celliers = Cellier::where('users_id', $users_id)
-        // ->leftjoin('bouteilles', 'bouteilles.celliers_id', '=', 'celliers.id')
-        // ->get();
-        return ['data' => $celliers];
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Enregistre un nouveau cellier dans la DB
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -54,7 +38,7 @@ class CellierController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affiche un cellier.
      *
      * @param  \App\Models\Cellier  $cellier
      * @return \Illuminate\Http\Response
@@ -62,34 +46,10 @@ class CellierController extends Controller
     public function show(Cellier $cellier)
     {
 
-
-
-
         $celliers_id = $cellier->id;
-        // var_dump($cellier->id);
-        // $bouteilles = bouteille::where('celliers_id', $celliers_id)->get();
-
-
-        // $bouteilles = bouteille::where('celliers_id', $celliers_id)
-        // ->leftjoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
-        // ->leftjoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'id_mes_bouteilles')
-        // ->leftjoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
-        // ->leftjoin('vino__type', 'vino__type.id', '=', 'mes_bouteilles.type_bouteillePerso')
-        // ->get();
-
-        // $bouteilles = bouteille::where('celliers_id', $celliers_id)
-        //     ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'id_bouteille')
-        //     ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'id_mes_bouteilles')
-        //     ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
-        //     ->leftJoin('vino__type as type_mes', 'type_mes.id', '=', 'mes_bouteilles.type_bouteillePerso')
-        //     ->get();
-
-
-        // return ['data' => $bouteilles];
-
-
 
         $bouteilles = Bouteille::select(
+
             'bouteilles.id AS id_supreme',
             'bouteilles.*',
             'vino__bouteille.id AS vino__bouteille_id',
@@ -100,39 +60,22 @@ class CellierController extends Controller
             'type_mes.id AS type_mes_id',
             'type_mes.type AS type_mes_name',
             'celliers.nom AS cellier_nom',
-            
+
         )
 
-        ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')
-        ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'bouteilles.id_mes_bouteilles')
-        ->leftJoin('celliers', 'celliers.id', '=', 'bouteilles.celliers_id')
-        ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
-        ->leftJoin('vino__type as type_mes', 'type_mes.id', '=', 'mes_bouteilles.type_bouteillePerso')
-        ->where('bouteilles.celliers_id', $celliers_id)
-        ->get();
+            ->leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')
+            ->leftJoin('mes_bouteilles', 'mes_bouteilles.id_bouteillePerso', '=', 'bouteilles.id_mes_bouteilles')
+            ->leftJoin('celliers', 'celliers.id', '=', 'bouteilles.celliers_id')
+            ->leftJoin('vino__type as type_vino', 'type_vino.id', '=', 'vino__bouteille.type')
+            ->leftJoin('vino__type as type_mes', 'type_mes.id', '=', 'mes_bouteilles.type_bouteillePerso')
+            ->where('bouteilles.celliers_id', $celliers_id)
+            ->get();
 
         return ['data' => $bouteilles];
-
-
-
-    }
-
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Cellier  $cellier
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Cellier $cellier)
-    {
-        //
     }
 
     /**
-     * Update the specified resource in storage.
+     * Modifie le nom du cellier.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Cellier  $cellier
@@ -146,11 +89,10 @@ class CellierController extends Controller
                 'nom' => $request->nom
             ]
         );
-
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Détruit un cellier
      *
      * @param  \App\Models\Cellier  $cellier
      * @return \Illuminate\Http\Response
@@ -158,18 +100,21 @@ class CellierController extends Controller
     public function destroy(Cellier $cellier)
     {
         $cellier->delete();
-
     }
 
 
 
+    /**
+     * Affiche des celliers à l'extérieur de la page liste-cellier
+     *
+     * @param  \App\Models\Cellier  $celliers
+     * @return \Illuminate\Http\Response
+     */
     public function showCellier(Cellier $celliers)
     {
         return response()->json([
             'data' => $celliers,
             'user' => auth()->user(),
         ]);
-
-        //return ['data' => $celliers];
     }
 }
