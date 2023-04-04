@@ -50,6 +50,8 @@ export class ListeCellierComponent implements OnInit {
   isVisible = false;
   spin: boolean = true;
   hide: boolean = true;
+  display: number = 2;
+
 
 
 
@@ -87,28 +89,6 @@ export class ListeCellierComponent implements OnInit {
       this.hide = false;
     });
 
-    // this.fetchService.getMesBouteilles().subscribe((data: any) => {
-    //   this.listeMesBouteilles = data.data;
-    //   for (let i = 0; i < this.listeMesBouteilles.length; i++) {
-    //     if (this.listeMesBouteilles[i].nom == null) {
-    //       this.listeMesBouteilles[i].nom = this.listeMesBouteilles[i].nom_bouteillePerso
-    //     }
-    //     if (this.listeMesBouteilles[i].type_vino_name == null) {
-    //       this.listeMesBouteilles[i].type_vino_name = this.listeMesBouteilles[i].type_mes_name
-    //     }
-    //     if (this.listeMesBouteilles[i].pays == null) {
-    //       this.listeMesBouteilles[i].pays = this.listeMesBouteilles[i].pays_bouteillePerso
-    //     }
-    //     if (this.listeMesBouteilles[i].prix_saq == null) {
-    //       this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_bouteillePerso
-    //     }else{
-    //       if (this.listeMesBouteilles[i].prix_bouteillePerso == null) {
-    //         this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_saq;
-    //       }
-    //     }
-    //   }
-    //   console.log(this.listeMesBouteilles);
-    // });
 
   }
 
@@ -130,12 +110,6 @@ export class ListeCellierComponent implements OnInit {
     this.isVisible = false;
   }
 
-  // openModalFilter() {
-  //   this.isVisibleM = true;
-  // }
-  // closeModalFilter() {
-  //   this.isVisibleM = false;
-  // }
 
   rafraichirListe(){
     this.fetchService.getCelliers().subscribe((data: any) => {
@@ -147,13 +121,12 @@ export class ListeCellierComponent implements OnInit {
 
 
   openCellier(idCellier:number) {
-
-    
-
     console.log('ouvre le cellier'+idCellier);
-    this.router.navigateByUrl('profil/cellier/'+idCellier);
+    this.router.navigateByUrl('profil/cellier/'+idCellier); 
+  }
 
-    
+  changeDisplay(mode: number): void {
+    this.display = mode;
   }
 
 
