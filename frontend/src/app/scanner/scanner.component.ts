@@ -99,9 +99,9 @@ export class ScannerComponent implements OnDestroy {
           track.stop();
         });
       }
-      this.video.nativeElement.pause();
-      this.video.nativeElement.srcObject = null;
-      Quagga.stop();
+      // this.video.nativeElement.pause();
+      // this.video.nativeElement.srcObject = null;
+      // Quagga.stop();
       this.isScanning = false;
       this.showVideo = false;
     }
