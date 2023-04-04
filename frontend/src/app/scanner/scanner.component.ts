@@ -48,6 +48,14 @@ export class ScannerComponent implements OnDestroy {
       //     });
           
       //   });
+//       navigator.mediaDevices.enumerateDevices()
+//         .then((devices) => {
+//           devices.forEach((device) => {
+//             if (device.kind === 'videoinput') {
+//               console.log('Camera found:', device.label);
+//             }
+//           });
+//         });
     }
 
     startScan(): void {
