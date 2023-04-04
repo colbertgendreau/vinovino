@@ -62,13 +62,14 @@ export class ScannerComponent implements OnDestroy {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       //console.log('backCameraList: ' + JSON.stringify(this.backCameraList));
       navigator.mediaDevices.getUserMedia({video: {
-          deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
           facingMode: { exact: "environment" }
         } })
         .then((stream) => {
           this.stream = stream;
           this.video.nativeElement.srcObject = stream;
-          this.video.nativeElement.play();
+          this.video.nativeElement.autoplay = true;
+          this.video.nativeElement.playsInline = true;
+          this.video.nativeElement.muted = true;
           this.isScanning = true;
           Quagga.init({
             inputStream: {
@@ -76,9 +77,9 @@ export class ScannerComponent implements OnDestroy {
               type: "LiveStream",
               target: this.video.nativeElement,
               constraints: {
-                width: 640,
-                height: 480,
-                facingMode: { exact: "environment" }
+                video: {
+                  facingMode: { exact: "environment" }
+                }
               },
               area: {
                 top: "25%",
