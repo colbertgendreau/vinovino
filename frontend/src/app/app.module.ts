@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, isDevMode } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SigninComponent } from './compte-utilisateur/signin/signin.component';
@@ -24,26 +23,15 @@ import { EffacerBouteilleModalComponent } from './effacer-bouteille-modal/efface
 import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-modal.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { FooterComponent } from './footer/footer.component';
-
 import Quagga from 'quagga';
-
-
-// import { ServiceWorkerModule } from '@angular/service-worker';
-
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { environment } from '../environments/environment';
-
 import { ScannerComponent } from './scanner/scanner.component';
-
 import { ArchiveComponent } from './archive/archive.component';
 import { DetailBouteilleComponent } from './detail-bouteille/detail-bouteille.component';
 import { NotesComponent } from './notes/notes.component';
 import { CommentaireComponent } from './commentaire/commentaire.component';
 import { ArchiverBouteilleModalComponent } from './archiver-bouteille-modal/archiver-bouteille-modal.component';
-
-
-
 
 @NgModule({
   declarations: [
@@ -61,29 +49,17 @@ import { ArchiverBouteilleModalComponent } from './archiver-bouteille-modal/arch
     AjoutCellierComponent,
     MesBouteillesComponent,
     ListeMesbouteillesComponent,
-
     EffacerModalComponent,
-
-
     RechercheComponent,
-
     EffacerBouteilleModalComponent,
-
     SpinnerComponent,
-
     FooterComponent,
-
     ScannerComponent,
-
-      ArchiveComponent,
-      DetailBouteilleComponent,
-      NotesComponent,
-      CommentaireComponent,
-      ArchiverBouteilleModalComponent,
-
-
-
-
+    ArchiveComponent,
+    DetailBouteilleComponent,
+    NotesComponent,
+    CommentaireComponent,
+    ArchiverBouteilleModalComponent,
   ],
   imports: [
     BrowserModule,
