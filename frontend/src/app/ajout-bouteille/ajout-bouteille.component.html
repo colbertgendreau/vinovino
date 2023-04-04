@@ -3,7 +3,7 @@
     <h1>Ajouter une bouteille</h1>
     <app-scanner (scanned)="handleScan($event)"></app-scanner>
   </div>
-  <span class="error">{{messageErreur}}</span>
+  <span class="error" *ngIf="messageErreur">{{messageErreur}}</span>
 
       <label>
       <input class="recherche-input"
