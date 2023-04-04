@@ -79,6 +79,22 @@ export class ListeUsagerComponent implements OnInit {
     });
   }
 
+ supprimer(utilisateur:IUser) {
+    console.log(utilisateur);
+    let dialogRef = this.dialog.open(ModalComponent, {data: {nom: utilisateur.name, id: utilisateur.id}});
+    dialogRef.afterClosed().subscribe((retour:string) =>{
+      console.log(retour);
+      if(retour === 'false') {
+        console.log('utilisateur supprimé');
+        this.adminServ.effacerUtilisateur(utilisateur.id).subscribe((result)=>{
+          console.log(utilisateur.id);
+          console.log(result);
+          this.afficherListeUtilisateur();
+        });
+      }
+    });
+  }
+
   /**
    * Fonction qui permet de filtrer les usagers
    * @param event Event - Sur l'événement
