@@ -159,6 +159,7 @@ export class AjoutBouteilleComponent implements OnInit {
    * si la bouteille est trouver on patch le data dans le form ajouter
    */
   handleScan(scannedBouteille: string) {
+    this.messageErreur="";
     this.scannedBouteille = scannedBouteille;
 
     if(this.scannedBouteille){
