@@ -159,6 +159,7 @@ export class AjoutBouteilleComponent implements OnInit {
    * si la bouteille est trouver on patch le data dans le form ajouter
    */
   handleScan(scannedBouteille: string) {
+    this.messageErreur="";
     this.scannedBouteille = scannedBouteille;
 
     if(this.scannedBouteille){
@@ -210,7 +211,7 @@ export class AjoutBouteilleComponent implements OnInit {
                   element.quantite = element.quantite + 1;
                   this.fetchService.modifBouteille(element.id_supreme, element).subscribe((retour) => {
                     this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
-                    this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.celliers_id);
+                    this.router.navigate(['profil/cellier/' + nouvelleBouteille.celliers_id]);
                   });
                   
                 }
@@ -220,7 +221,7 @@ export class AjoutBouteilleComponent implements OnInit {
             if (this.present == false){
               this.fetchService.ajoutBouteille(nouvelleBouteille).subscribe((retour) => {
                 this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
-                this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.celliers_id);
+                this.router.navigate(['profil/cellier/' + nouvelleBouteille.celliers_id]);
               });
             }
           });
