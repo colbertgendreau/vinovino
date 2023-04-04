@@ -7,14 +7,10 @@ import { FetchService } from '../fetch.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Ibouteillecellier } from '../ibouteille-cellier';
 import { Imesbouteilles } from '../imesbouteilles';
-import { EffacerBouteilleModalComponent } from '../effacer-bouteille-modal/effacer-bouteille-modal.component';
 import { environment } from '../../environments/environment';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
-
-
-
-// User interface
+// Interface User
 export class User {
   name: any;
   email: any;
@@ -25,14 +21,14 @@ export class User {
   templateUrl: './cellier.component.html',
   styleUrls: ['./cellier.component.scss'],
 })
+
 export class CellierComponent implements OnInit {
   @Input() cellier: ICellier;
 
   bouteilles: Array<Ibouteillecellier>;
-  // bouteilles: Array<unknown>;
   bouteille: Imesbouteilles;
   cellierId: string;
-  cellierNom:string;
+  cellierNom: string;
   isSignedIn!: boolean;
   UserProfile!: User;
   unCellier: any;
@@ -40,18 +36,17 @@ export class CellierComponent implements OnInit {
   hide: boolean = true;
   pageCellier: boolean = true;
   display: number = 1;
-
   counterValue: number = 0;
   quantite: number;
   id: number;
-
   isVisibleSupprimer = false;
   isVisibleArchiver = false;
-
   inputArchive: any;
-
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
+  /**
+   * Constructeur de la classe CellierComponent
+   */
   constructor(
     private auth: AuthStateService,
     public router: Router,
@@ -63,14 +58,16 @@ export class CellierComponent implements OnInit {
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
-      console.log(this.UserProfile);
     });
     this.bouteilles = [];
   }
 
+  /**
+   * Fonction initiale dès l'instanciation de la classe
+   */
   ngOnInit() {
-
-    window.scroll({ // pour scroll up quand on arrive sur la page
+    // pour scroll up quand on arrive sur la page
+    window.scroll({
       top: 0,
       left: 0,
       behavior: 'smooth'
@@ -78,166 +75,154 @@ export class CellierComponent implements OnInit {
 
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
     });
 
     this.route.params.subscribe((params) => {
-
       this.cellierId = params['id'];
-      console.log(params['id']);
-
       this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
         this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
-
         this.inputArchive = document.getElementById('archive');
-
         this.inputArchive.addEventListener('change', e => {
-          console.log(e.target.checked)
-          if(e.target.checked === true) {
+          if (e.target.checked === true) {
             this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
               this.bouteilles = data.data;
             });
           }
-          if(e.target.checked === false) {
+          if (e.target.checked === false) {
             this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
               this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
             });
           }
         });
-  
-        if(this.bouteilles[0]) {
+        if (this.bouteilles[0]) {
           this.cellierNom = this.bouteilles[0].cellier_nom;
         }
-
         this.spin = false;
         this.hide = false;
       });
     });
   }
 
-
+  /**
+   * Fonction qui modifie la quantité d'une bouteille dans un cellier
+   * @param id nombre - L'id de la bouteille
+   * @param quantite nombre - La quantité initiale de la bouteille dans le cellier
+   */
   modifier(id: number, quantite: number) {
-
     this.fetchService.showBouteille(id).subscribe((data: any) => {
       this.bouteille = data.data;
       this.bouteille.quantite = quantite;
-
       let updateBouteille: Imesbouteilles = this.bouteille;
-      console.log(updateBouteille);
-      
       this.fetchService.modifBouteille(id, updateBouteille).subscribe((retour) => {
-
         if (this.bouteille.quantite > 0) {
           this.openSnackBar('La quantité fut modifiée avec succès', 'Fermer');
         }
-
         this.route.params.subscribe((params) => {
           this.cellierId = params['id'];
-          
           this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
             this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
             // this.bouteilles = data.data;
           });
         });
-
       });
-
       if (this.bouteille.quantite == 0) {
         this.openModalArchiver(id, quantite);
       }
-
     });
-
   }
 
 
-  // modal d'effacement
-
+  /**
+   * Fonction qui permet l'ouverture du modal pour supprimer une bouteille dans un cellier
+   * @param id nombre - L'id de la bouteille
+   */
   openModalSupprimer(id: number) {
-    console.log(id);
-    console.log(this.isVisibleSupprimer);
     this.id = id;
     this.isVisibleSupprimer = true;
   }
 
+  /**
+   * Fonction qui permet l'ouverture du modal pour archiver une bouteille dans un cellier
+   * @param id nombre - L'id de la bouteille
+   * @param quantite nombre - La quantité de la bouteille dans le cellier
+   */
   openModalArchiver(id: number, quantite: number) {
-    console.log(id);
-    console.log(quantite);
-    console.log(this.isVisibleArchiver);
     this.id = id;
     this.quantite = quantite;
     this.isVisibleArchiver = true;
   }
 
-  closeModal() {
-    this.isVisibleSupprimer = false;
-    this.isVisibleArchiver = false;
-  }
+  // /**
+  //  * Fonction qui permet la fermeture des modaux de suppression et d'archivage
+  //  */
+  // closeModal() {
+  //   this.isVisibleSupprimer = false;
+  //   this.isVisibleArchiver = false;
+  // }
 
+  /**
+   * Fonction qui permet la fermeture des modaux de suppression et d'archivage
+   */
   onModalClosed() {
     this.isVisibleSupprimer = false;
     this.isVisibleArchiver = false;
   }
 
-    // this.openSnackBar('La bouteille est maintenant archivée', 'Fermer');
-  
-
+  /**
+   * Fonction qui rafraîchit toutes les bouteilles d'un cellier suite à une action dans un modal (suppression ou archivage)
+   */
   rafraichirListe() {
     this.route.params.subscribe((params) => {
-
       this.cellierId = params['id'];
-      console.log(params['id']);
-
-      this.fetchService
-        .getBouteillesCellier(params['id'])
-        .subscribe((data: any) => {
-          this.bouteilles = data.data;
-
-          console.log('raffraichissement des bouteilles');
-          console.log(this.bouteilles);
-          this.isVisibleSupprimer = false;
-          this.isVisibleArchiver = false;
-        });
+      this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+        this.bouteilles = data.data;
+        this.isVisibleSupprimer = false;
+        this.isVisibleArchiver = false;
+      });
     });
   }
-
-
-
-  goUp() {
-    console.log("par en haut");
-
-    window.scroll({ // pour scroll up quand on arrive sur la page
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-  }
-
-
-  pageCelliers() {
-    window.scroll({ // pour scroll up
-      top: 0,
-      left: 0,
-      behavior: 'smooth'
-    });
-
-    this.router.navigateByUrl('profil/liste-cellier');
-  }
-
-  changeDisplay(mode: number): void {
-    this.display = mode;
-  }
-
 
   /**
-* Cette fonction affiche un message de type snackbar.
-* @param message Le message à afficher.
-* @param action L'action à afficher sur le bouton de fermeture du snackbar.
-*/
+   * Fonction qui permet de remonter en haut de la page lorsqu'on arrive sur la page
+   */
+  goUp() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
+  }
+
+  // /**
+  //  * Fonction qui permet de remonter en haut de la page lorsqu'on arrive sur la page
+  //  */
+  // pageCelliers() {
+  //   window.scroll({ // pour scroll up
+  //     top: 0,
+  //     left: 0,
+  //     behavior: 'smooth'
+  //   });
+  //   this.router.navigateByUrl('profil/liste-cellier');
+  // }
+
+  /**
+   * Fonction qui permet le changement d'affichage des bouteilles d'un cellier entre liste et grille
+   * @param mode nombre - Le numéro de l'affichage
+   */
+  changeDisplay(mode: number): void {
+    this.display = mode;
+    console.log(this.display);
+  }
+
+  /**
+  * Fonction qui affiche un message de type snackbar
+  * @param message chaîne - Le message à afficher
+  * @param action chaîne - L'action à afficher sur le bouton de fermeture du snackbar
+  */
   openSnackBar(message: string, action: string) {
     const config = new MatSnackBarConfig();
-    config.duration = 3000; // Set the duration to 3 seconds
-    config.panelClass = ['mon-snackbar']; // Add a custom CSS class
+    config.duration = 3000; // durée à 3 secondes
+    config.panelClass = ['mon-snackbar']; // ajout d'une classe CSS sur mesure
     this.snackBar.open(message, action, config);
   }
 }

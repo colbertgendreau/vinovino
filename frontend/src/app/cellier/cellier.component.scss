@@ -1,67 +1,64 @@
 .monCellier {
-    background-attachment: fixed;
-    height: 100%;
-    padding:   var(--small) var(--small) 115px;
+  background-attachment: fixed;
+  height: 100%;
+  padding: var(--small) var(--small) 115px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--big);
+  text-align: center;
+
+  .nohide {
     display: flex;
-    flex-direction: column;
-    gap: var(--big);
-    text-align: center;
+    justify-content: center;
+  }
 
-    
-    .titreCellier {
-        margin-top: 73px;
-        font-size: 1.5rem;     
-        position: relative;
+  .titreCellier {
+    margin-top: 73px;
+    font-size: 1.5rem;
+    position: relative;
 
-        .icone-grid {
-            background: url(../../assets/icones/grid1.png);
-            height: var(--bigger);
-            width: 13px;
-            background-size: cover;
-            object-position: center;
-        }
-
-        .icone-list {
-            background: url(../../assets/icones/list.png);
-            height: var(--bigger);
-            width: var(--bigger);
-            background-size: cover;
-            object-position: center;
-        }
-
-        /* HIDE RADIO */
-        [type=radio] { 
-            position: absolute;
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        /* IMAGE STYLES */
-        [type=radio] + img {
-            cursor: pointer;
-        }
-        
-        /* CHECKED STYLES */
-        [type=radio]:checked + img {
-            outline: 2px solid #f00;
-        }
-
-        
-        .e-btn-group {
-            position: absolute;
-            display: flex;
-            top: 0;
-            right: 0;
-            gap: 5px;
-        }
+    .icone-grid {
+      background: url(../../assets/icones/grid1.png);
+      height: var(--bigger);
+      width: 13px;
+      background-size: cover;
+      object-position: center;
     }
 
-    .lien-detail{
-      text-decoration: none;
-      color: var(--black);
+    .icone-list {
+      background: url(../../assets/icones/list.png);
+      height: var(--bigger);
+      width: var(--bigger);
+      background-size: cover;
+      object-position: center;
     }
-    
+
+    /* CACHER CHAMPS RADIO */
+    [type=radio] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    /* STYLES IMAGE */
+    [type=radio]+img {
+      cursor: pointer;
+    }
+
+    /* STYLES INPUTS CHECKED */
+    [type=radio]:checked+img {
+      outline: 2px solid #f00;
+    }
+
+    .e-btn-group {
+      position: absolute;
+      display: flex;
+      top: 0;
+      right: 0;
+      gap: 5px;
+    }
+  }
 
   .cellierVide {
     display: flex;
@@ -77,13 +74,14 @@
     border: 3px rgb(235, 235, 235) solid;
 
     h2 {
-        font-size: 1.2em;
+      font-size: 1.2em;
     }
-    span {
-        font-size: 80px;
-    }
-  }
 
+    span {
+      font-size: 80px;
+    }
+  } 
+  
   input[type="checkbox"] {
     border-radius: 5px;
     border: 1px solid var(--secondaire);
@@ -92,7 +90,11 @@
     margin-right: var(--smaller4);
     accent-color: var(--secondaire);
   }
-
+  
+  .lien-detail {
+    text-decoration: none;
+    color: var(--black);
+  }
 
   .bouteille {
     min-height: 125px;
@@ -104,28 +106,26 @@
     padding: var(--small);
     border-radius: var(--border-radius15);
     border: 3px rgb(235, 235, 235) solid;
-    position:relative;
-
+    position: relative;
 
     .btn-effacer {
-        all: unset;
-        background-image: url(../../assets/icones/trash-347.png);
-        height: var(--big);
-        width: var(--big);
-        background-size: cover;
-        object-position: center;
-        cursor: pointer;
-          }
+      all: unset;
+      background-image: url(../../assets/icones/trash-347.png);
+      height: var(--big);
+      width: var(--big);
+      background-size: cover;
+      object-position: center;
+      cursor: pointer;
+    }
 
     .icones {
       height: var(--big);
     }
 
-    
-
     .card-bouteille-haut {
       display: flex;
       width: 100%;
+
       div {
         text-align: start;
         display: flex;
@@ -133,8 +133,7 @@
       }
 
       picture {
-          justify-self: end;
-
+        justify-self: end;
       }
 
       picture img {
@@ -143,11 +142,12 @@
         position: relative;
         bottom: -5px;
       }
+
       .info-bouteille {
         min-width: 4ch;
         margin-inline: var(--small);
 
-        a{
+        a {
           display: flex;
           flex-direction: column;
           gap: var(--small);
@@ -157,6 +157,7 @@
           display: flex;
           flex-direction: row;
         }
+
         .icone-vin {
           background: url(../../assets/img/wineicon.png);
           height: var(--big);
@@ -164,6 +165,7 @@
           background-size: cover;
           object-position: center;
         }
+
         .icone-location {
           background: url(../../assets/img/locationicon.png);
           height: var(--big);
@@ -171,6 +173,7 @@
           background-size: cover;
           object-position: center;
         }
+
         .icone-dollar {
           background: url(../../assets/img/dollaricon.png);
           height: var(--big);
@@ -178,15 +181,14 @@
           background-size: cover;
           object-position: center;
         }
+
         h3 {
           margin-bottom: auto;
           word-break: keep-all;
           margin-left: var(--smaller);
-          font-size: clamp(
-            0.9375rem,
-            0.5729166666666666rem + 1.8229166666666667vw,
-            3.125rem
-          ); 
+          font-size: clamp(0.9375rem,
+              0.5729166666666666rem + 1.8229166666666667vw,
+              3.125rem);
         }
 
         p {
@@ -195,21 +197,25 @@
         }
       }
     }
+  }
+}
 
+@keyframes footerUp {
+  0% {
+    left: 0px;
+    bottom: -100px;
   }
 
-  
-
-    }
-
-    @keyframes footerUp {
-        0%   { left:0px; bottom:-100px;}
-        100% { left:0px; bottom:0px;}
-      }
+  100% {
+    left: 0px;
+    bottom: 0px;
+  }
+}
 
 .return a {
   text-decoration: none;
 }
+
 .plus {
   all: unset;
   background-image: url(../../assets/icones/addbleu.png);
@@ -218,8 +224,8 @@
   background-size: cover;
   object-position: center;
   cursor: pointer;
-
 }
+
 .moins {
   all: unset;
   background-image: url(../../assets/icones/minusblue.png);
@@ -229,6 +235,7 @@
   object-position: center;
   cursor: pointer;
 }
+
 .quantite {
   display: flex;
   flex-direction: column;
@@ -237,14 +244,13 @@
   justify-self: flex-end;
   justify-content: space-between;
 }
+
 .saq {
   background-image: url(../../assets/icones/saqicone.png);
   height: var(--big);
   width: var(--big);
   background-size: cover;
   object-position: center;
-
-//   margin-bottom: var(--small);
 }
 
 .modifier-gris {
@@ -253,12 +259,7 @@
   width: var(--big);
   background-size: cover;
   object-position: center;
-
-//   margin-bottom: var(--small);
 }
-
-
-
 
 // spinner //
 .lds-ripple {
@@ -315,66 +316,64 @@
 }
 
 table {
-    border-radius: 5px;
-    border-collapse: collapse;
-    border-bottom: 1px solid var(--secondaire);
-    display: block;
-    overflow-x: auto;
+  border-radius: 5px;
+  border-collapse: collapse;
+  border-bottom: 1px solid var(--secondaire);
+  display: block;
+  overflow-x: auto;
 }
 
 tr {
-    background: white;
-    border-radius: 5px;
-    border-top: 1px solid var(--secondaire);
+  background: white;
+  border-radius: 5px;
+  border-top: 1px solid var(--secondaire);
 }
 
 td {
-    position: relative;
-    padding: var(--smaller);
-    min-width: 10px;
-    text-align: left;
-    white-space: nowrap;
-    max-width: 100px;
-    text-overflow: ellipsis;
-    overflow: hidden; 
+  position: relative;
+  padding: var(--smaller);
+  min-width: 10px;
+  text-align: left;
+  white-space: nowrap;
+  max-width: 100px;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
-    
-    button {
-        position: absolute;
-        top: 9px;
-        left: 0;
-    }
+  button {
+    position: absolute;
+    top: 9px;
+    left: 0;
+  }
 }
 
 .td-nom {
-    min-width: 16ch;
+  min-width: 16ch;
 }
 
-
 .modifier-liste {
-    margin: 0 auto;
-    background-image: url(../../assets/icones/edit-black.png);
-    height: var(--bigger);
-    width: var(--bigger);
-    background-size: cover;
-    object-position: center;
+  margin: 0 auto;
+  background-image: url(../../assets/icones/edit-black.png);
+  height: var(--bigger);
+  width: var(--bigger);
+  background-size: cover;
+  object-position: center;
 }
 
 .saq-liste {
-    margin: 0 auto;
-    background-image: url(../../assets/icones/saqicone.png);
-    height: var(--bigger);
-    width: var(--bigger);
-    background-size: cover;
-    object-position: center;
+  margin: 0 auto;
+  background-image: url(../../assets/icones/saqicone.png);
+  height: var(--bigger);
+  width: var(--bigger);
+  background-size: cover;
+  object-position: center;
 }
+
 .btn-effacer-liste {
-    all: unset;
-    margin: 0 auto;
-    background-image: url(../../assets/icones/trash-347.png);
-    height: var(--bigger);
-    width: var(--bigger);
-    background-size: cover;
-    object-position: center;
+  all: unset;
+  margin: 0 auto;
+  background-image: url(../../assets/icones/trash-347.png);
+  height: var(--bigger);
+  width: var(--bigger);
+  background-size: cover;
+  object-position: center;
 }
-    
