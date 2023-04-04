@@ -40,8 +40,8 @@
                 <div class="btn-effacer" (click)="openModal(unCellier.id)"></div>
             </section>
         </article>
-        <a routerLink="/profil/ajouter-cellier"><div class="icone-ajout-cellier"></div></a>
     </ng-container>
+    <a *ngIf="!spin" routerLink="/profil/ajouter-cellier"><div class="icone-ajout-cellier"></div></a>
     <app-footer></app-footer>
 </section>
 
