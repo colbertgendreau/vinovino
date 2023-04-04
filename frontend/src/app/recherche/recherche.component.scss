@@ -13,7 +13,7 @@
     .recherche-input{
       margin-bottom: var(--big);
       border-radius: 5px;
-      border: 1px solid var(--secondaire);
+      border: solid var(--smallest) var(--gris-input);
       height: 30px;
       padding-inline: var(--small);
       width: 100%;
@@ -38,8 +38,8 @@
       position: absolute;
       top: 50%;
       width: 40%;
-      height: 1px;
-      background-color: var(--secondaire-turquoise);
+      height: var(--smallest);
+      background-color: var(--secondaire);
     }
     
     .or-line::before {
@@ -76,7 +76,7 @@
 
             input[type="checkbox"] {
               border-radius: 5px;
-              border: 1px solid var(--secondaire);
+              border: solid var(--smallest) var(--gris-input);
               width: var(--big);
               height: var(--big);
               margin-right: var(--smaller4);
@@ -90,7 +90,7 @@
         select {
           width: 100%;
           border-radius: 5px;
-          border: 1px solid var(--secondaire);
+          border: solid var(--smallest) var(--gris-input);
           height: 30px;
           padding-inline: var(--small);
           background: white;
@@ -112,7 +112,7 @@
             input {
               width: var(--biggest);
               border-radius: 5px;
-              border: 1px solid var(--secondaire);
+              border: solid var(--smallest) var(--gris-input);
               height: var(--biggest);
               padding-inline: var(--small);
             }
@@ -355,12 +355,9 @@
 }
 
 .reset_btn {
-  height: 30px;
-  border-radius: 5px;
-  border: 1px solid var(--secondaire);
-  background: none;
-  // color: var(--secondaire)
-  width: 25px;
+  width: 15px;
+  height: 15px;
+  padding: 5px;
   
 }
 
@@ -379,6 +376,15 @@
   flex-direction: row;
   height: auto;
   gap: 10px;
+}
+
+.div_filtre{
+
+}
+
+.error{
+  font-size: 12px;
+  color: red;
 }
 
 

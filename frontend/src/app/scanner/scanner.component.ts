@@ -18,6 +18,8 @@ export class ScannerComponent implements OnDestroy {
   uneBouteille: Imesbouteilles;
   private stream: MediaStream | null = null;
   iconeCamera =  environment.baseImg + 'icones/barcode-scan.png';
+  iconeX =  environment.baseImg + 'icones/x.png';
+  
   // errorMessage: string = '';
 
   @Output() scanned = new EventEmitter<any>();
@@ -32,12 +34,12 @@ export class ScannerComponent implements OnDestroy {
     //console.log('apenas');
     navigator.mediaDevices.enumerateDevices()
       .then((devices) => {
-        //console.log('aqui');
+        console.log('aqui');
         devices.forEach((device) => {
-          //alert('device - ' + JSON.stringify(device));
+          alert('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
-            //alert('Back found! - ' + device.label);
-            //console.log('deviceId: ', device.deviceId);
+            alert('Back found! - ' + device.label);
+            console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }
         });
@@ -202,9 +204,9 @@ export class ScannerComponent implements OnDestroy {
     
     this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
       this.uneBouteille = data.data;
-      if(!this.uneBouteille){
-        this.startScan();
-      }
+      // if(!this.uneBouteille){
+      //   this.startScan();
+      // }
       console.log(this.uneBouteille);
 
       this.scanned.emit(this.uneBouteille);
