@@ -1,61 +1,19 @@
 <section class="mesCelliers">
-    <h1>Mes celliers</h1>
-    <!-- <input class="recherche-input"
-    type="text"
-    [(ngModel)]="searchTerm"
-    (keyup)="filterData(searchTerm)"
-    placeholder="Recherche dans vos celliers"
-  />
-  <a class="open-modal" (click)="openModalFilter()">Filter</a>
-  <div class="modal" [ngClass]="{'active': isVisibleM}">
-    <div class="modal-content">
-      <button class="close-modal-btn" (click)="closeModalFilter()">X</button>
-         <div class="modal-type">
-            <h3>Type</h3>
-            <a (click)="filterByType('Vin rouge')">Rouge</a>
-            <a (click)="filterByType('Vin blanc')">blanc</a>
+    <h1 class="titreCelliers">Mes celliers
+        <!--
+        grid list toggle de : www.syncfusion.com
+        -->
+        <div id="view" class="e-btn-group">
+            <label class="e-btn" for="right">
+                <input type="radio" id="right" name="align" value="2" (click)="changeDisplay(2)"/>
+                <div class="icone-list"></div>    
+            </label>
+            <label class="e-btn" for="left">
+                <input type="radio" id="left" name="align" value="1" checked (click)="changeDisplay(1)"/>
+                <div class="icone-grid"></div>
+            </label>
         </div>
-         <div class="modal-pays">
-            <h3>Pays</h3>
-            <a (click)="filterByCountry('Canada')">Canada</a>
-            <a (click)="filterByCountry('Etat-unis')">Etat-unis</a>
-            <a (click)="filterByCountry('France')">France</a>
-            <a (click)="filterByCountry('Italie')">Italie</a>
-        </div>
-         <div class="modal-prix">
-            <h3>Prix</h3>
-
-            <form (ngSubmit)="filterByPrice(minPrice, maxPrice)" #myForm="ngForm">
-                <div class="formPrix">
-                    <label for="minPrice">Minimum:</label>
-                  <input type="number" [(ngModel)]="minPrice" name="minPrice">
-                  <label for="maxPrice">Minimum:</label>
-                  <input type="number" [(ngModel)]="maxPrice" name="maxPrice">
-                </div>
-                <button type="submit">Filter</button>
-              </form>
-              
-              
-
-        </div>
-      
-    </div>
-  </div> -->
-  
-  
-
-  
-
-
-  <!-- <table>
-    <tbody>
-        <tr *ngFor="let bouteille of filteredData">
-            <td >{{ bouteille.nom }}</td>
-            <td >cellier :{{ bouteille.celliers_nom }}</td>
-        </tr>
-    </tbody>
-</table> -->
-
+    </h1>
 
     <app-spinner [className]="spin ? 'spin' : 'nospin'"></app-spinner>
 
@@ -65,26 +23,41 @@
         <span> &#8681;</span>
     </div>
 
-
-    <article class="boite-cellier celliers" *ngFor="let unCellier of listeCelliers;">
-
-        <a class="unCellier" routerLink="/profil/cellier/{{unCellier.id}}">
-            <img class="iconeCellier" [src]="iconeCellier" alt="Icône d'ajout de bouteille">
-
-            <h2>{{unCellier.nom}}</h2>
-        </a>
-        
-        <section class="icones-cellier">
-            <div class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"></div>
-                
-            <div class="ajout-bouteille" routerLink="/profil/ajouter-bouteille/{{unCellier.id}}"><div class="icone-bouteille"><div class="icone-plus"></div></div></div>
+    <ng-container *ngIf="display === 1;else list_content">
+        <article class="boite-cellier celliers" *ngFor="let unCellier of listeCelliers;">
             
-            <div class="btn-effacer" (click)="openModal(unCellier.id)"></div>
-        </section>
-    </article>
+            <a class="unCellier" routerLink="/profil/cellier/{{unCellier.id}}">
+                <img class="iconeCellier" [src]="iconeCellier" alt="Icône d'ajout de bouteille">
+                
+                <h2>{{unCellier.nom}}</h2>
+            </a>
+            
+            <section class="icones-cellier">
+                <div class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"></div>
+                
+                <div class="ajout-bouteille" routerLink="/profil/ajouter-bouteille/{{unCellier.id}}"><div class="icone-bouteille"><div class="icone-plus"></div></div></div>
+                
+                <div class="btn-effacer" (click)="openModal(unCellier.id)"></div>
+            </section>
+        </article>
+    </ng-container>
     <a routerLink="/profil/ajouter-cellier"><div class="icone-ajout-cellier"></div></a>
     <app-footer></app-footer>
 </section>
 
 <app-effacer-cellier-modal [id]="id" [isVisible]="isVisible" (closed)="onModalClosed()"
-    (itemEfface)="rafraichirListe()"></app-effacer-cellier-modal>
+    (itemEfface)="rafraichirListe()">
+</app-effacer-cellier-modal>
+
+<ng-template #list_content class="list">
+    <table>
+        <tbody>
+            <tr *ngFor="let unCellier of listeCelliers;">
+                <td class="td-nom">{{ unCellier.nom }}</td>
+                <td><div class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"></div></td>
+                <td><div class="ajout-bouteille" routerLink="/profil/ajouter-bouteille/{{unCellier.id}}"><div class="icone-bouteille"><div class="icone-plus"></div></div></div></td>
+                <td><div class="btn-effacer" (click)="openModal(unCellier.id)"></div></td>
+            </tr>
+        </tbody>
+    </table>
+</ng-template>

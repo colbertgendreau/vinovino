@@ -8,10 +8,100 @@
     gap: var(--big);
 
 
-  h1 {
-    text-align: center;
-    font-size: 1.5em;
-  }
+
+    .titreCelliers {
+        text-align: center;
+        font-size: 1.5em;
+        position: relative;
+
+        .icone-grid {
+            background: url(../../assets/icones/grid1.png);
+            height: var(--bigger);
+            width: 13px;
+            background-size: cover;
+            object-position: center;
+        }
+
+        .icone-list {
+            background: url(../../assets/icones/list.png);
+            height: var(--bigger);
+            width: var(--bigger);
+            background-size: cover;
+            object-position: center;
+        }
+
+        /* HIDE RADIO */
+        [type=radio] { 
+            position: absolute;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        /* IMAGE STYLES */
+        [type=radio] + img {
+            cursor: pointer;
+        }
+        
+        /* CHECKED STYLES */
+        [type=radio]:checked + img {
+            outline: 2px solid #f00;
+        }
+
+        
+        .e-btn-group {
+            position: absolute;
+            display: flex;
+            top: 0;
+            right: 0;
+            gap: 5px;
+        }
+    }
+
+    table {
+        border-collapse: collapse;
+        border-bottom: 1px solid var(--secondaire);
+        display: flex;
+        // overflow-x: auto;
+        width: 100%;
+
+        tbody {
+            width: 100%;
+        }
+    }
+    
+    tr {
+        background: white;
+        border-top: 1px solid var(--secondaire);
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    td {
+        position: relative;
+        padding: var(--smaller);
+        // min-width: 10px;
+        text-align: left;
+        white-space: nowrap;
+        // max-width: 100px;
+        text-overflow: ellipsis;
+        overflow: hidden; 
+        min-width: 19px;
+    
+        
+        button {
+            position: absolute;
+            top: 9px;
+            left: 0;
+        }
+    }
+
+    .td-nom {
+        width: 100px;
+    }
+    
+
 
   .cellierVide {
 
