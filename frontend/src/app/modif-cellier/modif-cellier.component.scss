@@ -21,7 +21,9 @@
         margin-inline: var(--big);
         margin-top: var(--big);
         border-radius: var(--border-radius15);
-        border: 3px var(--secondaire) solid;
+        // border: 3px var(--secondaire) solid;
+        box-shadow: var(--shadow);
+
 
         div {
             min-width: 100%;
