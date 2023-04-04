@@ -80,8 +80,6 @@ export class ScannerComponent implements OnDestroy {
                 target: this.video.nativeElement,
   
                 constraints: {
-                  width: 640,
-                  height: 480,
                   facingMode: { exact: "environment" }
                 },
                 area: {
