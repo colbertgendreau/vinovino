@@ -1,6 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FetchService } from '../fetch.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Imesbouteilles } from '../imesbouteilles';
 import { Ibouteillecellier } from '../ibouteille-cellier';
@@ -25,12 +25,14 @@ export class ArchiverBouteilleModalComponent {
 
   /**
    * Constructeur de la classe ArchiverBouteilleModalComponent
+   * @param fetchService composant FetchService
+   * @param router composant Router
+   * @param snackBar composant SnackBar
    */
   constructor(
     public fetchService: FetchService,
     public router: Router,
     private snackBar: MatSnackBar,
-    private route: ActivatedRoute,
   ) { }
 
   /**
