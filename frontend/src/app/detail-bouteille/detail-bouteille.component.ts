@@ -5,8 +5,6 @@ import { AuthStateService } from '../shared/auth-state.service';
 import { AuthService } from '../shared/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { FetchService } from '../fetch.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Imesbouteilles } from '../imesbouteilles';
 import { environment } from '../../environments/environment';
 
@@ -47,8 +45,6 @@ export class DetailBouteilleComponent {
     public authService: AuthService,
     private route: ActivatedRoute,
     public fetchService: FetchService,
-    private formBuilder: FormBuilder,
-    private snackBar: MatSnackBar,
 
   ) {
     this.authService.profileUser().subscribe((data: any) => {
