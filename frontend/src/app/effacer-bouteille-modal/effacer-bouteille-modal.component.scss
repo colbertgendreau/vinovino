@@ -41,8 +41,6 @@
                 border: solid var(--smallest) var(--secondaire);
                 background-color: var(--secondaire-transparent80);
                 color: var(--black);
-                // width: calc(100% - var(--biggest));
-                // width: 100%;
                 font-size: var(--med);
                 font-weight: var(--bold);
             }
@@ -51,8 +49,6 @@
                 background-color: var(--primaire);
                 border: solid var(--smallest) var(--primaire);
             }
-
-
         }
     }
 }
