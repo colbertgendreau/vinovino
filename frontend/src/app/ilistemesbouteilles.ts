@@ -1,4 +1,5 @@
-import { Imesbouteilles } from "./imesbouteilles"
+import { Imesbouteilles } from "./imesbouteilles";
+
 export interface Ilistemesbouteilles {
     data:Array<Imesbouteilles>
 }

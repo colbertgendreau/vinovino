@@ -7,7 +7,7 @@ mat-sidenav {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        
+
         a {
             text-decoration: none;
 
@@ -66,13 +66,14 @@ mat-sidenav-container {
 
             overflow: auto;
             padding-inline: 16px;
-        
+
             .icones {
                 width: 30px;
                 text-align: center;
             }
-        
-            td, th {
+
+            td,
+            th {
                 padding: 16px;
             }
 
@@ -114,11 +115,11 @@ mat-sidenav-container {
 
             overflow: auto;
             padding: 0 64px 64px 64px;
-        
+
             th {
                 padding: 16px;
             }
-            
+
             td {
                 padding: 8px 16px;
                 display: flex;
@@ -126,22 +127,22 @@ mat-sidenav-container {
                 text-align: right;
                 border: none;
             }
-            
+
             .mobile-label {
                 font-size: 500;
                 text-align: left;
             }
-          
+
             .mat-header-row {
                 display: none;
             }
-          
-            .mat-row { 
+
+            .mat-row {
                 flex-direction: column;
                 align-items: start;
                 padding: 8px 24px;
             }
-           
+
             tr td:first-of-type {
                 border-top: 5px solid lightgray;
                 margin-top: 32px;

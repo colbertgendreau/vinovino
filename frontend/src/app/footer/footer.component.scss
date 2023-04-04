@@ -21,43 +21,45 @@
         max-width: var(--bigger);
         text-decoration: none;
         white-space: nowrap;
-        
+
         span {
             font-size: 10px;
             color: black;
         }
     }
-    
+
     .hidden {
         display: none;
     }
 
     .goUp {
-        background-image: url(../../assets/icones/up-arrow2.png);        
+        background-image: url(../../assets/icones/up-arrow2.png);
     }
+
     .back {
         background-image: url(../../assets/icones/backBlack.png);
     }
-    
+
     .icone-archives {
         background: url(../../assets/icones/archive.png);
     }
-    
+
     .icone-loupe {
         background: url(../../assets/icones/magnifier.png);
     }
-    
+
     .icone-bouteille_footer {
         background: url(../../assets/icones/bouteille-side.png);
     }
+
     .icone-bouteille {
         background: url(../../assets/icones/wine-bottle.png);
     }
-    
+
     .icone_house {
         background: url(../../assets/icones/homepage.png);
     }
-    
+
     .icone {
         position: relative;
         z-index: 3;
@@ -65,8 +67,8 @@
         width: var(--bigger);
         background-size: cover;
         object-position: center;
-        
     }
+
     .icone-plus {
         position: relative;
         bottom: -13px;
@@ -76,4 +78,4 @@
         width: var(--small);
         background-size: cover;
     }
-  }
+}

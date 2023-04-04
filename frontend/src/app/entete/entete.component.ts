@@ -21,93 +21,112 @@ import { environment } from '../../environments/environment';
 
 export class EnteteComponent implements OnInit {
   isSignedIn!: boolean;
-  title:string='FrontEnd';
-  isOpen:boolean = false;
+  title: string = 'FrontEnd';
+  isOpen: boolean = false;
   isVisibleM = false;
+  iconeLoupe = environment.baseImg + 'icones/loupe.png';
 
-  iconeLoupe =  environment.baseImg + 'icones/loupe.png';
-
+  /**
+   * Constructeur de la classe EnteteComponent
+   * @param auth composant AuthStateService
+   * @param router composant Router
+   * @param token composant TokenService
+   */
   constructor(
     private auth: AuthStateService,
     public router: Router,
     public token: TokenService
-    ) {}
+  ) { }
+
+  /**
+   * Fonction initiale dès l'instanciation de la classe
+   */
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     });
   }
 
+  /**
+   * Fonction qui permet la navigation vers la page d'accueil
+   */
   pageAccueil() {
     this.router.navigate(['accueil']);
     this.isOpen = !this.isOpen;
   }
 
+  /**
+   * Fonction qui permet la navigation vers la page des celliers
+   */
   pageCelliers() {
-    window.scroll({ // pour scroll up quand on clique sur une bouteille
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
+    // pour remonter vers le haut de la page quand on clique sur une bouteille
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
-
     this.router.navigate(['/profil/liste-cellier']);
     this.isOpen = !this.isOpen;
   }
 
+  /**
+   * Fonction qui permet la navigation vers la page des bouteilles archivées
+   */
   pageArchive() {
-    // window.scroll({ // pour scroll up quand on clique sur une bouteille
-    //     top: 0,
-    //     left: 0,
-    //     behavior: 'smooth'
-    // });
-
+    // pour remonter vers le haut de la page
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
     this.router.navigate(['/profil/archive']);
     this.isOpen = !this.isOpen;
   }
 
+  /**
+   * Fonction qui permet la navigation vers la page de connexion
+   */
   pageConnexion() {
     this.router.navigate(['connexion']);
     this.isOpen = !this.isOpen;
   }
 
-  pageProfil() {
-    this.router.navigate(['profile']);
-    this.isOpen = !this.isOpen;
-  }
-
+  /**
+   * Fonction qui permet la navigation vers la page d'inscription
+   */
   pageInscription() {
     this.router.navigate(['inscription']);
     this.isOpen = !this.isOpen;
   }
 
+  /**
+   * Fonction qui permet la déconnexion de la session
+   */
   signOut() {
-    window.scroll({ // pour scroll up quand on clique sur une bouteille
-        top: 0,
-        left: 0,
-        behavior: 'smooth'
+    // pour remonter vers le haut de la page
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
-
     this.auth.setAuthState(false);
     this.token.removeToken();
     this.router.navigate(['connexion']);
     this.isOpen = !this.isOpen;
   }
 
+  /**
+   * Fonction qui permet l'ouverture et la fermeture du menu burger de l'entête
+   * @param checked - booléen Vrai ou faux
+   */
   onToggle(checked: boolean): void {
     this.isOpen = checked;
   }
 
+  /**
+   * Menu burger ouvert ou fermé selon le toggle
+   */
   get menuClass() {
     return this.isOpen ? 'menu open' : 'menu';
-  }
-
-  openModalFilter() {
-    this.isVisibleM = true;
-  }
-  closeModalFilter() {
-    this.isVisibleM = false;
-  }
-  onModalClosed() {
-    this.isVisibleM = false;
   }
 }
