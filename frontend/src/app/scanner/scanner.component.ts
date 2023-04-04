@@ -30,8 +30,26 @@ export class ScannerComponent implements OnDestroy {
     private router: Router
     ) {}
 
-  ngOnInit(): void {
+ngOnInit(): void {
+    navigator.mediaDevices.getUserMedia({video:true})
+      .then(function(stream){
+        console.log('Stream1 started with success');
+        this.setDevice();
+      })
+      .catch(function(){
+        console.log('Failed to start stream1')
+      });
     //console.log('apenas');
+    // Pour Android
+
+
+
+
+    //console.log(this.backCameraList);
+    //console.log('fin')
+  }
+
+  setDevice(): void {
     navigator.mediaDevices.enumerateDevices()
       .then((devices) => {
         console.log('aqui');
@@ -44,8 +62,6 @@ export class ScannerComponent implements OnDestroy {
           }
         });
       });
-    //console.log(this.backCameraList);
-    //console.log('fin')
   }
 
   startScan(): void {
