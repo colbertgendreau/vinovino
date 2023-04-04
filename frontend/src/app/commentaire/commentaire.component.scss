@@ -10,16 +10,14 @@
     textarea{
         border-radius: var(--border-radius5);
         border-style: none;
-        // border: solid var(--smallest) var(--black);
         background-color: #cdedf0;
-        width: calc(100% - var(--biggest));
         padding: var(--small);
         font-size: 16px;
     }
 
     button {
         margin-block: var(--small);
-        margin-inline: none;
+
         height: var(--biggest);
         border-radius: var(--border-radius);
         border-style: none;

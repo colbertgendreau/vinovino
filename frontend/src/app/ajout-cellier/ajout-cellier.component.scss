@@ -20,7 +20,8 @@
         margin-inline: var(--big);
         margin-top: var(--big);
         border-radius: var(--border-radius15);
-        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        // border: 3px rgb(235, 235, 235) solid;
+        border: 3px var(--secondaire) solid;
 
 
 
@@ -47,7 +48,7 @@
             input {
                 height: var(--biggest);
                 border-radius: var(--border-radius5);
-                border: var(--smallest) solid var(--black);
+                border: var(--smallest) solid var(--gris-input);
                 width: calc(100% - (var(--biggest) + var(--bigger)));
                 padding-left: var(--small);
             }

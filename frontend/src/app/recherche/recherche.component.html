@@ -3,37 +3,39 @@
         <h3>Rechercher dans vos celliers</h3>
         <app-scanner (scanned)="handleScan($event)"></app-scanner>
     </div>
-    
+    <span class="error">{{messageErreur}}</span>
+
     <div class="recherche_filter">
         <div class="filter_data">
             <input class="recherche-input" type="search" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)"
                 placeholder="Recherche dans vos celliers" />
-            <input class="reset_btn" type="reset" value="X" alt="Clear the search form" (click)="resetData()">
+            <img class="reset_btn" *ngIf="searchTerm" [src]="iconeXb" alt="Efface la recherche" (click)="resetData()">
         </div>
-        
 
-    <div *ngIf="!searchTerm" class="div_filtre">
-        <div class="or-line">
-            <span>Ou</span>
-        </div>
-        <h3>Filtres</h3>
-        <details>
-            <summary>Types</summary>
-            <div class="type">
-                <div class="types">
-                    <div *ngFor="let type of choixTypes" class="input-checkbox">
-                        <input type="checkbox" #checkedType [checked]="isSelected(type)"
-                            (change)="updateSelectedWineTypes(checkedType.checked, type)">
-                        {{ type }}
+
+        <div *ngIf="!searchTerm" class="div_filtre">
+            <div class="or-line">
+                <span>Ou</span>
+            </div>
+            <h3>Filtres</h3>
+            <details>
+                <summary>Types</summary>
+                <div class="type">
+                    <div class="types">
+                        <div *ngFor="let type of choixTypes" class="input-checkbox">
+                            <input type="checkbox" #checkedType [checked]="isSelected(type)"
+                                (change)="updateSelectedWineTypes(checkedType.checked, type)">
+                            {{ type }}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </details>
+            
+            </details>
+        </div>
         <details>
             <summary>Pays</summary>
             <div class="pays">
                 <select #selected (change)="updateSelectedWinePays(selected.value)">
-                    <!-- <option value="" selected></option> -->
                     <option *ngFor="let pays of choixPays" [value]="pays" [selected]="isSelectedPays(pays)">
                         {{ pays }}
                     </option>
@@ -73,7 +75,6 @@
             </div>
         </details>
     </div>
-</div>
     <div class="resultat">
 
         <span *ngIf="nombreDeResultat !== null && nombreDeResultat !== undefined">
@@ -89,18 +90,23 @@
 
         <article class="bouteille" *ngFor="let uneBouteille of filteredData">
             <div class="card-bouteille-haut">
-                <picture>
-                    <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible"
-                        alt="Bouteille" />
-                </picture>
-
+                <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">
+                    <picture>
+                        <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible"
+                            alt="Bouteille" />
+                    </picture>
+                </a>
                 <div class="info-bouteille">
-                    <h3>
-                        {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
-                    </h3>
+                    <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">
+                        <h3>
+                            {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
+                        </h3>
                         <div class="info-ligne">
                             <span class="icone icone-vin"></span>
-                            <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name : uneBouteille.type_mes_name }} | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso }}</p>
+                            <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name : uneBouteille.type_mes_name
+                                }}
+                                | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso }}
+                            </p>
                         </div>
                         <div class="info-ligne">
                             <span class="icone icone-location"></span>
@@ -116,11 +122,16 @@
                         </div>
                         <div class="cellierQuantite info-ligne">
                             <span class="icone icone-cellier"></span>
-                            <a routerLink="/profil/cellier/{{ uneBouteille.celliers_id }}">{{ uneBouteille.celliers_nom }}</a>
+                            <a routerLink="/profil/cellier/{{ uneBouteille.celliers_id }}">{{ uneBouteille.celliers_nom
+                                }}</a>
                             <span class="quantite">
-                                <span>Qte : {{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
+                                <span *ngIf="uneBouteille.quantite >= 1">Qte : {{ uneBouteille.quantite ?
+                                    [(uneBouteille.quantite)] :
+                                    [(uneBouteille.quantite_bouteillePerso)] }}</span>
+                                <span class="archive" *ngIf="uneBouteille.quantite == 0">Archivée</span>
                             </span>
                         </div>
+                    </a>
                 </div>
 
             </div>

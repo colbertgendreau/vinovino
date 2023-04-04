@@ -80,11 +80,12 @@ export class CommentaireComponent implements OnInit {
     });
 
     this.commentaireForm.get('commentaires').valueChanges.pipe(
-      debounceTime(1000), 
+      debounceTime(1200),
     ).subscribe(() => {
       this.ajouterCommentaire();
+      this.openSnackBar('Sauvegarde', 'Fermer')
     });
-  
+
   }
 
   ajouterCommentaire() {
@@ -104,6 +105,18 @@ export class CommentaireComponent implements OnInit {
 
 
 
+  }
+
+  /**
+* Cette fonction affiche un message de type snackbar.
+* @param message Le message à afficher.
+* @param action L'action à afficher sur le bouton de fermeture du snackbar.
+*/
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 3000; // Set the duration to 3 seconds
+    config.panelClass = ['mon-snackbar']; // Add a custom CSS class
+    this.snackBar.open(message, action, config);
   }
 
 

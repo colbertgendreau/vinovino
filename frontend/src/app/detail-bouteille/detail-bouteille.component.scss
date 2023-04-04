@@ -10,58 +10,72 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: var(--big);
-  text-align: center;
+  
 }
 
-.zoom-image-popup {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
-  background-color: rgba(255, 255, 255, 0.9);
+.flexer{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: left;
 }
 
-.zoom-image-popup img {
-  max-height: 90%;
-  max-width: 90%;
-  object-fit: contain;
+.detail-text{
+  display: flex;
+  flex-direction: column;
+  gap: var(--small);
 }
 
-.bouteille {
-  width: 100px;
+.zoom-image-container{
+
+  .zoom-image-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+  
+    img {
+      max-height: 90%;
+      max-width: 90%;
+      object-fit: contain;
+    }
+
+    .zeX {
+      font-size: var(--biggest);
+      position: absolute;
+      top: 100px;
+      right: 80px;
+    }
+  }
+
+  .bouteille {
+    width: 100px;
+  }
 }
 
-.zeX {
-  font-size: var(--biggest);
-  position: absolute;
-  top: 100px;
-  right: 80px;
-}
+
+
+
+
 
 .zoneSAQ {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+ 
+  .saq {
+    background-image: url(../../assets/icones/saqicone.png);
+    height: var(--biggest);
+    width: var(--biggest);
+    background-size: cover;
+    object-position: center;
+    display: block;
+  }
 }
 
-.saq {
-  background-image: url(../../assets/icones/saqicone.png);
-  height: var(--biggest);
-  width: var(--biggest);
-  background-size: cover;
-  object-position: center;
-  display: block;
-}
 
-.saqFiche {
-  padding-left: var(--small);
-  text-decoration: none;
-}
 
 .nohide {
   background-attachment: fixed;
@@ -71,10 +85,6 @@ h1 {
   flex-direction: column;
   gap: var(--big);
   text-align: center;
-}
-
-.cepage {
-  margin-bottom: var(--small);
 }
 
 .spin {

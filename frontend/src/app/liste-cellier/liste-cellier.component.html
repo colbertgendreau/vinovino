@@ -73,9 +73,6 @@
 
             <h2>{{unCellier.nom}}</h2>
         </a>
-        <!--
-            <div (click)="openCellier(unCellier.id)">Test ouverture</div>
-        -->
         
         <section class="icones-cellier">
             <div class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"></div>
@@ -85,6 +82,7 @@
             <div class="btn-effacer" (click)="openModal(unCellier.id)"></div>
         </section>
     </article>
+    <a routerLink="/profil/ajouter-cellier"><div class="icone-ajout-cellier"></div></a>
     <app-footer></app-footer>
 </section>
 

@@ -3,15 +3,16 @@
     <h1>Ajouter une bouteille</h1>
     <app-scanner (scanned)="handleScan($event)"></app-scanner>
   </div>
+  <span class="error" *ngIf="messageErreur">{{messageErreur}}</span>
 
       <label>
       <input class="recherche-input"
         type="text"
         [(ngModel)]="searchTerm"
         (keyup)="filterData(searchTerm)"
-        placeholder="Recherche (entrez les 3 premiere lettres)"
+        placeholder="Recherche (entrez au moins 3 lettres)"
       />
-      <span class="floating floating-recherche">Recherche (entrez les 3 premiere lettres)</span>
+      <span class="floating floating-recherche">Recherche (entrez au moins 3 lettres)</span>
 
     </label>
 
@@ -90,19 +91,6 @@
     </div>
 </div>
 
-
-  <!-- <div class="container-select">
-      <label for="type">
-      <select [class.disabled]="isDataSelected" name="type" id="type" formControlName="type" [disabled]="isDataSelected" [class.disabled]="isDataSelected">
-          <option value="" disabled selected>Choisir</option>
-          <option value="1">vin rouge</option>
-          <option value="2">vin blanc</option>
-          <option value="3">vin rosé</option>
-      </select>
-      <div [class.voile]="isDataSelected"></div>
-      <div class="stay">Type</div>
-      </label>
-  </div> -->
 
 <div class="container-select">
     <label for="type">
@@ -190,17 +178,11 @@
     </div>
     <div class="container-select">
         <label for="celliers_id">
-        <select name="celliers_id" id="celliers_id" formControlName="celliers_id">
-
-            <ng-container>
-                <option *ngIf="idCellierUrl=='n'" [value]="" disabled selected>Choisir</option>
-            </ng-container>
-            <ng-container *ngFor="let cellier of listeCelliers">
-                <option *ngIf="idCellierUrl == cellier.id"  [value]="cellier.id" selected>{{cellier.nom}}</option>
-                <option *ngIf="idCellierUrl != cellier.id"  [value]="cellier.id" >{{cellier.nom}}</option>
-            </ng-container>
-
+        <select id="celliers_id" name="celliers_id" formControlName="celliers_id">
+          <option value="" disabled selected>Choisir</option>
+          <option *ngFor="let cellier of listeCelliers" [value]="cellier.id">{{ cellier.nom }}</option>
         </select>
+
         <div class="stay">Cellier</div>
         </label>
     </div>
