@@ -11,7 +11,7 @@ import { AuthStateService } from './shared/auth-state.service';
 
 export class AppComponent implements OnInit {
   isSignedIn!: boolean;
-  title:string='FrontEnd';
+  title: string = 'FrontEnd';
 
   /**
    * Constructeur de la classe AppComponent
@@ -23,7 +23,7 @@ export class AppComponent implements OnInit {
     private auth: AuthStateService,
     public router: Router,
     public token: TokenService
-  ) {}
+  ) { }
 
   /**
    * Fonction initiale dès l'instanciation de la classe
