@@ -10,16 +10,15 @@
   <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <!--  <link rel="manifest" href="manifest.webmanifest">-->
   <meta name="theme-color" content="#1976d2">
-
 <!--  Colberrt icons-->
   <link rel="icon" type="image/x-icon" href="favicon.ico"/>
   <link rel="apple-touch-icon" href="assets/icones/drunk.png"/>
   <link rel="apple-touch-icon-precomposed" href="assets/icones/drunk.png"/>
 
   <meta name="theme-color" content="#1976d2">
-<link rel="stylesheet" href="/assets/angular/styles.6c4fd7b9178711bb.css"></head>
+<link rel="stylesheet" href="/assets/angular/styles.f118c162ca6c4e2d.css"></head>
 <body>
   <app-root>
   </app-root>
-<script src="/assets/angular/runtime.da6785960a1c21e7.js" type="module"></script><script src="/assets/angular/polyfills.12520353619540ef.js" type="module"></script><script src="/assets/angular/scripts.e27f5a0a1881fa6c.js" defer></script><script src="/assets/angular/vendor.aa6d956dc2929daf.js" type="module"></script><script src="/assets/angular/main.6912a90d93f15519.js" type="module"></script></body>
+<script src="/assets/angular/runtime.da6785960a1c21e7.js" type="module"></script><script src="/assets/angular/polyfills.12520353619540ef.js" type="module"></script><script src="/assets/angular/scripts.e27f5a0a1881fa6c.js" defer></script><script src="/assets/angular/vendor.aa6d956dc2929daf.js" type="module"></script><script src="/assets/angular/main.b217e38e8ec11971.js" type="module"></script></body>
 </html>

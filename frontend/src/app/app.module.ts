@@ -40,6 +40,7 @@ import { ArchiveComponent } from './archive/archive.component';
 import { DetailBouteilleComponent } from './detail-bouteille/detail-bouteille.component';
 import { NotesComponent } from './notes/notes.component';
 import { CommentaireComponent } from './commentaire/commentaire.component';
+import {ArchiverBouteilleModalComponent} from "./archiver-bouteille-modal/archiver-bouteille-modal.component";
 
 
 
@@ -78,6 +79,7 @@ import { CommentaireComponent } from './commentaire/commentaire.component';
       DetailBouteilleComponent,
       NotesComponent,
       CommentaireComponent,
+    ArchiverBouteilleModalComponent
 
 
 
