@@ -32,14 +32,14 @@ export class ScannerComponent implements OnDestroy {
 
 
     ngOnInit(): void {
-      navigator.mediaDevices.enumerateDevices()
-        .then((devices) => {
-          devices.forEach((device) => {
-            if (device.kind === 'videoinput') {
-              console.log('Camera found:', device.label);
-            }
-          });
-        });
+//       navigator.mediaDevices.enumerateDevices()
+//         .then((devices) => {
+//           devices.forEach((device) => {
+//             if (device.kind === 'videoinput') {
+//               console.log('Camera found:', device.label);
+//             }
+//           });
+//         });
     }
       
     startScan(): void {
