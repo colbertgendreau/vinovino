@@ -93,13 +93,6 @@
 <app-archiver-bouteille-modal [id]="id" [quantite]="quantite" [isVisible]="isVisibleArchiver" (closed)="onModalClosed()"
     (itemArchive)="rafraichirListe()"></app-archiver-bouteille-modal>
 
-<ng-template #list_contente class="list">
-    <div *ngFor="let uneBouteille of bouteilles">
-        {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
-        {{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}
-    </div>
-</ng-template>
-
 <ng-template #list_content class="list">
     <table>
         <tbody>

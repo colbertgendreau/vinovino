@@ -52,9 +52,9 @@
 <ng-template #list_content class="list">
     <table>
         <tbody>
-            <tr *ngFor="let unCellier of listeCelliers;">
+            <tr *ngFor="let unCellier of listeCelliers;" routerLink="/profil/cellier/{{unCellier.id}}">
                 <td class="td-nom">{{ unCellier.nom }}</td>
-                <td><div class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"></div></td>
+                <td class="td-prix"><div class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"></div></td>
                 <td><div class="ajout-bouteille" routerLink="/profil/ajouter-bouteille/{{unCellier.id}}"><div class="icone-bouteille"><div class="icone-plus"></div></div></div></td>
                 <td><div class="btn-effacer" (click)="openModal(unCellier.id)"></div></td>
             </tr>
