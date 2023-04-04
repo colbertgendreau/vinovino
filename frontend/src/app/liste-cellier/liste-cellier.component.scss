@@ -60,13 +60,16 @@
 
     table {
         border-collapse: collapse;
-        border-bottom: 1px solid var(--secondaire);
         display: flex;
         // overflow-x: auto;
         width: 100%;
 
         tbody {
             width: 100%;
+        }
+        
+        tbody > tr:last-child { 
+            border-bottom: 1px solid var(--secondaire);
         }
     }
     
@@ -101,6 +104,9 @@
         width: 100px;
     }
     
+    .td-effacer {
+        border-bottom: 1px solid var(--secondaire);
+    }
 
 
   .cellierVide {
