@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FetchService } from '../fetch.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MatSnackBar, MatSnackBarConfig  } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Imesbouteilles } from '../imesbouteilles';
 import { Ibouteillecellier } from '../ibouteille-cellier';
 
@@ -10,6 +10,7 @@ import { Ibouteillecellier } from '../ibouteille-cellier';
   templateUrl: './archiver-bouteille-modal.component.html',
   styleUrls: ['./archiver-bouteille-modal.component.scss']
 })
+
 export class ArchiverBouteilleModalComponent {
 
   @Input() id!: number;
@@ -22,6 +23,9 @@ export class ArchiverBouteilleModalComponent {
   bouteilles: Array<Ibouteillecellier>;
   cellierId: string;
 
+  /**
+   * Constructeur de la classe ArchiverBouteilleModalComponent
+   */
   constructor(
     public fetchService: FetchService,
     public router: Router,
@@ -29,33 +33,31 @@ export class ArchiverBouteilleModalComponent {
     private route: ActivatedRoute,
   ) { }
 
-
+  /**
+   * Fonction qui annule l'archivage d'une bouteille dans un cellier et qui remet la quantité à 1
+   */
   annuler() {
-    window.scroll({ // pour scroll up quand on arrive sur la page
-        top: 0, 
-        left: 0, 
-        behavior: 'smooth' 
+    // pour scroll up quand on arrive sur la page
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
     });
-
     this.isVisible = false;
-    console.log(this.id);
-    console.log(this.quantite);
-
-    this.fetchService.showBouteille(this.id).subscribe((data:any)=>{
+    this.fetchService.showBouteille(this.id).subscribe((data: any) => {
       this.bouteille = data.data;
       this.bouteille.quantite = this.quantite;
       this.bouteille.quantite = 1;
-
       let updateBouteille: Imesbouteilles = this.bouteille;
-      console.log(updateBouteille);
-
       this.fetchService.modifBouteille(this.id, updateBouteille).subscribe((retour) => {
-        console.log(this.bouteille.quantite);
         this.itemArchive.emit();
       });
     });
   }
 
+  /**
+   * Fonction qui archive une bouteille dans un cellier (quantité à 0)
+   */
   archiver() {
     this.openSnackBar('Bouteille archivée avec succès', 'Fermer')
     this.isVisible = false;
@@ -63,9 +65,9 @@ export class ArchiverBouteilleModalComponent {
   }
 
   /**
-   * Cette fonction affiche un message de type snackbar.
-   * @param message Le message à afficher.
-   * @param action L'action à afficher sur le bouton de fermeture du snackbar.
+   * Fonction qui affiche un message de type snackbar
+   * @param message - chaîne Le message à afficher
+   * @param action - chaîne L'action à afficher sur le bouton de fermeture du snackbar
    */
   openSnackBar(message: string, action: string) {
     const config = new MatSnackBarConfig();
