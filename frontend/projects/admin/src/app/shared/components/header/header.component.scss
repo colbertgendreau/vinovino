@@ -1,0 +1,31 @@
+:host { /* Balise app-entete */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  margin-bottom: 16px;
+
+  a {
+    text-decoration: none;
+  }
+
+  .vinovino-admin {
+    padding-left: 8px;
+  }
+
+  span {
+    flex-grow: 1;
+  }
+}
+
+.nav-bar{
+  display: flex;
+  flex-direction: row;
+  align-content: flex-end;
+  .nav-bar__list{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
+}

@@ -29,9 +29,7 @@ import { StatistiquesComponent } from './components/statistiques/statistiques.co
 import { ChartModule } from 'angular-highcharts';
 import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
 import { DefaultModule } from './layouts/default/default.module';
-import { HeaderComponent } from './shared/components/header/header.component';
-import { FooterComponent } from './shared/components/footer/footer.component';
-import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -43,9 +41,6 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
     ModalComponent,
     ConnexionAdminComponent,
     StatistiquesComponent,
-    HeaderComponent,
-    FooterComponent,
-    SidebarComponent
   ],
   imports: [
     BrowserModule,
@@ -70,7 +65,8 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
     ChartModule,
     BrowserModule,
     NgxScannerQrcodeModule,
-    DefaultModule
+    DefaultModule,
+    SharedModule
   ],
   providers: [
   ],
