@@ -12,12 +12,18 @@ import { AuthService } from 'projects/admin/src/app/shared/auth.service';
 
 export class AjoutAdminComponent implements OnInit {
 
-  isSignedIn! : boolean;
-  isOpen : boolean = true;
-
-  registerForm : FormGroup;
+  isSignedIn!: boolean;
+  isOpen: boolean = true;
+  registerForm: FormGroup;
   errors: any = null;
 
+  /**
+   * Constructeur de la classe AjoutAdminComponent
+   * @param router composant Router
+   * @param fb composant FormBuilder
+   * @param authService composant AuthService
+   * @param snackBar composant MatSnackBar
+   */
   constructor(
     public router: Router,
     public fb: FormBuilder,
@@ -33,8 +39,11 @@ export class AjoutAdminComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
+  /**
+   * Fonction qui vide les champs du formulaire
+   */
   viderFormulaire() {
     this.registerForm = this.fb.group({
       name: [''],
@@ -45,7 +54,12 @@ export class AjoutAdminComponent implements OnInit {
     });
   }
 
-  ajouter(message:string, action:string) {
+  /**
+   * Fonction qui ajoute un usager admin
+   * @param message chaîne - Message du snackbar
+   * @param action chaîne - Action
+   */
+  ajouter(message: string, action: string) {
     this.authService.register(this.registerForm.value).subscribe(
       (result) => {
         console.log(result);

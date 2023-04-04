@@ -32,5 +32,4 @@ export interface Ibouteillecellier {
     prix_bouteillePerso: number;
     quantite_bouteillePerso: number;
     description_bouteillePerso: string;
-
 }

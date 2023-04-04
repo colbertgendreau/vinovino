@@ -15,18 +15,18 @@
         justify-content: center;
         align-items: center;
     }
-    
+
     form {
         display: flex;
         flex-direction: column;
         align-content: center;
         justify-content: center;
         align-items: center;
-    
+
         mat-form-field {
             width: 50vw;
         }
-    
+
         .erreur {
             color: red;
             width: 40vw;
@@ -34,21 +34,19 @@
             display: flex;
             justify-content: flex-start;
         }
-    
-    
+
         .hidden {
             display: none;
         }
-    
+
         div {
             padding: 0;
             flex-direction: row;
-    
+
             button {
                 margin: 16px;
             }
         }
-    
     }
 }
 
@@ -56,4 +54,3 @@ mat-sidenav-container {
     margin: 16px;
     height: calc(100vh - 128px);
 }
-

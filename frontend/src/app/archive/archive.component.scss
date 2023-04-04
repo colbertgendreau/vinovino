@@ -4,21 +4,20 @@ h1 {
 }
 
 .monCellier {
-    background-attachment: fixed;
-    height: 100%;
-    padding:   var(--small) var(--small) 115px;
-    display: flex;
-    flex-direction: column;
-    gap: var(--big);
-    text-align: center;
+  background-attachment: fixed;
+  height: 100%;
+  padding: var(--small) var(--small) 115px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--big);
+  text-align: center;
 
-    .lien-detail{
-      text-decoration: none;
-      color: var(--black);
-    }
-    
+  .lien-detail {
+    text-decoration: none;
+    color: var(--black);
+  }
+
   .cellierVide {
-    
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -32,12 +31,13 @@ h1 {
     border: 3px rgb(235, 235, 235) solid;
 
     h2 {
-        font-size: 1.2em;
+      font-size: 1.2em;
     }
+
     span {
-        font-size: 80px;
+      font-size: 80px;
     }
-}
+  }
 
   .bouteille {
     min-height: 125px;
@@ -48,29 +48,27 @@ h1 {
     align-items: stretch;
     padding: var(--small);
     border-radius: var(--border-radius15);
-    position:relative;
+    position: relative;
     border: 3px rgb(235, 235, 235) solid;
 
-
     .btn-effacer {
-        all: unset;
-        background-image: url(../../assets/icones/trash-347.png);
-        height: var(--big);
-        width: var(--big);
-        background-size: cover;
-        object-position: center;
-        cursor: pointer;
-          }
+      all: unset;
+      background-image: url(../../assets/icones/trash-347.png);
+      height: var(--big);
+      width: var(--big);
+      background-size: cover;
+      object-position: center;
+      cursor: pointer;
+    }
 
     .icones {
       height: var(--big);
     }
 
-    
-
     .card-bouteille-haut {
       display: flex;
       width: 100%;
+
       div {
         text-align: start;
         display: flex;
@@ -78,8 +76,7 @@ h1 {
       }
 
       picture {
-          justify-self: end;
-
+        justify-self: end;
       }
 
       picture img {
@@ -88,11 +85,12 @@ h1 {
         position: relative;
         bottom: -5px;
       }
+
       .info-bouteille {
         min-width: 4ch;
         margin-inline: var(--small);
 
-        a{
+        a {
           display: flex;
           flex-direction: column;
           gap: var(--small);
@@ -102,6 +100,7 @@ h1 {
           display: flex;
           flex-direction: row;
         }
+
         .icone-vin {
           background: url(../../assets/img/wineicon.png);
           height: var(--big);
@@ -109,6 +108,7 @@ h1 {
           background-size: cover;
           object-position: center;
         }
+
         .icone-location {
           background: url(../../assets/img/locationicon.png);
           height: var(--big);
@@ -116,6 +116,7 @@ h1 {
           background-size: cover;
           object-position: center;
         }
+
         .icone-dollar {
           background: url(../../assets/img/dollaricon.png);
           height: var(--big);
@@ -123,15 +124,14 @@ h1 {
           background-size: cover;
           object-position: center;
         }
+
         h3 {
           margin-bottom: auto;
           word-break: keep-all;
           margin-left: var(--smaller);
-          font-size: clamp(
-            0.9375rem,
-            0.5729166666666666rem + 1.8229166666666667vw,
-            3.125rem
-          ); 
+          font-size: clamp(0.9375rem,
+              0.5729166666666666rem + 1.8229166666666667vw,
+              3.125rem);
         }
 
         p {
@@ -140,21 +140,25 @@ h1 {
         }
       }
     }
+  }
+}
 
+@keyframes footerUp {
+  0% {
+    left: 0px;
+    bottom: -100px;
   }
 
-  
-
-    }
-
-    @keyframes footerUp {
-        0%   { left:0px; bottom:-100px;}
-        100% { left:0px; bottom:0px;}
-      }
+  100% {
+    left: 0px;
+    bottom: 0px;
+  }
+}
 
 .return a {
   text-decoration: none;
 }
+
 .plus {
   all: unset;
   background-image: url(../../assets/icones/addbleu.png);
@@ -163,8 +167,8 @@ h1 {
   background-size: cover;
   object-position: center;
   cursor: pointer;
-
 }
+
 .moins {
   all: unset;
   background-image: url(../../assets/icones/minusblue.png);
@@ -174,6 +178,7 @@ h1 {
   object-position: center;
   cursor: pointer;
 }
+
 .quantite {
   display: flex;
   flex-direction: column;
@@ -182,14 +187,13 @@ h1 {
   justify-self: flex-end;
   justify-content: space-between;
 }
+
 .saq {
   background-image: url(../../assets/icones/saqicone.png);
   height: var(--big);
   width: var(--big);
   background-size: cover;
   object-position: center;
-
-//   margin-bottom: var(--small);
 }
 
 .modifier-gris {
@@ -198,12 +202,7 @@ h1 {
   width: var(--big);
   background-size: cover;
   object-position: center;
-
-//   margin-bottom: var(--small);
 }
-
-
-
 
 // spinner //
 .lds-ripple {

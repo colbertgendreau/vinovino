@@ -32,7 +32,7 @@ mat-sidenav-container {
     height: calc(100vh - 128px);
 }
 
-.loadin_bar{
+.loadin_bar {
     margin: 16px;
     display: flex;
     justify-content: center;
@@ -41,14 +41,14 @@ mat-sidenav-container {
 }
 
 .success-button {
-  position: relative;
+    position: relative;
 }
 
 .success-icon {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  color: green;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    color: green;
 }
 
 @media(min-width: 945px) {
@@ -69,7 +69,6 @@ mat-sidenav-container {
 
         width: 70vw;
         padding: 0 0 32px 0;
-
     }
 }
 
@@ -88,9 +87,7 @@ mat-sidenav-container {
     }
 
     section {
-
         width: 70vw;
         padding: 0 0 32px 0;
-
     }
 }
