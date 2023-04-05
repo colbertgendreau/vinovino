@@ -58,8 +58,8 @@
           <option value="2">vin blanc</option>
           <option value="3">vin rosé</option>
         </select>
-        <div [class.voile]="isDataSelected"></div>
         <div class="stay">Type</div>
+        <div [class.voile]="isDataSelected"></div>
       </label>
     </div>
     <div class="container-select">
@@ -69,8 +69,8 @@
           <option value="" disabled selected>Sélectionner un pays</option>
           <option *ngFor="let pays of choixPays" [value]="pays">{{ pays }}</option>
         </select>
-        <div [class.voile]="isDataSelected"></div>
         <div class="stay">Pays</div>
+        <div [class.voile]="isDataSelected"></div>
       </label>
     </div>
     <div>
