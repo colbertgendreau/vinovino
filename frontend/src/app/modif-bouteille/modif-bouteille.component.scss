@@ -3,10 +3,7 @@
   padding: 63px var(--small) 115px;
   display: flex;
   flex-direction: column;
-  // gap: var(--big);
   text-align: center;
-
-
 
   h1 {
     margin-block: var(--big);
@@ -20,12 +17,15 @@
   flex-direction: column;
   max-width: 100vw;
   background-color: var(--white);
-  //   border: 3px var(--secondaire) solid;
   box-shadow: var(--box-shadow);
   align-items: stretch;
-  // border: 3px rgb(235, 235, 235) solid;
   border-radius: var(--border-radius15);
   padding: var(--small);
+
+  select,
+  option {
+    -webkit-appearance: none;
+  }
 
   input,
   select {
@@ -36,16 +36,13 @@
     border-style: none;
     width: calc(100% - (var(--biggest) + var(--bigger)));
     padding-inline: var(--small);
-    // border: solid var(--smallest) var(--white);
     border: solid var(--smallest) var(--gris-input);
   }
 
   select {
     box-sizing: content-box;
     background: white;
-
   }
-
 
   .h3 {
     margin-top: var(--biggest);
@@ -126,11 +123,8 @@
     border: solid var(--smallest) var(--secondaire);
     background-color: var(--secondaire-transparent80);
     color: var(--black);
-    // width: calc(100% - var(--biggest));
-    // width: 100%;
     font-size: var(--med);
     font-weight: var(--bold);
-
   }
 
   button:hover {
@@ -154,7 +148,6 @@
 
   .disabled {
     background-color: rgb(172, 172, 172);
-    // color: linen;
     opacity: 1;
   }
 }
