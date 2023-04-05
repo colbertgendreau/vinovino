@@ -8,7 +8,7 @@ export interface Ibouteillecellier {
     pays:string;
     description:string;
     url_img:string;
-    prix_saq:number;
+    prix_saq:any;
     format:any;
     type:any;
     id_mes_bouteilles:number;
@@ -16,7 +16,7 @@ export interface Ibouteillecellier {
     date_achat:Date;
     millesime:number;
     notes:number;
-    prix:number;
+    prix:any;
     quantite:number;
     celliers_id:any;
     id_bouteille:number;
@@ -29,7 +29,7 @@ export interface Ibouteillecellier {
     type_bouteillePerso: string;
     pays_bouteillePerso: string;
     format_bouteillePerso: string;
-    prix_bouteillePerso: number;
+    prix_bouteillePerso: any;
     quantite_bouteillePerso: number;
     description_bouteillePerso: string;
 }
