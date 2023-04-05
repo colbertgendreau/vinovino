@@ -45,7 +45,7 @@ export class ScannerComponent implements OnDestroy {
     startScan(): void {
       this.showVideo = true;
       if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: 'environment' } } })
+        navigator.mediaDevices.getUserMedia({video: {facingMode: {exact: 'environment'}}})
           .then((stream) => {
             this.stream = stream;
             this.video.nativeElement.srcObject = stream;
@@ -59,7 +59,7 @@ export class ScannerComponent implements OnDestroy {
                 type: "LiveStream",
                 target: this.video.nativeElement,
                 constraints: {
-                  facingMode: { exact: "environment" }
+                  facingMode: {exact: "environment"}
                 },
                 area: {
                   top: "25%",
@@ -68,51 +68,51 @@ export class ScannerComponent implements OnDestroy {
                   bottom: "25%"
                 },
                 singleChannel: false // true: only the red color-channel is read
-            },
-            decoder: {
-              readers: ["ean_reader", "upc_reader","code_128_reader"]
-            },
-            locate: true,
-            locator: {
-              halfSample: false,
-              patchSize: "large"
-            },
-            debug:true
-          }, (err) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-            Quagga.start();
-            Quagga.onProcessed(function(result) {
-              var drawingCtx = Quagga.canvas.ctx.overlay,
-                drawingCanvas = Quagga.canvas.dom.overlay;
-
-              if (result) {
-                if (result.boxes) {
-                  drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
-                  result.boxes.filter(function (box) {
-                    return box !== result.box;
-                  }).forEach(function (box) {
-                    Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
-                  });
-                }
-
-                if (result.box) {
-                  Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
-                }
-
-                if (result.codeResult && result.codeResult.code) {
-                  Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
-                }
+              },
+              decoder: {
+                readers: ["ean_reader", "upc_reader", "code_128_reader"]
+              },
+              locate: true,
+              locator: {
+                halfSample: false,
+                patchSize: "large"
+              },
+              debug: true
+            }, (err) => {
+              if (err) {
+                console.error(err);
+                return;
               }
+              Quagga.start();
+              Quagga.onProcessed(function (result) {
+                var drawingCtx = Quagga.canvas.ctx.overlay,
+                  drawingCanvas = Quagga.canvas.dom.overlay;
+
+                if (result) {
+                  if (result.boxes) {
+                    drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
+                    result.boxes.filter(function (box) {
+                      return box !== result.box;
+                    }).forEach(function (box) {
+                      Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
+                    });
+                  }
+
+                  if (result.box) {
+                    Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
+                  }
+
+                  if (result.codeResult && result.codeResult.code) {
+                    Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
+                  }
+                }
+              });
+              this.isScanning = true;
             });
-            this.isScanning = true;
-          });
+          })
       }
     }
-
-    stopScan(): void {
+    stopScan():void {
       if (this.stream) {
         this.stream.getTracks().forEach((track) => {
           track.stop();
