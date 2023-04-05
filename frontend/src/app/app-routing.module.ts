@@ -49,6 +49,7 @@ const routes: Routes = [
 
   { path: environment.profilPrefix+'archive', component: ArchiveComponent, canActivate:[GardienLoginGuard] },
 
+  { path: '', component: SigninComponent , title: 'Connection' },
   { path: 'connexion', component: SigninComponent , title: 'Connection' },
 
 
