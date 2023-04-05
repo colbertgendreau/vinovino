@@ -1,7 +1,7 @@
 export interface Imesbouteilles {
     id?:number;
     id_supreme?:number;
-    prix?:number;
+    prix?:any;
     celliers_id:any;
     id_bouteille:number;
     nom: string;
@@ -10,7 +10,7 @@ export interface Imesbouteilles {
     type_mes_name: string;
     pays: string;
     format: string;
-    prix_saq: number;
+    prix_saq: any;
     quantite: number;
     description: string;
     id_mes_bouteilles:number;
@@ -27,7 +27,7 @@ export interface Imesbouteilles {
     type_bouteillePerso: number;
     pays_bouteillePerso: string;
     format_bouteillePerso: string;
-    prix_bouteillePerso: number;
+    prix_bouteillePerso: any;
     quantite_bouteillePerso: number;
     description_bouteillePerso: string;
     cellier_nom:string;

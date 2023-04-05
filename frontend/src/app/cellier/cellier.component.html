@@ -1,16 +1,14 @@
 <section class="monCellier">
 
-    <h1 class="titreCellier">{{ cellierNom }}
+    <h1 class="titreCellier"><span>{{ cellierNom }}</span>
         <!-- grid list toggle de : www.syncfusion.com -->
-        <div id="view" class="e-btn-group">
-            <label class="e-btn" for="right">
-                <input type="radio" id="right" name="align" value="2"
-                    (click)="changeDisplay(2)" />
+        <div id="view" class="e-btn-group" *ngIf="!spin">
+            <label class="e-btn" for="right" *ngIf="display === 1">
+                <input type="radio" id="right" name="align" value="2" (click)="changeDisplay(2)" />
                 <div class="icone-list"></div>
             </label>
-            <label class="e-btn" for="left">
-                <input type="radio" id="left" name="align" value="1" checked
-                    (click)="changeDisplay(1)" />
+            <label class="e-btn" for="left" *ngIf="display === 2">
+                <input type="radio" id="left" name="align" value="1" checked (click)="changeDisplay(1)" />
                 <div class="icone-grid"></div>
             </label>
         </div>
@@ -24,10 +22,6 @@
         <span> &#8681;</span>
     </div>
 
-    <!-- <div class="toggle-archive" [className]="hide ? 'hide' : 'nohide'">
-        <input type="checkbox" id="archive" name="archive">
-        <label for="archive">Inclure les bouteilles archivées</label>
-    </div> -->
     <div class="toggle-archive" [className]="hide ? 'hide' : 'nohide'">
         <input type="checkbox" id="archive" name="archive"
             [(ngModel)]="archiveChecked" (ngModelChange)="toggleArchive()">
@@ -103,7 +97,6 @@
                                 uneBouteille.quantite - 1)"
                                 [disabled]="uneBouteille.quantite == 0"></button>
                         </div>
-                        <!-- <a *ngIf="!uneBouteille.id_bouteille" class="" routerLink="/profil/modifier-bouteille/{{ uneBouteille.id_supreme }}">modification</a> -->
                         <button class="btn-effacer icones"
                             (click)="openModalSupprimer(uneBouteille.id_supreme)"></button>
                     </div>
@@ -121,33 +114,29 @@
     [isVisible]="isVisibleArchiver" (closed)="onModalClosed()"
     (itemArchive)="rafraichirListe()"></app-archiver-bouteille-modal>
 <ng-template #list_content class="list">
-    <table>
-        <tbody>
-            <tr *ngFor="let uneBouteille of bouteilles">
-                <td>{{ uneBouteille.quantite !== undefined ?
-                    [(uneBouteille.quantite)] :
-                    [(uneBouteille.quantite_bouteillePerso)] }} x</td>
-                <td class="td-nom">{{ uneBouteille.nom ? uneBouteille.nom :
-                    uneBouteille.nom_bouteillePerso }}</td>
-                <td class="td-prix">{{ uneBouteille.prix_saq ?
-                    uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso
-                    }} $</td>
-                <td>
-                    <a *ngIf="!uneBouteille.code_saq"
-                        routerLink="/profil/modifier-bouteille/{{
-                        uneBouteille.id_supreme }}">
-                        <div class="modifier-liste"></div>
-                    </a>
-                    <a *ngIf="uneBouteille.code_saq"
-                        href="{{uneBouteille.url_saq}}" target="_blank">
-                        <div class="saq-liste"></div>
-                    </a>
-                    <a href="#" class="saq-liste"></a>
-                </td>
-                <td><button class="btn-effacer-liste"
-                        (click)="openModalSupprimer(uneBouteille.id_supreme)"></button>
+    <section class="table-list">
+        <table>
+            <tbody>
+                <tr *ngFor="let uneBouteille of bouteilles">
+                    <td class="td-quantite">{{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] :
+                        [(uneBouteille.quantite_bouteillePerso)] }} x</td>
+                        <td class="td-nom">{{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}</td>
+                        <td class="td-prix">{{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso
+                        }} $</td>
+                        <td>
+                            <a *ngIf="!uneBouteille.code_saq" routerLink="/profil/modifier-bouteille/{{
+                                uneBouteille.id_supreme }}">
+                                <div class="modifier-liste"></div>
+                            </a>
+                            <a *ngIf="uneBouteille.code_saq" href="{{uneBouteille.url_saq}}" target="_blank">
+                                <div class="saq-liste"></div>
+                            </a>
+                            <a href="#" class="saq-liste"></a>
+                        </td>
+                <td><button class="btn-effacer-liste" (click)="openModalSupprimer(uneBouteille.id_supreme)"></button>
                 </td>
             </tr>
         </tbody>
     </table>
+</section>
 </ng-template>
