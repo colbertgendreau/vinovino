@@ -22,10 +22,6 @@
         <span> &#8681;</span>
     </div>
 
-    <!-- <div class="toggle-archive" [className]="hide ? 'hide' : 'nohide'">
-        <input type="checkbox" id="archive" name="archive">
-        <label for="archive">Inclure les bouteilles archivées</label>
-    </div> -->
     <div class="toggle-archive" [className]="hide ? 'hide' : 'nohide'">
         <input type="checkbox" id="archive" name="archive"
             [(ngModel)]="archiveChecked" (ngModelChange)="toggleArchive()">
@@ -101,7 +97,6 @@
                                 uneBouteille.quantite - 1)"
                                 [disabled]="uneBouteille.quantite == 0"></button>
                         </div>
-                        <!-- <a *ngIf="!uneBouteille.id_bouteille" class="" routerLink="/profil/modifier-bouteille/{{ uneBouteille.id_supreme }}">modification</a> -->
                         <button class="btn-effacer icones"
                             (click)="openModalSupprimer(uneBouteille.id_supreme)"></button>
                     </div>
