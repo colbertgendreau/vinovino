@@ -12,7 +12,6 @@ class mesBouteilles extends Model
     protected $table = 'mes_bouteilles';
     protected $primaryKey = 'id_bouteillePerso';
 
-
     protected $fillable = [ //les champ dans la base de donner quon veux modifier, ne pas mettre les auto ecrement
         'nom_bouteillePerso',
         'image_bouteillePerso',
@@ -25,6 +24,5 @@ class mesBouteilles extends Model
         'id_bouteillePerso',
         'celliers_id',
         'id_cellier',
-
     ];
 }

@@ -11,9 +11,6 @@ class Bouteille extends Model
     use HasFactory;
 
     protected $table = 'bouteilles';
-    // protected $primaryKey = 'id_mes_bouteilles';
-    // protected $primaryKey = 'id_bouteille';
-
 
     protected $fillable = [ //les champ dans la base de donner quon veux modifier, ne pas mettre les auto ecrement
         'date_achat',
@@ -29,13 +26,10 @@ class Bouteille extends Model
         'id_cellier',
     ];
 
-    // public function bouteilleHasType(){
-    //     return $this->hasOne('App\Models\Bouteille', '', '');       /// a voir ici regler la question du type
-    // }
-
+    /**
+     * Fonction qui retourne l'id de la bouteille
+     */
     public function bouteilleHasId(){
         return $this->hasOne('App\Models\BouteilleSAQ', 'id', 'bouteilles_id');
     }
-
-
 }
