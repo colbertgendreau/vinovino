@@ -89,11 +89,15 @@ form {
       text-align: start;
       display: flex;
       flex-direction: column;
+      gap: 8px;
     }
 
     .image-bouteille {
-      min-width: 75px;
-      max-width: 75px;
+      max-width: 80px;
+      margin-inline: -15px;
+      position: relative;
+      bottom: -5px;
+    
     }
 
     .info-bouteille {
