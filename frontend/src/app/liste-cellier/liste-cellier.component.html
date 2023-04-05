@@ -3,12 +3,12 @@
         <!--
         grid list toggle de : www.syncfusion.com
         -->
-        <div id="view" class="e-btn-group">
-            <label class="e-btn" for="right">
+        <div id="view" class="e-btn-group" *ngIf="listeCelliers[0] && !spin">
+            <label class="e-btn" for="right" *ngIf="display === 1">
                 <input type="radio" id="right" name="align" value="2" (click)="changeDisplay(2)"/>
                 <div class="icone-list"></div>    
             </label>
-            <label class="e-btn" for="left">
+            <label class="e-btn" for="left" *ngIf="display === 2">
                 <input type="radio" id="left" name="align" value="1" checked (click)="changeDisplay(1)"/>
                 <div class="icone-grid"></div>
             </label>
