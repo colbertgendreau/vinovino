@@ -7,7 +7,7 @@ export interface IBouteille {
     pays:string;
     description:string;
     url_img:string;
-    prix_saq:number;
+    prix_saq:any;
     format:any;
     type:any;
     id_mes_bouteilles:number;
