@@ -27,7 +27,7 @@ export class CellierComponent implements OnInit {
 
   bouteilles: Array<Ibouteillecellier>;
   bouteille: Imesbouteilles;
-  cellierId: string;
+  cellierId: number;
   cellierNom: string;
   isSignedIn!: boolean;
   UserProfile!: User;
@@ -42,10 +42,18 @@ export class CellierComponent implements OnInit {
   isVisibleSupprimer = false;
   isVisibleArchiver = false;
   inputArchive: any;
+  archiveChecked: boolean;
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
   /**
    * Constructeur de la classe CellierComponent
+   * @param auth composant AuthStateService
+   * @param router composant Router
+   * @param token composant TokenService
+   * @param authService composant AuthService
+   * @param fetchService composant FetchService
+   * @param route composant Route
+   * @param snackBar composantMatSnackBar
    */
   constructor(
     private auth: AuthStateService,
@@ -72,28 +80,19 @@ export class CellierComponent implements OnInit {
       left: 0,
       behavior: 'smooth'
     });
-
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     });
-
     this.route.params.subscribe((params) => {
       this.cellierId = params['id'];
       this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-        this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
-        this.inputArchive = document.getElementById('archive');
-        this.inputArchive.addEventListener('change', e => {
-          if (e.target.checked === true) {
-            this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-              this.bouteilles = data.data;
-            });
-          }
-          if (e.target.checked === false) {
-            this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-              this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
-            });
-          }
-        });
+        if (this.archiveChecked) {
+          this.bouteilles = data.data;
+          this.formatagePrix();
+        } else {
+          this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+          this.formatagePrix();
+        }
         if (this.bouteilles[0]) {
           this.cellierNom = this.bouteilles[0].cellier_nom;
         }
@@ -101,6 +100,38 @@ export class CellierComponent implements OnInit {
         this.hide = false;
       });
     });
+  }
+
+  /**
+   * Fonction qui formate le prix des bouteilles pour avoir deux décimales
+   */
+  formatagePrix() {
+    this.bouteilles.forEach(uneBouteille => {
+      if (uneBouteille.prix_bouteillePerso) {
+        uneBouteille.prix_bouteillePerso = (uneBouteille.prix_bouteillePerso.toFixed(2));
+      }
+      if (uneBouteille.prix_saq) {
+        uneBouteille.prix_saq = (uneBouteille.prix_saq.toFixed(2));
+      }
+    });
+  }
+
+  /**
+   * Cette fonction bascule l'état d'archivage des bouteilles dans le cellier sélectionné.
+   * Si "archiveChecked" est vrai, elle récupère toutes les bouteilles dans le cellier. Sinon, elle récupère toutes les bouteilles non archivées (quantité > 0).
+   */
+  toggleArchive() {
+    if (this.archiveChecked === true) {
+      this.fetchService.getBouteillesCellier(this.cellierId).subscribe((data: any) => {
+        this.bouteilles = data.data;
+        this.formatagePrix()
+      });
+    } else {
+      this.fetchService.getBouteillesCellier(this.cellierId).subscribe((data: any) => {
+        this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+        this.formatagePrix();
+      });
+    }
   }
 
   /**
@@ -120,8 +151,18 @@ export class CellierComponent implements OnInit {
         this.route.params.subscribe((params) => {
           this.cellierId = params['id'];
           this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-            this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
-            // this.bouteilles = data.data;
+            if (this.archiveChecked) {
+              this.bouteilles = data.data;
+              this.formatagePrix();
+            } else {
+              this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+              this.formatagePrix();
+            }
+            if (this.bouteilles[0]) {
+              this.cellierNom = this.bouteilles[0].cellier_nom;
+            }
+            this.spin = false;
+            this.hide = false;
           });
         });
       });
@@ -130,7 +171,6 @@ export class CellierComponent implements OnInit {
       }
     });
   }
-
 
   /**
    * Fonction qui permet l'ouverture du modal pour supprimer une bouteille dans un cellier
@@ -152,14 +192,6 @@ export class CellierComponent implements OnInit {
     this.isVisibleArchiver = true;
   }
 
-  // /**
-  //  * Fonction qui permet la fermeture des modaux de suppression et d'archivage
-  //  */
-  // closeModal() {
-  //   this.isVisibleSupprimer = false;
-  //   this.isVisibleArchiver = false;
-  // }
-
   /**
    * Fonction qui permet la fermeture des modaux de suppression et d'archivage
    */
@@ -176,6 +208,7 @@ export class CellierComponent implements OnInit {
       this.cellierId = params['id'];
       this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
         this.bouteilles = data.data;
+        this.formatagePrix();
         this.isVisibleSupprimer = false;
         this.isVisibleArchiver = false;
       });
@@ -193,25 +226,12 @@ export class CellierComponent implements OnInit {
     });
   }
 
-  // /**
-  //  * Fonction qui permet de remonter en haut de la page lorsqu'on arrive sur la page
-  //  */
-  // pageCelliers() {
-  //   window.scroll({ // pour scroll up
-  //     top: 0,
-  //     left: 0,
-  //     behavior: 'smooth'
-  //   });
-  //   this.router.navigateByUrl('profil/liste-cellier');
-  // }
-
   /**
    * Fonction qui permet le changement d'affichage des bouteilles d'un cellier entre liste et grille
    * @param mode nombre - Le numéro de l'affichage
    */
   changeDisplay(mode: number): void {
     this.display = mode;
-    console.log(this.display);
   }
 
   /**

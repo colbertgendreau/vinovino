@@ -9,7 +9,7 @@ use Validator;
 class AuthController extends Controller
 {
     /**
-     * Create a new AuthController instance.
+     * Crée une nouvelle instance de AuthController.
      *
      * @return void
      */
@@ -17,7 +17,7 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'loginAdmin', 'register']]);
     }
     /**
-     * Get a JWT via given credentials.
+     * Récupère un JWT(JSON Web Tokens) via les credentials donnés.
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -32,14 +32,13 @@ class AuthController extends Controller
             return response()->json($validator->errors(), 422);
         }
         if (! $token = auth()->attempt($validator->validated())) {
-            // return response()->json(['error' => 'Unauthorized'], 401);
             return response()->json(['error' => 'Le mot de passe saisi ne correspond pas au courriel.'], 401);
         }
         return $this->createNewToken($token);
     }
 
     /**
-     * Register a User.
+     * Enregistre un utilisateur
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -69,7 +68,7 @@ class AuthController extends Controller
     }
 
     /**
-     * Log the user out (Invalidate the token).
+     * Déconnecte un utilisateur (invalide le token) 
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -77,16 +76,18 @@ class AuthController extends Controller
         auth()->logout();
         return response()->json(['message' => 'User successfully signed out']);
     }
+
     /**
-     * Refresh a token.
+     * Rafraichit un token
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function refresh() {
         return $this->createNewToken(auth()->refresh());
     }
+
     /**
-     * Get the authenticated User.
+     * Retourne un utilisateur authentifié.
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -94,7 +95,7 @@ class AuthController extends Controller
         return response()->json(auth()->user());
     }
     /**
-     * Get the token array structure.
+     * Récupère la structure de donné d'un token
      *
      * @param  string $token
      *

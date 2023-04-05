@@ -1,8 +1,8 @@
 <section class="scanner">
-  <div id="interactive" class="viewport video-container" *ngIf="showVideo">
-    <video  #video autoplay muted playsinline></video>
+  <div class="video-container" *ngIf="showVideo">
+    <video #video></video>
 
-    <canvas #canvas class="drawingBuffer overlay" heigth="480" width="640"  ></canvas>
+    <canvas #canvas class="overlay" style="display:none;"></canvas>
     <!-- <button class="close-button" (click)="stopScan()">X</button> -->
     <img class="close-button" [src]="iconeX" alt="Icône de fermeture" (click)="stopScan()">
   </div>

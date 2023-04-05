@@ -28,7 +28,8 @@
           Rosé |</span> {{uneBouteille?.format_bouteillePerso + ' | '
         }}{{uneBouteille?.pays_bouteillePerso }} </p>
       <p *ngIf="uneBouteille?.cepages">{{ cepage_lisible }}</p>
-      <p *ngIf="uneBouteille?.cepages == 'Non disponible'|| uneBouteille?.cepages == null">Cépage non disponible</p>
+      <p *ngIf="uneBouteille?.cepages == 'Non disponible'||
+        uneBouteille?.cepages == null">Cépage non disponible</p>
       <p *ngIf="uneBouteille?.prix_saq">{{ uneBouteille?.prix_saq }}$</p>
       <p *ngIf="uneBouteille?.prix_bouteillePerso">{{
         uneBouteille?.prix_bouteillePerso }}$</p>

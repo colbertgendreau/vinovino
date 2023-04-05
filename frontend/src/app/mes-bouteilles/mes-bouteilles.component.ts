@@ -12,38 +12,29 @@ import { Imesbouteilles } from '../imesbouteilles';
 export class MesBouteillesComponent implements AfterViewInit {
   type: string;
   pays: string;
-  orderObj:any;
-  filteredData:any = [];
-  // currentFilter: string = 'All';
+  orderObj: any;
+  filteredData: any = [];
   filters: string[] = [];
   listeMesBouteilles: Array<Imesbouteilles>;
   constructor(private route: ActivatedRoute,
-    public fetchService: FetchService,) { 
-      this.listeMesBouteilles=[];
-      this.route.queryParamMap
-    .subscribe((params) => {
-      this.orderObj = { ...params.keys, ...params };
-      console.log(this.orderObj.params.type);
-       this.type = this.orderObj.params.type
-       this.pays = this.orderObj.params.pays
-       if(this.type){
-        this.filterByType(this.type);
-        
+    public fetchService: FetchService,) {
+    this.listeMesBouteilles = [];
+    this.route.queryParamMap
+      .subscribe((params) => {
+        this.orderObj = { ...params.keys, ...params };
+        this.type = this.orderObj.params.type
+        this.pays = this.orderObj.params.pays
+        if (this.type) {
+          this.filterByType(this.type);
+        }
+        if (this.pays) {
+          this.filterByCountry(this.pays);
+        }
       }
-      if(this.pays){
-        this.filterByCountry(this.pays);
-      }
-      
-    }
-  
-    );
-    }
-    
+      );
+  }
 
-    ngAfterViewInit() {
-
-    
-
+  ngAfterViewInit() {
     this.fetchService.getMesBouteilles().subscribe((data: any) => {
       this.listeMesBouteilles = data.data;
       for (let i = 0; i < this.listeMesBouteilles.length; i++) {
@@ -58,43 +49,27 @@ export class MesBouteillesComponent implements AfterViewInit {
         }
         if (this.listeMesBouteilles[i].prix_saq == null) {
           this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_bouteillePerso
-        }else{
+        } else {
           if (this.listeMesBouteilles[i].prix_bouteillePerso == null) {
             this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_saq;
           }
         }
       }
-      console.log(this.listeMesBouteilles);
-
-      if(this.type){
+      if (this.type) {
         this.filterByType(this.type);
-        
       }
-      if(this.pays){
+      if (this.pays) {
         this.filterByCountry(this.pays);
       }
-
     });
-
-    
-
-    
-    
-    // this.route.queryParams
-    // .filter(params => params.type)
-    // .subscribe(params => {
-    //   console.log(params); // { type: "popular" }
-
-    //   this.type = params.type;
-
-    //   console.log(this.type); // popular
-    // }
-  // );
   }
 
+  /**
+  *Filtrer les données de la liste des bouteilles en fonction du terme de recherche fourni.
+  *Si la longueur du terme de recherche est inférieure à 3 caractères, la liste filtrée est vidée.
+  *@param {string} searchTerm - Terme de recherche à utiliser pour filtrer les données
+  */
   filterData(searchTerm: string) {
-    console.log(searchTerm);
-    
     if (searchTerm.length < 3) {
       this.filteredData = [];
     } else {
@@ -103,98 +78,52 @@ export class MesBouteillesComponent implements AfterViewInit {
       );
     }
   }
-  
-    filterByType(type: string) {
-    console.log(type);
 
-    
-    
-    if(this.filteredData.length){
-      this.filteredData = this.filteredData.filter(bouteille => 
-        
+  /**
+   * Filtrer les données de la liste de bouteilles par type
+   * @param {string} type - le type de vin à filtrer 
+   */
+  filterByType(type: string) {
+    if (this.filteredData.length) {
+      this.filteredData = this.filteredData.filter(bouteille =>
         bouteille.type_vino_name.toLowerCase().includes(type.toLowerCase()));
-        this.filters.push(type);
-    }else{
-      
-      this.filteredData = this.listeMesBouteilles.filter(bouteille => 
+      this.filters.push(type);
+    } else {
+      this.filteredData = this.listeMesBouteilles.filter(bouteille =>
         bouteille.type_vino_name.toLowerCase().includes(type.toLowerCase()));
-        console.log(this.listeMesBouteilles);
-        this.filters.push(type);
+      this.filters.push(type);
     }
-  
-      console.log(type);
-      // this.isVisibleM = false;
-      // this.closed.emit();
-      
-    console.log(this.filteredData);
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    // if(this.filteredData.length){
-    //   this.filteredData = this.filteredData.filter(bouteille => 
-    //     bouteille.type_vino_name == type);
-    // }else{
-  
-    //   this.filteredData = this.listeMesBouteilles.filter(bouteille => 
-    //     bouteille.type_vino_name == type);
-    // }
-  
-    //   console.log(type);
-    //   // this.isVisibleM = false;
-    //   // this.closed.emit();
-      
-    // console.log(this.filteredData);
-    
   }
-  
-    filterByCountry(pays: string) {
-    console.log(pays);
-    
-    this.filteredData = this.listeMesBouteilles.filter(bouteille => 
+
+  /**
+   * Filtre la liste des bouteilles en fonction d'un pays donné
+   * @param {string} pays - le pays à filtrer
+   */
+  filterByCountry(pays: string) {
+    this.filteredData = this.listeMesBouteilles.filter(bouteille =>
       bouteille.pays == pays);
-      console.log(pays);
-      // this.isVisibleM = false;
-      
-    console.log(this.filteredData);
-    
   }
-  
+
+  /**
+   * Filtre les bouteilles par leur prix dans une plage donnée
+   * @param {number} minPrice - la valeur minimale de prix pour filtrer les bouteilles
+   * @param {number} maxPrice - la valeur maximale de prix pour filtrer les bouteilles
+   */
   filterByPrice(minPrice: number, maxPrice: number) {
-    console.log(minPrice, maxPrice);
-  
-    this.filteredData = this.listeMesBouteilles.filter(bouteille => 
+    this.filteredData = this.listeMesBouteilles.filter(bouteille =>
       bouteille.prix >= minPrice && bouteille.prix <= maxPrice);
-  
-    // this.isVisibleM = false;
-  
-    console.log(this.filteredData);
   }
 
-  // closeModalFilter() {
-  //   this.isVisibleM = false;
-  //   this.closed.emit();
-  // }
-
-
+  /**
+   * Supprime un filtre de recherche de la liste des filtres appliqués et filtre les données en conséquence
+   * @param {string} filter - Le filtre à supprimer
+   */
   removeFilter(filter: string) {
     const index = this.filters.indexOf(filter);
     if (index !== -1) {
       this.filters.splice(index, 1);
       this.filteredData = this.listeMesBouteilles.filter(item => {
-        // Apply all the remaining filters on each item
         return this.filters.every(filter => {
-          // Implement your filter logic here
-          // Return true if the item should be included in the filtered data
         });
       });
     }
