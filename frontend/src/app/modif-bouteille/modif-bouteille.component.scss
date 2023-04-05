@@ -1,6 +1,6 @@
 .modif-bouteille {
   height: 100%;
-  padding: 63px var(--big) 115px;
+  padding: 63px var(--small) 115px;
   display: flex;
   flex-direction: column;
   // gap: var(--big);
@@ -21,9 +21,9 @@
   max-width: 100vw;
   background-color: var(--white);
   //   border: 3px var(--secondaire) solid;
-  // box-shadow: var(--shadow);
+  box-shadow: var(--box-shadow);
   align-items: stretch;
-  border: 3px rgb(235, 235, 235) solid;
+  // border: 3px rgb(235, 235, 235) solid;
   border-radius: var(--border-radius15);
   padding: var(--small);
 

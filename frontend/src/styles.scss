@@ -17,9 +17,18 @@ form {
     font-size: 16px;
 }
 
+body{
+    // background: var(--blanc-gris);
+}
+
+// box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+// box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+// box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.08) 0px 0px 0px 1px;
+
 // déclaration de variables globales
 :root {
 
+    --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;;
     // couleurs
     --primaire: #F80301;
     --secondaire: #FFB700;
@@ -36,7 +45,7 @@ form {
     --transparent100: rgba(0, 0, 0, 0);
     --gris-input: rgb(148, 148, 148);
     --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-
+    --blanc-gris:#f9f9f9;
 
     // espacements
     --smallest: 2px;
