@@ -1,7 +1,7 @@
 .ajouter-bouteille {
   background-attachment: fixed;
   height: 100%;
-  padding: 63px var(--big) 115px;
+  padding: 63px var(--small) 115px;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -44,11 +44,13 @@ select {
 }
 
 .recherche-input {
-  border: solid var(--smallest) var(--gris-input);
+  border: solid var(--smallest) var(--secondaire);
   margin-block: var(--big);
   position: relative;
-  left: -12px;
-  padding-right: 38px;
+  // left: -12px;
+  // padding-right: 38px;
+  width: calc(100% - (var(--biggest) + var(--bigger)));
+  margin-bottom: 30px;
 }
 
 .btn-effacer {
@@ -73,7 +75,8 @@ form {
   flex-direction: column;
   max-width: 400px;
   background-color: var(--white);
-  border: 3px rgb(235, 235, 235) solid;
+  // border: 3px rgb(235, 235, 235) solid;
+  box-shadow: var(--box-shadow);
   align-items: center;
   padding: var(--smaller);
   border-radius: var(--border-radius15);
@@ -192,7 +195,7 @@ input::placeholder{
     font-size:0.825em;
     transition-duration:300ms;
     color: var(--label-color);
-    background: white;
+    background: var(--blanc-gris);
     border-radius: 5px;
     padding-bottom: 0;
 
@@ -220,10 +223,11 @@ input:not(:placeholder-shown) + .floatingError{
   display: flex;
   flex-direction: column;
   max-width: 100vw;
-  //   border: 3px var(--secondaire) solid;
-  box-shadow: var(--shadow);
+    // border: 2px var(--secondaire) solid;
+  box-shadow: var(--box-shadow);
   align-items: stretch;
   border-radius: var(--border-radius15);
+  // border: 3px rgb(235, 235, 235) solid;
 
   .h3 {
     margin-top: var(--biggest);

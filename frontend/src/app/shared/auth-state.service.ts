@@ -14,14 +14,20 @@ export class AuthStateService {
   userAuthState = this.userState.asObservable();
 
   constructor(public token: TokenService) {
-    console.log(token);
   }
 
+  /**
+   * Met à jour l'état de l'authentification de l'utilisateur
+   * @param {boolean} value - la valeur à définir pour l'état de l'authentification
+   */
   setAuthState(value: boolean) {
-    console.log(value);
     this.userState.next(value);
   }
 
+  /**
+   * Retourne un observable permettant de s'abonner au statut de la connexion utilisateur
+   * @returns {Observable<boolean>} un observable qui émettra une valeur booléenne indiquant si l'utilisateur est connecté ou non
+   */
   statutConnexion():Observable<boolean> {
     return this.userState;
   }

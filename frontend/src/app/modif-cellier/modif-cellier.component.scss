@@ -1,5 +1,5 @@
 .modifier-cellier-component {
-    padding: 85px var(--big) 100px;
+    padding: 85px var(--small) 100px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -22,7 +22,7 @@
         margin-top: var(--big);
         border-radius: var(--border-radius15);
         // border: 3px var(--secondaire) solid;
-        box-shadow: var(--shadow);
+        box-shadow: var(--box-shadow);
 
 
         div {
@@ -40,21 +40,21 @@
 
             }
 
-            input::placeholder{
-                opacity:0;
+            input::placeholder {
+                opacity: 0;
             }
 
-            label:focus-within > span,
-            input:not(:placeholder-shown) + span{
-                color:var(--secondaire);
-                transform:translateY(0px);
+            label:focus-within>span,
+            input:not(:placeholder-shown)+span {
+                color: var(--secondaire);
+                transform: translateY(0px);
                 border-radius: 5px;
                 padding-bottom: 0;
             }
 
-            label:focus-within > .floatingError,
-            input:not(:placeholder-shown) + .floatingError{
-                color:var(--primaire);
+            label:focus-within>.floatingError,
+            input:not(:placeholder-shown)+.floatingError {
+                color: var(--primaire);
             }
 
             input {
@@ -67,12 +67,12 @@
 
             .floating {
                 padding: 5px;
-                position:absolute;
-                top:-14px;
-                left:28px;
-                transform:translateY(20px);
-                font-size:0.825em;
-                transition-duration:300ms;
+                position: absolute;
+                top: -14px;
+                left: 28px;
+                transform: translateY(20px);
+                font-size: 0.825em;
+                transition-duration: 300ms;
                 color: gray;
                 background: white;
             }

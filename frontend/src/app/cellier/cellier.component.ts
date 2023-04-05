@@ -232,7 +232,6 @@ export class CellierComponent implements OnInit {
    */
   changeDisplay(mode: number): void {
     this.display = mode;
-    console.log(this.display);
   }
 
   /**
