@@ -4,36 +4,30 @@
         <app-scanner (scanned)="handleScan($event)"></app-scanner>
     </div>
     <span class="error">{{messageErreur}}</span>
-
     <div class="recherche_filter">
         <div class="filter_data">
             <input class="recherche-input" type="text" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)"
                 placeholder="Recherche dans vos celliers" />
             <img class="reset_btn" *ngIf="searchTerm" [src]="iconeXb" alt="Efface la recherche" (click)="resetData()">
         </div>
-
-
         <div *ngIf="!searchTerm" class="div_filtre">
             <div class="or-line">
                 <span>Ou</span>
             </div>
             <h3>Filtres</h3>
-            
-                <details>
-                    <summary>Types</summary>
-                    <div class="type">
-                        <div class="types">
-                            <div *ngFor="let type of choixTypes" class="input-checkbox">
-                                <input type="checkbox" #checkedType [checked]="isSelected(type)"
-                                    (change)="updateSelectedWineTypes(checkedType.checked, type)">
-                                {{ type }}
-                            </div>
+            <details>
+                <summary>Types</summary>
+                <div class="type">
+                    <div class="types">
+                        <div *ngFor="let type of choixTypes" class="input-checkbox">
+                            <input type="checkbox" #checkedType [checked]="isSelected(type)"
+                                (change)="updateSelectedWineTypes(checkedType.checked, type)">
+                            {{ type }}
                         </div>
                     </div>
-                
-                </details>
-            
-                <details>
+                </div>
+            </details>
+            <details>
                 <summary>Pays</summary>
                 <div class="pays">
                     <select #selected (change)="updateSelectedWinePays(selected.value)">
@@ -42,103 +36,88 @@
                         </option>
                     </select>
                 </div>
-                </details>
-
-                <details>
-
+            </details>
+            <details>
                 <summary>Prix</summary>
                 <div class="prix">
                     <form (ngSubmit)="filterByPrice(minPrice, maxPrice)" #myForm="ngForm">
-
                         <div class="formPrix">
-
                             <div class="prixMin">
-
                                 <label for="minPrice">Minimum:</label>
-
                                 <input class="minPrice" type="text" [(ngModel)]="minPrice" name="minPrice">
-
                             </div>
-
                             <div class="prixMax">
-
                                 <label for="maxPrice">Maximum:</label>
-
                                 <input class="maxPrice" type="text" [(ngModel)]="maxPrice" name="maxPrice">
-
                             </div>
-
                         </div>
-
                         <button type="submit">Filtrer</button>
-
                     </form>
                 </div>
-                </details>
+            </details>
         </div>
-    <div class="resultat">
-
-        <span *ngIf="nombreDeResultat !== null && nombreDeResultat !== undefined">
-            <ng-container *ngIf="nombreDeResultat === 0">
-                Aucun résultat trouvé
-            </ng-container>
-            <ng-container *ngIf="nombreDeResultat > 0">
-                {{nombreDeResultat}} résultat(s) trouvé(s)
-            </ng-container>
-        </span>
-
-
-
-        <article class="bouteille" *ngFor="let uneBouteille of filteredData">
-            <div class="card-bouteille-haut">
-                <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">
-                    <picture>
-                        <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible"
-                            alt="Bouteille" />
-                    </picture>
-                </a>
-                <div class="info-bouteille">
+        <div class="resultat">
+            <span *ngIf="nombreDeResultat !== null && nombreDeResultat !== undefined">
+                <ng-container *ngIf="nombreDeResultat === 0">
+                    Aucun résultat trouvé
+                </ng-container>
+                <ng-container *ngIf="nombreDeResultat > 0">
+                    {{nombreDeResultat}} résultat(s) trouvé(s)
+                </ng-container>
+            </span>
+            <article class="bouteille" *ngFor="let uneBouteille of filteredData">
+                <div class="card-bouteille-haut">
                     <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">
-                        <h3>
-                            {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
-                        </h3>
-                        <div class="info-ligne">
-                            <span class="icone icone-vin"></span>
-                            <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name : uneBouteille.type_mes_name
-                                }}
-                                | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso }}
-                            </p>
-                        </div>
-                        <div class="info-ligne">
-                            <span class="icone icone-location"></span>
-                            <p>
-                                {{ uneBouteille.pays ? uneBouteille.pays : uneBouteille.pays_bouteillePerso }}
-                            </p>
-                        </div>
-                        <div class="info-ligne">
-                            <span class="icone icone-dollar"></span>
-                            <p>
-                                {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }}
-                            </p>
-                        </div>
-                        <div class="cellierQuantite info-ligne">
-                            <span class="icone icone-cellier"></span>
-                            <a routerLink="/profil/cellier/{{ uneBouteille.celliers_id }}">{{ uneBouteille.celliers_nom
-                                }}</a>
-                            <span class="quantite">
-                                <span *ngIf="uneBouteille.quantite >= 1">Qte : {{ uneBouteille.quantite ?
-                                    [(uneBouteille.quantite)] :
-                                    [(uneBouteille.quantite_bouteillePerso)] }}</span>
-                                <span class="archive" *ngIf="uneBouteille.quantite == 0">Archivée</span>
-                            </span>
-                        </div>
+                        <picture>
+                            <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible"
+                                alt="Bouteille" />
+                        </picture>
                     </a>
+                    <div class="info-bouteille">
+                        <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">
+                            <h3>
+                                {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
+                            </h3>
+                            <div class="info-ligne">
+                                <span class="icone icone-vin"></span>
+                                <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name :
+                                    uneBouteille.type_mes_name
+                                    }}
+                                    | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso
+                                    }}
+                                </p>
+                            </div>
+                            <div class="info-ligne">
+                                <span class="icone icone-location"></span>
+                                <p>
+                                    {{ uneBouteille.pays ? uneBouteille.pays : uneBouteille.pays_bouteillePerso }}
+                                </p>
+                            </div>
+                            <div class="info-ligne">
+                                <span class="icone icone-dollar"></span>
+                                <p>
+                                    {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso
+                                    }}
+                                </p>
+                            </div>
+                            <div class="cellierQuantite info-ligne">
+                                <span class="icone icone-cellier"></span>
+                                <a routerLink="/profil/cellier/{{ uneBouteille.celliers_id }}">{{
+                                    uneBouteille.celliers_nom
+                                    }}</a>
+                                <span class="quantite">
+                                    <span *ngIf="uneBouteille.quantite >= 1">Qte : {{ uneBouteille.quantite ?
+                                        [(uneBouteille.quantite)] :
+                                        [(uneBouteille.quantite_bouteillePerso)] }}</span>
+                                    <span class="archive" *ngIf="uneBouteille.quantite == 0">Archivée</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
-
-            </div>
-        </article>
+            </article>
+        </div>
     </div>
-</div>
-
 </section>
+
 <app-footer></app-footer>
