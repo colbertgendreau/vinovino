@@ -57,12 +57,12 @@ export class ScannerComponent implements OnDestroy {
   startScan(): void {
     this.showVideo = true;
 
-    if (this.backCameraList.length === 0) {
-      this.stopScan();
-      this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
-      this.showVideo = false;
-      return;
-    }
+    //if (this.backCameraList.length === 0) {
+    //  this.stopScan();
+    //  this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
+    //  this.showVideo = false;
+    //  return;
+   // }
 
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
