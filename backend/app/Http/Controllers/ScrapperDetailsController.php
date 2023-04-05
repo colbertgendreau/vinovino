@@ -10,6 +10,10 @@ class ScrapperDetailsController extends Controller
 {
     private $results = [];
 
+    /**
+     * Récupère une liste de codes depuis la table "vino__bouteille" de la base de données et passe chaque code à une fonction "scrapper".
+     */
+
     public function index()
     {
         set_time_limit(300);
@@ -18,20 +22,17 @@ class ScrapperDetailsController extends Controller
         foreach ($codes as $code) {
             $s = $this->scrapper($code);
             $i++;
-            if($i == 10){
+            if ($i == 10) {
                 ddd($s);
             }
-
         }
-
-
-//        foreach ($codes as $code) {
-//            $this->scrapper();
-//            Crawler::dispatch($code);
-//        }
-
     }
 
+    /**
+     * Récupère des informations sur une bouteille en scannant la page web correspondante sur le site de la SAQ.
+     * @param string $code : Le code SAQ de la bouteille de vin à scanner.
+     * @return Illuminate\Http\JsonResponse : Une réponse JSON contenant les informations récupérées.
+     */
     public function scrapper($code)
     {
 
@@ -55,6 +56,11 @@ class ScrapperDetailsController extends Controller
         ]);
     }
 
+    /**
+     * Extrait le code CUP de la bouteille à partir du contenu HTML d'une page web.
+     * @param Symfony\Component\DomCrawler\Crawler $crawler : Un objet Crawler contenant le contenu HTML de la page web à scanner.
+     * @return string|null : Le code CUP de la bouteille de vin, ou null si aucun code n'a été trouvé.
+     */
     private function extractCupCode($crawler)
     {
         $li = $crawler->filter('li:contains("Code CUP")');
@@ -66,10 +72,15 @@ class ScrapperDetailsController extends Controller
         return null;
     }
 
+    /**
+     * Extrait la liste des cépages utilisés dans la production d'une bouteille à partir du contenu HTML d'une page web.
+     * @param Symfony\Component\DomCrawler\Crawler $crawler : Un objet Crawler contenant le contenu HTML de la page web à scanner.
+     * @return array : La liste des cépages utilisés dans la production de la bouteille.
+     */
     private function extractCepage($crawler)
     {
         $li = $crawler->filter('li:contains("Cépages")');
-        if($li->count() == 0) {
+        if ($li->count() == 0) {
             $li = $crawler->filter('li:contains("Cépage")');
         }
         $text = $li->filter('strong[data-th="Cépage"]')->text();

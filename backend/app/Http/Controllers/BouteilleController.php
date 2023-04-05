@@ -11,15 +11,13 @@ use Illuminate\Support\Facades\Schema;
 class BouteilleController extends Controller
 {
     /**
-     * cree un REST API de tout le bouteille de notre basse de donner
+     * Crée un REST API de toutes les bouteilles de notre base de donner
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         $id = Auth::id();
-        // $bouteilles = Bouteille::where('celliers_id', $celliers_id)
-        // ->get();
 
         $bouteilles = Bouteille::select(
             'bouteilles.id AS id_supreme',
@@ -44,41 +42,14 @@ class BouteilleController extends Controller
         return ['data' => $bouteilles];
     }
 
-
-    // public function index() // la function ci dessous retourne une pagination a decider ce quon veut
-    // {
-    //     $bouteilles = Bouteille::latest()->paginate(25);
-    //     $res = $bouteilles;
-    //     return $res;
-    // }
-
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
+     * Enregistre une bouteille dans la base de données
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-
-        // $res = Bouteille::create([
-        //     'celliers_id' => $request->celliers_id,
-        //     'id' =>$request->id_mes_bouteilles,
-        //     'quantite' =>$request->quantite,
-
-        // ]);
-        // $bouteille = Bouteille::find($request->id);             a regarder cest quoi roxanne
-
 
         if ($request->id == '') {
             $mon_id = mesBouteilles::create([
@@ -92,15 +63,13 @@ class BouteilleController extends Controller
 
             $res = Bouteille::create([
                 'celliers_id' => $request->celliers_id,
-                // 'id_bouteille' => $request->id,
                 'id_mes_bouteilles' => $mon_id->id_bouteillePerso,
                 'quantite' => $request->quantite,
             ]);
         } else {
-            // Handle the case where the ID is not empty
+            // régie le cas si le ID n'est pas vide
             $res = Bouteille::create([
                 'celliers_id' => $request->celliers_id,
-                // 'celliers_id' => $request->celliers_id,
                 'id_bouteille' => $request->id,
                 'quantite' => $request->quantite,
             ]);
@@ -110,15 +79,13 @@ class BouteilleController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Affiche une bouteille
      *
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
      */
     public function show(Bouteille $bouteille)
     {
-
-        // faut faire comme cellier et donner des alias au ranger jai besoin de id_supreme
 
         $id = $bouteille->id_bouteillePerso;
 
@@ -134,7 +101,7 @@ class BouteilleController extends Controller
 
 
     /**
-     * Show the form for editing the specified resource.
+     * Affiche le formulaire de modification de bouteille
      *
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
@@ -145,7 +112,7 @@ class BouteilleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Modifie les informations d'une bouteille
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Bouteille  $bouteille
@@ -153,16 +120,12 @@ class BouteilleController extends Controller
      */
     public function update(Request $request, mesBouteilles $maBouteille, bouteille $bouteille)
     {
-        // var_dump($request);
-        // var_dump($maBouteille);
-
 
         if ($request->id_bouteillePerso) {
 
 
             $maBouteille = mesBouteilles::find($request->id_bouteillePerso);
             $maBouteille->update([
-                // 'quantite_bouteillePerso' => $request->quantite_bouteillePerso,
                 'nom_bouteillePerso' => $request->nom_bouteillePerso,
                 'type_bouteillePerso' => $request->type_bouteillePerso,
                 'pays_bouteillePerso' => $request->pays_bouteillePerso,
@@ -180,7 +143,6 @@ class BouteilleController extends Controller
                 ]);
             }
         } else {
-            // $bouteille = bouteille::find($request->id);
             $bouteille->update([
                 'quantite' => $request->quantite,
             ]);
@@ -188,7 +150,7 @@ class BouteilleController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Détruit une bouteille
      *
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
@@ -200,24 +162,13 @@ class BouteilleController extends Controller
 
 
     /**
-     * Display the specified resource.
+     * Affiche les détails d'une bouteille
      *
      * @param  \App\Models\Bouteille  $bouteille
      * @return \Illuminate\Http\Response
      */
     public function showDetail(Bouteille $bouteille)
     {
-
-        // faut faire comme cellier et donner des alias au ranger jai besoin de id_supreme
-
-        // $id = $bouteille->id_bouteillePerso;
-
-        // $res = Bouteille::leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')
-        //     ->leftJoin('mes_bouteilles', 'bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
-        //     ->leftjoin('vino__type', 'vino__type.id', '=', 'mes_bouteilles.type_bouteillePerso')
-        //     ->leftjoin('vino__type', 'vino__type.id', '=', 'vino__bouteille.type')
-        //     ->where('bouteilles.id', $bouteille->id)
-        //     ->first();
 
         $res = Bouteille::leftJoin('vino__bouteille', 'vino__bouteille.id', '=', 'bouteilles.id_bouteille')
             ->leftJoin('mes_bouteilles', 'bouteilles.id_mes_bouteilles', '=', 'mes_bouteilles.id_bouteillePerso')
@@ -235,7 +186,7 @@ class BouteilleController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Ajoute et modifie une note apporté une bouteille
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Http\Request  $bouteille
@@ -244,19 +195,19 @@ class BouteilleController extends Controller
     public function ajoutNote(Request $request, Bouteille $bouteille)
     {
         $notes = $request->input('notes');
-    
+
         $bouteille->update([
             'notes' => $notes,
         ]);
-    
+
         return ['data' => $bouteille];
     }
 
 
 
 
-      /**
-     * Update the specified resource in storage.
+    /**
+     * Ajoute et modifie un commentaire apporté à une bouteille
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \Illuminate\Http\Request  $bouteille
@@ -265,12 +216,11 @@ class BouteilleController extends Controller
     public function ajoutCommentaire(Request $request, Bouteille $bouteille)
     {
         $commentaires = $request->input('commentaires');
-    
+
         $bouteille->update([
             'commentaires' => $commentaires,
         ]);
-    
+
         return ['data' => $bouteille];
     }
 }
-

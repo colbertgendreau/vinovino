@@ -23,7 +23,6 @@ export class User {
 export class CommentaireComponent implements OnInit {
 
   isSignedIn!: boolean;
-  // title:string='Modifier la bouteille #';
   UserProfile!: User;
 
   commentaireForm: FormGroup;
@@ -47,14 +46,12 @@ export class CommentaireComponent implements OnInit {
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
-      console.log(this.UserProfile);
     });
   }
 
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
     });
 
     this.commentaireForm = this.formBuilder.group({
@@ -62,21 +59,11 @@ export class CommentaireComponent implements OnInit {
     });
 
     this.route.params.subscribe(params => {
-      console.log(params);
 
       this.fetchService.showDetail(params['id']).subscribe((data: any) => {
         this.uneBouteille = data.data;
-        // this.commentaires = this.uneBouteille.commentaires;
-
-        // console.log(this.commentaires);
-
-        console.log(this.uneBouteille);
       });
 
-      // const id = params['id'];
-      // if (id) {
-      //   this.fetchBottleData(id);
-      // }
     });
 
     this.commentaireForm.get('commentaires').valueChanges.pipe(
@@ -88,6 +75,9 @@ export class CommentaireComponent implements OnInit {
 
   }
 
+  /**
+ * Ajoute un commentaire à une bouteille et envoie une requête de mise à jour via un service.
+ */
   ajouterCommentaire() {
     if (this.commentaireForm.valid) {
       const commentaires = this.commentaireForm.get('commentaires').value;
@@ -97,14 +87,9 @@ export class CommentaireComponent implements OnInit {
         const bouteille = { ...this.uneBouteille, commentaires };
         this.fetchService.ajoutCommentaire(params['id'], bouteille).subscribe((data: any) => {
           let retour = data.data;
-          console.log(retour);
         });
       });
     }
-
-
-
-
   }
 
   /**
