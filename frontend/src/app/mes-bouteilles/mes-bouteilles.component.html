@@ -1,76 +1,45 @@
 <section class="resultat_recherche">
-    <!-- <table> -->
-        <div class="filter" *ngFor="let filter of filters">
-            <span>{{ filter }}</span>
-            <button (click)="removeFilter(filter)">x</button>
-        </div>
-        
-        <!-- <tbody>
-            <tr *ngFor="let bouteille of filteredData">
-                <td >{{ bouteille.nom }}</td>
-                <td >cellier :{{ bouteille.celliers_nom }}</td>
-            </tr>
-        </tbody>
-    </table> -->
-
-
-
-
+    <div class="filter" *ngFor="let filter of filters">
+        <span>{{ filter }}</span>
+        <button (click)="removeFilter(filter)">x</button>
+    </div>
     <article class="bouteille" *ngFor="let uneBouteille of filteredData">
         <div class="card-bouteille-haut">
             <picture>
-                <img [src]="uneBouteille.url_img ? uneBouteille.url_img : '../../assets/img/nonDispo.webp'" alt="Bouteille"/>
+                <img [src]="uneBouteille.url_img ? uneBouteille.url_img :
+                    '../../assets/img/nonDispo.webp'" alt="Bouteille"/>
             </picture>
-
             <div class="info-bouteille">
-                <h3>
-                    {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
-                </h3>
-
+                <h3>{{ uneBouteille.nom ? uneBouteille.nom :
+                    uneBouteille.nom_bouteillePerso }}</h3>
                 <div>
                     <span class="icone icone-vin"></span>
-                    <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name : uneBouteille.type_mes_name }} | {{ uneBouteille.format ? uneBouteille.format : uneBouteille.format_bouteillePerso }}</p>
+                    <p>{{ uneBouteille.type_vino_name ?
+                        uneBouteille.type_vino_name : uneBouteille.type_mes_name
+                        }} | {{ uneBouteille.format ? uneBouteille.format :
+                        uneBouteille.format_bouteillePerso }}</p>
                 </div>
 
                 <div>
                     <span class="icone icone-location"></span>
-                    <p>
-                        {{ uneBouteille.pays ? uneBouteille.pays : uneBouteille.pays_bouteillePerso }}
-                    </p>
+                    <p>{{ uneBouteille.pays ? uneBouteille.pays :
+                        uneBouteille.pays_bouteillePerso }}</p>
                 </div>
 
                 <div>
                     <span class="icone icone-dollar"></span>
-                    <p>
-                        {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso }}
-                    </p>
+                    <p>{{ uneBouteille.prix_saq ? uneBouteille.prix_saq :
+                        uneBouteille.prix_bouteillePerso }}</p>
                 </div>
-
             </div>
-
             <div class="quantite">
-
-
-                <a *ngIf="!uneBouteille.id_bouteille" class="modifier" routerLink="/modifier-bouteille/{{ uneBouteille.id_supreme }}"></a>
-
-
-                <!-- <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)"></button> -->
-
-                <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
-                
-
-                <!-- <button class="moins" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)"></button> -->
-
-
-            
-
-
+                <a *ngIf="!uneBouteille.id_bouteille" class="modifier"
+                    routerLink="/modifier-bouteille/{{ uneBouteille.id_supreme
+                    }}"></a>
+                <span>{{ uneBouteille.quantite ? [(uneBouteille.quantite)] :
+                    [(uneBouteille.quantite_bouteillePerso)] }}</span>
             </div>
-            
-            
         </div>
         <span class="cellier_nom">cellier :{{ uneBouteille.celliers_nom }}</span>
-
-
     </article>
 </section>

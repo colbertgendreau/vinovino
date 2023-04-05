@@ -7,7 +7,6 @@ table {
       margin-block: var(--big);
     }
   
-    // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
     background-attachment: fixed;
     height: 100%;
     padding: 85px var(--big) calc(100vh - 122px);
@@ -38,35 +37,22 @@ table {
     margin-left: 5px;
 }
 
-
-
 .bouteille {
+
     margin-bottom: var(--small);
     display: flex;
     flex-direction: column;
     max-width: 100vw;
-    // min-width: 90vw;
-    // background-color: transparent;
     background-color: var(--white);
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    // background-color: var(--black-transparent50);
     align-items: center;
     padding: var(--small);
     border-radius: var(--border-radius15);
-    
-
-    // border: 5px solid rgb(228, 228, 228);
-
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
     .card-bouteille-haut {
       display: flex;
-    //   justify-content: space-between;
       width: 100%;
-      // border-bottom: 5px solid var(--secondaire-turquoise);
-    //   border-bottom: 1px solid rgb(228, 228, 228);
-    //   padding-bottom: var(--small);
-    //   margin-bottom: var(--smaller);
 
       div {
         text-align: start;
@@ -74,23 +60,15 @@ table {
         flex-direction: column;
       }
 
-      // .image-bouteille {
-      //   min-width: 75px;
-      // }
-
       picture img {
         max-width: 80px;
         margin-inline: -24px;
       }
 
       .info-bouteille {
-
-        //   justify-content: space-between;
-        //   min-width: 245px;
         min-width: 4ch;
         margin-right: var(--big);
         margin-left: var(--small);
-
 
         div {
           display: flex;
@@ -101,7 +79,6 @@ table {
 
         .icone-vin {
           background: url(../../assets/img/wineicon.png);
-          // background:red;
           height: var(--big);
           width: var(--big);
           background-size: cover;
@@ -110,7 +87,6 @@ table {
 
         .icone-location {
           background: url(../../assets/img/locationicon.png);
-          // background:red;
           height: var(--big);
           width: var(--big);
           background-size: cover;
@@ -119,7 +95,6 @@ table {
 
         .icone-dollar {
           background: url(../../assets/img/dollaricon.png);
-          // background:red;
           height: var(--big);
           width: var(--big);
           background-size: cover;
@@ -130,12 +105,11 @@ table {
           margin-bottom: var(--small);
           word-break: break-all;
           margin-left: var(--smaller);
-        //   width: 10ch;
           font-size: clamp(
             0.9375rem,
             0.5729166666666666rem + 1.8229166666666667vw,
             3.125rem
-          ); //   font-size: clamp(0.9375rem, 0.49999999999999994rem + 2.1875vw, 3.125rem);
+          );
         }
 
         p {
@@ -168,6 +142,7 @@ table {
       }
     }
   }
+
   .ajouter-bouteille {
     display: flex;
     justify-content: center;
@@ -193,7 +168,6 @@ table {
     color: var(--black);
   }
 
-
 .return a{
   text-decoration: none;
 
@@ -207,7 +181,6 @@ table {
     background-size: cover;
     object-position: center;
     cursor: pointer;
-
 }
 
 .moins {
@@ -237,7 +210,6 @@ table {
 
     margin-bottom: var(--small);
 }
-
 
 .cellier_nom {
     align-self: end;
