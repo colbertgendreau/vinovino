@@ -275,6 +275,9 @@ export class AjoutBouteilleComponent implements OnInit {
       this.arrayBouteille = response.data;
       console.log(this.arrayBouteille);
       console.log(this.idCellierUrl);
+      this.arrayBouteille.forEach(uneBouteille => {
+        uneBouteille.prix_saq = (uneBouteille.prix_saq.toFixed(2));
+      });
     });
 
     this.fetchService.getCelliers().subscribe((data: any) => {
@@ -282,10 +285,8 @@ export class AjoutBouteilleComponent implements OnInit {
         console.log('les celliers');
         console.log(this.listeCelliers);
         console.log(this.idCellierUrl);
-        
     });
         
-
     this.ajouterBouteilleForm = this.formBuilder.group({ //validation du mon formgroup ajouter bouteille
       id:          [''],
       nom:         ['', [Validators.required]],
@@ -297,7 +298,6 @@ export class AjoutBouteilleComponent implements OnInit {
       description: [''],
       celliers_id: [this.idCellierUrl, Validators.required],
     });
-    
   }
   
   /**
@@ -311,6 +311,4 @@ export class AjoutBouteilleComponent implements OnInit {
     config.panelClass = ['mon-snackbar']; // Add a custom CSS class
     this.snackBar.open(message, action, config);
   }
-
-
 }
