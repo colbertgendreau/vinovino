@@ -9,6 +9,10 @@
   .recherche_filter {
     display: flex;
     flex-direction: column;
+
+    .recherche-label {
+        display: none;
+    }
     
     .recherche-input{
       margin-bottom: var(--big);
@@ -51,7 +55,8 @@
     }
     
     h3 {
-      margin-block: var(--med);
+      margin-bottom: var(--med);
+
     }
     
     details {
@@ -148,11 +153,8 @@
     margin-block: var(--big);
   }
   
-  // background-image: url(../../assets/img/SES-vino-tinto-3083249-3c87d291a3644a18937edbac4ac182ed.jpg);
   background-attachment: fixed;
   height: 100%;
-  // padding: 85px var(--big) calc(100vh - 122px);
-  //   padding: 0 var(--big) calc(100vh - 122px);
   display: flex;
   flex-direction: column;
   gap: var(--small);
@@ -171,7 +173,6 @@
     align-items: center;
     padding: var(--small);
     border-radius: var(--border-radius15);
-    // border: 3px rgb(235, 235, 235) solid;
     box-shadow: var(--box-shadow);
 
 
@@ -183,6 +184,7 @@
         text-align: start;
         display: flex;
         flex-direction: column;
+        align-items: center;
       }
 
       picture img {
@@ -362,15 +364,6 @@
   
 }
 
-// .reset_btn:hover {
-//   height: 30px;
-//   border-radius: 5px;
-//   border: 1px solid var(--secondaire);
-//   background: none;
-//   // color: var(--secondaire)
-//   width: 25px;
-  
-// }
 
 .filter_data{
   display: flex;
@@ -378,7 +371,6 @@
   height: auto;
   gap: 10px;
 }
-
 
 
 .error{

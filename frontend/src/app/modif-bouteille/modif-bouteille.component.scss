@@ -85,7 +85,7 @@
     transform: translateY(20px);
     font-size: 0.825em;
     transition-duration: 300ms;
-    color: gray;
+    color: rgb(84, 84, 84);
     background: white;
   }
 
@@ -97,7 +97,7 @@
     transform: translateY(20px);
     font-size: 0.825em;
     transition-duration: 300ms;
-    color: var(--secondaire);
+    color: var(--label-color);
     background: white;
     border-radius: 5px;
     padding-bottom: 0;
@@ -107,7 +107,7 @@
 
   label:focus-within>span,
   input:not(:placeholder-shown)+span {
-    color: var(--secondaire);
+    color: var(--label-color);
     transform: translateY(0px);
     border-radius: 5px;
     padding-bottom: 0;
