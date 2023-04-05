@@ -176,7 +176,7 @@ input::placeholder{
     transform:translateY(20px);
     font-size:0.825em;
     transition-duration:300ms;
-    color: gray;
+    color: var(--label-color);
     background: white;
 }
 .floating-recherche {
@@ -191,7 +191,7 @@ input::placeholder{
     transform:translateY(20px);
     font-size:0.825em;
     transition-duration:300ms;
-    color: var(--secondaire);
+    color: var(--label-color);
     background: white;
     border-radius: 5px;
     padding-bottom: 0;
@@ -200,7 +200,7 @@ input::placeholder{
 
 label:focus-within > span,
 input:not(:placeholder-shown) + span{
-    color:var(--secondaire);
+    color:var(--label-color);
     transform:translateY(0px);
     border-radius: 5px;
     padding-bottom: 0;
