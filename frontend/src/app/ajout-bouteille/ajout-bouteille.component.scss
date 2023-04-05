@@ -224,6 +224,7 @@ input:not(:placeholder-shown)+.floatingError {
   box-shadow: var(--box-shadow);
   align-items: stretch;
   border-radius: var(--border-radius15);
+
   .h3 {
     margin-top: var(--biggest);
     margin-bottom: var(--big);
@@ -293,14 +294,14 @@ app-scanner {
   width: fit-content;
 }
 
-    .app_scanner {
-      margin-top: var(--big);
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
-    }
+.app_scanner {
+  margin-top: var(--big);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
 
 .error {
   color: red;
