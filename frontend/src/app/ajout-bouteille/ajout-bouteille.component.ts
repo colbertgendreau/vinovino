@@ -295,7 +295,7 @@ export class AjoutBouteilleComponent implements OnInit {
       prix_saq:    [''],
       quantite:    ['', [Validators.required, Validators.pattern(/^\d+$/)]],
       description: [''],
-      celliers_id: [this.idCellierUrl],
+      celliers_id: [this.idCellierUrl, Validators.required],
     });
     
   }
