@@ -47,7 +47,6 @@ export class ModifBouteilleComponent implements OnInit {
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
-      console.log(this.UserProfile);
     });
   }
 
@@ -60,23 +59,20 @@ export class ModifBouteilleComponent implements OnInit {
 
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
     });
 
     this.fetchService.getCelliers().subscribe((data: any) => {
-        this.listeCelliers = data.data;
-        console.log('les celliers');
-        console.log(this.listeCelliers);
-        
+      this.listeCelliers = data.data;
     });
 
 
     this.route.params.subscribe((params) => {
-      console.log(params);
-
+   
+      /**
+       * Met à jour le formulaire de modification de bouteille avec les données de la bouteille sélectionnée
+       */
       this.fetchService.showBouteille(params['id']).subscribe((data: any) => {
         this.bouteille = data.data;
-        console.log(this.bouteille);
         this.modifBouteilleForm.setValue({
           id_bouteillePerso: this.bouteille.id_bouteillePerso,
           nom_bouteillePerso: this.bouteille.nom_bouteillePerso,
@@ -104,18 +100,16 @@ export class ModifBouteilleComponent implements OnInit {
 
     });
   }
-
+  /**
+   * Permet de modifier une bouteille dans le cellier de l'utilisateur connecté.
+   */
   modifierBouteille() {
     this.formSubmitted = true;
     if (this.modifBouteilleForm.valid) {
       this.route.params.subscribe((params) => {
         let updateBouteille: Imesbouteilles = this.modifBouteilleForm.value;
-        console.log(params['id']);
-        
-        console.log(updateBouteille.id_bouteillePerso);
-        
+
         this.fetchService.modifBouteille(params['id'], updateBouteille).subscribe((retour) => {
-          console.log(retour);
           this.openSnackBar('Modification effectuée avec succès', 'Fermer');
           this.router.navigateByUrl('profil/cellier/' + this.bouteille.celliers_id);
         });
@@ -123,6 +117,9 @@ export class ModifBouteilleComponent implements OnInit {
     }
   }
 
+  /**
+   * Permet de remettre à zéro le formulaire de modification de bouteille.
+   */
   clearForm() {
     window.scroll({ // pour scroll up quand on arrive sur la page
       top: 0,
@@ -133,11 +130,9 @@ export class ModifBouteilleComponent implements OnInit {
 
     const controls = this.modifBouteilleForm.controls;
     Object.keys(controls).forEach(controlName => {
-      console.log(this.bouteille[controlName]);
-      console.log(controlName);
       let nom = controlName;
-      if(controlName == 'quantite_bouteillePerso'){
-         nom = 'quantite';
+      if (controlName == 'quantite_bouteillePerso') {
+        nom = 'quantite';
       }
       controls[controlName].setValue(this.bouteille[nom]);
     });
@@ -145,15 +140,15 @@ export class ModifBouteilleComponent implements OnInit {
 
   }
 
-    /**
+  /**
 * Cette fonction affiche un message de type snackbar.
 * @param message Le message à afficher.
 * @param action L'action à afficher sur le bouton de fermeture du snackbar.
 */
-openSnackBar(message: string, action: string) {
-  const config = new MatSnackBarConfig();
-  config.duration = 3000; // Set the duration to 3 seconds
-  config.panelClass = ['mon-snackbar']; // Add a custom CSS class
-  this.snackBar.open(message, action, config);
-}
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 3000; // Set the duration to 3 seconds
+    config.panelClass = ['mon-snackbar']; // Add a custom CSS class
+    this.snackBar.open(message, action, config);
+  }
 }
