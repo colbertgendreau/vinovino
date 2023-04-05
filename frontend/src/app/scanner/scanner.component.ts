@@ -172,7 +172,9 @@ export class ScannerComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.stopScan();
+    if(this.showVideo == true || this.isScanning == true){
+      this.stopScan();
+    }
   }
 
   // ngOnInit(): void {
