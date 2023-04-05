@@ -43,11 +43,11 @@ export class ScannerComponent implements OnDestroy {
             alert('Back found! - ' + device.label);
             console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
-          }else if ( device.kind === 'videoinput' && device.label.match(/arrière/) != null ) {
-                      alert('Caméra arrière trouvé! - ' + device.label);
-                      console.log('deviceId: ', device.deviceId);
-                      this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
-                    }
+          }else if ( device.kind === 'videoinput' && device.label.match(/HD/) != null ) {
+            alert('Web cam trouvé! - ' + device.label);
+            console.log('deviceId: ', device.deviceId);
+            this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+          }
         });
 
         if (this.backCameraList.length === 0) {
@@ -61,8 +61,12 @@ export class ScannerComponent implements OnDestroy {
                   console.log('aqui');
                   devices.forEach((device) => {
                     alert('device2 - ' + JSON.stringify(device));
-                    if ( device.kind === 'videoinput' && device.label.match(/arrière/) != null ) {
+                    if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
                       alert('Back2 found! - ' + device.label);
+                      console.log('deviceId: ', device.deviceId);
+                      this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+                    }else if ( device.kind === 'videoinput' && device.label.match(/arrière/) != null ) {
+                      alert('Caméra arrière trouvé! - ' + device.label);
                       console.log('deviceId: ', device.deviceId);
                       this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
                     }
