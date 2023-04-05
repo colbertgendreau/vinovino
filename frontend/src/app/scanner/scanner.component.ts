@@ -99,7 +99,7 @@ export class ScannerComponent implements OnDestroy {
               constraints: {
                 width: 640,
                 height: 480,
-                facingMode: 'environment',
+                facingMode: { exact: "environment" },
                 deviceId: this.backCameraList[this.backCameraList.length - 1]['deviceId']
               },
               area: {
