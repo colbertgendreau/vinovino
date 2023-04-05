@@ -21,7 +21,6 @@ export class ScannerComponent implements OnDestroy {
   iconeX =  environment.baseImg + 'icones/x.png';
 
   errorMessage: string = '';
-  front_back_camera = "environment";
 
   @Output() scanned = new EventEmitter<any>();
   showVideo = false;
@@ -39,14 +38,9 @@ export class ScannerComponent implements OnDestroy {
       .then((devices) => {
         console.log('aqui');
         devices.forEach((device) => {
-          alert('device - ' + JSON.stringify(device));
+          //alert('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
-            alert('Back found! - ' + device.label);
-            console.log('deviceId: ', device.deviceId);
-            this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
-          }else if ( device.kind === 'videoinput' && device.label.match(/HD/) != null ) {
-            alert('Web cam trouvé! - ' + device.label);
-            this.front_back_camera = "user";
+            //alert('Back found! - ' + device.label);
             console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }
@@ -54,7 +48,7 @@ export class ScannerComponent implements OnDestroy {
 
         if (this.backCameraList.length === 0) {
           navigator.mediaDevices.getUserMedia({video: {
-              facingMode: { exact: this.front_back_camera }
+              facingMode: { exact: "environment" }
             } })
             .then((stream) => {
               this.stream = stream;
@@ -62,13 +56,9 @@ export class ScannerComponent implements OnDestroy {
                 .then((devices) => {
                   console.log('aqui');
                   devices.forEach((device) => {
-                    alert('device2 - ' + JSON.stringify(device));
+                    //alert('device2 - ' + JSON.stringify(device));
                     if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
-                      alert('Back2 found! - ' + device.label);
-                      console.log('deviceId: ', device.deviceId);
-                      this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
-                    }else if ( device.kind === 'videoinput' && device.label.match(/arrière/) != null ) {
-                      alert('Caméra arrière trouvé! - ' + device.label);
+                      //alert('Back2 found! - ' + device.label);
                       console.log('deviceId: ', device.deviceId);
                       this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
                     }
@@ -102,7 +92,7 @@ export class ScannerComponent implements OnDestroy {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({video: {
           deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
-          facingMode: { exact: this.front_back_camera }
+          facingMode: { exact: "environment" }
         } })
         .then((stream) => {
           this.stream = stream;
@@ -110,7 +100,6 @@ export class ScannerComponent implements OnDestroy {
           this.video.nativeElement.autoplay = true;
           this.video.nativeElement.playsInline = true;
           this.video.nativeElement.muted = true;
-          this.video.nativeElement.play();
           this.isScanning = true;
           Quagga.init({
             inputStream: {
@@ -120,7 +109,7 @@ export class ScannerComponent implements OnDestroy {
               constraints: {
                 width: 640,
                 height: 480,
-                facingMode: { exact: this.front_back_camera },
+                facingMode: { exact: "environment" },
                 deviceId: this.backCameraList[this.backCameraList.length - 1]['deviceId']
               },
               area: {
