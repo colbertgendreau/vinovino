@@ -185,6 +185,17 @@
 
         <div class="stay">Cellier</div>
         </label>
+        <div
+        *ngIf="
+          formSubmitted && ajouterBouteilleForm.controls['celliers_id'].invalid
+        "
+        class="error-message"
+      >
+        <span
+          *ngIf="ajouterBouteilleForm.controls['celliers_id'].errors?.['required']"
+          >Veuillez choisir un cellier</span
+        >
+      </div>
     </div>
     
     

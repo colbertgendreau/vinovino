@@ -18,63 +18,64 @@
                 <span>Ou</span>
             </div>
             <h3>Filtres</h3>
-            <details>
-                <summary>Types</summary>
-                <div class="type">
-                    <div class="types">
-                        <div *ngFor="let type of choixTypes" class="input-checkbox">
-                            <input type="checkbox" #checkedType [checked]="isSelected(type)"
-                                (change)="updateSelectedWineTypes(checkedType.checked, type)">
-                            {{ type }}
-                        </div>
-                    </div>
-                </div>
             
-            </details>
-        </div>
-        <details>
-            <summary>Pays</summary>
-            <div class="pays">
-                <select #selected (change)="updateSelectedWinePays(selected.value)">
-                    <option *ngFor="let pays of choixPays" [value]="pays" [selected]="isSelectedPays(pays)">
-                        {{ pays }}
-                    </option>
-                </select>
-            </div>
-        </details>
-
-        <details>
-
-            <summary>Prix</summary>
-            <div class="prix">
-                <form (ngSubmit)="filterByPrice(minPrice, maxPrice)" #myForm="ngForm">
-
-                    <div class="formPrix">
-
-                        <div class="prixMin">
-
-                            <label for="minPrice">Minimum:</label>
-
-                            <input class="minPrice" type="text" [(ngModel)]="minPrice" name="minPrice">
-
+                <details>
+                    <summary>Types</summary>
+                    <div class="type">
+                        <div class="types">
+                            <div *ngFor="let type of choixTypes" class="input-checkbox">
+                                <input type="checkbox" #checkedType [checked]="isSelected(type)"
+                                    (change)="updateSelectedWineTypes(checkedType.checked, type)">
+                                {{ type }}
+                            </div>
                         </div>
-
-                        <div class="prixMax">
-
-                            <label for="maxPrice">Maximum:</label>
-
-                            <input class="maxPrice" type="text" [(ngModel)]="maxPrice" name="maxPrice">
-
-                        </div>
-
                     </div>
+                
+                </details>
+            
+                <details>
+                <summary>Pays</summary>
+                <div class="pays">
+                    <select #selected (change)="updateSelectedWinePays(selected.value)">
+                        <option *ngFor="let pays of choixPays" [value]="pays" [selected]="isSelectedPays(pays)">
+                            {{ pays }}
+                        </option>
+                    </select>
+                </div>
+                </details>
 
-                    <button type="submit">Filtrer</button>
+                <details>
 
-                </form>
-            </div>
-        </details>
-    </div>
+                <summary>Prix</summary>
+                <div class="prix">
+                    <form (ngSubmit)="filterByPrice(minPrice, maxPrice)" #myForm="ngForm">
+
+                        <div class="formPrix">
+
+                            <div class="prixMin">
+
+                                <label for="minPrice">Minimum:</label>
+
+                                <input class="minPrice" type="text" [(ngModel)]="minPrice" name="minPrice">
+
+                            </div>
+
+                            <div class="prixMax">
+
+                                <label for="maxPrice">Maximum:</label>
+
+                                <input class="maxPrice" type="text" [(ngModel)]="maxPrice" name="maxPrice">
+
+                            </div>
+
+                        </div>
+
+                        <button type="submit">Filtrer</button>
+
+                    </form>
+                </div>
+                </details>
+        </div>
     <div class="resultat">
 
         <span *ngIf="nombreDeResultat !== null && nombreDeResultat !== undefined">
@@ -137,7 +138,7 @@
             </div>
         </article>
     </div>
-
+</div>
 
 </section>
 <app-footer></app-footer>

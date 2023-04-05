@@ -197,7 +197,7 @@
     .celliers {
         height: 100px;
         background-color: var(--white);
-        border-radius: 5px;
+        border-radius: var(--border-radius15);
         display: flex;
         justify-content: space-between;
         align-items: center;

@@ -24,7 +24,7 @@ h1 {
     align-items: center;
     gap: var(--small);
     background-color: var(--white);
-    border-radius: 5px;
+    border-radius: var(--border-radius15);
     display: flex;
     justify-content: center;
     padding: 20px;
