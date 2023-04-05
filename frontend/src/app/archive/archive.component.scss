@@ -28,7 +28,6 @@ h1 {
     display: flex;
     justify-content: center;
     padding: 20px;
-    // border: 3px rgb(235, 235, 235) solid;
     box-shadow: var(--box-shadow);
 
     h2 {
@@ -83,7 +82,6 @@ h1 {
 
       picture img {
         max-width: 80px;
-        margin-inline: -24px;
         position: relative;
         bottom: -5px;
       }
@@ -129,7 +127,6 @@ h1 {
 
         h3 {
           margin-bottom: auto;
-          word-break: keep-all;
           margin-left: var(--smaller);
           font-size: clamp(0.9375rem,
               0.5729166666666666rem + 1.8229166666666667vw,

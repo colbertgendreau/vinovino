@@ -5,27 +5,9 @@ import { AuthStateService } from '../shared/auth-state.service';
 import { AuthService } from '../shared/auth.service';
 import { FetchService } from '../fetch.service';
 import { ActivatedRoute } from '@angular/router';
-import { IlisteCellier } from '../iliste-cellier';
 import { ICellier } from '../icellier';
-
-
-
-import { Ilistemesbouteilles } from '../ilistemesbouteilles';
 import { Imesbouteilles } from '../imesbouteilles';
-
-
-// import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
-
-import { EffacerModalComponent } from '../effacer-cellier-modal/effacer-cellier-modal.component';
-
 import { environment } from '../../environments/environment';
-
-
-// User interface
-// export class User {
-//   name: any;
-//   email: any;
-// }
 
 @Component({
   selector: 'app-liste-cellier',
@@ -36,8 +18,6 @@ import { environment } from '../../environments/environment';
 export class ListeCellierComponent implements OnInit {
 
   isSignedIn!: boolean;
-  // title:string='Liste des celliers';
-  // UserProfile!: User;
   listeCelliers: Array<ICellier>;
   listeMesBouteilles: Array<Imesbouteilles>;
   unCellier: ICellier;
@@ -51,16 +31,11 @@ export class ListeCellierComponent implements OnInit {
   hide: boolean = true;
   display: number = 1;
 
-
-
-
-
   iconeTrash =  environment.baseImg + 'icones/trash-347.png';
   iconeModif =  environment.baseImg + 'icones/edit-black.png';
   iconeAjout =  environment.baseImg + 'icones/plus-black.png';
   iconeBouteille =  environment.baseImg + 'icones/wine-bottle.png';
   iconeCellier =  environment.baseImg + 'icones/wine-cellar.png';
-
 
   constructor(
     private auth: AuthStateService,
@@ -81,12 +56,10 @@ export class ListeCellierComponent implements OnInit {
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
     });
 
     this.fetchService.getCelliers().subscribe((data: any) => {
       this.listeCelliers = data.data;
-      console.log(this.listeCelliers);
       this.spin = false;
       this.hide = false;
     });

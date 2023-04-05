@@ -38,12 +38,9 @@ export class SigninComponent implements OnInit {
       () => {
         this.authState.setAuthState(true);
         this.loginForm.reset();
-        // this.router.navigate(['profile']);
         this.router.navigateByUrl("/"+environment.profilPrefix+'liste-cellier')
           .then(nav => {
-            console.log(nav); // true if navigation is successful
           }, err => {
-            console.log(err) // when there's an error
           });
       }
     );
