@@ -76,6 +76,7 @@ export class ModifBouteilleComponent implements OnInit {
        */
       this.fetchService.showBouteille(params['id']).subscribe((data: any) => {
         this.bouteille = data.data;
+        this.bouteille.prix_bouteillePerso = (this.bouteille.prix_bouteillePerso.toFixed(2));
         this.modifBouteilleForm.setValue({
           id_bouteillePerso: this.bouteille.id_bouteillePerso,
           nom_bouteillePerso: this.bouteille.nom_bouteillePerso,

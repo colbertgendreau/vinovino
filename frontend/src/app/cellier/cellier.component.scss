@@ -18,7 +18,7 @@
     font-size: 1.5rem;
     position: relative;
     padding-inline: 40px;
-    
+
     span{
         text-align: center;
     }
@@ -86,8 +86,8 @@
     span {
       font-size: 80px;
     }
-  } 
-  
+  }
+
   input[type="checkbox"] {
     border-radius: 5px;
     border: 1px solid var(--secondaire);
@@ -96,7 +96,7 @@
     margin-right: var(--smaller4);
     accent-color: var(--secondaire);
   }
-  
+
   .lien-detail {
     text-decoration: none;
     color: var(--black);
@@ -283,20 +283,20 @@
         display: block;
         overflow-x: auto;
         white-space: nowrap;
-        
+
         tbody {
             width: 100%;
             display: table;
-            
-            tr:last-child { 
+
+            tr:last-child {
                 border-bottom: 1px solid var(--secondaire);
             }
-            
+
             tr {
                 background: white;
                 border-top: 1px solid var(--secondaire);
                 width: 100%;
-        
+
             td {
                 position: relative;
                 padding-block: var(--smaller);
@@ -306,21 +306,21 @@
                 justify-self: flex-start;
                 flex-basis: 0;
                 min-width: 21px;
-                
+
                 button {
                     position: absolute;
                     top: 9px;
-                    left: 8;
+                    left: 8px;
                 }
             }
-            
+
             .td-nom {
                 text-overflow: ellipsis;
-                overflow: hidden; 
-                white-space: nowrap;        
+                overflow: hidden;
+                white-space: nowrap;
                 max-width: 26ch;
             }
-            
+
             .td-prix {
                 min-width: 60px;
                 flex-grow: 1;

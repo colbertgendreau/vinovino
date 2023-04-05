@@ -5,13 +5,9 @@ import { AuthStateService } from '../shared/auth-state.service';
 import { AuthService } from '../shared/auth.service';
 import { FetchService } from '../fetch.service';
 import { ActivatedRoute } from '@angular/router';
-import { IlisteCellier } from '../iliste-cellier';
 import { ICellier } from '../icellier';
-// import { EffacerModalComponent } from '../effacer-modal/effacer-modal.component';
-import { Ilistemesbouteilles } from '../ilistemesbouteilles';
 import { Imesbouteilles } from '../imesbouteilles';
 import { environment } from '../../environments/environment';
-
 import { ScannerComponent } from '../scanner/scanner.component';
 
 @Component({
@@ -19,6 +15,7 @@ import { ScannerComponent } from '../scanner/scanner.component';
   templateUrl: './recherche.component.html',
   styleUrls: ['./recherche.component.scss']
 })
+
 export class RechercheComponent {
 
   listeMesBouteilles: Array<Imesbouteilles>;
@@ -39,22 +36,17 @@ export class RechercheComponent {
   scannedBouteille: any;
   messageErreur: string = '';
 
-  
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
   iconeXb =  environment.baseImg + 'icones/xb.png';
 
   handleScan(scannedBouteille: string) {
     this.scannedBouteille = scannedBouteille;
-  
     console.log(this.scannedBouteille);
-  
     const matchingBouteille = this.listeMesBouteilles.find(
       item => item.id === this.scannedBouteille.id
     );
-  
     if (matchingBouteille) {
       console.log(matchingBouteille);
-      
       this.router.navigate(['/profil/bouteille', matchingBouteille.id_supreme]);
     } else {
       console.error('Bouteille not found in listeMesBouteilles');
@@ -89,31 +81,27 @@ export class RechercheComponent {
       this.listeMesBouteilles = data.data;
       for (let i = 0; i < this.listeMesBouteilles.length; i++) {
         if (this.listeMesBouteilles[i].nom == null) {
-          this.listeMesBouteilles[i].nom = this.listeMesBouteilles[i].nom_bouteillePerso
+          this.listeMesBouteilles[i].nom = this.listeMesBouteilles[i].nom_bouteillePerso;
         }
         if (this.listeMesBouteilles[i].type_vino_name == null) {
-          this.listeMesBouteilles[i].type_vino_name = this.listeMesBouteilles[i].type_mes_name
+          this.listeMesBouteilles[i].type_vino_name = this.listeMesBouteilles[i].type_mes_name;
         }
         if (this.listeMesBouteilles[i].pays == null) {
-          this.listeMesBouteilles[i].pays = this.listeMesBouteilles[i].pays_bouteillePerso
+          this.listeMesBouteilles[i].pays = this.listeMesBouteilles[i].pays_bouteillePerso;
         }
         if (this.listeMesBouteilles[i].prix_saq == null) {
-          this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_bouteillePerso
+          this.listeMesBouteilles[i].prix_bouteillePerso = (this.listeMesBouteilles[i].prix_bouteillePerso).toFixed(2);
+          this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_bouteillePerso;
         }else{
           if (this.listeMesBouteilles[i].prix_bouteillePerso == null) {
+            this.listeMesBouteilles[i].prix_saq = this.listeMesBouteilles[i].prix_saq.toFixed(2);
             this.listeMesBouteilles[i].prix = this.listeMesBouteilles[i].prix_saq;
           }
         }
       }
       console.log(this.listeMesBouteilles);
     });
-
-
-    
-
   }
-
-
 
   resetData() {
     this.filteredData = [];
@@ -168,13 +156,13 @@ export class RechercheComponent {
       return;
     }
     this.filteredData = this.listeMesBouteilles.filter((item: any) => {
+
       return (
         (this.selectedWineTypes.size === 0 || this.selectedWineTypes.has(item.type_vino_name)) &&
         (this.selectedWinePays === '' || this.selectedWinePays === 'Tout les pays' || item.pays === this.selectedWinePays) &&
         (this.minPrice === '' || item.prix >= parseInt(this.minPrice)) &&
         (this.maxPrice === '' || item.prix <= parseInt(this.maxPrice)) &&
         (item.nom.toLowerCase().includes(this.searchTerm.toLowerCase()))
-        
       );
     });
     this.nombreDeResultat = this.filteredData.length;
