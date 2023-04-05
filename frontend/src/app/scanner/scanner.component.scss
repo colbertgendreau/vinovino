@@ -55,7 +55,7 @@ button {
 
 video {
   width: 98vw;
-  height: 76vh;
+  height: calc(100vh - (90px + 68px));
   z-index: 3;
   position: fixed;
   top: 63px;
