@@ -14,16 +14,10 @@ import { ModifBouteilleComponent } from './modif-bouteille/modif-bouteille.compo
 import { ModifCellierComponent } from './modif-cellier/modif-cellier.component';
 import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
 import { ArchiveComponent } from './archive/archive.component';
-import { MesBouteillesComponent } from './mes-bouteilles/mes-bouteilles.component';
 import { RechercheComponent } from './recherche/recherche.component';
-
 import { ScannerComponent } from './scanner/scanner.component';
-
 import { DetailBouteilleComponent } from './detail-bouteille/detail-bouteille.component';
-
-
-
-import {environment} from "../environments/environment";
+import { environment } from "../environments/environment";
 
 
 const routes: Routes = [
@@ -42,6 +36,7 @@ const routes: Routes = [
   { path: '', component: SigninComponent , title: 'Connection', canActivate:[GardienLoginGuard]  },
   { path: 'connexion', component: SigninComponent , title: 'Connection', canActivate:[GardienLoginGuard]  },
   { path: environment.profilPrefix+'bouteille/:id', component: DetailBouteilleComponent, canActivate:[GardienLoginGuard] },
+
 ];
 
 @NgModule({
@@ -49,4 +44,4 @@ const routes: Routes = [
   exports: [RouterModule],
 })
 
-export class AppRoutingModule {}
+export class AppRoutingModule { }

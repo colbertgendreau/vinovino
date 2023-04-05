@@ -9,9 +9,9 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class User extends Authenticatable implements JWTSubject
 {
     use HasFactory, Notifiable;
+    
     /**
-     * The attributes that are mass assignable.
-     *
+     * Les attributs qui peuvent être attribués en masse.
      * @var array
      */
     protected $fillable = [
@@ -20,18 +20,18 @@ class User extends Authenticatable implements JWTSubject
         'password',
         'type',
     ];
+
     /**
-     * The attributes that should be hidden for arrays.
-     *
+     * Les attributs qui doivent être masqués pour les tableaux.
      * @var array
      */
     protected $hidden = [
         'password',
         'remember_token',
     ];
+
     /**
-     * The attributes that should be cast to native types.
-     *
+     * Les attributs qui doivent être convertis en types natifs.
      * @var array
      */
     protected $casts = [
@@ -39,16 +39,15 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     /**
-     * Get the identifier that will be stored in the subject claim of the JWT.
-     *
+     * Obtenir l'identifiant qui sera stocké dans l'objet du JWT.
      * @return mixed
      */
     public function getJWTIdentifier() {
         return $this->getKey();
     }
+
     /**
-     * Return a key value array, containing any custom claims to be added to the JWT.
-     *
+     * Retourne un tableau clé-valeur, contenant toutes les revendications personnalisées à ajouter au JWT.
      * @return array
      */
     public function getJWTCustomClaims() {
