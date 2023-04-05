@@ -100,6 +100,7 @@ export class ScannerComponent implements OnDestroy {
           this.video.nativeElement.autoplay = true;
           this.video.nativeElement.playsInline = true;
           this.video.nativeElement.muted = true;
+        this.videoElement.nativeElement.play();
           this.isScanning = true;
           Quagga.init({
             inputStream: {
