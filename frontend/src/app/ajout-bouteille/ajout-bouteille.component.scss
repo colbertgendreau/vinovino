@@ -44,11 +44,12 @@ select {
 }
 
 .recherche-input {
-  border: solid var(--smallest) var(--gris-input);
+  border: solid var(--smallest) var(--secondaire);
   margin-block: var(--big);
   position: relative;
   left: -12px;
   padding-right: 38px;
+  margin-bottom: 30px;
 }
 
 .btn-effacer {
@@ -220,10 +221,11 @@ input:not(:placeholder-shown) + .floatingError{
   display: flex;
   flex-direction: column;
   max-width: 100vw;
-  //   border: 3px var(--secondaire) solid;
-  box-shadow: var(--shadow);
+    // border: 2px var(--secondaire) solid;
+  // box-shadow: var(--shadow);
   align-items: stretch;
   border-radius: var(--border-radius15);
+  border: 3px rgb(235, 235, 235) solid;
 
   .h3 {
     margin-top: var(--biggest);

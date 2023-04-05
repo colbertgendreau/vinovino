@@ -36,17 +36,20 @@
             </label>    
         </div>
         
-        
+
+
         <div>
-            
-            <label for="pays">
-                <input type="text" id="pays" name="pays_bouteillePerso" formControlName="pays_bouteillePerso"
-                [value]="bouteille?.pays_bouteillePerso" placeholder="Pays">
-                <span class="floating">Pays</span>
-                
-            </label>
+            <label for="pays_bouteillePerso">
+            <select name="pays_bouteillePerso" id="pays_bouteillePerso" formControlName="pays_bouteillePerso">
+                <option value="" disabled selected>Sélectionner un pays</option>
+                <option *ngFor="let pays of choixPays" [value]="pays">{{ pays }}</option>
+            </select>
+            <div class="stay">Pays</div>
+            </label>    
         </div>
-        
+
+
+
         <div>
             
             <label for="format">
@@ -102,6 +105,7 @@
                         <option *ngIf="bouteille?.celliers_id != cellier.id"  [value]="cellier.id" >{{cellier.nom}}</option>
                     </ng-container>
                 </select>
+                <div class="stay">Cellier</div>
                 </label>
         </div>
         <button class="btn-submit" class="grosPlus" type="submit">Confirmer</button>
