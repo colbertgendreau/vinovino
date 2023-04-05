@@ -19,8 +19,8 @@ export class ScannerComponent implements OnDestroy {
   private stream: MediaStream | null = null;
   iconeCamera =  environment.baseImg + 'icones/barcode-scan.png';
   iconeX =  environment.baseImg + 'icones/x.png';
-  
-  // errorMessage: string = '';
+
+  errorMessage: string = '';
 
   @Output() scanned = new EventEmitter<any>();
   showVideo = false;
@@ -28,40 +28,70 @@ export class ScannerComponent implements OnDestroy {
   constructor(
     public fetchService: FetchService,
     private router: Router
-    ) {}
+  ) {}
+
 
   ngOnInit(): void {
     //console.log('apenas');
+    // Pour Android
     navigator.mediaDevices.enumerateDevices()
       .then((devices) => {
         console.log('aqui');
         devices.forEach((device) => {
-          //alert('device - ' + JSON.stringify(device));
+          alert('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
-            alert('Back found! - ' + device.label);
+            alert('Camera derrière trouvé found! - ' + device.label);
             console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }
         });
+
+        if (this.backCameraList.length === 0) {
+          navigator.mediaDevices.getUserMedia({video: {
+              facingMode: { exact: "environment" }
+            } })
+            .then((stream) => {
+              this.stream = stream;
+              navigator.mediaDevices.enumerateDevices()
+                .then((devices) => {
+                  console.log('aqui');
+                  devices.forEach((device) => {
+                    alert('device2 - ' + JSON.stringify(device));
+                    if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
+                      alert('Back2 found! - ' + device.label);
+                      console.log('deviceId: ', device.deviceId);
+                      this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+                    }
+                  });
+                })
+            });
+        }
       });
+
+
+
     //console.log(this.backCameraList);
     //console.log('fin')
   }
 
+
   startScan(): void {
     this.showVideo = true;
 
-
     if (this.backCameraList.length === 0) {
+
+      //ios?
+
       this.stopScan();
-      // this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
+      this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
       this.showVideo = false;
       return;
     }
-    //console.log('aqui ya casi')
+
+
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      //console.log('backCameraList: ' + JSON.stringify(this.backCameraList));
       navigator.mediaDevices.getUserMedia({video: {
+          deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
           facingMode: { exact: "environment" }
         } })
         .then((stream) => {
@@ -77,9 +107,10 @@ export class ScannerComponent implements OnDestroy {
               type: "LiveStream",
               target: this.video.nativeElement,
               constraints: {
-                video: {
-                  facingMode: { exact: "environment" }
-                }
+                width: 640,
+                height: 480,
+                facingMode: { exact: "environment" },
+                deviceId: this.backCameraList[this.backCameraList.length - 1]['deviceId']
               },
               area: {
                 top: "25%",
@@ -113,11 +144,38 @@ export class ScannerComponent implements OnDestroy {
     }
   }
 
+  stopScan(): void {
+    if (this.stream) {
+      this.stream.getTracks().forEach((track) => {
+        track.stop();
+      });
+    }
+    this.video.nativeElement.pause();
+    this.video.nativeElement.srcObject = null;
+    Quagga.stop();
+    this.isScanning = false;
+    this.showVideo = false;
+  }
+
+  ngOnDestroy(): void {
+    this.stopScan();
+  }
+
+  // ngOnInit(): void {
+  //   navigator.mediaDevices.enumerateDevices()
+  //     .then((devices) => {
+  //       devices.forEach((device) => {
+  //         if (device.kind === 'videoinput') {
+  //           console.log('Camera found:', device.label);
+  //         }
+  //       });
+  //     });
+  // }
+
   // startScan(): void {
   //   this.showVideo = true;
-  
   //   if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-  //     navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" } })
+  //     navigator.mediaDevices.getUserMedia({video: { facingMode: { exact: 'environment' } } })
   //       .then((stream) => {
   //         this.stream = stream;
   //         this.video.nativeElement.srcObject = stream;
@@ -128,6 +186,16 @@ export class ScannerComponent implements OnDestroy {
   //             name: "Live",
   //             type: "LiveStream",
   //             target: this.video.nativeElement,
+  //             constraints: {
+  //               facingMode: { exact: "environment" }
+  //             },
+  //             area: {
+  //               top: "25%",
+  //               right: "10%",
+  //               left: "10%",
+  //               bottom: "25%"
+  //             },
+  //             singleChannel: false // true: only the red color-channel is read
   //           },
   //           decoder: {
   //             readers: ["ean_reader", "upc_reader","code_128_reader"]
@@ -152,24 +220,25 @@ export class ScannerComponent implements OnDestroy {
   //       });
   //   }
   // }
-  
 
-  stopScan(): void {
+  // stopScan(): void {
+  //   if (this.stream) {
+  //     this.stream.getTracks().forEach((track) => {
+  //       track.stop();
+  //     });
+  //   }
+  //   this.video.nativeElement.pause();
+  //   this.video.nativeElement.srcObject = null;
+  //   Quagga.stop();
+  //   this.isScanning = false;
+  //   this.showVideo = false;
+  // }
 
-    if (this.isScanning) {
-      this.showVideo = false;
-      Quagga.stop();
-      this.isScanning = false;
-      if (this.stream) {
-        this.stream.getTracks().forEach(track => track.stop());
-        this.video.nativeElement.srcObject = null;
-      }
-    }
-  }
+  // ngOnDestroy(): void {
+  //   this.stopScan();
+  // }
 
-  ngOnDestroy(): void {
-    this.stopScan();
-  }
+
 
   handleDecode(result: any): void {
     // const drawingCtx = this.canvas.nativeElement.getContext('2d');
@@ -201,7 +270,7 @@ export class ScannerComponent implements OnDestroy {
     this.stopScan();
 
 
-    
+
     this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
       this.uneBouteille = data.data;
       // if(!this.uneBouteille){
@@ -211,7 +280,7 @@ export class ScannerComponent implements OnDestroy {
 
       this.scanned.emit(this.uneBouteille);
 
-     
+
     });
 
 
@@ -223,5 +292,5 @@ export class ScannerComponent implements OnDestroy {
   }
 
 
-  
+
 }

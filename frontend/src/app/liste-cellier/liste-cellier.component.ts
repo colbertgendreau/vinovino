@@ -50,7 +50,7 @@ export class ListeCellierComponent implements OnInit {
   isVisible = false;
   spin: boolean = true;
   hide: boolean = true;
-  display: number = 2;
+  display: number = 1;
 
 
 

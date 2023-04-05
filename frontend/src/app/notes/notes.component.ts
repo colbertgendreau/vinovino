@@ -28,36 +28,26 @@ export class NotesComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      console.log(params);
 
       this.fetchService.showDetail(params['id']).subscribe((data: any) => {
+
         this.uneBouteille = data.data;
         this.noteSelectionnee = this.uneBouteille.notes;
 
-        console.log(this.noteSelectionnee);
-
-        console.log(this.uneBouteille);
       });
 
-      // const id = params['id'];
-      // if (id) {
-      //   this.fetchBottleData(id);
-      // }
     });
-
-
 
   }
 
+  /**
+ * Ajoute ou modifie une note à une bouteille et envoie une requête de mise à jour via un service.
+ * @param note La note à ajouter à la bouteille.
+ */
   RecupererNote(notes: number) {
-    console.log(this.uneBouteille);
-    this.noteSelectionnee = notes;
 
-    console.log('Note sélectionnée : ' + this.noteSelectionnee);
-    
+    this.noteSelectionnee = notes;
     this.uneBouteille.notes = this.noteSelectionnee;
-    console.log(this.uneBouteille.notes);
-    
 
     this.route.params.subscribe(params => {
 
@@ -65,9 +55,7 @@ export class NotesComponent implements OnInit {
       this.fetchService.ajoutNote(params['id'], bouteille).subscribe((data: any) => {
         this.retour = data.data;
 
-        console.log(this.retour);
       });
-
 
     })
   }

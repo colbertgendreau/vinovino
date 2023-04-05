@@ -23,7 +23,6 @@ export class User {
 export class DetailBouteilleComponent {
 
   isSignedIn!: boolean;
-  // title:string='Liste des celliers';
   UserProfile!: User;
   uneBouteille: Imesbouteilles;
   spin: boolean = true;
@@ -49,25 +48,21 @@ export class DetailBouteilleComponent {
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
-      console.log(this.UserProfile);
     });
   }
 
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
     });
 
     this.route.params.subscribe((params) => {
-      console.log(params);
 
       this.fetchService.showDetail(params['id']).subscribe((data: any) => {
         this.uneBouteille = data.data;
-        console.log(this.uneBouteille);
 
         if (this.uneBouteille.cepages) {
-          let chaine =  this.uneBouteille.cepages;
+          let chaine = this.uneBouteille.cepages;
           let objet = JSON.parse(chaine);
           let listeCepages = Array.from(objet);
           let cepage: string = listeCepages.join(" ");
@@ -80,7 +75,7 @@ export class DetailBouteilleComponent {
     })
   }
 
- 
+
 
 
 
