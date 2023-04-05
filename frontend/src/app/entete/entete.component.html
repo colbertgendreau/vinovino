@@ -15,9 +15,6 @@
   </div>
 </nav>
 <nav class="burger">
-  <div *ngIf="isSignedIn">
-    <a routerLink="profil/recherche"><img class="loupe" [src]="iconeLoupe" alt=""></a>
-  </div>
   <div class="menu-toggle">
     <input type="checkbox" (change)="onToggle($any($event.target)?.checked)" [checked]="isOpen">
     <span></span>

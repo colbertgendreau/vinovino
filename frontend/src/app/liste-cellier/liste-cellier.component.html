@@ -3,12 +3,12 @@
         <!--
         grid list toggle de : www.syncfusion.com
         -->
-        <div id="view" class="e-btn-group">
-            <label class="e-btn" for="right">
+        <div id="view" class="e-btn-group" *ngIf="listeCelliers[0] && !spin">
+            <label class="e-btn" for="right" *ngIf="display === 1">
                 <input type="radio" id="right" name="align" value="2" (click)="changeDisplay(2)"/>
                 <div class="icone-list"></div>    
             </label>
-            <label class="e-btn" for="left">
+            <label class="e-btn" for="left" *ngIf="display === 2">
                 <input type="radio" id="left" name="align" value="1" checked (click)="changeDisplay(1)"/>
                 <div class="icone-grid"></div>
             </label>
@@ -50,14 +50,16 @@
 </app-effacer-cellier-modal>
 
 <ng-template #list_content class="list">
-    <table>
-        <tbody>
-            <tr *ngFor="let unCellier of listeCelliers;" routerLink="/profil/cellier/{{unCellier.id}}">
-                <td class="td-nom">{{ unCellier.nom }}</td>
-                <td class="td-prix"><div class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"></div></td>
-                <td><div class="ajout-bouteille" routerLink="/profil/ajouter-bouteille/{{unCellier.id}}"><div class="icone-bouteille"><div class="icone-plus"></div></div></div></td>
-                <td><div class="btn-effacer" (click)="openModal(unCellier.id)"></div></td>
-            </tr>
-        </tbody>
-    </table>
+    <section class="table-list">
+        <table>
+            <tbody>
+                <tr *ngFor="let unCellier of listeCelliers;" routerLink="/profil/cellier/{{unCellier.id}}">
+                    <td class="td-nom">{{ unCellier.nom }}</td>
+                    <td class="td-prix"><div class="modif-cellier" routerLink="/profil/modifier-cellier/{{unCellier.id}}"></div></td>
+                    <td><div class="ajout-bouteille" routerLink="/profil/ajouter-bouteille/{{unCellier.id}}"><div class="icone-bouteille"><div class="icone-plus"></div></div></div></td>
+                    <td><div class="btn-effacer" (click)="openModal(unCellier.id)"></div></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 </ng-template>
