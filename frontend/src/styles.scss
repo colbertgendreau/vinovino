@@ -1,15 +1,14 @@
-
-@font-face{
+@font-face {
     font-family: 'vinovino';
     src: url('../src/assets/fonts/BudokanRounded-Bold.ttf');
 }
 
-@font-face{
+@font-face {
     font-family: 'ruda';
     src: url('../src/assets/fonts/Ruda-VariableFont_wght.ttf');
 }
 
-*{
+* {
     margin: 0;
     font-family: 'ruda';
 }
@@ -18,65 +17,65 @@ form {
     font-size: 16px;
 }
 
-//declaration variables globales
-:root{
+// déclaration de variables globales
+:root {
 
-    //color
+    // couleurs
     --primaire: #F80301;
-    --secondaire:#FFB700;
-    --primaire-transparent80:#f80101bc;
-    --secondaire-transparent80:#ffb700cc;
-    --secondaire-turquoise:#10D4E0;
-    --secondaire-peche:#FFA156;
-    --white:#FFFFFF;
-    --white-transparent80:rgba(255, 255, 255, 0.8);
-    --gris-fonce:#444444;
-    --black:#000000;
-    --black-transparent40:rgba(0, 0, 0, 0.4);
-    --black-transparent50:rgba(0, 0, 0, 0.5);
-    --transparent100:rgba(0, 0, 0, 0);
+    --secondaire: #FFB700;
+    --primaire-transparent80: #f80101bc;
+    --secondaire-transparent80: #ffb700cc;
+    --secondaire-turquoise: #10D4E0;
+    --secondaire-peche: #FFA156;
+    --white: #FFFFFF;
+    --white-transparent80: rgba(255, 255, 255, 0.8);
+    --gris-fonce: #444444;
+    --black: #000000;
+    --black-transparent40: rgba(0, 0, 0, 0.4);
+    --black-transparent50: rgba(0, 0, 0, 0.5);
+    --transparent100: rgba(0, 0, 0, 0);
     --gris-input: rgb(148, 148, 148);
     --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 
-    //padding
-
-    --smallest:2px;
-    --smaller4:4px;
-    --smaller:8px;
-    --small:12px;
-    --med:16px;
-    --big:20px;
-    --bigger:24px;
-    --biggest:32px;
+    // espacements
+    --smallest: 2px;
+    --smaller4: 4px;
+    --smaller: 8px;
+    --small: 12px;
+    --med: 16px;
+    --big: 20px;
+    --bigger: 24px;
+    --biggest: 32px;
 
     // border-radius
-    --border-radius:50px;
-    --border-radius15:15px;
-    --border-radius5:5px;
+    --border-radius: 50px;
+    --border-radius15: 15px;
+    --border-radius5: 5px;
 
-    // fonts
-    --bold:bold;
+    // polices
+    --bold: bold;
 
     // label des inputs
     --display-none: none;
 }
 
 
+// spin 
+.nospin {
+    background: green;
+    display: none;
+}
 
-    // spin 
-    .nospin {
-        background: green;
-        display: none;
-    }
-    .hide {
-        display: none;
-    }
-    .nohide {
-        display: flex;
-    }
+.hide {
+    display: none;
+}
 
-  .mon-snackbar {
+.nohide {
+    display: flex;
+}
+
+.mon-snackbar {
     position: fixed !important;
     background-color: #10D4E0;
     bottom: 55px !important;
@@ -85,7 +84,8 @@ form {
     color: black;
     font-size: 16px;
     height: 48px;
-  }
-  .mdc-button__label{
+}
+
+.mdc-button__label {
     color: black;
-  }
+}

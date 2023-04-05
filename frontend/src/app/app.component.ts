@@ -2,7 +2,6 @@ import { Component, OnInit, isDevMode } from '@angular/core';
 import { Router } from '@angular/router';
 import { TokenService } from './shared/token.service';
 import { AuthStateService } from './shared/auth-state.service';
-import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -12,12 +11,23 @@ import { environment } from '../environments/environment';
 
 export class AppComponent implements OnInit {
   isSignedIn!: boolean;
-  title:string='FrontEnd';
+  title: string = 'FrontEnd';
+
+  /**
+   * Constructeur de la classe AppComponent
+   * @param auth composant AuthStateService
+   * @param router composant Router
+   * @param token composant TokenService
+   */
   constructor(
     private auth: AuthStateService,
     public router: Router,
     public token: TokenService
-  ) {}
+  ) { }
+
+  /**
+   * Fonction initiale dès l'instanciation de la classe
+   */
   ngOnInit() {
     if (isDevMode()) {
       console.log('Development!');
@@ -28,7 +38,10 @@ export class AppComponent implements OnInit {
       this.isSignedIn = val;
     });
   }
-  // Signout
+
+  /**
+   * Fonction qui permet de se déconnecter de l'application
+   */
   signOut() {
     this.auth.setAuthState(false);
     this.token.removeToken();

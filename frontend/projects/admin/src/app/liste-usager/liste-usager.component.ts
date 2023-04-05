@@ -11,7 +11,6 @@ import { AuthStateService } from 'projects/admin/src/app/shared/auth-state.servi
 import { TokenService } from 'projects/admin/src/app/shared/token.service';
 import { AuthService } from 'projects/admin/src/app/shared/auth.service';
 
-
 @Component({
   selector: 'app-liste-usager',
   templateUrl: './liste-usager.component.html',
@@ -22,14 +21,22 @@ export class ListeUsagerComponent implements OnInit {
 
   isSignedIn! : boolean;
   isOpen : boolean = true;
-
   utilisateur : IUser;
   utilisateurs : Array<IUser>;
   dataSource : MatTableDataSource<IUser>;
-  // colonnesAffichees : string[] = ['id', 'name', 'email', 'type', 'created_at', 'supprimer'];
   colonnesAffichees : string[] = ['id', 'name', 'email', 'type', 'created_at'];
   @ViewChild(MatSort) sort: MatSort;
 
+  /**
+   * Constructeur de la classe ListeUsagerComponent
+   * @param auth composant AuthStateService
+   * @param token composant TokenService
+   * @param authService composant AuthService
+   * @param adminServ composant AdminService
+   * @param snackBar composant MatSnackBar
+   * @param dialog composant MatDialog
+   * @param _liveAnnouncer composant LiveAnnouncer
+   */
   constructor(
     private auth: AuthStateService,
     public token: TokenService,
@@ -40,6 +47,9 @@ export class ListeUsagerComponent implements OnInit {
     private _liveAnnouncer: LiveAnnouncer) {
   }
 
+  /**
+   * Fonction initiale dès l'instanciation de la classe
+   */
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
@@ -47,10 +57,12 @@ export class ListeUsagerComponent implements OnInit {
     this.afficherListeUtilisateur();
   }
 
+  /**
+   * Fonction qui affiche la liste des usagers (utilisateurs et administrateurs)
+   */
   afficherListeUtilisateur() {
     this.adminServ.getUtilisateur().subscribe((listeUtilisateur)=>{
       this.utilisateurs = listeUtilisateur.data;
-      console.log(this.utilisateurs);
       this.utilisateurs.forEach(utilisateur => {
         utilisateur.created_at=utilisateur.created_at?.split("T")[0];
         utilisateur.created_at=utilisateur.created_at?.split("-").reverse().join("-");
@@ -67,7 +79,7 @@ export class ListeUsagerComponent implements OnInit {
     });
   }
 
-  supprimer(utilisateur:IUser) {
+ supprimer(utilisateur:IUser) {
     console.log(utilisateur);
     let dialogRef = this.dialog.open(ModalComponent, {data: {nom: utilisateur.name, id: utilisateur.id}});
     dialogRef.afterClosed().subscribe((retour:string) =>{
@@ -83,11 +95,19 @@ export class ListeUsagerComponent implements OnInit {
     });
   }
 
+  /**
+   * Fonction qui permet de filtrer les usagers
+   * @param event Event - Sur l'événement
+   */
   filtrer(event: Event) {
     const valeur = (event.target as HTMLInputElement).value;
     this.dataSource.filter = valeur.trim().toLowerCase();
   }
 
+  /**
+   * Fonction qui annonce les usagers filtrés
+   * @param sortState 
+   */
   announceSortChange(sortState: Sort) {
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
@@ -95,5 +115,4 @@ export class ListeUsagerComponent implements OnInit {
       this._liveAnnouncer.announce('Sorting cleared');
     }
   }
-
 }

@@ -91,6 +91,7 @@
         text-overflow: ellipsis;
         overflow: hidden; 
         min-width: 19px;
+        align-self: center;
     
         
         button {
@@ -104,10 +105,6 @@
         width: 100px;
     }
     
-    .td-effacer {
-        border-bottom: 1px solid var(--secondaire);
-    }
-
 
   .cellierVide {
 

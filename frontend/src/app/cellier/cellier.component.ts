@@ -46,6 +46,13 @@ export class CellierComponent implements OnInit {
 
   /**
    * Constructeur de la classe CellierComponent
+   * @param auth composant AuthStateService
+   * @param router composant Router
+   * @param token composant TokenService
+   * @param authService composant AuthService
+   * @param fetchService composant FetchService
+   * @param route composant Route
+   * @param snackBar composantMatSnackBar
    */
   constructor(
     private auth: AuthStateService,
@@ -152,14 +159,6 @@ export class CellierComponent implements OnInit {
     this.isVisibleArchiver = true;
   }
 
-  // /**
-  //  * Fonction qui permet la fermeture des modaux de suppression et d'archivage
-  //  */
-  // closeModal() {
-  //   this.isVisibleSupprimer = false;
-  //   this.isVisibleArchiver = false;
-  // }
-
   /**
    * Fonction qui permet la fermeture des modaux de suppression et d'archivage
    */
@@ -192,18 +191,6 @@ export class CellierComponent implements OnInit {
       behavior: 'smooth'
     });
   }
-
-  // /**
-  //  * Fonction qui permet de remonter en haut de la page lorsqu'on arrive sur la page
-  //  */
-  // pageCelliers() {
-  //   window.scroll({ // pour scroll up
-  //     top: 0,
-  //     left: 0,
-  //     behavior: 'smooth'
-  //   });
-  //   this.router.navigateByUrl('profil/liste-cellier');
-  // }
 
   /**
    * Fonction qui permet le changement d'affichage des bouteilles d'un cellier entre liste et grille

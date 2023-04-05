@@ -7,7 +7,7 @@ mat-sidenav {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        
+
         a {
             text-decoration: none;
 
@@ -26,12 +26,10 @@ mat-sidenav {
     align-items: center;
 }
 
-
 mat-sidenav-container {
     margin: 16px;
     height: calc(100vh - 128px);
 }
-
 
 .content {
 
@@ -54,23 +52,23 @@ mat-sidenav-container {
         justify-content: center;
         align-items: flex-start;
         max-width: 100%;
-    
+
         mat-form-field {
             width: 100%;
-    
+
             textarea {
                 height: 200px;
             }
         }
-    
+
         .hidden {
             display: none;
         }
-    
+
         div {
             padding: 0;
             flex-direction: row;
-            
+
             button {
                 margin: 16px;
             }

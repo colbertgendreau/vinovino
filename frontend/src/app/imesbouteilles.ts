@@ -22,7 +22,6 @@ export interface Imesbouteilles {
     image_url?: string;
     image?: string;
     cepages?: string;
-
     id_bouteillePerso: number;
     nom_bouteillePerso: string;
     type_bouteillePerso: number;
@@ -34,5 +33,4 @@ export interface Imesbouteilles {
     cellier_nom:string;
     code_cup:string;
     vino__bouteille_id:any;
-
 }

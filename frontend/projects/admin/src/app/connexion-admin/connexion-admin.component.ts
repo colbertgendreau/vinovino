@@ -13,13 +13,20 @@ import { AuthStateService } from 'projects/admin/src/app/shared/auth-state.servi
 
 export class ConnexionAdminComponent implements OnInit {
 
-  isSignedIn! : boolean;
-  isOpen : boolean = true;
-
+  isSignedIn!: boolean;
+  isOpen: boolean = true;
   loginForm: FormGroup;
-  errors:any = null;
-  erreur:any;
+  errors: any = null;
+  erreur: any;
 
+  /**
+   * Constructeur de la classe ConnexionAdminComponent
+   * @param router composant Router
+   * @param fb composant FormBuilder
+   * @param authService composant AuthService
+   * @param token composant TokenService
+   * @param authState composant AuthStateService
+   */
   constructor(
     public router: Router,
     public fb: FormBuilder,
@@ -33,25 +40,26 @@ export class ConnexionAdminComponent implements OnInit {
     });
   }
 
+  /**
+   * Fonction initiale dès l'instanciation de la classe
+   */
   ngOnInit() {
     this.authState.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
       this.isOpen = !this.isOpen;
     });
   }
 
+  /**
+   * Fonction qui permet de se connecter en tant qu'administrateur
+   */
   onSubmit() {
     this.authService.signin(this.loginForm.value).subscribe(
       (result) => {
         this.responseHandler(result);
-        console.log(result);
         if (result.user.type === "1") {
-          console.log("liste-usager 1")
           this.authState.setAuthState(true);
           this.loginForm.reset();
-          console.log("liste-usager 1")
-
           this.router.navigate(['admin/liste-usager']);
         } else if (result.user.type === "0") {
           this.loginForm.reset();
@@ -65,11 +73,17 @@ export class ConnexionAdminComponent implements OnInit {
     );
   }
 
-  // Handle response
-  responseHandler(data:any) {
+  /**
+   * Handle response
+   * @param data any - Data du token
+   */
+  responseHandler(data: any) {
     this.token.handleData(data.access_token);
   }
 
+  /**
+   * Fonction qui permet à un administrateur de se déconnecter
+   */
   signOut() {
     this.authState.setAuthState(false);
     this.token.removeToken();
