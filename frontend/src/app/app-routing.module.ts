@@ -33,8 +33,8 @@ const routes: Routes = [
   { path: environment.profilPrefix+'recherche', component: RechercheComponent, canActivate:[GardienLoginGuard] },
   { path: 'scanner', component: ScannerComponent, canActivate:[GardienLoginGuard] },
   { path: environment.profilPrefix+'archive', component: ArchiveComponent, canActivate:[GardienLoginGuard] },
-  { path: '', component: SigninComponent , title: 'Connection' },
-  { path: 'connexion', component: SigninComponent , title: 'Connection' },
+  { path: '', component: SigninComponent , title: 'Connection', canActivate:[GardienLoginGuard]  },
+  { path: 'connexion', component: SigninComponent , title: 'Connection', canActivate:[GardienLoginGuard]  },
   { path: environment.profilPrefix+'bouteille/:id', component: DetailBouteilleComponent, canActivate:[GardienLoginGuard] },
 
 ];
