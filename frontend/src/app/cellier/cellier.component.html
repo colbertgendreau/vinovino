@@ -4,11 +4,13 @@
         <!-- grid list toggle de : www.syncfusion.com -->
         <div id="view" class="e-btn-group">
             <label class="e-btn" for="right">
-                <input type="radio" id="right" name="align" value="2" (click)="changeDisplay(2)" />
+                <input type="radio" id="right" name="align" value="2"
+                    (click)="changeDisplay(2)" />
                 <div class="icone-list"></div>
             </label>
             <label class="e-btn" for="left">
-                <input type="radio" id="left" name="align" value="1" checked (click)="changeDisplay(1)" />
+                <input type="radio" id="left" name="align" value="1" checked
+                    (click)="changeDisplay(1)" />
                 <div class="icone-grid"></div>
             </label>
         </div>
@@ -22,8 +24,13 @@
         <span> &#8681;</span>
     </div>
 
-    <div class="toggle-archive" [className]="hide ? 'hide' : 'nohide'">
+    <!-- <div class="toggle-archive" [className]="hide ? 'hide' : 'nohide'">
         <input type="checkbox" id="archive" name="archive">
+        <label for="archive">Inclure les bouteilles archivées</label>
+    </div> -->
+    <div class="toggle-archive" [className]="hide ? 'hide' : 'nohide'">
+        <input type="checkbox" id="archive" name="archive"
+            [(ngModel)]="archiveChecked" (ngModelChange)="toggleArchive()">
         <label for="archive">Inclure les bouteilles archivées</label>
     </div>
 
@@ -31,50 +38,69 @@
         <div *ngFor="let uneBouteille of bouteilles">
             <article [className]="hide ? 'hide bouteille' : 'nohide bouteille'">
                 <div class="card-bouteille-haut">
-                    <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">
+                    <a class="lien-detail"
+                        routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">
                         <picture>
-                            <img [src]="uneBouteille.url_img ? uneBouteille.url_img : imgBouteilleNonDisponible"
+                            <img [src]="uneBouteille.url_img ?
+                                uneBouteille.url_img :
+                                imgBouteilleNonDisponible"
                                 alt="Bouteille" />
                         </picture>
                     </a>
                     <div class="info-bouteille">
-                        <a class="lien-detail" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">
+                        <a class="lien-detail"
+                            routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">
                             <h3>
-                                {{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}
+                                {{ uneBouteille.nom ? uneBouteille.nom :
+                                uneBouteille.nom_bouteillePerso }}
                             </h3>
                             <div>
                                 <span class="icone icone-vin"></span>
-                                <p>{{ uneBouteille.type_vino_name ? uneBouteille.type_vino_name :
-                                    uneBouteille.type_mes_name }} | {{ uneBouteille.format ? uneBouteille.format :
+                                <p>{{ uneBouteille.type_vino_name ?
+                                    uneBouteille.type_vino_name :
+                                    uneBouteille.type_mes_name }} | {{
+                                    uneBouteille.format ? uneBouteille.format :
                                     uneBouteille.format_bouteillePerso }}</p>
                             </div>
                             <div>
                                 <span class="icone icone-location"></span>
                                 <p>
-                                    {{ uneBouteille.pays ? uneBouteille.pays : uneBouteille.pays_bouteillePerso }}
+                                    {{ uneBouteille.pays ? uneBouteille.pays :
+                                    uneBouteille.pays_bouteillePerso }}
                                 </p>
                             </div>
                             <div>
                                 <span class="icone icone-dollar"></span>
                                 <p>
-                                    {{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso
+                                    {{ uneBouteille.prix_saq ?
+                                    uneBouteille.prix_saq :
+                                    uneBouteille.prix_bouteillePerso
                                     }}
                                 </p>
                             </div>
                         </a>
                     </div>
                     <div class="quantite">
-                        <a *ngIf="!uneBouteille.code_saq" class="modifier-gris" routerLink="/profil/modifier-bouteille/{{
-                        uneBouteille.id_supreme }}"></a>
-                        <a *ngIf="uneBouteille.code_saq" class="saq" href="{{uneBouteille.url_saq}}"
+                        <a *ngIf="!uneBouteille.code_saq" class="modifier-gris"
+                            routerLink="/profil/modifier-bouteille/{{
+                            uneBouteille.id_supreme }}"></a>
+                        <a *ngIf="uneBouteille.code_saq" class="saq"
+                            href="{{uneBouteille.url_saq}}"
                             target="_blank"></a>
                         <div class="quantite">
                             <button class="plus"
-                                (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1)"></button>
-                            <span>{{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] :
+                                (click)="modifier(uneBouteille.id_supreme ?
+                                uneBouteille.id_supreme :
+                                uneBouteille.id_bouteillePerso,
+                                uneBouteille.quantite + 1)"></button>
+                            <span>{{ uneBouteille.quantite !== undefined ?
+                                [(uneBouteille.quantite)] :
                                 [(uneBouteille.quantite_bouteillePerso)] }}</span>
                             <button class="moins"
-                                (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite - 1)"
+                                (click)="modifier(uneBouteille.id_supreme ?
+                                uneBouteille.id_supreme :
+                                uneBouteille.id_bouteillePerso,
+                                uneBouteille.quantite - 1)"
                                 [disabled]="uneBouteille.quantite == 0"></button>
                         </div>
                         <!-- <a *ngIf="!uneBouteille.id_bouteille" class="" routerLink="/profil/modifier-bouteille/{{ uneBouteille.id_supreme }}">modification</a> -->
@@ -88,31 +114,38 @@
 </section>
 
 <app-footer class="footerCellier"></app-footer>
-<app-effacer-bouteille-modal [id]="id" [isVisible]="isVisibleSupprimer" (closed)="onModalClosed()"
+<app-effacer-bouteille-modal [id]="id" [isVisible]="isVisibleSupprimer"
+    (closed)="onModalClosed()"
     (itemEfface)="rafraichirListe()"></app-effacer-bouteille-modal>
-<app-archiver-bouteille-modal [id]="id" [quantite]="quantite" [isVisible]="isVisibleArchiver" (closed)="onModalClosed()"
+<app-archiver-bouteille-modal [id]="id" [quantite]="quantite"
+    [isVisible]="isVisibleArchiver" (closed)="onModalClosed()"
     (itemArchive)="rafraichirListe()"></app-archiver-bouteille-modal>
-
 <ng-template #list_content class="list">
     <table>
         <tbody>
             <tr *ngFor="let uneBouteille of bouteilles">
-                <td>{{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] :
+                <td>{{ uneBouteille.quantite !== undefined ?
+                    [(uneBouteille.quantite)] :
                     [(uneBouteille.quantite_bouteillePerso)] }} x</td>
-                <td class="td-nom">{{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}</td>
-                <td class="td-prix">{{ uneBouteille.prix_saq ? uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso
+                <td class="td-nom">{{ uneBouteille.nom ? uneBouteille.nom :
+                    uneBouteille.nom_bouteillePerso }}</td>
+                <td class="td-prix">{{ uneBouteille.prix_saq ?
+                    uneBouteille.prix_saq : uneBouteille.prix_bouteillePerso
                     }} $</td>
                 <td>
-                    <a *ngIf="!uneBouteille.code_saq" routerLink="/profil/modifier-bouteille/{{
-                    uneBouteille.id_supreme }}">
+                    <a *ngIf="!uneBouteille.code_saq"
+                        routerLink="/profil/modifier-bouteille/{{
+                        uneBouteille.id_supreme }}">
                         <div class="modifier-liste"></div>
                     </a>
-                    <a *ngIf="uneBouteille.code_saq" href="{{uneBouteille.url_saq}}" target="_blank">
+                    <a *ngIf="uneBouteille.code_saq"
+                        href="{{uneBouteille.url_saq}}" target="_blank">
                         <div class="saq-liste"></div>
                     </a>
                     <a href="#" class="saq-liste"></a>
                 </td>
-                <td><button class="btn-effacer-liste" (click)="openModalSupprimer(uneBouteille.id_supreme)"></button>
+                <td><button class="btn-effacer-liste"
+                        (click)="openModalSupprimer(uneBouteille.id_supreme)"></button>
                 </td>
             </tr>
         </tbody>
