@@ -21,21 +21,21 @@ import { environment } from "../environments/environment";
 
 
 const routes: Routes = [
-
-  { path: 'inscription', component: SignupComponent, title: 'Inscription' },
-  { path: 'profile', component: UserProfileComponent, canActivate: [GardienLoginGuard], title: 'Profile' },
-  { path: environment.profilPrefix + 'liste-cellier', component: ListeCellierComponent, canActivate: [GardienLoginGuard] },
-  { path: environment.profilPrefix + 'cellier/:id', component: CellierComponent, canActivate: [GardienLoginGuard] },
-  { path: environment.profilPrefix + 'ajouter-bouteille/:id', component: AjoutBouteilleComponent, canActivate: [GardienLoginGuard] },
-  { path: environment.profilPrefix + 'ajouter-bouteille', component: AjoutBouteilleComponent, canActivate: [GardienLoginGuard] },
-  { path: environment.profilPrefix + 'modifier-bouteille/:id', component: ModifBouteilleComponent, canActivate: [GardienLoginGuard] },
-  { path: environment.profilPrefix + 'ajouter-cellier', component: AjoutCellierComponent, canActivate: [GardienLoginGuard] },
-  { path: environment.profilPrefix + 'modifier-cellier/:id', component: ModifCellierComponent, canActivate: [GardienLoginGuard] },
-  { path: environment.profilPrefix + 'recherche', component: RechercheComponent, canActivate: [GardienLoginGuard] },
-  { path: 'scanner', component: ScannerComponent, canActivate: [GardienLoginGuard] },
-  { path: environment.profilPrefix + 'archive', component: ArchiveComponent, canActivate: [GardienLoginGuard] },
-  { path: 'connexion', component: SigninComponent, title: 'Connection' },
-  { path: environment.profilPrefix + 'bouteille/:id', component: DetailBouteilleComponent, canActivate: [GardienLoginGuard] },
+  { path: 'inscription', component: SignupComponent , title: 'Inscription' },
+  { path: 'profile', component: UserProfileComponent, canActivate:[GardienLoginGuard] , title: 'Profile' },
+  { path: environment.profilPrefix+'liste-cellier', component: ListeCellierComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'cellier/:id', component: CellierComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'ajouter-bouteille/:id', component: AjoutBouteilleComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'ajouter-bouteille', component: AjoutBouteilleComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'modifier-bouteille/:id', component: ModifBouteilleComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'ajouter-cellier', component: AjoutCellierComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'modifier-cellier/:id', component: ModifCellierComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'recherche', component: RechercheComponent, canActivate:[GardienLoginGuard] },
+  { path: 'scanner', component: ScannerComponent, canActivate:[GardienLoginGuard] },
+  { path: environment.profilPrefix+'archive', component: ArchiveComponent, canActivate:[GardienLoginGuard] },
+  { path: '', component: SigninComponent , title: 'Connection' },
+  { path: 'connexion', component: SigninComponent , title: 'Connection' },
+  { path: environment.profilPrefix+'bouteille/:id', component: DetailBouteilleComponent, canActivate:[GardienLoginGuard] },
 
 ];
 

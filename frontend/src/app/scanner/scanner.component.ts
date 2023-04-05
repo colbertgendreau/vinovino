@@ -19,10 +19,8 @@ export class ScannerComponent implements OnDestroy {
   private stream: MediaStream | null = null;
   iconeCamera =  environment.baseImg + 'icones/barcode-scan.png';
   iconeX =  environment.baseImg + 'icones/x.png';
-
   errorMessage: string = '';
   front_back_camera = "environment";
-
   @Output() scanned = new EventEmitter<any>();
   showVideo = false;
 
@@ -31,27 +29,25 @@ export class ScannerComponent implements OnDestroy {
     private router: Router
   ) {}
 
-
+  /**
+   * Demande de permission pour accéder à la caméra et récupération de la liste des caméras
+   */
   ngOnInit(): void {
-    //console.log('apenas');
-    // Pour Android
     navigator.mediaDevices.enumerateDevices()
       .then((devices) => {
-        console.log('aqui');
         devices.forEach((device) => {
-          //alert('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
-            //alert('Camera derrière trouvé found! - ' + device.label);
-            console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }else if ( device.kind === 'videoinput' && device.label.match(/HD/) != null ) {
-            //alert('Web cam trouvé! - ' + device.label);
             this.front_back_camera = "user";
-            console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }
         });
 
+        /**
+         * Si aucune caméra arrière n'est détectée, l'utilisateur a sûrement un IPHONE, on regarde aussi pour la
+         * posibilité ou le OS de l'utilisateur est en mandarin ou en français
+         */
         if (this.backCameraList.length === 0) {
           navigator.mediaDevices.getUserMedia({video: {
               facingMode: { exact: this.front_back_camera }
@@ -61,19 +57,12 @@ export class ScannerComponent implements OnDestroy {
               navigator.mediaDevices.enumerateDevices()
                 .then((devices) => {
                   devices.forEach((device) => {
-                    //alert('device2 - ' + JSON.stringify(device));
                     if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
-                      //alert('Back2 found! - ' + device.label);
-                      console.log('deviceId: ', device.deviceId);
                       this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
                     }else if ( device.kind === 'videoinput' && device.label.match(/arri/) != null ) {
-                      //alert('Caméra arrière trouvé! - ' + device.label);
-                      console.log('deviceId: ', device.deviceId);
                       this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
                     }
                     else if ( device.kind === 'videoinput' && device.label.match(/\u540E\u7F6E\u76F8\u673A/) != null ) {
-                      //alert('Caméra \u540E\u7F6E\u76F8\u673A trouvé! - ' + device.label);
-                      console.log('deviceId: ', device.deviceId);
                       this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
                     }
                   });
@@ -81,28 +70,23 @@ export class ScannerComponent implements OnDestroy {
             });
         }
       });
-
-
-
-    //console.log(this.backCameraList);
-    //console.log('fin')
   }
 
-
+  /**
+   * Fonction qui permet de lancer le scan
+   */
   startScan(): void {
     this.showVideo = true;
-
     if (this.backCameraList.length === 0) {
-
-      //ios?
-
       this.stopScan();
       this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
       this.showVideo = false;
       return;
     }
 
-
+    /**
+     * Début du scan, on récupère la dernière caméra de la liste, qui est la caméra arrière
+     */
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({video: {
           deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
@@ -149,10 +133,14 @@ export class ScannerComponent implements OnDestroy {
               return;
             }
             Quagga.start();
+
+            /**
+             * Fonction qui permet d'afficher un cadre vert pour la zone de scan
+             */
+
             Quagga.onProcessed(function(result) {
               var drawingCtx = Quagga.canvas.ctx.overlay,
                 drawingCanvas = Quagga.canvas.dom.overlay;
-
               if (result) {
                 if (result.boxes) {
                   drawingCtx.clearRect(0, 0, parseInt(drawingCanvas.getAttribute("width")), parseInt(drawingCanvas.getAttribute("height")));
@@ -162,11 +150,9 @@ export class ScannerComponent implements OnDestroy {
                     Quagga.ImageDebug.drawPath(box, {x: 0, y: 1}, drawingCtx, {color: "green", lineWidth: 2});
                   });
                 }
-
                 if (result.box) {
                   Quagga.ImageDebug.drawPath(result.box, {x: 0, y: 1}, drawingCtx, {color: "#00F", lineWidth: 2});
                 }
-
                 if (result.codeResult && result.codeResult.code) {
                   Quagga.ImageDebug.drawPath(result.line, {x: 'x', y: 'y'}, drawingCtx, {color: 'red', lineWidth: 3});
                 }
@@ -181,6 +167,9 @@ export class ScannerComponent implements OnDestroy {
     }
   }
 
+  /**
+   * Fonction qui permet d'arrêter le scan
+   */
   stopScan(): void {
     if (this.stream) {
       this.stream.getTracks().forEach((track) => {
@@ -194,57 +183,37 @@ export class ScannerComponent implements OnDestroy {
     this.showVideo = false;
   }
 
+  /**
+   * Fonction qui permet d'arrêter le scan quand on quitte la page
+   */
   ngOnDestroy(): void {
     if(this.showVideo == true || this.isScanning == true){
       this.stopScan();
     }
   }
 
-
-
+  /**
+   * Fonction qui decode le code barre une fois trouvé
+   */
   handleDecode(result: any): void {
-    console.log(result.codeResult.code);
-
-
     if(result.codeResult.code.length === 11){
       result.codeResult.code = "000"+result.codeResult.code
-      console.log("ce code est 11");
-      console.log(result.codeResult.code);
     }
     if(result.codeResult.code.length === 12){
       result.codeResult.code = "00"+result.codeResult.code
-      console.log("ce code est 12");
-      console.log(result.codeResult.code);
     }
     if(result.codeResult.code.length === 13){
       result.codeResult.code = "0"+result.codeResult.code
-      console.log("ce code est 13");
-      console.log(result.codeResult.code);
     }
     this.stopScan();
-
-
-
     this.fetchService.scannerDetail(result.codeResult.code).subscribe((data: any) => {
       this.uneBouteille = data.data;
-      // if(!this.uneBouteille){
-      //   this.startScan();
-      // }
-      console.log(this.uneBouteille);
-
       this.scanned.emit(this.uneBouteille);
-
-
     });
-
-
-
   }
 
   ngAfterViewInit(): void {
     Quagga.onDetected(this.handleDecode.bind(this));
   }
-
-
 
 }
