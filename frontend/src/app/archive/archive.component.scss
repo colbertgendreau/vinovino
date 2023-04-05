@@ -28,7 +28,8 @@ h1 {
     display: flex;
     justify-content: center;
     padding: 20px;
-    border: 3px rgb(235, 235, 235) solid;
+    // border: 3px rgb(235, 235, 235) solid;
+    box-shadow: var(--box-shadow);
 
     h2 {
       font-size: 1.2em;
@@ -49,7 +50,8 @@ h1 {
     padding: var(--small);
     border-radius: var(--border-radius15);
     position: relative;
-    border: 3px rgb(235, 235, 235) solid;
+    // border: 3px rgb(235, 235, 235) solid;
+    box-shadow: var(--box-shadow);
 
     .btn-effacer {
       all: unset;
