@@ -7,7 +7,7 @@
 
     <div class="recherche_filter">
         <div class="filter_data">
-            <input class="recherche-input" type="search" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)"
+            <input class="recherche-input" type="text" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)"
                 placeholder="Recherche dans vos celliers" />
             <img class="reset_btn" *ngIf="searchTerm" [src]="iconeXb" alt="Efface la recherche" (click)="resetData()">
         </div>
