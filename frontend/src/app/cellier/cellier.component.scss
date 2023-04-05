@@ -111,7 +111,8 @@
     align-items: stretch;
     padding: var(--small);
     border-radius: var(--border-radius15);
-    border: 3px rgb(235, 235, 235) solid;
+    // border: 3px rgb(235, 235, 235) solid;
+    box-shadow: var(--box-shadow);
     position: relative;
 
     .btn-effacer {
