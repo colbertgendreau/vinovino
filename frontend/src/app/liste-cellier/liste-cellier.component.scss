@@ -132,7 +132,7 @@
     display: flex;
     justify-content: center;
     padding: 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    box-shadow: var(--box-shadow);
 
     h2 {
       font-size: 1.2em;
@@ -214,9 +214,9 @@
         justify-content: space-between;
         align-items: center;
         padding: var(--small);
-        border: 3px rgb(235, 235, 235) solid;
+        // border: 3px rgb(235, 235, 235) solid;
 
-        // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        box-shadow: var(--box-shadow);
 
     .unCellier {
       text-decoration: none;

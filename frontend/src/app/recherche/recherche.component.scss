@@ -1,7 +1,7 @@
 .recherche {
   background-attachment: fixed;
   height: 100%;
-  padding: 85px var(--small);
+  padding: 63px var(--small) 115px;
   display: flex;
   flex-direction: column;
   gap: var(--big);
@@ -13,7 +13,7 @@
     .recherche-input{
       margin-bottom: var(--big);
       border-radius: 5px;
-      border: solid var(--smallest) var(--gris-input);
+      border: solid var(--smallest) var(--secondaire);
       height: 30px;
       padding-inline: var(--small);
       width: 100%;
@@ -39,7 +39,7 @@
       top: 50%;
       width: 40%;
       height: var(--smallest);
-      background-color: var(--secondaire);
+      background-color: var(--gris-input);
     }
     
     .or-line::before {
@@ -171,7 +171,8 @@
     align-items: center;
     padding: var(--small);
     border-radius: var(--border-radius15);
-    border: 3px rgb(235, 235, 235) solid;
+    // border: 3px rgb(235, 235, 235) solid;
+    box-shadow: var(--box-shadow);
 
 
     .card-bouteille-haut {
