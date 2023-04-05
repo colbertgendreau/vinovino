@@ -135,13 +135,7 @@ export class ScannerComponent implements OnDestroy {
               singleChannel: false // true: only the red color-channel is read
             },
             decoder: {
-              readers: ["ean_reader", "upc_reader","code_128_reader"],
-              debug: {
-                drawBoundingBox: true,
-                showFrequency: true,
-                drawScanline: true,
-                showPattern: true
-              }
+              readers: ["ean_reader", "upc_reader","code_128_reader"]
             },
             locate: true,
             locator: {
