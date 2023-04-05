@@ -1,16 +1,8 @@
 <section class="scanner">
   <div id="interactive" class="viewport video-container" *ngIf="showVideo">
     <video  #video autoplay muted playsinline></video>
-
     <canvas #canvas class="drawingBuffer overlay" heigth="480" width="640"  ></canvas>
-    <!-- <button class="close-button" (click)="stopScan()">X</button> -->
     <img class="close-button" [src]="iconeX" alt="Icône de fermeture" (click)="stopScan()">
   </div>
   <img class="button" [src]="iconeCamera" alt="Icône d'ajout de bouteille" (click)="startScan()" *ngIf="!showVideo">
-  <!-- <img class="button" [src]="iconeCamera" alt="Icône d'ajout de bouteille" (click)="stopScan()" *ngIf="showVideo"> -->
-  <!-- <p class="errorMessage" *ngIf="errorMessage">{{ errorMessage }}</p> -->
-  <!-- <div class="errorMessage">
-    <p>Aucune caméra utilisable n'a été détectée. Cette fonctionnalité n'est utilisable que sur mobile.</p>
-    <button class="close-button" (click)="closeErrorMessage()">X</button>
-  </div>  -->
 </section>

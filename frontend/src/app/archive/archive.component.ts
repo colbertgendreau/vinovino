@@ -153,8 +153,6 @@ export class ArchiveComponent implements OnInit {
    * @param id nombre - L'id de la bouteille
    */
   openModal(id: number) {
-    console.log(id);
-    console.log(this.isVisible);
     this.id = id;
     this.isVisible = true;
   }

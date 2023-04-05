@@ -30,9 +30,9 @@ export class AppComponent implements OnInit {
    */
   ngOnInit() {
     if (isDevMode()) {
-      console.log('Development!');
+      // console.log('Development!');
     } else {
-      console.log('Production!');
+      // console.log('Production!');
     }
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
