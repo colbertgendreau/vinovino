@@ -11,7 +11,6 @@ class BouteilleSAQ extends Model
 
     protected $table = 'vino__bouteille'; // a modifier
     
-    
     protected $fillable = [ //les champ dans la base de donner quon veux modifier, ne pas mettre les auto ecrement
         'nom',
         'image',
@@ -24,10 +23,5 @@ class BouteilleSAQ extends Model
         'format',
         'type',
         'cup_code',
-        // 'image_url',
-        // 'cepages',
-        // 'id',
-        
-
     ];
 }

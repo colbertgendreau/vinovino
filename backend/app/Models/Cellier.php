@@ -11,13 +11,14 @@ class Cellier extends Model
 
     protected $table = 'celliers';
     
-    
     protected $fillable = [ //les champ dans la base de donner quon veux modifier, ne pas mettre les auto ecrement
         'nom',
         'users_id'
     ];
 
-
+    /**
+     * Fonction qui retourne l'usager relié à un cellier
+     */
     public function CellierHasUser(){
         return $this->hasOne('App\Models\User', 'id', 'users_id'); /// a voir ici regler la question du user
     }

@@ -65,7 +65,7 @@ export class FooterComponent {
       this.router.navigateByUrl('profil/ajouter-bouteille/' + this.idCellier);
     } else {
       this.btnAjouter = 'ajoutBouteille';
-      this.router.navigateByUrl('profil/ajouter-bouteille/');
+      this.router.navigateByUrl('profil/ajouter-bouteille');
     }
     // pour remonter vers le haut de la page
     window.scroll({
