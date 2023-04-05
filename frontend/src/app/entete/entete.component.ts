@@ -4,15 +4,6 @@ import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
 import { environment } from '../../environments/environment';
 
-
-// import { AuthService } from '../shared/auth.service';
-
-// // User interface
-// export class User {
-//   name: any;
-//   email: any;
-// }
-
 @Component({
   selector: 'app-entete',
   templateUrl: './entete.component.html',

@@ -25,12 +25,15 @@ export class SignupComponent implements OnInit {
     });
   }
   ngOnInit() {}
-  onSubmit() {
 
-    console.log('Je suis à l\'intérieur de signup.component.ts')
+  /**
+   *  Appelée lors de la soumission du formulaire d'inscription, envoie une requête HTTP POST à l'API pour
+enregistrer un nouvel utilisateur. En cas de succès, redirige l'utilisateur vers la page de connexion.
+En cas d'erreur, stocke le message d'erreur renvoyé par l'API dans la variable 'errors'.
+   */
+  onSubmit() {
     this.authService.register(this.registerForm.value).subscribe(
       (result) => {
-        console.log(result);
       },
       (error) => {
         this.errors = error.error;
