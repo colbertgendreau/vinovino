@@ -42,6 +42,7 @@ export class RechercheComponent {
    * @param scannedBouteille chaîne - Le code bar de la bouteille scannée
    */
   handleScan(scannedBouteille: string) {
+    this.messageErreur="";
     this.scannedBouteille = scannedBouteille;
     const matchingBouteille = this.listeMesBouteilles.find(
       item => item.id === this.scannedBouteille.id

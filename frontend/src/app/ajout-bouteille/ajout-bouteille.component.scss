@@ -170,15 +170,15 @@ input::placeholder {
 }
 
 .floating {
-  padding: 5px;
-  position: absolute;
-  top: -21px;
-  left: 20px;
-  transform: translateY(20px);
-  font-size: 0.825em;
-  transition-duration: 300ms;
-  color: var(--label-color);
-  background: white;
+    padding: 5px;
+    position:absolute;
+    top:-21px;
+    left:20px;
+    transform:translateY(20px);
+    font-size:0.825em;
+    transition-duration:300ms;
+    color: rgb(84, 84, 84);
+    background: white;
 }
 
 .floating-recherche {

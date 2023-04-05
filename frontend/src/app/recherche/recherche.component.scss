@@ -10,6 +10,10 @@
     display: flex;
     flex-direction: column;
 
+    .recherche-label {
+        display: none;
+    }
+
     .recherche-input {
       margin-bottom: var(--big);
       border-radius: 5px;
@@ -51,7 +55,8 @@
     }
 
     h3 {
-      margin-block: var(--med);
+      margin-bottom: var(--med);
+
     }
 
     details {
@@ -175,6 +180,7 @@
         text-align: start;
         display: flex;
         flex-direction: column;
+        align-items: center;
       }
 
       picture img {

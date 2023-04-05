@@ -6,8 +6,8 @@
     <span class="error">{{messageErreur}}</span>
     <div class="recherche_filter">
         <div class="filter_data">
-            <input class="recherche-input" type="text" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)"
-                placeholder="Recherche dans vos celliers" />
+            <label class="recherche-label" for="recherche">reherche</label>
+            <input class="recherche-input" type="text" [(ngModel)]="searchTerm" (keyup)="filterData(searchTerm)" placeholder="Recherche dans vos celliers" name="recherche"/>
             <img class="reset_btn" *ngIf="searchTerm" [src]="iconeXb" alt="Efface la recherche" (click)="resetData()">
         </div>
         <div *ngIf="!searchTerm" class="div_filtre">
