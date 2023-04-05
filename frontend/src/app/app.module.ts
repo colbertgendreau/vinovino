@@ -10,7 +10,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/auth.interceptor';
 import { EnteteComponent } from './entete/entete.component';
-import { AccueilComponent } from './accueil/accueil.component';
 import { CellierComponent } from './cellier/cellier.component';
 import { ListeCellierComponent } from './liste-cellier/liste-cellier.component';
 import { AjoutBouteilleComponent } from './ajout-bouteille/ajout-bouteille.component';
@@ -18,7 +17,6 @@ import { ModifBouteilleComponent } from './modif-bouteille/modif-bouteille.compo
 import { ModifCellierComponent } from './modif-cellier/modif-cellier.component';
 import { AjoutCellierComponent } from './ajout-cellier/ajout-cellier.component';
 import { MesBouteillesComponent } from './mes-bouteilles/mes-bouteilles.component';
-import { ListeMesbouteillesComponent } from './liste-mesbouteilles/liste-mesbouteilles.component';
 import { RechercheComponent } from './recherche/recherche.component';
 import { EffacerBouteilleModalComponent } from './effacer-bouteille-modal/effacer-bouteille-modal.component';
 import { EffacerModalComponent } from './effacer-cellier-modal/effacer-cellier-modal.component';
@@ -52,7 +50,6 @@ import { ArchiverBouteilleModalComponent } from './archiver-bouteille-modal/arch
     SignupComponent,
     UserProfileComponent,
     EnteteComponent,
-    AccueilComponent,
     CellierComponent,
     ListeCellierComponent,
     AjoutBouteilleComponent,
@@ -60,8 +57,6 @@ import { ArchiverBouteilleModalComponent } from './archiver-bouteille-modal/arch
     ModifCellierComponent,
     AjoutCellierComponent,
     MesBouteillesComponent,
-    ListeMesbouteillesComponent,
-
     EffacerModalComponent,
 
 
