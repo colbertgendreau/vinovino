@@ -5,24 +5,11 @@ import { ConnexionAdminComponent } from './connexion-admin/connexion-admin.compo
 import { GardienLoginAdminGuard } from './gardien-login-admin.guard';
 import { ListeCatalogueComponent } from './liste-catalogue/liste-catalogue.component';
 import { ListeUsagerComponent } from './liste-usager/liste-usager.component';
-import { StatistiquesComponent } from './components/statistiques/statistiques.component';
-import { DefaultComponent } from './layouts/default/default.component';
-import { DashboardComponent } from './modules/dashboard/dashboard.component';
 const routes: Routes = [
   { path : "admin", component : ConnexionAdminComponent},
   { path : "admin/liste-usager", component : ListeUsagerComponent, canActivate:[GardienLoginAdminGuard]},
   { path : "admin/catalogue", component : ListeCatalogueComponent, canActivate:[GardienLoginAdminGuard]},
   { path : "admin/ajout-admin", component : AjoutAdminComponent, canActivate:[GardienLoginAdminGuard]},
-  {
-    path : "admin/statistiques",
-    component : StatistiquesComponent,
-    canActivate:[GardienLoginAdminGuard]
-  },
-  {
-    path: "admin/dashboard",
-    component: DefaultComponent,
-    canActivate:[GardienLoginAdminGuard]
-  }
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
