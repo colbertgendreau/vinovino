@@ -80,39 +80,40 @@ export class CellierComponent implements OnInit {
       left: 0,
       behavior: 'smooth'
     });
-
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     });
-
     this.route.params.subscribe((params) => {
       this.cellierId = params['id'];
-    
       this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
         if (this.archiveChecked) {
           this.bouteilles = data.data;
+          this.formatagePrix();
         } else {
           this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+          this.formatagePrix();
         }
-    
-        this.bouteilles.forEach(uneBouteille => {
-          if (uneBouteille.prix_bouteillePerso) {
-            uneBouteille.prix_bouteillePerso = (uneBouteille.prix_bouteillePerso.toFixed(2));
-          }
-          if (uneBouteille.prix_saq) {
-            uneBouteille.prix_saq = (uneBouteille.prix_saq.toFixed(2));
-          }
-        });
-
         if (this.bouteilles[0]) {
           this.cellierNom = this.bouteilles[0].cellier_nom;
-        } 
-    
+        }
         this.spin = false;
         this.hide = false;
       });
     });
-  
+  }
+
+  /**
+   * Fonction qui formate le prix des bouteilles pour avoir deux décimales
+   */
+  formatagePrix() {
+    this.bouteilles.forEach(uneBouteille => {
+      if (uneBouteille.prix_bouteillePerso) {
+        uneBouteille.prix_bouteillePerso = (uneBouteille.prix_bouteillePerso.toFixed(2));
+      }
+      if (uneBouteille.prix_saq) {
+        uneBouteille.prix_saq = (uneBouteille.prix_saq.toFixed(2));
+      }
+    });
   }
 
   /**
@@ -123,10 +124,12 @@ export class CellierComponent implements OnInit {
     if (this.archiveChecked === true) {
       this.fetchService.getBouteillesCellier(this.cellierId).subscribe((data: any) => {
         this.bouteilles = data.data;
+        this.formatagePrix()
       });
     } else {
       this.fetchService.getBouteillesCellier(this.cellierId).subscribe((data: any) => {
         this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+        this.formatagePrix();
       });
     }
   }
@@ -148,7 +151,18 @@ export class CellierComponent implements OnInit {
         this.route.params.subscribe((params) => {
           this.cellierId = params['id'];
           this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-            this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+            if (this.archiveChecked) {
+              this.bouteilles = data.data;
+              this.formatagePrix();
+            } else {
+              this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+              this.formatagePrix();
+            }
+            if (this.bouteilles[0]) {
+              this.cellierNom = this.bouteilles[0].cellier_nom;
+            }
+            this.spin = false;
+            this.hide = false;
           });
         });
       });
@@ -157,7 +171,6 @@ export class CellierComponent implements OnInit {
       }
     });
   }
-
 
   /**
    * Fonction qui permet l'ouverture du modal pour supprimer une bouteille dans un cellier
@@ -195,6 +208,7 @@ export class CellierComponent implements OnInit {
       this.cellierId = params['id'];
       this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
         this.bouteilles = data.data;
+        this.formatagePrix();
         this.isVisibleSupprimer = false;
         this.isVisibleArchiver = false;
       });
