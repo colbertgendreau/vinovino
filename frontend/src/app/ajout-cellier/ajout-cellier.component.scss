@@ -21,7 +21,7 @@
         margin-top: var(--big);
         border-radius: var(--border-radius15);
         // border: 3px var(--secondaire) solid;
-        box-shadow: var(--shadow);
+        box-shadow: var(--box-shadow);
 
 
 
@@ -68,7 +68,7 @@
             
             label:focus-within > span,
             input:not(:placeholder-shown) + span{
-                color:var(--secondaire);
+                color: var(--label-color);
                 transform:translateY(0px);
                 border-radius: 5px;
                 padding-bottom: 0;
