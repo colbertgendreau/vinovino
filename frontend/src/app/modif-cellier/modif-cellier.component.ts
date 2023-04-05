@@ -45,23 +45,18 @@ export class ModifCellierComponent implements OnInit {
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
-      console.log(this.UserProfile);
     });
   }
 
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
     });
 
     this.route.params.subscribe((params) => {
-      console.log(params);
 
       this.fetchService.showCellier(params['id']).subscribe((data: any) => {
-        console.log("data showCellier")
         this.unCellier = data.data;
-        console.log(this.unCellier);
       });
     })
 
@@ -72,15 +67,15 @@ export class ModifCellierComponent implements OnInit {
 
   }
 
+  /**
+   * Modifie un cellier dans la base de données en utilisant les données du formulaire
+   */
   modifier() {
     let id = (this.unCellier.id);
     if (this.cellierForm.valid) {
       let unCellier: ICellier = this.cellierForm.value;
-      console.log(unCellier);
-
       this.fetchService.modifCellier(id, unCellier).subscribe((retour) => {
         this.openSnackBar('Modification effectuée avec succès', 'Fermer');
-
         this.router.navigate(['/profil/liste-cellier']);
       });
     }

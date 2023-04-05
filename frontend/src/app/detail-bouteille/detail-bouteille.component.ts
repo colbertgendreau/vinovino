@@ -8,7 +8,6 @@ import { FetchService } from '../fetch.service';
 import { Imesbouteilles } from '../imesbouteilles';
 import { environment } from '../../environments/environment';
 
-
 // User interface
 export class User {
   name: any;
@@ -20,8 +19,8 @@ export class User {
   templateUrl: './detail-bouteille.component.html',
   styleUrls: ['./detail-bouteille.component.scss']
 })
-export class DetailBouteilleComponent {
 
+export class DetailBouteilleComponent {
   isSignedIn!: boolean;
   UserProfile!: User;
   uneBouteille: Imesbouteilles;
@@ -29,12 +28,8 @@ export class DetailBouteilleComponent {
   hide: boolean = true;
   fullImage1 = false;
   showImage = false;
-
   cepage_lisible: string;
-
-
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
-
   isVisible = false;
 
   constructor(
@@ -44,7 +39,6 @@ export class DetailBouteilleComponent {
     public authService: AuthService,
     private route: ActivatedRoute,
     public fetchService: FetchService,
-
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
@@ -55,12 +49,15 @@ export class DetailBouteilleComponent {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
     });
-
     this.route.params.subscribe((params) => {
-
       this.fetchService.showDetail(params['id']).subscribe((data: any) => {
         this.uneBouteille = data.data;
-
+        if (this.uneBouteille.prix_bouteillePerso) {
+          this.uneBouteille.prix_bouteillePerso = (this.uneBouteille.prix_bouteillePerso.toFixed(2));
+        }
+        if (this.uneBouteille.prix_saq) {
+          this.uneBouteille.prix_saq = (this.uneBouteille.prix_saq.toFixed(2));
+        }
         if (this.uneBouteille.cepages) {
           let chaine = this.uneBouteille.cepages;
           let objet = JSON.parse(chaine);
@@ -68,15 +65,9 @@ export class DetailBouteilleComponent {
           let cepage: string = listeCepages.join(" ");
           this.cepage_lisible = cepage.replace(/\u00a0/g, " ");
         }
-
         this.spin = false;
         this.hide = false;
       });
     })
   }
-
-
-
-
-
 }

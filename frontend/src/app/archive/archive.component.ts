@@ -83,6 +83,7 @@ export class ArchiveComponent implements OnInit {
     });
     this.fetchService.getMesBouteilles().subscribe((data: any) => {
       this.bouteilles = data.data;
+      this.formatagePrix();
       for (var i = 0; i < this.bouteilles.length; i++) {
         if (this.bouteilles[i].quantite === 0) {
           this.bouteillesArchivees.push(this.bouteilles[i]);
@@ -94,6 +95,22 @@ export class ArchiveComponent implements OnInit {
       this.spin = false;
       this.hide = false;
     });
+  }
+
+  /**
+   * Fonction qui formate le prix des bouteilles pour avoir deux décimales
+   */
+  formatagePrix() {
+    if (this.bouteilles) {
+      this.bouteilles.forEach(uneBouteille => {
+        if (uneBouteille.prix_bouteillePerso) {
+          uneBouteille.prix_bouteillePerso = (uneBouteille.prix_bouteillePerso).toFixed(2);
+        }
+        if (uneBouteille.prix_saq) {
+          uneBouteille.prix_saq = (uneBouteille.prix_saq).toFixed(2);
+        }
+      });
+    }
   }
 
   /**
@@ -115,6 +132,14 @@ export class ArchiveComponent implements OnInit {
         this.route.params.subscribe((params) => {
           this.fetchService.getMesBouteilles().subscribe((data: any) => {
             this.bouteillesArchivees = (data.data).filter(bouteille => bouteille.quantite === 0);
+            this.bouteillesArchivees.forEach(uneBouteille => {
+              if (uneBouteille.prix_bouteillePerso) {
+                uneBouteille.prix_bouteillePerso = (uneBouteille.prix_bouteillePerso).toFixed(2);
+              }
+              if (uneBouteille.prix_saq) {
+                uneBouteille.prix_saq = (uneBouteille.prix_saq).toFixed(2);
+              }
+            });
           });
         });
         this.spin = false;
