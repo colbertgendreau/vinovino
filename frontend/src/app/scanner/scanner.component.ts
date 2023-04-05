@@ -31,22 +31,18 @@ export class ScannerComponent implements OnDestroy {
     ) {}
 
 ngOnInit(): void {
-    navigator.mediaDevices.getUserMedia({video:true})
-      .then(function(stream){
-        console.log('Stream1 started with success');
-        this.setDevice();
-      })
-      .catch(function(){
-        console.log('Failed to start stream1')
+        navigator.mediaDevices.enumerateDevices()
+      .then((devices) => {
+        console.log('aqui');
+        devices.forEach((device) => {
+          //alert('device - ' + JSON.stringify(device));
+          if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
+            alert('Back found! - ' + device.label);
+            console.log('deviceId: ', device.deviceId);
+            this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+          }
+        });
       });
-    //console.log('apenas');
-    // Pour Android
-
-
-
-
-    //console.log(this.backCameraList);
-    //console.log('fin')
   }
 
   setDevice(): void {
