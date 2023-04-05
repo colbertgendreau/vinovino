@@ -39,7 +39,7 @@ export class ScannerComponent implements OnDestroy {
         console.log('aqui');
         devices.forEach((device) => {
           //alert('device - ' + JSON.stringify(device));
-          if ( device.kind === 'videoinput' && device.label.match(/back/) != null ) {
+          if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
             alert('Back found! - ' + device.label);
             console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
