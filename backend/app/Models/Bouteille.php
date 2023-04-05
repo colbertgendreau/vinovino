@@ -13,8 +13,8 @@ class Bouteille extends Model
     protected $table = 'bouteilles';
     // protected $primaryKey = 'id_mes_bouteilles';
     // protected $primaryKey = 'id_bouteille';
-    
-    
+
+
     protected $fillable = [ //les champ dans la base de donner quon veux modifier, ne pas mettre les auto ecrement
         'date_achat',
         'millesime',
@@ -29,7 +29,7 @@ class Bouteille extends Model
         'id_cellier',
     ];
 
-    // public function bouteilleHasType(){ 
+    // public function bouteilleHasType(){
     //     return $this->hasOne('App\Models\Bouteille', '', '');       /// a voir ici regler la question du type
     // }
 
@@ -37,5 +37,5 @@ class Bouteille extends Model
         return $this->hasOne('App\Models\BouteilleSAQ', 'id', 'bouteilles_id');
     }
 
-    
+
 }

@@ -1,16 +1,13 @@
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 import { EnteteComponent } from './entete/entete.component';
 import { ListeUsagerComponent } from './liste-usager/liste-usager.component';
 import { ListeCatalogueComponent } from './liste-catalogue/liste-catalogue.component';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -25,16 +22,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { AjoutAdminComponent } from './ajout-admin/ajout-admin.component';
 import { ModalComponent } from './modal/modal.component';
 import { ConnexionAdminComponent } from './connexion-admin/connexion-admin.component';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
-import {MatBadgeModule} from '@angular/material/badge';
-import {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
+import { MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatBadgeModule} from '@angular/material/badge';
+import  {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
 import { StatistiquesComponent } from './components/statistiques/statistiques.component';
 import { ChartModule } from 'angular-highcharts';
-import { SidebarComponent } from './layouts/sidebar/sidebar.component';
-
-
-import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
-//import { SafePipe } from './liste-catalogue/safe.pipe';
 
 @NgModule({
   declarations: [
@@ -46,7 +38,6 @@ import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
     ModalComponent,
     ConnexionAdminComponent,
     StatistiquesComponent,
-    SidebarComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,10 +61,8 @@ import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
     MatBadgeModule,
     ChartModule,
     BrowserModule,
-    NgxScannerQrcodeModule
   ],
   providers: [
-    MatSnackBarModule,
   ],
   bootstrap: [AppComponent]
 })
