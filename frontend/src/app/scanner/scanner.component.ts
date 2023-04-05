@@ -61,6 +61,10 @@ export class ScannerComponent implements OnDestroy {
                       alert('Back2 found! - ' + device.label);
                       console.log('deviceId: ', device.deviceId);
                       this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+                    }else if ( device.kind === 'videoinput' && device.label.match(/arri/) != null ) {
+                      alert('Caméra arrière trouvé! - ' + device.label);
+                      console.log('deviceId: ', device.deviceId);
+                      this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
                     }
                   });
                 })
