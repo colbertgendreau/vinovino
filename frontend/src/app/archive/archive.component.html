@@ -31,7 +31,7 @@
                 </div>
                 <div class="quantite">
                     <a *ngIf="!uneBouteille.code_saq" class="modifier-gris" routerLink="/profil/modifier-bouteille/{{ uneBouteille.id_supreme }}"></a>
-                    <a *ngIf="uneBouteille.code_saq" class="saq" href="{{uneBouteille.url_saq}}"></a>
+                    <a *ngIf="uneBouteille.code_saq" class="saq" href="{{uneBouteille.url_saq}}" target="_blank"></a>
                     <div class="quantite">
                         <button class="plus" (click)="modifier(uneBouteille.id_supreme ? uneBouteille.id_supreme : uneBouteille.id_bouteillePerso, uneBouteille.quantite + 1, uneBouteille.celliers_nom)"></button>
                         <span>{{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] : [(uneBouteille.quantite_bouteillePerso)] }}</span>
