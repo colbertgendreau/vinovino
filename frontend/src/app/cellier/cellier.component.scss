@@ -13,9 +13,15 @@
   }
 
   .titreCellier {
+    text-align: center;
     margin-top: 73px;
     font-size: 1.5rem;
     position: relative;
+    padding-inline: 40px;
+    
+    span{
+        text-align: center;
+    }
 
     .icone-grid {
       background: url(../../assets/icones/grid1.png);
@@ -264,7 +270,12 @@
 .list {
     overflow-x: auto;
 }
-    
+
+.table-list {
+    overflow-x: scroll;
+}
+
+
     table {
         border-collapse: collapse;
         margin: 0 auto;
@@ -283,37 +294,43 @@
             tr {
                 background: white;
                 border-top: 1px solid var(--secondaire);
-        width: 100%;
+                width: 100%;
         
-        td {
-            position: relative;
-            padding: var(--smaller);
-            text-align: left;
-            white-space: nowrap;
-            justify-self: flex-start;
-            flex-basis: 0;
-            min-width: 21px;
+            td {
+                position: relative;
+                padding-block: var(--smaller);
+                padding-left: 10px;
+                text-align: left;
+                white-space: nowrap;
+                justify-self: flex-start;
+                flex-basis: 0;
+                min-width: 21px;
+                
+                button {
+                    position: absolute;
+                    top: 9px;
+                    left: 8;
+                }
+            }
             
-            button {
-                position: absolute;
-                top: 9px;
-                left: 8;
+            .td-nom {
+                text-overflow: ellipsis;
+                overflow: hidden; 
+                white-space: nowrap;        
+                max-width: 26ch;
+            }
+            
+            .td-prix {
+                min-width: 60px;
+                flex-grow: 1;
+            }
+
+            .td-quantite {
+                padding-left: 0;
+                margin-right: auto;
             }
         }
-        
-        .td-nom {
-            text-overflow: ellipsis;
-            overflow: hidden; 
-            white-space: nowrap;        
-            max-width: 26ch;
-        }
-        
-        .td-prix {
-            min-width: 60px;
-            flex-grow: 1;
-        }
     }
-}
 }
 
 .modifier-liste {

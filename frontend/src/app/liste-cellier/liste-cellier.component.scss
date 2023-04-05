@@ -58,14 +58,23 @@
         }
     }
 
+    .table-list {
+        overflow-x: scroll;
+    }
+
     table {
         border-collapse: collapse;
-        display: flex;
-        // overflow-x: auto;
-        width: 100%;
+        margin: 0 auto;
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+
 
         tbody {
             width: 100%;
+
+            display: table;
+
         }
         
         tbody > tr:last-child { 
@@ -83,14 +92,15 @@
     
     td {
         position: relative;
-        padding: var(--smaller);
+        padding-block: var(--smaller);
+        padding-left: 10px;
         // min-width: 10px;
         text-align: left;
         white-space: nowrap;
         // max-width: 100px;
         text-overflow: ellipsis;
         overflow: hidden; 
-        min-width: 19px;
+        min-width: 25px;
         align-self: center;
     
         
@@ -98,11 +108,13 @@
             position: absolute;
             top: 9px;
             left: 0;
+            padding-right: 0;
         }
     }
 
     .td-nom {
-        width: 100px;
+        padding-left: 0;
+        margin-right: auto;
     }
     
 
