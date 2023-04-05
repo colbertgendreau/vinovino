@@ -1,2 +1,12 @@
 <app-entete></app-entete>
+<app-header></app-header>
 <router-outlet></router-outlet>
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+    <app-sidebar></app-sidebar>
+  </mat-drawer>
+  <mat-drawer-content class="example-sidenav-content">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+  <app-footer></app-footer>
+</mat-drawer-container>

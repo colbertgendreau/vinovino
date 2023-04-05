@@ -1,0 +1,39 @@
+En plus d'Angualr Material, il faut aussi les packages suivants:
+
+npm i @angular/flex-layout @angular/cdk --save
+
+
+Creating the Layout
+
+1. Create the first layout
+
+To create a new layout component in Angular: ng g c layouts/default
+
+We will put our default layout in a folder called layouts. This command will create our default component in the layouts
+ folder.
+
+We then need to create its module
+
+Pour en apprendre plus sur les modules, je vous invite à lire mon article sur les modules Angular
+https://angular.io/guide/architecture-modules
+
+ng g m layout/default
+
+To this point, we've created a new component and a new module. We need to add the new module to the app module.
+
+We are now going to create the very first page under modules and we will call it dashboard
+ng g c modules/dashboard
+
+
+We then open app.module.ts and clean up the newly created components and modules in the declaration array
+Instead, we are going to import the default layout module and the dashboard module.
+
+To this point, we created two components and two modules. We tehn
+Create a component for the dashboards page
+
+3.- Use the first layout as a parent route component in
+app-routing.module.ts and the dashboard as a child component
+
+
+On va afficher le top 100
+Les cepages les plus aimes des gens
