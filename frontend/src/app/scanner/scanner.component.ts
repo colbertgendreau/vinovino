@@ -34,18 +34,18 @@ export class ScannerComponent implements OnDestroy {
   ngOnInit(): void {
     //console.log('apenas');
     // Pour Android
-    // navigator.mediaDevices.enumerateDevices()
-    //   .then((devices) => {
-    //     console.log('aqui');
-    //     devices.forEach((device) => {
-    //       //alert('device - ' + JSON.stringify(device));
-    //       if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
-    //         //alert('Back found! - ' + device.label);
-    //         console.log('deviceId: ', device.deviceId);
-    //         this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
-    //       }
-    //     });
-    //   });
+    navigator.mediaDevices.enumerateDevices()
+      .then((devices) => {
+        console.log('aqui');
+        devices.forEach((device) => {
+          //alert('device - ' + JSON.stringify(device));
+          if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
+            //alert('Back found! - ' + device.label);
+            console.log('deviceId: ', device.deviceId);
+            this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+          }
+        });
+      });
 
 
 
@@ -57,110 +57,85 @@ export class ScannerComponent implements OnDestroy {
   startScan(): void {
     this.showVideo = true;
 
-    // if (this.backCameraList.length === 0) {
-    //   this.stopScan();
-    //   this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
-    //   this.showVideo = false;
-    //   return;
-    // }
+    if (this.backCameraList.length === 0) {
+      
+      //ios?
+      
+      this.stopScan();
+      this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
+      this.showVideo = false;
+      return;
+    }
 
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
-      
-      alert('getUserMedia - ');
+
+      navigator.mediaDevices.enumerateDevices()
+        .then((devices) => {
+          console.log('aqui');
+          devices.forEach((device) => {
+            //alert('device - ' + JSON.stringify(device));
+            if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
+              alert('Back found! - ' + device.label);
+              console.log('deviceId: ', device.deviceId);
+              this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+            }
+          });
+        });
+
 
       navigator.mediaDevices.getUserMedia({video: {
+          deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
           facingMode: { exact: "environment" }
-        }})
-        .then((s) => {
-
-
-        
-          navigator.mediaDevices.enumerateDevices()
-            .then((devices) => {
-              console.log('aqui');
-              devices.forEach((device) => {
-                //alert('device - ' + JSON.stringify(device));
-                if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
-                  alert('Back found! - ' + device.label);
-                  console.log('deviceId: ', device.deviceId);
-                  this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
-                }
-              });
-            });
-        
-        if (this.stream) {
-      this.stream.getTracks().forEach((track) => {
-        track.stop();
-      });
-    }
-          navigator.mediaDevices.getUserMedia({video: {
-              deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
-              facingMode: { exact: "environment" }
-            } })
-            .then((stream) => {
-              this.stream = stream;
-              this.video.nativeElement.srcObject = stream;
-              this.video.nativeElement.autoplay = true;
-              this.video.nativeElement.playsInline = true;
-              this.video.nativeElement.muted = true;
-              this.isScanning = true;
-              Quagga.init({
-                inputStream: {
-                  name: "Live",
-                  type: "LiveStream",
-                  target: this.video.nativeElement,
-                  constraints: {
-                    width: 640,
-                    height: 480,
-                    facingMode: { exact: "environment" },
-                    deviceId: this.backCameraList[this.backCameraList.length - 1]['deviceId']
-                  },
-                  area: {
-                    top: "25%",
-                    right: "10%",
-                    left: "10%",
-                    bottom: "25%"
-                  },
-                  singleChannel: false // true: only the red color-channel is read
-                },
-                decoder: {
-                  readers: ["ean_reader", "upc_reader","code_128_reader"]
-                },
-                locate: true,
-                locator: {
-                  halfSample: false,
-                  patchSize: "large"
-                },
-                debug:true
-              }, (err) => {
-                if (err) {
-                  console.error(err);
-                  return;
-                }
-                Quagga.start();
-                this.isScanning = true;
-              });
-            })
-            .catch((err) => {
+        } })
+        .then((stream) => {
+          this.stream = stream;
+          this.video.nativeElement.srcObject = stream;
+          this.video.nativeElement.autoplay = true;
+          this.video.nativeElement.playsInline = true;
+          this.video.nativeElement.muted = true;
+          this.isScanning = true;
+          Quagga.init({
+            inputStream: {
+              name: "Live",
+              type: "LiveStream",
+              target: this.video.nativeElement,
+              constraints: {
+                width: 640,
+                height: 480,
+                facingMode: { exact: "environment" },
+                deviceId: this.backCameraList[this.backCameraList.length - 1]['deviceId']
+              },
+              area: {
+                top: "25%",
+                right: "10%",
+                left: "10%",
+                bottom: "25%"
+              },
+              singleChannel: false // true: only the red color-channel is read
+            },
+            decoder: {
+              readers: ["ean_reader", "upc_reader","code_128_reader"]
+            },
+            locate: true,
+            locator: {
+              halfSample: false,
+              patchSize: "large"
+            },
+            debug:true
+          }, (err) => {
+            if (err) {
               console.error(err);
-            });
-          
-          
+              return;
+            }
+            Quagga.start();
+            this.isScanning = true;
+          });
         })
         .catch((err) => {
-      if (err.name === 'NotAllowedError') {
-        // The user has denied camera access permission
-        alert('Please enable camera access in your device settings to use this feature.');
-      } else {
-        // Handle other errors
-        console.error(err);
-      }
-      });
-      
-      
-      
+          console.error(err);
+        });
     }
   }
 
