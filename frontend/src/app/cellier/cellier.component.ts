@@ -88,6 +88,14 @@ export class CellierComponent implements OnInit {
       this.cellierId = params['id'];
       this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
         this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+        this.bouteilles.forEach(uneBouteille => {
+          if (uneBouteille.prix_bouteillePerso) {
+            uneBouteille.prix_bouteillePerso = (uneBouteille.prix_bouteillePerso.toFixed(2));
+          }
+          if (uneBouteille.prix_saq) {
+            uneBouteille.prix_saq = (uneBouteille.prix_saq.toFixed(2));
+          }
+        });
         this.inputArchive = document.getElementById('archive');
         this.inputArchive.addEventListener('change', e => {
           if (e.target.checked === true) {
@@ -128,7 +136,6 @@ export class CellierComponent implements OnInit {
           this.cellierId = params['id'];
           this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
             this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
-            // this.bouteilles = data.data;
           });
         });
       });
