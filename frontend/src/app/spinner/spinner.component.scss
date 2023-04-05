@@ -2,11 +2,9 @@
     margin-bottom: var(--small);
     display: flex;
     max-width: 100vw;
-    // background-color: var(--white);
     justify-content: center;
     padding: var(--small);
     border-radius: var(--border-radius15);
-    // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
     // spinner //
@@ -18,7 +16,6 @@
       }
       .lds-ripple div {
         position: absolute;
-        // border: 4px solid #cef;
         border: 4px solid #FFB700;
         opacity: 1;
         border-radius: 50%;

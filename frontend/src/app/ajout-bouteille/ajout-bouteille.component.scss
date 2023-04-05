@@ -11,6 +11,11 @@ h1 {
   font-size: 1.5rem;
 }
 
+select,
+option {
+    -webkit-appearance: none;
+}
+
 input,
 select {
   margin-block: var(--small);
@@ -34,12 +39,13 @@ select {
 
 .voile {
   width: 100%;
-  height: 50px;
+  height: 350px;
   position: absolute;
   top: -10px;
   left: 0;
   background: transparent;
   margin: 0 auto;
+  z-index: 5;
 }
 
 .recherche-input {
@@ -58,6 +64,7 @@ form {
   display: flex;
   flex-direction: column;
   padding: var(--small);
+  position: relative;
 }
 
 .error-message {
@@ -90,7 +97,6 @@ form {
 
     .image-bouteille {
       max-width: 80px;
-      margin-inline: -15px;
       position: relative;
       bottom: -5px;
     }
@@ -133,7 +139,6 @@ form {
         font-size: clamp(0.9375rem,
             0.5729166666666666rem + 1.8229166666666667vw,
             3.125rem);
-        word-break: break-all;
       }
 
       p {

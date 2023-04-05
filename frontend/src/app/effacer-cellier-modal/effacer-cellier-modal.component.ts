@@ -21,7 +21,10 @@ export class EffacerModalComponent {
     private snackBar: MatSnackBar,
   ) { }
 
-
+/**
+ * Confirme la suppression d'un élément et le supprime une fois confirmé.
+Fait également défiler la fenêtre vers le haut pour un meilleur affichage.
+ */
   confirmer() {
     window.scroll({ // pour scroll up quand on arrive sur la page
         top: 0, 
@@ -36,21 +39,24 @@ export class EffacerModalComponent {
     });
   }
 
+  /**
+   * Cette fonction permet de fermer un modal 
+   */
   annuler() {
 
     this.isVisible = false;
-    this.closed.emit(); // emit the 'closed' event
+    this.closed.emit(); // émet l'évenement 'closed'
   }
 
-      /**
+  /**
  * Cette fonction affiche un message de type snackbar.
  * @param message Le message à afficher.
  * @param action L'action à afficher sur le bouton de fermeture du snackbar.
  */
-      openSnackBar(message: string, action: string) {
-        const config = new MatSnackBarConfig();
-        config.duration = 3000; // Set the duration to 3 seconds
-        config.panelClass = ['mon-snackbar']; // Add a custom CSS class
-        this.snackBar.open(message, action, config);
-      }
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 3000; // Set the duration to 3 seconds
+    config.panelClass = ['mon-snackbar']; // Add a custom CSS class
+    this.snackBar.open(message, action, config);
+  }
 }

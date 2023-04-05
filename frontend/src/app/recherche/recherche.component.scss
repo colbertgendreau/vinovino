@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--big);
-  
+
   .recherche_filter {
     display: flex;
     flex-direction: column;
@@ -13,8 +13,8 @@
     .recherche-label {
         display: none;
     }
-    
-    .recherche-input{
+
+    .recherche-input {
       margin-bottom: var(--big);
       border-radius: 5px;
       border: solid var(--smallest) var(--secondaire);
@@ -35,7 +35,7 @@
         z-index: 1;
       }
     }
-    
+
     .or-line::before,
     .or-line::after {
       content: "";
@@ -45,31 +45,30 @@
       height: var(--smallest);
       background-color: var(--gris-input);
     }
-    
+
     .or-line::before {
       left: 0;
     }
-    
+
     .or-line::after {
       right: 0;
     }
-    
+
     h3 {
       margin-bottom: var(--med);
-
     }
-    
+
     details {
       text-decoration: none;
 
       summary {
         margin-block: var(--smaller4);
       }
-      
-      .type, .pays, .prix {
+
+      .type,
+      .pays,
+      .prix {
         padding-block: var(--med);
-        
-        
 
         .types {
           display: flex;
@@ -86,9 +85,7 @@
               height: var(--big);
               margin-right: var(--smaller4);
               accent-color: var(--secondaire);
-              
             }
-            
           }
         }
 
@@ -100,12 +97,13 @@
           padding-inline: var(--small);
           background: white;
         }
-        
+
         .formPrix {
           display: flex;
           justify-content: space-between;
 
-          .prixMin, .prixMax {
+          .prixMin,
+          .prixMax {
             display: flex;
             flex-direction: row;
             align-items: center;
@@ -146,13 +144,7 @@
   }
 }
 
-
-
 .resultat {
-  h1 {
-    margin-block: var(--big);
-  }
-  
   background-attachment: fixed;
   height: 100%;
   display: flex;
@@ -160,7 +152,11 @@
   gap: var(--small);
   text-align: center;
 
-  .lien-detail{
+  h1 {
+    margin-block: var(--big);
+  }
+
+  .lien-detail {
     text-decoration: none;
     color: var(--black);
   }
@@ -175,7 +171,6 @@
     border-radius: var(--border-radius15);
     box-shadow: var(--box-shadow);
 
-
     .card-bouteille-haut {
       display: flex;
       width: 100%;
@@ -189,7 +184,6 @@
 
       picture img {
         max-width: 80px;
-        margin-inline: -24px;
         position: relative;
         margin-top: 20px;
       }
@@ -198,8 +192,8 @@
         min-width: 4ch;
         width: 100%;
         margin-left: var(--small);
-      
-        a{
+
+        a {
           display: flex;
           flex-direction: column;
           gap: 8px;
@@ -211,7 +205,7 @@
         }
 
         .icone {
-            margin-right: var(--small);
+          margin-right: var(--small);
         }
 
         .icone-vin {
@@ -245,27 +239,22 @@
           background-size: cover;
           object-position: center;
           justify-self: stretch;
-
-          
         }
-        .cellierQuantite {
-            a {
-                color: var(--secondaire-turquoise);
-                font-size: clamp(0.75rem, 0.54rem + 1.4vw, 2.5rem);
 
-            }
+        .cellierQuantite {
+          a {
+            color: var(--secondaire-turquoise);
+            font-size: clamp(0.75rem, 0.54rem + 1.4vw, 2.5rem);
+          }
         }
 
         h3 {
           margin-bottom: auto;
           text-align: left;
-          word-break: break-all;
           margin-left: var(--smaller);
-          font-size: clamp(
-            0.9375rem,
-            0.5729166666666666rem + 1.8229166666666667vw,
-            3.125rem
-          ); //   font-size: clamp(0.9375rem, 0.49999999999999994rem + 2.1875vw, 3.125rem);
+          font-size: clamp(0.9375rem,
+              0.5729166666666666rem + 1.8229166666666667vw,
+              3.125rem); //   font-size: clamp(0.9375rem, 0.49999999999999994rem + 2.1875vw, 3.125rem);
         }
 
         p {
@@ -273,7 +262,6 @@
         }
       }
     }
-
   }
 }
 
@@ -302,9 +290,8 @@
   color: var(--black);
 }
 
-.return a{
+.return a {
   text-decoration: none;
-
 }
 
 .plus {
@@ -334,7 +321,7 @@
   margin-left: auto;
   justify-self: flex-end;
 
-  .archive{
+  .archive {
     background-color: var(--primaire);
     color: white;
     padding-block: var(--smallest);
@@ -361,11 +348,9 @@
   width: 15px;
   height: 15px;
   padding: 5px;
-  
 }
 
-
-.filter_data{
+.filter_data {
   display: flex;
   flex-direction: row;
   height: auto;
@@ -373,11 +358,10 @@
 }
 
 
-.error{
+.error {
   font-size: 12px;
   color: red;
 }
-
 
 app-scanner {
   width: fit-content;
@@ -390,5 +374,4 @@ app-scanner {
   justify-content: center;
   align-items: center;
   gap: 20px;
-
 }

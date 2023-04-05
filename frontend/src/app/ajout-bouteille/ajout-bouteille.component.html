@@ -36,6 +36,7 @@
   <form [className]="hideForm ? 'hide form-ajout' : 'nohide form-ajout'" class="form-ajout" *ngIf="selectedData"
     [formGroup]="ajouterBouteilleForm" (ngSubmit)="ajouter()">
     <input type="hidden" id="id" name="id" formControlName="id" [readonly]="isDataSelected" />
+    <div [class.voile]="isDataSelected"></div>
     <div>
       <label for="name">
         <input type="text" id="name" name="name" formControlName="nom" [readonly]="isDataSelected" placeholder="Nom"
@@ -59,7 +60,6 @@
           <option value="3">vin rosé</option>
         </select>
         <div class="stay">Type</div>
-        <div [class.voile]="isDataSelected"></div>
       </label>
     </div>
     <div class="container-select">
@@ -70,7 +70,6 @@
           <option *ngFor="let pays of choixPays" [value]="pays">{{ pays }}</option>
         </select>
         <div class="stay">Pays</div>
-        <div [class.voile]="isDataSelected"></div>
       </label>
     </div>
     <div>
