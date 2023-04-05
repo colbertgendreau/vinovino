@@ -38,13 +38,33 @@ export class ScannerComponent implements OnDestroy {
       .then((devices) => {
         console.log('aqui');
         devices.forEach((device) => {
-          //alert('device - ' + JSON.stringify(device));
+          alert('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
-            //alert('Back found! - ' + device.label);
+            alert('Back found! - ' + device.label);
             console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }
         });
+        
+        if (this.backCameraList.length === 0) {
+          navigator.mediaDevices.getUserMedia({video: {
+              facingMode: { exact: "environment" }
+            } })
+            .then((stream) => {
+              navigator.mediaDevices.enumerateDevices()
+                .then((devices) => {
+                  console.log('aqui');
+                  devices.forEach((device) => {
+                    alert('device2 - ' + JSON.stringify(device));
+                    if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
+                      alert('Back2 found! - ' + device.label);
+                      console.log('deviceId: ', device.deviceId);
+                      this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+                    }
+                  });
+                })
+            });
+        }
       });
 
 
@@ -58,7 +78,7 @@ export class ScannerComponent implements OnDestroy {
     this.showVideo = true;
 
     if (this.backCameraList.length === 0) {
-      
+
       //ios?
       
       this.stopScan();
