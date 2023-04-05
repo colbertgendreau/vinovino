@@ -45,7 +45,7 @@ export class ScannerComponent implements OnDestroy {
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }
         });
-        
+
         if (this.backCameraList.length === 0) {
           navigator.mediaDevices.getUserMedia({video: {
               facingMode: { exact: "environment" }
@@ -80,7 +80,7 @@ export class ScannerComponent implements OnDestroy {
     if (this.backCameraList.length === 0) {
 
       //ios?
-      
+
       this.stopScan();
       this.errorMessage = "Aucune caméra utilisable n'a été détectée, cette fonction n'est utilisable que sur mobile.";
       this.showVideo = false;
