@@ -21,7 +21,8 @@ export class ScannerComponent implements OnDestroy {
   iconeX =  environment.baseImg + 'icones/x.png';
 
   errorMessage: string = '';
-
+  front_back_camera = "environment";
+  
   @Output() scanned = new EventEmitter<any>();
   showVideo = false;
 
@@ -43,12 +44,17 @@ export class ScannerComponent implements OnDestroy {
             alert('Camera derrière trouvé found! - ' + device.label);
             console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+          }else if ( device.kind === 'videoinput' && device.label.match(/HD/) != null ) {
+            alert('Web cam trouvé! - ' + device.label);
+            this.front_back_camera = "user";
+            console.log('deviceId: ', device.deviceId);
+            this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }
         });
 
         if (this.backCameraList.length === 0) {
           navigator.mediaDevices.getUserMedia({video: {
-              facingMode: { exact: "environment" }
+              facingMode: { exact: this.front_back_camera }
             } })
             .then((stream) => {
               this.stream = stream;
@@ -101,7 +107,7 @@ export class ScannerComponent implements OnDestroy {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       navigator.mediaDevices.getUserMedia({video: {
           deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
-          facingMode: { exact: "environment" }
+          facingMode: { exact: this.front_back_camera }
         } })
         .then((stream) => {
           this.stream = stream;
@@ -118,7 +124,7 @@ export class ScannerComponent implements OnDestroy {
               constraints: {
                 width: 640,
                 height: 480,
-                facingMode: { exact: "environment" },
+                facingMode: { exact: this.front_back_camera },
                 deviceId: this.backCameraList[this.backCameraList.length - 1]['deviceId']
               },
               area: {
