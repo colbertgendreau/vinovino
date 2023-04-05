@@ -67,6 +67,7 @@ export class ScannerComponent implements OnDestroy {
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
 
+      
       alert('getUserMedia - ');
 
       navigator.mediaDevices.getUserMedia({video: {
@@ -75,7 +76,7 @@ export class ScannerComponent implements OnDestroy {
         .then((s) => {
 
 
-
+        
           navigator.mediaDevices.enumerateDevices()
             .then((devices) => {
               console.log('aqui');
@@ -88,6 +89,12 @@ export class ScannerComponent implements OnDestroy {
                 }
               });
             });
+        
+        if (this.stream) {
+      this.stream.getTracks().forEach((track) => {
+        track.stop();
+      });
+    }
           navigator.mediaDevices.getUserMedia({video: {
               deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
               facingMode: { exact: "environment" }
