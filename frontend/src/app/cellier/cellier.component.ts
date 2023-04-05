@@ -9,6 +9,7 @@ import { Ibouteillecellier } from '../ibouteille-cellier';
 import { Imesbouteilles } from '../imesbouteilles';
 import { environment } from '../../environments/environment';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
 
 // Interface User
 export class User {
@@ -27,7 +28,7 @@ export class CellierComponent implements OnInit {
 
   bouteilles: Array<Ibouteillecellier>;
   bouteille: Imesbouteilles;
-  cellierId: string;
+  cellierId: number;
   cellierNom: string;
   isSignedIn!: boolean;
   UserProfile!: User;
@@ -42,6 +43,7 @@ export class CellierComponent implements OnInit {
   isVisibleSupprimer = false;
   isVisibleArchiver = false;
   inputArchive: any;
+  archiveChecked: boolean;
   imgBouteilleNonDisponible = environment.baseImg + 'img/nonDispo.webp';
 
   /**
@@ -84,30 +86,63 @@ export class CellierComponent implements OnInit {
       this.isSignedIn = val;
     });
 
+    // this.route.params.subscribe((params) => {
+    //   this.cellierId = params['id'];
+    //   this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+    //     this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+    //     this.inputArchive = document.getElementById('archive');
+    //     this.inputArchive.addEventListener('change', e => {
+    //       if (e.target.checked === true) {
+    //         this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+    //           this.bouteilles = data.data;
+    //         });
+    //       }
+    //       if (e.target.checked === false) {
+    //         this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
+    //           this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+    //         });
+    //       }
+    //     });
+    //     if (this.bouteilles[0]) {
+    //       this.cellierNom = this.bouteilles[0].cellier_nom;
+    //     }
+    //     this.spin = false;
+    //     this.hide = false;
+    //   });
+    // });
+
     this.route.params.subscribe((params) => {
       this.cellierId = params['id'];
+      // this.archiveChecked = false;
+    
       this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-        this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
-        this.inputArchive = document.getElementById('archive');
-        this.inputArchive.addEventListener('change', e => {
-          if (e.target.checked === true) {
-            this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-              this.bouteilles = data.data;
-            });
-          }
-          if (e.target.checked === false) {
-            this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-              this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
-            });
-          }
-        });
+        if (this.archiveChecked) {
+          this.bouteilles = data.data;
+        } else {
+          this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+        }
+    
         if (this.bouteilles[0]) {
           this.cellierNom = this.bouteilles[0].cellier_nom;
-        }
+        } 
+    
         this.spin = false;
         this.hide = false;
       });
     });
+  
+  }
+
+  toggleArchive() {
+    if (this.archiveChecked === true) {
+      this.fetchService.getBouteillesCellier(this.cellierId).subscribe((data: any) => {
+        this.bouteilles = data.data;
+      });
+    } else {
+      this.fetchService.getBouteillesCellier(this.cellierId).subscribe((data: any) => {
+        this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+      });
+    }
   }
 
   /**
@@ -127,8 +162,18 @@ export class CellierComponent implements OnInit {
         this.route.params.subscribe((params) => {
           this.cellierId = params['id'];
           this.fetchService.getBouteillesCellier(params['id']).subscribe((data: any) => {
-            this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
-            // this.bouteilles = data.data;
+            if (this.archiveChecked) {
+              this.bouteilles = data.data;
+            } else {
+              this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
+            }
+        
+            if (this.bouteilles[0]) {
+              this.cellierNom = this.bouteilles[0].cellier_nom;
+            } 
+        
+            this.spin = false;
+            this.hide = false;
           });
         });
       });
