@@ -28,19 +28,18 @@ select {
   background: white;
 }
 
-
 .container-select {
-    position: relative;
+  position: relative;
 }
 
 .voile {
-    width: 100%;
-    height: 50px;
-    position: absolute;
-    top: -10px;
-    left: 0;
-    background: transparent;
-    margin: 0 auto;
+  width: 100%;
+  height: 50px;
+  position: absolute;
+  top: -10px;
+  left: 0;
+  background: transparent;
+  margin: 0 auto;
 }
 
 .recherche-input {
@@ -94,7 +93,6 @@ form {
       margin-inline: -15px;
       position: relative;
       bottom: -5px;
-    
     }
 
     .info-bouteille {
@@ -132,11 +130,9 @@ form {
 
       h3 {
         padding-left: var(--smaller);
-        font-size: clamp(
-          0.9375rem,
-          0.5729166666666666rem + 1.8229166666666667vw,
-          3.125rem
-        );
+        font-size: clamp(0.9375rem,
+            0.5729166666666666rem + 1.8229166666666667vw,
+            3.125rem);
         word-break: break-all;
       }
 
@@ -165,59 +161,60 @@ form {
 
 /////////////////////// FORM /////////////////////////
 
-label{
-    position:relative;
+label {
+  position: relative;
 }
 
-input::placeholder{
-    opacity:0;
+input::placeholder {
+  opacity: 0;
 }
+
 .floating {
-    padding: 5px;
-    position:absolute;
-    top:-21px;
-    left:20px;
-    transform:translateY(20px);
-    font-size:0.825em;
-    transition-duration:300ms;
-    color: var(--label-color);
-    background: white;
+  padding: 5px;
+  position: absolute;
+  top: -21px;
+  left: 20px;
+  transform: translateY(20px);
+  font-size: 0.825em;
+  transition-duration: 300ms;
+  color: var(--label-color);
+  background: white;
 }
+
 .floating-recherche {
-    top:7px;
+  top: 7px;
 }
 
 .stay {
-    padding: 5px;
-    position:absolute;
-    top:-40px;
-    left:20px;
-    transform:translateY(20px);
-    font-size:0.825em;
-    transition-duration:300ms;
-    color: var(--label-color);
-    background: var(--blanc-gris);
-    border-radius: 5px;
-    padding-bottom: 0;
-
+  padding: 5px;
+  position: absolute;
+  top: -40px;
+  left: 20px;
+  transform: translateY(20px);
+  font-size: 0.825em;
+  transition-duration: 300ms;
+  color: var(--label-color);
+  background: var(--blanc-gris);
+  border-radius: 5px;
+  padding-bottom: 0;
 }
 
-label:focus-within > span,
-input:not(:placeholder-shown) + span{
-    color:var(--label-color);
-    transform:translateY(0px);
-    border-radius: 5px;
-    padding-bottom: 0;
+label:focus-within>span,
+input:not(:placeholder-shown)+span {
+  color: var(--label-color);
+  transform: translateY(0px);
+  border-radius: 5px;
+  padding-bottom: 0;
 }
 
-label:focus-within > .floatingError,
-input:not(:placeholder-shown) + .floatingError{
-    color:var(--primaire);
+label:focus-within>.floatingError,
+input:not(:placeholder-shown)+.floatingError {
+  color: var(--primaire);
 }
 
 .disabled {
-    background-color: rgb(172, 172, 172);
-    opacity: 1;
+  background-color: rgb(172, 172, 172);
+  opacity: 1;
 }
 
 .form-ajout {
@@ -250,7 +247,6 @@ input:not(:placeholder-shown) + .floatingError{
     padding-inline: var(--big);
   }
 
-
   button {
     margin: var(--small);
     height: var(--biggest);
@@ -266,6 +262,7 @@ input:not(:placeholder-shown) + .floatingError{
   button:hover {
     background-color: var(--secondaire);
   }
+
   .btn-effacer {
     background-color: var(--primaire-transparent80);
     border: solid var(--smallest) var(--primaire);
@@ -274,37 +271,39 @@ input:not(:placeholder-shown) + .floatingError{
   .btn-effacer:hover {
     background-color: var(--primaire);
   }
+
   option {
     font-family: 'ruda';
   }
 }
 
-    .nospin {
-        background: green;
-        display: none;
-    }
-    .hide {
-        display: none;
-    }
-    .nohide {
-        display: flex;
-    }
+.nospin {
+  background: green;
+  display: none;
+}
 
-    app-scanner {
-      width: fit-content;
-    }
+.hide {
+  display: none;
+}
 
-    .app_scanner {
-      margin-top: var(--big);
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
+.nohide {
+  display: flex;
+}
 
-    }
+app-scanner {
+  width: fit-content;
+}
 
-    .error{
-      color: red;
-      font-size: 12px;
-    }
+.app_scanner {
+  margin-top: var(--big);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}

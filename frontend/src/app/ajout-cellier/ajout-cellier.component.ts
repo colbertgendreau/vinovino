@@ -6,7 +6,7 @@ import { AuthService } from '../shared/auth.service';
 import { ICellier } from '../icellier';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FetchService } from '../fetch.service';
-import { MatSnackBar, MatSnackBarConfig  } from '@angular/material/snack-bar';
+import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 
 
 // User interface
@@ -24,9 +24,7 @@ export class User {
 export class AjoutCellierComponent implements OnInit {
   @Input() cellier: ICellier;
   cellierForm: FormGroup;
-
   isSignedIn!: boolean;
-  // title:string='Ajouter un cellier';
   UserProfile!: User;
 
   constructor(
@@ -40,20 +38,21 @@ export class AjoutCellierComponent implements OnInit {
   ) {
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
-      console.log(this.UserProfile);
     });
   }
 
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
     });
     this.cellierForm = this.formBuilder.group({
       nom: ['', [Validators.required, Validators.maxLength(20)]],
     });
   }
 
+  /**
+   * Fonction d'ajout d'un cellier
+   */
   ajouter() {
     if (this.cellierForm.valid) {
       let unCellier: ICellier = this.cellierForm.value;
@@ -64,16 +63,15 @@ export class AjoutCellierComponent implements OnInit {
     }
   }
 
-    /**
- * Cette fonction affiche un message de type snackbar.
- * @param message Le message à afficher.
- * @param action L'action à afficher sur le bouton de fermeture du snackbar.
- */
-    openSnackBar(message: string, action: string) {
-      const config = new MatSnackBarConfig();
-      config.duration = 3000; // Set the duration to 3 seconds
-      config.panelClass = ['mon-snackbar']; // Add a custom CSS class
-      this.snackBar.open(message, action, config);
-    }
-
+  /**
+   * Cette fonction affiche un message de type snackbar.
+   * @param message Le message à afficher.
+   * @param action L'action à afficher sur le bouton de fermeture du snackbar.
+   */
+  openSnackBar(message: string, action: string) {
+    const config = new MatSnackBarConfig();
+    config.duration = 3000; // Set the duration to 3 seconds
+    config.panelClass = ['mon-snackbar']; // Add a custom CSS class
+    this.snackBar.open(message, action, config);
+  }
 }
