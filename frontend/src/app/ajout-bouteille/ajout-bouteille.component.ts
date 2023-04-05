@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { TokenService } from '../shared/token.service';
 import { AuthStateService } from '../shared/auth-state.service';
 import { AuthService } from '../shared/auth.service';
-// import {FormControl} from '@angular/forms';
-// import {Observable} from 'rxjs';
 import { IBouteille } from '../ibouteille';
 import { FetchService } from '../fetch.service';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
@@ -31,7 +29,6 @@ export class User {
 export class AjoutBouteilleComponent implements OnInit {
 
   isSignedIn!: boolean;
-
   UserProfile!: User;
   arrayBouteille: Array<IBouteille>;
   filteredData: any = [];
@@ -56,10 +53,7 @@ export class AjoutBouteilleComponent implements OnInit {
   hideForm: boolean = false;
   present: boolean;
   quantite: number;
-
   formSubmitted = false;
-
-
 
   constructor(
     private auth: AuthStateService,
@@ -75,11 +69,8 @@ export class AjoutBouteilleComponent implements OnInit {
     this.idCellierUrl = 'n';
     this.authService.profileUser().subscribe((data: any) => {
       this.UserProfile = data;
-      console.log(this.UserProfile);
     });
-
     this.arrayBouteille = [];
-
   }
 
   /**
@@ -93,14 +84,12 @@ export class AjoutBouteilleComponent implements OnInit {
       this.filteredData = [];
     } else {
       this.spin = true;
-
       if (this.searchTerm === '') {
         this.filteredData = [];
       } else {
         this.spin = true;
         this.hide = true;
         this.hideForm = true;
-
         this.filteredData = this.arrayBouteille.filter(item =>
           item.nom.toLowerCase().includes(searchTerm.toLowerCase())
         );
@@ -116,18 +105,14 @@ export class AjoutBouteilleComponent implements OnInit {
    * on patch les data de bouteille dans le form ajouter
    */
   selectData(bouteille: any) {
-
     window.scrollTo(0, 0);
-
     window.scroll({ // pour scroll down quand on clique sur une bouteille
       top: 300,
       left: 0,
       behavior: 'smooth'
     });
-
     this.hideForm = false;
     this.selectedData = bouteille;
-
     this.ajouterBouteilleForm.patchValue({
       id: bouteille.id,
       nom: bouteille.nom,
@@ -141,7 +126,6 @@ export class AjoutBouteilleComponent implements OnInit {
     });
     this.filteredData = [];
     this.isDataSelected = true; 
-    console.log('isDataSelected:', this.isDataSelected); 
   }
 
   /**
@@ -152,7 +136,6 @@ export class AjoutBouteilleComponent implements OnInit {
     this.isDataSelected = false;
   }
 
-
   /**
    * function qui prend en main le scan
    * @param scannedBouteille data de la bouteille trouver
@@ -161,7 +144,6 @@ export class AjoutBouteilleComponent implements OnInit {
   handleScan(scannedBouteille: string) {
     this.messageErreur="";
     this.scannedBouteille = scannedBouteille;
-
     if(this.scannedBouteille){
       this.ajouterBouteilleForm.patchValue({
         id:          this.scannedBouteille.id,
@@ -177,8 +159,6 @@ export class AjoutBouteilleComponent implements OnInit {
     }else{
       this.messageErreur = "Le scan n'a pas fonctionné, veuillez vous assurer que le code est bien visible."
     }
-   
-
   }
 
   /**
@@ -191,20 +171,12 @@ export class AjoutBouteilleComponent implements OnInit {
       this.route.params.subscribe((params) => {
         let nouvelleBouteille: Imesbouteilles = this.ajouterBouteilleForm.value;
         nouvelleBouteille.type = Number(nouvelleBouteille.type);
-
-        console.log(params);
-        console.log(nouvelleBouteille.celliers_id);
         this.present = false;
         this.fetchService
           .getBouteillesCellier(nouvelleBouteille.celliers_id)
           .subscribe((data: any) => {
             this.bouteilles = data.data;
-
-            console.log('les bouteilles du cellier');
-            console.log(this.bouteilles);
-
             if (this.bouteilles) {
-      
               this.bouteilles.forEach(element => {
                 if(nouvelleBouteille.id == element.id){
                   this.present = true;
@@ -213,9 +185,7 @@ export class AjoutBouteilleComponent implements OnInit {
                     this.openSnackBar('Bouteille ajoutée avec succès', 'Fermer');
                     this.router.navigateByUrl('profil/cellier/' + nouvelleBouteille.celliers_id);
                   });
-                  
                 }
-    
               });
             }
             if (this.present == false){
@@ -238,13 +208,11 @@ export class AjoutBouteilleComponent implements OnInit {
       left: 0,
       behavior: 'smooth'
     });
-
     this.isDataSelected = false;
     const controls = this.ajouterBouteilleForm.controls;
     Object.keys(controls).forEach(controlName => {
       controls[controlName].setValue('');
     });
-
   }
 
   /**
@@ -258,35 +226,21 @@ export class AjoutBouteilleComponent implements OnInit {
       left: 0,
       behavior: 'smooth'
     });
-
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
-      console.log(this.isSignedIn);
     });
-
     this.route.params.subscribe((params) => {
         this.idCellierUrl = params['id'];
     })
-    
-    console.log('le id du cellier preselect');
-    console.log(this.idCellierUrl);
-
     this.fetchService.getBouteilleSAQ().subscribe((response) => {
       this.arrayBouteille = response.data;
-      console.log(this.arrayBouteille);
-      console.log(this.idCellierUrl);
       this.arrayBouteille.forEach(uneBouteille => {
         uneBouteille.prix_saq = (uneBouteille.prix_saq.toFixed(2));
       });
     });
-
     this.fetchService.getCelliers().subscribe((data: any) => {
         this.listeCelliers = data.data;
-        console.log('les celliers');
-        console.log(this.listeCelliers);
-        console.log(this.idCellierUrl);
     });
-        
     this.ajouterBouteilleForm = this.formBuilder.group({ //validation du mon formgroup ajouter bouteille
       id:          [''],
       nom:         ['', [Validators.required]],

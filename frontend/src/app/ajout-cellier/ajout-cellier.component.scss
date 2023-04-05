@@ -23,9 +23,6 @@
         // border: 3px var(--secondaire) solid;
         box-shadow: var(--box-shadow);
 
-
-
-
         div {
             min-width: 100%;
             display: flex;
@@ -41,10 +38,9 @@
                 align-self: stretch;
             }
 
-            input::placeholder{
-                opacity:0;
+            input::placeholder {
+                opacity: 0;
             }
-            
 
             input {
                 height: var(--biggest);
@@ -56,12 +52,12 @@
 
             .floating {
                 padding: 5px;
-                position:absolute;
-                top:-14px;
-                left:28px;
-                transform:translateY(20px);
-                font-size:0.825em;
-                transition-duration:300ms;
+                position: absolute;
+                top: -14px;
+                left: 28px;
+                transform: translateY(20px);
+                font-size: 0.825em;
+                transition-duration: 300ms;
                 color: gray;
                 background: white;
             }
@@ -74,11 +70,11 @@
                 padding-bottom: 0;
             }
 
-            label:focus-within > .floatingError,
-            input:not(:placeholder-shown) + .floatingError{
-                color:var(--primaire);
+            label:focus-within>.floatingError,
+            input:not(:placeholder-shown)+.floatingError {
+                color: var(--primaire);
             }
-    
+
 
             input:focus {
                 border: var(--smallest) solid var(--secondaire);
@@ -87,7 +83,6 @@
             button {
                 margin-top: var(--big);
                 margin-bottom: var(--biggest);
-                // margin-inline: var(--small);
                 height: var(--biggest);
                 border-radius: var(--border-radius);
                 border-style: none;
