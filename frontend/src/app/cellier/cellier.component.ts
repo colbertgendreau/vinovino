@@ -9,7 +9,6 @@ import { Ibouteillecellier } from '../ibouteille-cellier';
 import { Imesbouteilles } from '../imesbouteilles';
 import { environment } from '../../environments/environment';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { FormsModule } from '@angular/forms';
 
 // Interface User
 export class User {
@@ -145,11 +144,9 @@ export class CellierComponent implements OnInit {
             } else {
               this.bouteilles = (data.data).filter(bouteille => bouteille.quantite > 0);
             }
-        
             if (this.bouteilles[0]) {
               this.cellierNom = this.bouteilles[0].cellier_nom;
             } 
-        
             this.spin = false;
             this.hide = false;
           });
@@ -221,7 +218,6 @@ export class CellierComponent implements OnInit {
    */
   changeDisplay(mode: number): void {
     this.display = mode;
-    console.log(this.display);
   }
 
   /**
