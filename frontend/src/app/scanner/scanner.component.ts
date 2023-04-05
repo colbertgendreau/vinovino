@@ -142,7 +142,15 @@ export class ScannerComponent implements OnDestroy {
           
           
         })
-        .catch((err) => {});
+        .catch((err) => {
+      if (err.name === 'NotAllowedError') {
+        // The user has denied camera access permission
+        alert('Please enable camera access in your device settings to use this feature.');
+      } else {
+        // Handle other errors
+        console.error(err);
+      }
+      });
       
       
       
