@@ -27,9 +27,6 @@ import { MatBadgeModule} from '@angular/material/badge';
 import  {MatSnackBar, MatSnackBarRef} from '@angular/material/snack-bar';
 import { StatistiquesComponent } from './components/statistiques/statistiques.component';
 import { ChartModule } from 'angular-highcharts';
-import { NgxScannerQrcodeModule } from 'ngx-scanner-qrcode';
-import { DefaultModule } from './layouts/default/default.module';
-import {SharedModule} from "./shared/shared.module";
 
 @NgModule({
   declarations: [
@@ -64,9 +61,6 @@ import {SharedModule} from "./shared/shared.module";
     MatBadgeModule,
     ChartModule,
     BrowserModule,
-    NgxScannerQrcodeModule,
-    DefaultModule,
-    SharedModule
   ],
   providers: [
   ],
