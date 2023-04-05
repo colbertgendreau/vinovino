@@ -189,7 +189,6 @@
 
       picture img {
         max-width: 80px;
-        margin-inline: -24px;
         position: relative;
         margin-top: 20px;
       }
@@ -259,7 +258,6 @@
         h3 {
           margin-bottom: auto;
           text-align: left;
-          word-break: break-all;
           margin-left: var(--smaller);
           font-size: clamp(
             0.9375rem,
