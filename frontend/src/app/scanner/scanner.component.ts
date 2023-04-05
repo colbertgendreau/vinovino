@@ -22,7 +22,7 @@ export class ScannerComponent implements OnDestroy {
 
   errorMessage: string = '';
   front_back_camera = "environment";
-  
+
   @Output() scanned = new EventEmitter<any>();
   showVideo = false;
 
@@ -39,13 +39,13 @@ export class ScannerComponent implements OnDestroy {
       .then((devices) => {
         console.log('aqui');
         devices.forEach((device) => {
-          alert('device - ' + JSON.stringify(device));
+          //alert('device - ' + JSON.stringify(device));
           if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
-            alert('Camera derrière trouvé found! - ' + device.label);
+            //alert('Camera derrière trouvé found! - ' + device.label);
             console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
           }else if ( device.kind === 'videoinput' && device.label.match(/HD/) != null ) {
-            alert('Web cam trouvé! - ' + device.label);
+            //alert('Web cam trouvé! - ' + device.label);
             this.front_back_camera = "user";
             console.log('deviceId: ', device.deviceId);
             this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
@@ -60,20 +60,19 @@ export class ScannerComponent implements OnDestroy {
               this.stream = stream;
               navigator.mediaDevices.enumerateDevices()
                 .then((devices) => {
-                  console.log('aqui');
                   devices.forEach((device) => {
-                    alert('device2 - ' + JSON.stringify(device));
+                    //alert('device2 - ' + JSON.stringify(device));
                     if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
-                      alert('Back2 found! - ' + device.label);
+                      //alert('Back2 found! - ' + device.label);
                       console.log('deviceId: ', device.deviceId);
                       this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
                     }else if ( device.kind === 'videoinput' && device.label.match(/arri/) != null ) {
-                      alert('Caméra arrière trouvé! - ' + device.label);
+                      //alert('Caméra arrière trouvé! - ' + device.label);
                       console.log('deviceId: ', device.deviceId);
                       this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
                     }
                     else if ( device.kind === 'videoinput' && device.label.match(/\u540E\u7F6E\u76F8\u673A/) != null ) {
-                      alert('Caméra \u540E\u7F6E\u76F8\u673A trouvé! - ' + device.label);
+                      //alert('Caméra \u540E\u7F6E\u76F8\u673A trouvé! - ' + device.label);
                       console.log('deviceId: ', device.deviceId);
                       this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
                     }
@@ -173,7 +172,9 @@ export class ScannerComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.stopScan();
+    if(this.showVideo == true || this.isScanning == true){
+      this.stopScan();
+    }
   }
 
   // ngOnInit(): void {
