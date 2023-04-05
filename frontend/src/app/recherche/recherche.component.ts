@@ -40,6 +40,7 @@ export class RechercheComponent {
   iconeXb =  environment.baseImg + 'icones/xb.png';
 
   handleScan(scannedBouteille: string) {
+    this.messageErreur="";
     this.scannedBouteille = scannedBouteille;
     console.log(this.scannedBouteille);
     const matchingBouteille = this.listeMesBouteilles.find(
