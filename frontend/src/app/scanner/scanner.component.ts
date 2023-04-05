@@ -66,25 +66,22 @@ export class ScannerComponent implements OnDestroy {
 
 
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-      
-      navigator.mediaDevices.enumerateDevices()
-      .then((devices) => {
-        console.log('aqui');
-        devices.forEach((device) => {
-          alert('device - ' + JSON.stringify(device));
-          if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
-            alert('Back found! - ' + device.label);
-            console.log('deviceId: ', device.deviceId);
-            this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
-          }
-        });
-      });
-      
       navigator.mediaDevices.getUserMedia({video: {
-          deviceId: { exact: this.backCameraList[this.backCameraList.length - 1]['deviceId'] },
           facingMode: { exact: "environment" }
         } })
         .then((stream) => {
+          navigator.mediaDevices.enumerateDevices()
+            .then((devices) => {
+              console.log('aqui');
+              devices.forEach((device) => {
+                alert('device - ' + JSON.stringify(device));
+                if ( device.kind === 'videoinput' && device.label.match(/ack/) != null ) {
+                  alert('Back found! - ' + device.label);
+                  console.log('deviceId: ', device.deviceId);
+                  this.backCameraList.push({'deviceLabel': device.label, 'deviceId': device.deviceId});
+                }
+              });
+            });
           this.stream = stream;
           this.video.nativeElement.srcObject = stream;
           this.video.nativeElement.autoplay = true;
