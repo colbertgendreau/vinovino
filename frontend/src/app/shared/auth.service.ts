@@ -17,49 +17,37 @@ export class User {
 })
 export class AuthService {
   constructor(private http: HttpClient) {}
-  // User registration
+
+/**
+ * Enregistre un nouvel utilisateur en appelant l'API d'inscription
+ * @param {User} user - les informations utilisateur à enregistrer
+ * @returns {Observable<any>} un Observable contenant la réponse de l'API d'inscription
+ */
   register(user: User): Observable<any> {
-
     if (isDevMode()) {
-      console.log('Development frontend!');
-      console.log(environment.apiUrl);
       return this.http.post<any>(environment.apiUrl+'/api/auth/register', user);
     } else {
-      console.log('Production frontend!');
-      console.log(environment.apiUrl);
       return this.http.post<any>(environment.apiUrl+'/api/auth/register', user);
     }
   }
-  // Login
-  // signin(user: User): Observable<any> {
-  //
-  //   if (isDevMode()) {
-  //     console.log('Development admin!');
-  //   } else {
-  //     console.log('Production admin!');
-  //   }
-  //   console.log(environment.apiUrl+'/api/auth/login' +" aqui tratando de connectarnos a ladmin1")
-  //   return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
-  // }
 
+  /**
+   * Envoie une requête de connexion au serveur en utilisant les informations d'utilisateur fournies
+   * @param {User} user - les informations d'utilisateur pour se connecter (email et mot de passe)
+   * @returns {Observable<any>} un observable contenant la réponse du serveur (jeton d'authentification et autres informations)
+   */
   signin(user: User): Observable<any> {
-
-
     if (isDevMode()) {
-      console.log('Development frontend!');
-      console.log(environment.apiUrl);
       return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
     } else {
-      console.log('Production fronted!');
-      console.log(environment.apiUrl);
       return this.http.post<any>(environment.apiUrl+'/api/auth/login', user);
     }
   }
-  // // LoginAdmin
-  // signinAdmin(user: User): Observable<any> {
-  //   return this.http.post<any>('http://127.0.0.1:8000/api/auth/login', user);
-  // }
-  // Access user profile
+
+  /**
+   * Récupère le profil de l'utilisateur courant
+   * @returns {Observable<any>} Observable contenant le profil de l'utilisateur courant
+   */
   profileUser(): Observable<any> {
     return this.http.get(environment.apiUrl+'/api/auth/user-profile');
   }
