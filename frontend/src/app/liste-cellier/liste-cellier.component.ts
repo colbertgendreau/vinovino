@@ -41,7 +41,6 @@ export class ListeCellierComponent implements OnInit {
   listeCelliers: Array<ICellier>;
   listeMesBouteilles: Array<Imesbouteilles>;
   unCellier: ICellier;
-
   filteredData:any = [];
   searchTerm:any = '';
   minPrice:number;
@@ -76,6 +75,9 @@ export class ListeCellierComponent implements OnInit {
 
   }
 
+  /**
+   * a l'initialisation, on fetch tout les celliers du user
+   */
   ngOnInit() {
     this.auth.userAuthState.subscribe((val) => {
       this.isSignedIn = val;
@@ -92,16 +94,19 @@ export class ListeCellierComponent implements OnInit {
 
   }
 
-  // modal d'effacement
-
+ 
+/**
+ * function qui ouvre le modal
+ * @param id id de la bouteille quon veux supprimer
+ */
   openModal(id: number) {
-   console.log(id);
-   console.log(this.isVisible);
    this.id = id;
    this.isVisible = true;
-
   }
 
+  /**
+   * function qui ferme le modal
+   */
   closeModal() {
     this.isVisible = false;
   }
@@ -111,17 +116,21 @@ export class ListeCellierComponent implements OnInit {
   }
 
 
+  /**
+   * function qui refetch quand on ajoute ou supprime
+   */
   rafraichirListe(){
     this.fetchService.getCelliers().subscribe((data: any) => {
       this.listeCelliers = data.data;
-      console.log(this.listeCelliers);
       this.isVisible = false;
     });
   }
 
-
+/**
+ * function de navigation vers le cellier pour voir le detail
+ * @param idCellier cellier quon click pour ouvrir
+ */
   openCellier(idCellier:number) {
-    console.log('ouvre le cellier'+idCellier);
     this.router.navigateByUrl('profil/cellier/'+idCellier); 
   }
 
