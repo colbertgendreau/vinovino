@@ -117,7 +117,7 @@
     <section class="table-list">
         <table>
             <tbody>
-                <tr *ngFor="let uneBouteille of bouteilles">
+                <tr *ngFor="let uneBouteille of bouteilles" routerLink="/profil/bouteille/{{uneBouteille.id_supreme}}">
                     <td class="td-quantite">{{ uneBouteille.quantite !== undefined ? [(uneBouteille.quantite)] :
                         [(uneBouteille.quantite_bouteillePerso)] }} x</td>
                         <td class="td-nom">{{ uneBouteille.nom ? uneBouteille.nom : uneBouteille.nom_bouteillePerso }}</td>
