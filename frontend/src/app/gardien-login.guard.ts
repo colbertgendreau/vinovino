@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthStateService } from './shared/auth-state.service';
+import {environment} from "../environments/environment";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,10 @@ export class GardienLoginGuard implements CanActivate {
     this.authServ.statutConnexion().subscribe((etat) => {
       this.estConnecte = etat;
       if (this.estConnecte === false) {
+        // a changer pour liste-celliers
         this.router.navigate(["/connexion"]);
+      }else {
+        this.router.navigateByUrl("/"+environment.profilPrefix+'liste-cellier')
       }
     });
   }
