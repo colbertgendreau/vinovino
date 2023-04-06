@@ -2,7 +2,7 @@
 
     <h1 class="titreCellier"><span>{{ cellierNom }}</span>
         <!-- grid list toggle de : www.syncfusion.com -->
-        <div id="view" class="e-btn-group" *ngIf="!spin">
+        <div id="view" class="e-btn-group" *ngIf="bouteilles[0] && !spin">
             <label class="e-btn" for="right" *ngIf="display === 1">
                 <input type="radio" id="right" name="align" value="2" (click)="changeDisplay(2)" />
                 <div class="icone-list"></div>
